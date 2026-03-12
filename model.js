@@ -284,7 +284,56 @@ export function applyClinicalModifiers(X, result) {
         }
     }
 
-    // D. SOSPECHA DE MALIGNIDAD (Cáncer de Piel) - Bloquea downscales
+    // --- MODIFICADORES CONTEXTUALES (v2.1) ---
+
+    // D. CONTEXTO DIABÉTICO / ISQUÉMICO (Pie en riesgo)
+    if (has('riesgo_metabolico') && (has('lesion_ulcera') || has('lesion_escara')) && (has('topog_ext_inf') || has('topo_pies'))) {
+        if (finalPriority >= 1) {
+            finalPriority = 1;
+            modifierApplied = "Riesgo de Isquemia Crítica / Pie Diabético en Riesgo";
+            return buildResult(finalPriority, modifierApplied, result);
+        }
+    }
+
+    // E. CONTEXTO DE INMUNOSUPRESIÓN (Oportunistas/Gravedad atípica)
+    if (has('inmunosupresion') && (has('patron_generalizado') || has('topog_cabeza') || has('tiempo_agudo'))) {
+        if (finalPriority >= 2) {
+            finalPriority = 2;
+            modifierApplied = "Evaluación Prioritaria por Estado de Inmunocompromiso";
+            return buildResult(finalPriority, modifierApplied, result);
+        }
+    }
+
+    // F. CONTEXTO DE ITS SISTÉMICA (Lúes II / Mimickers)
+    if (has('patron_acral') && has('patron_generalizado') && !has('tiempo_cronico')) {
+        if (finalPriority >= 2) {
+            finalPriority = 2;
+            modifierApplied = "Sospecha de ITS Sistémica (Patrón Acral/Generalizado)";
+            return buildResult(finalPriority, modifierApplied, result);
+        }
+    }
+
+    // G. CONTEXTO DE MALIGNIDAD ACRAL (Melanoma Lentiginoso Acral)
+    if ((has('patron_acral') || has('topo_pies')) && has('tiempo_cronico') && (has('lesion_mancha') || has('lesion_nodulo'))) {
+        if (finalPriority >= 2) {
+            finalPriority = 2;
+            modifierApplied = "Sospecha de Malignidad en Localización Acral";
+            return buildResult(finalPriority, modifierApplied, result);
+        }
+    }
+
+    // H. CONTEXTO GERIÁTRICO / VULNERABILIDAD (Sarcoptosis Noruega / Otros)
+    const isElderly = (X[FEATURE_INDEX.edad] || 0) > 0.75; // > 75 años
+    if (isElderly && has('patron_generalizado') && (has('lesion_costra') || has('lesion_escama'))) {
+        if (finalPriority >= 2) {
+            finalPriority = 2;
+            modifierApplied = "Vulnerabilidad Geriátrica: Cuadro Generalizado Costroso";
+            return buildResult(finalPriority, modifierApplied, result);
+        }
+    }
+
+    // --- BLOQUEO DE DOWNSCALES PARA MALIGNIDAD CRÍTICA ---
+    // I. SOSPECHA DE MALIGNIDAD (Cáncer de Piel estándar)
     const isSuspectTime = has('tiempo_cronico') || has('tiempo_subagudo');
     const isMalignantLesion = has('lesion_nodulo') || has('lesion_tumor') || has('lesion_ulcera');
     if (isSuspectTime && isMalignantLesion) {

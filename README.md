@@ -53,16 +53,16 @@ O directamente:
 node tools/validate_clinical_cases.js
 ```
 
-### Motor de Priorización Híbrido (v2.0)
-El sistema utiliza un enfoque de **Capas de Decisión** para máxima seguridad:
-1.  **Score Estadístico**: Modelo de pesos dinámicos basado en >120 variables semiológicas.
-2.  **Clinical Risk Modifiers**: Capa heuística explícita que escala/desescala la prioridad ante patrones críticos (ej: riesgo ocular, necrosis aguda, sospecha de malignidad).
-3.  **Capa de Interpretación**: Traduce la prioridad en conductas accionables, plazos y una narrativa justificativa.
+### Motor de Priorización Híbrido (v2.1)
+El sistema utiliza un enfoque de **Capas de Decisión Multifactorial**:
+1.  **Score Estadístico**: Pesos dinámicos (>120 variables).
+2.  **Morphological Modifiers**: Corrigen riesgos visuales (Necrosis, Ocular, Malignidad).
+3.  **Context-Aware Modifiers**: Ajustan la prioridad según el binomio lesión-huésped (Inmunosupresión, Riesgo Metabólico, ITS sistémica).
 
-### Boundary Case Stress Testing (v1.1)
-Para evaluar la robustez del motor clínico, se utiliza un set de validación de **30 casos** complejos.
-- **Resultado Actual**: **100.0% Concordancia** (30/30 PASS).
-- **Propósito**: Detectar sobretriage en cuadros extensos pero benignos y asegurar la sensibilidad ante banderas rojas sutiles.
+### Boundary Case Stress Testing (v1.2)
+Set de validación expandido a **40 casos** complejos.
+- **Resultado Actual**: **100.0% Concordancia** (40/40 PASS).
+- **Enfoque**: Detección de mimickers sistémicos y protección de pacientes vulnerables.
 
 ### Cómo agregar nuevos casos
 Edita el archivo `clinical_cases.js` siguiendo la estructura de objetos existente. Asegúrate de asignar la `expected_priority` según el consenso médico local.
