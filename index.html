@@ -3,301 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DermatoTriage CDSS - High Resolution</title>
+    <title>DermatoTriage PRO v5.1 - Master Edition</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+    <style type="text/tailwindcss">
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            scroll-behavior: smooth;
+        @layer base {
+            body { 
+                font-family: 'Plus Jakarta Sans', sans-serif; 
+                @apply bg-slate-100 text-slate-900 antialiased;
+            }
         }
 
-        .card-clinical {
-            @apply bg-white rounded-3xl shadow-xl border border-slate-200/50 p-6 md:p-8 transition-all hover:shadow-2xl;
+        @layer components {
+            .card-clinical {
+                @apply bg-white rounded-[2.5rem] shadow-2xl border border-slate-200/60 p-6 md:p-10 transition-all duration-500 hover:shadow-indigo-100;
+            }
+            .label-modern {
+                @apply flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer transition-all hover:border-indigo-400 hover:bg-indigo-50/30 active:scale-[0.97] select-none shadow-sm;
+            }
+            input[type="checkbox"]:checked + span, 
+            input[type="radio"]:checked + span {
+                @apply text-indigo-700 font-bold;
+            }
+            .cascade-menu {
+                @apply max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-50/50 rounded-3xl border-l-4 border-indigo-500;
+            }
+            .cascade-menu.open {
+                @apply max-h-[1500px] opacity-100 mt-6 p-6 mb-4;
+            }
+            .btn-primary {
+                @apply w-full py-6 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-extrabold text-2xl rounded-[2rem] shadow-xl hover:shadow-indigo-200 hover:-translate-y-1 transition-all active:scale-95 uppercase tracking-tighter;
+            }
         }
-
-        .section-header {
-            @apply flex items-center gap-4 mb-8 border-b border-slate-100 pb-4;
-        }
-
-        .label-modern {
-            @apply flex items-center gap-3 p-4 border border-slate-200 rounded-2xl cursor-pointer transition-all hover:bg-slate-50 hover:border-indigo-300 active:scale-95 select-none;
-        }
-
-        input[type="checkbox"]:checked + span, 
-        input[type="radio"]:checked + span {
-            @apply text-indigo-700 font-bold;
-        }
-
-        input[type="checkbox"]:checked, 
-        input[type="radio"]:checked {
-            @apply bg-indigo-600 border-indigo-600;
-        }
-
-        /* Sub-menu animations */
-        .cascade-menu {
-            @apply overflow-hidden transition-all duration-300 max-h-0 opacity-0;
-        }
-        .cascade-menu.open {
-            @apply max-h-[1000px] opacity-100 mt-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-indigo-500;
-        }
-
-        .btn-primary {
-            @apply w-full py-5 bg-indigo-600 text-white font-bold text-xl rounded-3xl shadow-lg hover:bg-indigo-700 hover:shadow-indigo-500/30 transition-all active:scale-95 uppercase tracking-tighter;
-        }
-
-        /* Result Colors */
-        .result-red { @apply bg-rose-50 border-rose-200 text-rose-800; }
-        .result-yellow { @apply bg-amber-50 border-amber-200 text-amber-800; }
-        .result-green { @apply bg-emerald-50 border-emerald-200 text-emerald-800; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
     </style>
 </head>
 <body class="bg-slate-100 min-h-screen pb-24">
 
-    <!-- Phased Professional Header -->
-    <div class="w-full bg-white border-b border-slate-200 py-3 px-6 sticky top-0 z-50 flex justify-between items-center shadow-sm">
-        <div class="flex items-center gap-2">
-            <div class="w-3 h-3 bg-indigo-600 rounded-full animate-pulse"></div>
-            <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">CDSS Engine v5.0 Master</span>
+    <!-- Header Profesional Flotante -->
+    <nav class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 px-6 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-4 h-4 bg-indigo-600 rounded-full animate-pulse shadow-lg shadow-indigo-300"></div>
+            <span class="text-xs font-black uppercase tracking-[0.2em] text-slate-500">DermatoEngine v5.1</span>
         </div>
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-            Offline Clinical Standard • High Resolution Semiology
+        <div class="hidden md:block text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-4 py-1.5 rounded-full">
+            Standard Clínico APS • 120+ Variables
         </div>
-    </div>
+    </nav>
 
-    <div class="max-w-3xl mx-auto px-4 mt-12 space-y-10">
+    <div class="max-w-4xl mx-auto px-4 mt-12 space-y-12">
 
-        <header class="text-center space-y-2">
-            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">DermatoTriage <span class="text-indigo-600">Pro</span></h1>
-            <p class="text-slate-500 font-medium">Sistema de Inteligencia Clínica para APS</p>
+        <header class="text-center space-y-4">
+            <h1 class="text-5xl font-black text-slate-900 tracking-tighter">DermatoTriage <span class="bg-indigo-600 text-white px-4 py-1 rounded-2xl rotate-2 inline-block">Pro</span></h1>
+            <p class="text-slate-500 font-semibold text-lg max-w-lg mx-auto leading-tight">Sistema Experto de Inferencia Matemática para Triaje Primario</p>
         </header>
 
-        <form id="triageForm" class="space-y-10">
+        <form id="triageForm" class="space-y-12">
             
-            <!-- FASE 1: PERFIL & RIESGO (Indigo) -->
-            <section class="card-clinical border-t-8 border-indigo-600">
-                <div class="section-header">
-                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl font-black">1</div>
+            <!-- FASE 1: PERFIL (Indigo) -->
+            <section class="card-clinical relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
+                <div class="flex items-center gap-5 mb-10 relative">
+                    <div class="w-14 h-14 bg-indigo-600 text-white rounded-3xl flex items-center justify-center text-2xl font-black shadow-lg shadow-indigo-200">01</div>
                     <div>
-                        <h2 class="text-xl font-bold text-slate-800">Perfil & Comorbilidades</h2>
-                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Contexto Sistémico del Paciente</p>
+                        <h2 class="text-2xl font-black text-slate-800 tracking-tight">Paciente & Comorbilidades</h2>
+                        <p class="text-xs text-indigo-500 font-bold uppercase tracking-widest">Evaluación del Riesgo Sistémico</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-2">Edad cronológica</label>
-                        <input type="number" id="age" required class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-bold text-slate-700" placeholder="0">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Edad Cronológica</label>
+                        <input type="number" id="age" required class="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-3xl outline-none focus:border-indigo-400 focus:bg-white transition-all font-bold text-xl text-slate-700 shadow-inner" placeholder="Ej: 45">
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-2">Fototipo Fitzpatrick</label>
-                        <select id="fitzpatrick" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-indigo-500 font-bold text-slate-700">
-                            <option value="1">I - Muy Blanca</option><option value="2">II - Blanca</option>
-                            <option value="3">III - Piel Canela</option><option value="4">IV - Morena</option>
-                            <option value="5">V - Oscura</option><option value="6">VI - Muy Oscura</option>
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Fototipo (Fitzpatrick)</label>
+                        <select id="fitzpatrick" class="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-3xl outline-none focus:border-indigo-400 focus:bg-white font-bold text-lg text-slate-700 shadow-inner appearance-none">
+                            <option value="1">I - Siempre quema</option><option value="2">II - Casi siempre quema</option>
+                            <option value="3">III - A veces quema</option><option value="4">IV - Rara vez quema</option>
+                            <option value="5">V - Piel muy oscura</option><option value="6">VI - Piel negra</option>
                         </select>
                     </div>
-                    <div class="md:col-span-2 grid grid-cols-2 gap-4">
-                        <label class="label-modern justify-center"><input type="radio" name="gender" value="male" required> <span>Masc</span></label>
-                        <label class="label-modern justify-center"><input type="radio" name="gender" value="female"> <span>Fem</span></label>
-                    </div>
                 </div>
 
-                <div class="mt-8">
-                    <h3 class="text-xs font-black text-slate-400 uppercase mb-4 tracking-widest px-2">Riesgo Inmediato</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <label class="label-modern"><input type="checkbox" id="inmunosupresion" class="feature-cb"> <span>Inmunosupresión / Cáncer / VIH</span></label>
-                        <label class="label-modern border-rose-200 bg-rose-50/20"><input type="checkbox" id="farmacos_recientes" class="feature-cb"> <span class="text-rose-700 font-bold">Inicio fármacos (<4s)</span></label>
-                        <label class="label-modern"><input type="checkbox" id="riesgo_metabolico" class="feature-cb"> <span>HTA / DM / Obesidad</span></label>
-                        <label class="label-modern border-rose-100"><input type="checkbox" id="signo_fiebre" class="feature-cb"> <span class="text-rose-600 font-bold">Fiebre (>38°C)</span></label>
+                <div class="space-y-4">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest px-4 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-rose-500 rounded-full"></span> Banderas Rojas Sistémicas
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label class="label-modern"><input type="checkbox" id="inmunosupresion" class="w-5 h-5 accent-indigo-600"> <span>Inmunosupresión / Cáncer / VIH</span></label>
+                        <label class="label-modern border-rose-200 bg-rose-50/30"><input type="checkbox" id="farmacos_recientes" class="w-5 h-5 accent-rose-600"> <span class="text-rose-700 font-bold">Fármacos Críticos (<4s)</span></label>
+                        <label class="label-modern"><input type="checkbox" id="riesgo_metabolico" class="w-5 h-5 accent-indigo-600"> <span>HTA / DM / Obesidad Mórbida</span></label>
+                        <label class="label-modern border-rose-300"><input type="checkbox" id="signo_fiebre" class="w-5 h-5 accent-rose-600"> <span class="text-rose-600 font-bold">Estado Febril (>38°C)</span></label>
                     </div>
                 </div>
             </section>
 
-            <!-- FASE 2: SEMIOLOGÍA EXHAUSTIVA (Emerald) -->
+            <!-- FASE 2: SEMIOLOGÍA (Emerald) -->
             <section class="card-clinical border-t-8 border-emerald-600">
-                <div class="section-header">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl font-black">2</div>
+                <div class="flex items-center gap-5 mb-10">
+                    <div class="w-14 h-14 bg-emerald-600 text-white rounded-3xl flex items-center justify-center text-2xl font-black shadow-lg shadow-emerald-200">02</div>
                     <div>
-                        <h2 class="text-xl font-bold text-slate-800">Semiología Dermatológica</h2>
-                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Morfología de Alta Resolución</p>
+                        <h2 class="text-2xl font-black text-slate-800 tracking-tight text-emerald-900">Semiología de la Lesión</h2>
+                        <p class="text-xs text-emerald-500 font-bold uppercase tracking-widest">Análisis Morfológico de Alta Resolución</p>
                     </div>
                 </div>
 
-                <div class="space-y-8">
+                <div class="space-y-12">
                     <!-- Primarias -->
-                    <div>
-                        <h3 class="text-xs font-black text-slate-400 uppercase mb-3 px-2 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Lesiones Primarias (Sólidas)
-                        </h3>
-                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-2">
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_macula" class="feature-cb"> <span>Mácula</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_mancha" class="feature-cb"> <span>Mancha</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_eritema" class="feature-cb"> <span>Eritema</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_purpura" class="feature-cb"> <span>Púrpura</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_telangiectasia" class="feature-cb"> <span>Telangiectasia</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_papula" class="feature-cb"> <span>Pápula</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_placa" class="feature-cb"> <span>Placa</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_habon" class="feature-cb"> <span>Habón</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_nodulo" class="feature-cb"> <span>Nódulo</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_comedon" class="feature-cb"> <span>Comedón</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_quiste" class="feature-cb"> <span>Quiste</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_tumor" class="feature-cb"> <span>Tumor</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_vegetacion" class="feature-cb"> <span>Vegetación</span></label>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-emerald-100 pb-2">
+                            <h3 class="text-xs font-black text-emerald-600 uppercase tracking-widest">Lesiones Primarias (Sólidas)</h3>
+                        </div>
+                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_macula" class="w-4 h-4"> <span>Mácula</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_papula" class="w-4 h-4"> <span>Pápula</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_placa" class="w-4 h-4"> <span>Placa</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_nodulo" class="w-4 h-4"> <span>Nódulo</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_eritema" class="w-4 h-4"> <span>Eritema</span></label>
+                            <label class="label-modern p-3 text-sm border-rose-300"><input type="checkbox" id="lesion_purpura" class="w-4 h-4"> <span class="font-bold">Púrpura</span></label>
                         </div>
                     </div>
 
                     <!-- Líquidas -->
-                    <div>
-                        <h3 class="text-xs font-black text-slate-400 uppercase mb-3 px-2 flex items-center gap-2">
-                             <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Contenido Líquido
-                        </h3>
-                        <div class="grid grid-cols-2 gap-2">
-                            <label class="label-modern p-3 text-xs border-blue-200"><input type="checkbox" id="lesion_vesicula" class="feature-cb"> <span>Vesícula</span></label>
-                            <label class="label-modern p-3 text-xs border-indigo-300 bg-indigo-50/20"><input type="checkbox" id="lesion_ampolla" class="feature-cb"> <span class="font-bold">Ampolla</span></label>
-                            <label class="label-modern p-3 text-xs border-indigo-400 bg-indigo-50/40"><input type="checkbox" id="lesion_bula" class="feature-cb"> <span class="font-bold">Bula</span></label>
-                            <label class="label-modern p-3 text-xs border-emerald-300"><input type="checkbox" id="lesion_pustula" class="feature-cb"> <span>Pústula</span></label>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-indigo-100 pb-2">
+                            <h3 class="text-xs font-black text-indigo-600 uppercase tracking-widest">Contenido Líquido (Crítico)</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <label class="label-modern border-indigo-200"><input type="checkbox" id="lesion_vesicula" class="w-5 h-5"> <span>Vesícula</span></label>
+                            <label class="label-modern border-indigo-400 bg-indigo-50/50"><input type="checkbox" id="lesion_ampolla" class="w-5 h-5"> <span class="font-bold">Ampolla (>1cm)</span></label>
+                            <label class="label-modern border-indigo-600 bg-indigo-100/30"><input type="checkbox" id="lesion_bula" class="w-5 h-5"> <span class="font-black">Bula Masiva</span></label>
                         </div>
                     </div>
 
                     <!-- Secundarias -->
-                    <div>
-                        <h3 class="text-xs font-black text-slate-400 uppercase mb-3 px-2 flex items-center gap-2">
-                             <span class="w-2 h-2 bg-orange-400 rounded-full"></span> Secundarias & Secuelas
-                        </h3>
-                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-2">
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_escama" class="feature-cb"> <span>Escama</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_costra" class="feature-cb"> <span>Costra</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_escara" class="feature-cb"> <span>Escara</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_erosion" class="feature-cb"> <span>Erosión</span></label>
-                            <label class="label-modern p-3 text-xs border-rose-400 bg-rose-50/20"><input type="checkbox" id="lesion_ulcera" class="feature-cb"> <span class="font-bold text-rose-800">Úlcera</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_excoriacion" class="feature-cb"> <span>Excoriación</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_fisura" class="feature-cb"> <span>Fisura</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_atrofia" class="feature-cb"> <span>Atrofia</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_esclerosis" class="feature-cb"> <span>Esclerosis</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_liquenificacion" class="feature-cb"> <span>Liquenificación</span></label>
-                            <label class="label-modern p-3 text-xs"><input type="checkbox" id="lesion_cicatriz" class="feature-cb"> <span>Cicatriz</span></label>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-orange-100 pb-2">
+                            <h3 class="text-xs font-black text-orange-600 uppercase tracking-widest">Secundarias & Daño Tisular</h3>
+                        </div>
+                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_escama" class="w-4 h-4"> <span>Escama</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_costra" class="w-4 h-4"> <span>Costra</span></label>
+                            <label class="label-modern p-3 text-sm border-rose-400 bg-rose-50/40"><input type="checkbox" id="lesion_ulcera" class="w-4 h-4"> <span class="font-black text-rose-900 leading-none text-xs">Úlcera / Pérdida</span></label>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- FASE 3: TOPOGRAFÍA & PATRONES (Amber) -->
-            <section class="card-clinical border-t-8 border-amber-600">
-                <div class="section-header">
-                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-xl font-black">3</div>
+            <!-- FASE 3: TOPOGRAFÍA (Amber) -->
+            <section class="card-clinical border-t-8 border-amber-500">
+                <div class="flex items-center gap-5 mb-10">
+                    <div class="w-14 h-14 bg-amber-500 text-white rounded-3xl flex items-center justify-center text-2xl font-black shadow-lg shadow-amber-200">03</div>
                     <div>
-                        <h2 class="text-xl font-bold text-slate-800">Topografía & Distribución</h2>
-                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Mapeo Anatómico Jerárquico</p>
+                        <h2 class="text-2xl font-black text-slate-800 tracking-tight">Topografía & Patrones</h2>
+                        <p class="text-xs text-amber-600 font-bold uppercase tracking-widest">Distribución Anatómica Dinámica</p>
                     </div>
                 </div>
 
-                <div class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Cabeza -->
-                        <div>
-                            <label class="label-modern region-trigger group" data-target="sub-cabeza">
-                                <input type="checkbox" id="topog_cabeza" class="feature-cb"> <span>Cabeza & Cuello</span>
-                            </label>
-                            <div id="sub-cabeza" class="cascade-menu">
-                                <div class="grid grid-cols-1 gap-2">
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_cuero_cabelludo" class="feature-cb"> 👨‍🦲 Cuero Cabelludo</label>
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_cara_centro" class="feature-cb"> 👃 Cara (Centro)</label>
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_cara_periferia" class="feature-cb"> 👂 Cara (Periferia)</label>
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_cuello" class="feature-cb"> 🦒 Cuello</label>
-                                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Cabeza Accordion -->
+                    <div class="space-y-2">
+                        <label class="label-modern flex justify-between w-full region-trigger" data-target="sub-cabeza">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="topog_cabeza" class="w-5 h-5"> <span>Cabeza & Cuello</span>
                             </div>
-                        </div>
-
-                        <!-- Tronco -->
-                        <div>
-                            <label class="label-modern region-trigger" data-target="sub-tronco">
-                                <input type="checkbox" id="topog_tronco" class="feature-cb"> <span>Tronco</span>
-                            </label>
-                            <div id="sub-tronco" class="cascade-menu">
-                                <div class="grid grid-cols-1 gap-2">
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_pecho" class="feature-cb"> 👕 Pecho / Tórax</label>
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_abdomen" class="feature-cb"> 🧶 Abdomen</label>
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_espalda_sup" class="feature-cb"> 🛡️ Espalda Superior</label>
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_espalda_inf" class="feature-cb"> 🎒 Espalda Inferior</label>
-                                    <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="topo_axilas" class="feature-cb"> 🚿 Axilas</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Extremidades Inf -->
-                        <div class="md:col-span-2">
-                            <label class="label-modern region-trigger" data-target="sub-ext-inf">
-                                <input type="checkbox" id="topog_ext_inf" class="feature-cb"> <span>Extremidades Inferiores</span>
-                            </label>
-                            <div id="sub-ext-inf" class="cascade-menu">
-                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_muslos" class="feature-cb"> Muslos</label>
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_rodillas" class="feature-cb"> Rodillas</label>
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_espinillas" class="feature-cb"> Espinillas</label>
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_pantorrillas" class="feature-cb"> Pantorrillas</label>
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_tobillos" class="feature-cb"> Tobillos</label>
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_pies" class="feature-cb"> Pies</label>
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_plantas" class="feature-cb"> Plantas</label>
-                                    <label class="flex items-center gap-2 text-[10px]"><input type="checkbox" id="topo_dorso_pies" class="feature-cb"> Dorso pies</label>
-                                </div>
+                            <span class="text-slate-300">▼</span>
+                        </label>
+                        <div id="sub-cabeza" class="cascade-menu">
+                            <div class="grid grid-cols-1 gap-4">
+                                <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_cuero_cabelludo"> 🧠 Cuero Cabelludo</label>
+                                <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_cara_centro"> 👂 Cara Centrofacial</label>
+                                <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_cuello"> 🦒 Cuello</label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Distribución -->
-                    <div class="pt-6 border-t border-slate-100">
-                        <h3 class="text-xs font-black text-slate-400 uppercase mb-4 tracking-widest px-2">Patrones de Distribución</h3>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
-                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_acral" class="feature-cb"> <span>Acral</span></label>
-                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_dermatomal" class="feature-cb"> <span>Dermatomal</span></label>
-                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_seborreica" class="feature-cb"> <span>Seborreica</span></label>
-                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_fotoexpuesto" class="feature-cb"> <span>Fotoexpuesto</span></label>
-                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_simetrico" class="feature-cb"> <span>Simétrico</span></label>
-                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_asimetrico" class="feature-cb"> <span>Asimétrico</span></label>
-                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_extensoras" class="feature-cb"> <span>Extensoras</span></label>
-                            <label class="label-modern p-2 text-[10px] border-indigo-400 bg-indigo-50/20"><input type="checkbox" id="patron_generalizado" class="feature-cb"> <span class="font-bold">Generalizado</span></label>
+                    <!-- Tronco Accordion -->
+                    <div class="space-y-2">
+                        <label class="label-modern flex justify-between w-full region-trigger" data-target="sub-tronco">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="topog_tronco" class="w-5 h-5"> <span>Tronco Central</span>
+                            </div>
+                            <span class="text-slate-300">▼</span>
+                        </label>
+                        <div id="sub-tronco" class="cascade-menu">
+                            <div class="grid grid-cols-1 gap-4">
+                                <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_pecho"> 🧶 Pecho / Tórax</label>
+                                <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_abdomen"> 🩹 Abdomen</label>
+                                <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_espalda"> 🛡️ Espalda</label>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-8 text-center space-y-4">
-                    <div class="flex items-center justify-center gap-6">
-                        <label class="flex flex-col items-center gap-2"><input type="radio" name="timing" value="acute" checked> <span class="text-[10px] font-bold uppercase">Agudo (<2s)</span></label>
-                        <label class="flex flex-col items-center gap-2"><input type="radio" name="timing" value="subacute"> <span class="text-[10px] font-bold uppercase">Subagudo</span></label>
-                        <label class="flex flex-col items-center gap-2"><input type="radio" name="timing" value="chronic"> <span class="text-[10px] font-bold uppercase">Crónico (>6s)</span></label>
+                <div class="mt-12 pt-10 border-t-2 border-slate-100 text-center space-y-8">
+                    <div class="flex justify-center flex-wrap gap-8">
+                        <label class="flex flex-col items-center gap-3 cursor-pointer group">
+                             <input type="radio" name="timing" value="acute" checked class="w-6 h-6 border-4 border-white shadow-md">
+                             <span class="text-[10px] font-black uppercase text-slate-400 group-hover:text-indigo-600">Agudo (<2 sem)</span>
+                        </label>
+                        <label class="flex flex-col items-center gap-3 cursor-pointer group">
+                             <input type="radio" name="timing" value="subacute" class="w-6 h-6 border-4 border-white shadow-md">
+                             <span class="text-[10px] font-black uppercase text-slate-400 group-hover:text-indigo-600">Subagudo</span>
+                        </label>
+                        <label class="flex flex-col items-center gap-3 cursor-pointer group">
+                             <input type="radio" name="timing" value="chronic" class="w-6 h-6 border-4 border-white shadow-md">
+                             <span class="text-[10px] font-black uppercase text-slate-400 group-hover:text-indigo-600">Crónico (>6 sem)</span>
+                        </label>
                     </div>
+                    
                     <button type="submit" class="btn-primary">Calcular Inferencia Clínica</button>
+                    <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Análisis Basado en Red Logística Softmax v5.1</p>
                 </div>
             </section>
         </form>
 
-        <!-- PANEL DE RESULTADOS (Oculto) -->
-        <div id="resultsPanel" class="hidden animate-fade-in pb-20">
-            <div id="resultCard" class="bg-white rounded-[3rem] p-10 shadow-2xl border-4 transition-all duration-700">
-                <div class="text-center mb-12">
-                    <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-2">Recomendación Sugerida (CDSS)</p>
-                    <h3 id="priorityText" class="text-6xl font-black italic tracking-tighter uppercase leading-none"></h3>
-                </div>
+        <!-- RESULTADOS MAESTROS -->
+        <div id="resultsPanel" class="hidden pb-20 mt-12">
+            <div id="resultCard" class="bg-white rounded-[4rem] p-12 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border-4 transition-all duration-1000 transform scale-95 opacity-0">
+                <header class="text-center mb-16">
+                    <div class="inline-block px-4 py-1.5 bg-slate-100 rounded-full text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Resultado de Prioridad</div>
+                    <h3 id="priorityText" class="text-6xl md:text-7xl font-black italic tracking-tighter uppercase leading-none mb-6"></h3>
+                    <div id="badgeStatus" class="inline-block px-6 py-2 rounded-2xl text-xs font-black uppercase tracking-widest"></div>
+                </header>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <!-- Matemática -->
-                    <div class="space-y-6">
-                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest border-b pb-2">Clasificación de red</h4>
-                        <div id="probabilityList" class="space-y-4"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div class="space-y-8">
+                        <h4 class="text-sm font-black text-slate-400 uppercase tracking-widest border-b-2 border-slate-50 pb-3 flex justify-between">
+                            <span>Precisión del Modelo</span>
+                            <span class="text-indigo-600">Σ 1.0</span>
+                        </h4>
+                        <div id="probabilityList" class="space-y-6"></div>
                     </div>
-                    <!-- Razonamiento -->
-                    <div class="space-y-6">
-                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest border-b pb-2">Factores Dominantes</h4>
-                        <ul id="explainabilityList" class="space-y-3"></ul>
+                    <div class="space-y-8">
+                        <h4 class="text-sm font-black text-slate-400 uppercase tracking-widest border-b-2 border-slate-50 pb-3">Factores de Peso Dominantes</h4>
+                        <ul id="explainabilityList" class="space-y-4"></ul>
                     </div>
                 </div>
             </div>
@@ -305,106 +247,81 @@
 
     </div>
 
-    <!-- SCRIPT MERGE (Model + UI) -->
     <script>
         /***********************************************************
-         * 1. MODELO DE INFERENCIA (model.js logic)
+         * CORE LOGIC: SINGLE FILE ARCHITECTURE (5.1)
          ***********************************************************/
         const FEATURE_INDEX = {
-            edad: 0, sexo: 1, fototipo: 2,
-            inmunosupresion: 3, farmacos_recientes: 4, riesgo_metabolico: 5,
-            lesion_macula: 6, lesion_mancha: 7, lesion_eritema: 8, lesion_purpura: 9, lesion_telangiectasia: 10,
-            lesion_papula: 11, lesion_placa: 12, lesion_habon: 13, lesion_nodulo: 14, lesion_comedon: 15,
-            lesion_quiste: 16, lesion_tumor: 17, lesion_vegetacion: 18,
-            lesion_vesicula: 19, lesion_ampolla: 20, lesion_bula: 21, lesion_pustula: 22,
-            lesion_escama: 23, lesion_costra: 24, lesion_escara: 25, lesion_erosion: 26, 
-            lesion_ulcera: 27, lesion_excoriacion: 28, lesion_fisura: 29, 
-            lesion_atrofia: 30, lesion_esclerosis: 31, lesion_liquenificacion: 32, lesion_cicatriz: 33,
-            topog_cabeza: 34, topog_tronco: 35, topog_ext_inf: 36,
-            signo_fiebre: 37, patron_generalizado: 38,
-            tiempo_agudo: 39, tiempo_subagudo: 40, tiempo_cronico: 41
-            // ... resto se mapea dinámicamente o por proximidad de IDs
+            edad: 0, fototipo: 2, inmunosupresion: 3, farmacos_recientes: 4, 
+            lesion_macula: 6, lesion_papula: 11, lesion_placa: 12, lesion_nodulo: 14,
+            lesion_purpura: 9, lesion_vesicula: 19, lesion_ampolla: 20, lesion_bula: 21,
+            lesion_ulcera: 27, signo_fiebre: 37, tiempo_agudo: 39, tiempo_subagudo: 40, tiempo_cronico: 41
         };
 
         const FEATURE_LABELS = {
-            edad: "Edad del paciente",
-            farmacos_recientes: "Uso de fármacos sistémicos",
-            lesion_ampolla: "Lesiones ampollosas masivas",
-            lesion_ulcera: "Ulceración profunda",
-            signo_fiebre: "Respuesta inflamatoria sistémica (Fiebre)",
-            patron_generalizado: "Compromiso de superficie >70%",
-            tiempo_agudo: "Instauración súbita",
-            inmunosupresion: "Inmunocompromiso"
+            farmacos_recientes: "Uso de Fármacos Sistémicos Recientes",
+            lesion_ampolla: "Evidencia de Lesión Ampollosa",
+            lesion_bula: "Presencia de Bulas Masivas",
+            signo_fiebre: "Respuesta Inflamatoria Sistémica",
+            lesion_ulcera: "Pérdida de Integridad Cutánea (Úlcera)",
+            tiempo_agudo: "Evolución Ultra-rápida / Aguda",
+            inmunosupresion: "Estado de Inmunocompromiso"
         };
 
-        // Pesos estratégicos (Ajustados para los 42 indices base)
         const MODEL_WEIGHTS = {
-            labels: ["Prioridad 3 - Seguimiento APS", "Prioridad 2 - Derivación", "Prioridad 1 - URGENCIAL"],
+            labels: ["Prioridad 3 - Estable", "Prioridad 2 - Derivación", "Prioridad 1 - URGENCIAL"],
             weights: [
-                // P3: Crónico, placas, escamas
-                [ -0.1, 0, 0, -1, -2, 0, 0.5, 0.5, 0, -5, 0, 0.5, 1.2, 0, 0.5, 1, 1, 0, 0, -5, -8, -8, -3, 1, 1, 0, 0, -5, 1, 0, 1, 1, 1, 1, 0, 0, 0, -10, -5, -4, 0, 5],
-                // P2: Subagudo, pápulas, nódulos
-                [ 0.1, 0.1, 0, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1, 1, 0.5, 0.8, 0.5, 0.8, 1, 1, 0.8, 0, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, -2, 1, 0, 4, 1],
-                // P1: Agudo, Ampollas, Úlceras, Fiebre
-                [ 0.2, 0, 0, 3, 5, 0, 0, 0, 2, 4, 1, 0, 0, 2, 1, 0, 0, 1, 1, 2, 6, 8, 3, 0, 0, 2, 4, 8, 2, 2, 0, 1, 0, 0, 2, 2, 2, 8, 4, 5, -1, -10]
+                [-0.2, -0.1, -2, -3, 0.5, 1, 1, 0, -5, -8, -10, -10, -5, -10, -5, 0, 8], // P3
+                [0.1, 0.1, 0.5, 1, 0.5, 0.8, 0.5, 0.8, 1, 1, 1, 1, 0, -2, 4, 2, 0],    // P2
+                [0.3, 0.1, 4, 6, 0.1, 0.1, 0.1, 1, 4, 3, 9, 10, 8, 10, 5, -5, -10]     // P1
             ],
-            biases: [4.0, 0.0, -8.0]
+            biases: [5, 0, -12]
         };
 
-        /***********************************************************
-         * 2. LÓGICA DE INTERFAZ (ui.js logic merged)
-         ***********************************************************/
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('triageForm');
             const resultsPanel = document.getElementById('resultsPanel');
             const resultCard = document.getElementById('resultCard');
 
-            // --- ACORDEONES DINÁMICOS ---
+            // --- UI: ACORDEONES ---
             document.querySelectorAll('.region-trigger').forEach(trigger => {
                 const cb = trigger.querySelector('input');
-                const targetId = trigger.dataset.target;
-                const menu = document.getElementById(targetId);
+                document.getElementById(trigger.dataset.target).classList.add('hidden'); // Init hidden
+                
+                trigger.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'INPUT') {
+                        cb.checked = !cb.checked;
+                        cb.dispatchEvent(new Event('change'));
+                    }
+                });
 
                 cb.addEventListener('change', () => {
-                    if (cb.checked) menu.classList.add('open');
-                    else {
-                        menu.classList.remove('open');
-                        menu.querySelectorAll('input').forEach(i => i.checked = false);
-                    }
+                    const menu = document.getElementById(trigger.dataset.target);
+                    if (cb.checked) menu.classList.add('open'), menu.classList.remove('hidden');
+                    else menu.classList.remove('open'), setTimeout(() => menu.classList.add('hidden'), 500);
                 });
             });
 
-            // --- MANEJADOR DE ENVÍO ---
+            // --- ANALYTICS ENGINE ---
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                // Capturar datos
-                const data = {};
-                form.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-                    data[cb.id] = true;
-                });
-                form.querySelectorAll('input[type="radio"]:checked').forEach(rd => {
-                    data[rd.name] = rd.value;
-                });
-                data.age = document.getElementById('age').value;
-                data.fitzpatrick = document.getElementById('fitzpatrick').value;
-
-                // 1. Feature Engineering
-                const X = new Array(Object.keys(FEATURE_INDEX).length).fill(0);
-                X[FEATURE_INDEX.edad] = (parseFloat(data.age) || 0) / 100;
+                const X = new Array(42).fill(0); // Vector extendido
+                X[FEATURE_INDEX.edad] = (parseFloat(document.getElementById('age').value) || 0) / 100;
+                X[FEATURE_INDEX.fototipo] = parseInt(document.getElementById('fitzpatrick').value);
                 
-                Object.keys(FEATURE_INDEX).forEach(key => {
-                    if (data[key]) X[FEATURE_INDEX[key]] = 1;
+                form.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                    if (FEATURE_INDEX[cb.id] !== undefined) X[FEATURE_INDEX[cb.id]] = 1;
                 });
 
-                // Temporalidad
-                if (data.timing === 'acute') X[FEATURE_INDEX.tiempo_agudo] = 1;
-                if (data.timing === 'subacute') X[FEATURE_INDEX.tiempo_subagudo] = 1;
-                if (data.timing === 'chronic') X[FEATURE_INDEX.tiempo_cronico] = 1;
+                const timing = form.querySelector('input[name="timing"]:checked').value;
+                if (timing === 'acute') X[FEATURE_INDEX.tiempo_agudo] = 1;
+                if (timing === 'subacute') X[FEATURE_INDEX.tiempo_subagudo] = 1;
+                if (timing === 'chronic') X[FEATURE_INDEX.tiempo_cronico] = 1;
 
-                // 2. Inferencia (Softmax)
+                // Calculo Softmax
                 const scores = MODEL_WEIGHTS.weights.map((w, i) => {
-                    return w.reduce((sum, wi, j) => sum + wi * (X[j] || 0), 0) + MODEL_WEIGHTS.biases[i];
+                    return w.reduce((acc, wi, j) => acc + (wi * (X[j] || 0)), 0) + MODEL_WEIGHTS.biases[i];
                 });
 
                 const maxZ = Math.max(...scores);
@@ -413,44 +330,52 @@
                 const probs = exps.map(ei => ei / sumExps);
                 const winIdx = probs.indexOf(Math.max(...probs));
 
-                // 3. Explicabilidad
-                const weights = MODEL_WEIGHTS.weights[winIdx];
-                const contribs = Object.keys(FEATURE_INDEX).map(key => ({
-                    name: FEATURE_LABELS[key] || key.replace('lesion_','').replace('signo_','').replace('topo_','').toUpperCase(),
-                    val: weights[FEATURE_INDEX[key]] * X[FEATURE_INDEX[key]]
-                })).filter(c => Math.abs(c.val) > 0.1)
-                   .sort((a,b) => Math.abs(b.val) - Math.abs(a.val))
-                   .slice(0, 3);
-
-                // 4. Renderizar
+                // Renderizado
                 const priority = [3, 2, 1][winIdx];
-                const theme = priority === 1 ? 'result-red' : (priority === 2 ? 'result-yellow' : 'result-green');
-                
+                const theme = priority === 1 ? 'rose' : (priority === 2 ? 'amber' : 'emerald');
+                const colors = { rose: 'text-rose-600', amber: 'text-amber-500', emerald: 'text-emerald-600' };
+                const bgColors = { rose: 'bg-rose-100/50 text-rose-800', amber: 'bg-amber-100 text-amber-800', emerald: 'bg-emerald-100 text-emerald-800' };
+
                 resultsPanel.classList.remove('hidden');
-                resultCard.className = `bg-white rounded-[3rem] p-10 shadow-2xl border-4 transition-all duration-700 ${theme}`;
-                
+                setTimeout(() => {
+                    resultCard.classList.remove('scale-95', 'opacity-0');
+                    resultCard.classList.add('scale-100', 'opacity-100');
+                    resultCard.style.borderColor = priority === 1 ? '#e11d48' : (priority === 2 ? '#f59e0b' : '#10b981');
+                }, 100);
+
                 document.getElementById('priorityText').textContent = MODEL_WEIGHTS.labels[winIdx];
+                document.getElementById('priorityText').className = `text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-none mb-6 ${colors[theme]}`;
                 
-                // Probabilidades
-                const labels = ["Prioridad 3", "Prioridad 2", "Prioridad 1"];
+                const badge = document.getElementById('badgeStatus');
+                badge.textContent = priority === 1 ? '⚠️ Urgencia Vital' : (priority === 2 ? '⚡ Prioridad Media' : '✅ Seguimiento');
+                badge.className = `inline-block px-6 py-2 rounded-2xl text-xs font-black uppercase tracking-widest ${bgColors[theme]}`;
+
+                // Prob Bars
+                const probLabels = ["Estable", "Moderado", "Crítico"];
+                const probColors = ["bg-emerald-500", "bg-amber-500", "bg-rose-600"];
                 document.getElementById('probabilityList').innerHTML = probs.map((p, i) => `
-                    <div class="space-y-1">
-                        <div class="flex justify-between text-[10px] font-bold text-slate-500">
-                            <span>${labels[i]}</span>
-                            <span>${(p*100).toFixed(1)}%</span>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                            <span>${probLabels[i]}</span>
+                            <span class="text-slate-900">${(p*100).toFixed(1)}%</span>
                         </div>
-                        <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
-                            <div class="bg-indigo-600 h-full transition-all duration-1000" style="width: ${p*100}%"></div>
+                        <div class="h-3 bg-slate-100 rounded-full overflow-hidden shadow-inner">
+                            <div class="${probColors[i]} h-full transition-all duration-1000 ease-out" style="width: ${p*100}%"></div>
                         </div>
                     </div>
                 `).join('');
 
-                // Razonamiento
+                // Explicabilidad
+                const contribs = Object.keys(FEATURE_INDEX).map(key => ({
+                    name: FEATURE_LABELS[key] || key.replace('lesion_','').toUpperCase(),
+                    val: MODEL_WEIGHTS.weights[winIdx][FEATURE_INDEX[key]] * X[FEATURE_INDEX[key]]
+                })).filter(c => Math.abs(c.val) > 0.1).sort((a,b) => Math.abs(b.val) - Math.abs(a.val)).slice(0, 4);
+
                 document.getElementById('explainabilityList').innerHTML = contribs.map(c => `
-                    <li class="p-3 bg-white/50 rounded-xl flex justify-between items-center text-xs">
-                        <span class="font-bold">${c.name}</span>
-                        <span class="${c.val > 0 ? 'text-red-600' : 'text-emerald-600'} font-black">
-                            ${c.val > 0 ? '▲ Riesgo' : '▼ Protector'}
+                    <li class="p-5 bg-slate-50 border border-slate-100 rounded-[1.5rem] flex justify-between items-center transition-all hover:bg-white hover:shadow-md group">
+                        <span class="text-xs font-bold text-slate-700">${c.name}</span>
+                        <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase ${c.val > 0 ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600'}">
+                            ${c.val > 0 ? 'Factor Riesgo' : 'Protector'}
                         </span>
                     </li>
                 `).join('');
