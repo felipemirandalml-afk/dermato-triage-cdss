@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DermatoTriage PRO v6.0 - Arquitectura Consolidada</title>
+    <title>DermatoTriage PRO v1.0.0 - Clinical Decision Support</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
@@ -45,7 +45,7 @@
     <nav class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 px-6 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
             <div class="w-4 h-4 bg-indigo-600 rounded-full animate-pulse shadow-lg shadow-indigo-300"></div>
-            <span class="text-xs font-black uppercase tracking-[0.2em] text-slate-500">DermatoEngine v6.0</span>
+            <span class="text-xs font-black uppercase tracking-[0.2em] text-slate-500">DermatoEngine v1.0.0</span>
         </div>
         <div class="flex items-center gap-4">
             <div class="hidden md:block text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-4 py-1.5 rounded-full">
@@ -275,8 +275,11 @@
                         </label>
                     </div>
                     
-                    <button type="submit" class="btn-primary">Calcular Inferencia Clínica</button>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Análisis Basado en Red Logística Softmax v6.0 (Single Source of Truth)</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <button type="submit" class="btn-primary">Calcular Inferencia</button>
+                        <button type="button" id="btnReset" class="w-full py-6 bg-slate-200 text-slate-600 font-extrabold text-2xl rounded-[2rem] hover:bg-slate-300 transition-all active:scale-95 uppercase tracking-tighter">Limpiar</button>
+                    </div>
+                    <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Análisis Híbrido: Score + Modificadores Clínicos v1.0.0</p>
                 </div>
             </section>
         </form>

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsPanel = document.getElementById('resultsPanel');
     const resultCard = document.getElementById('resultCard');
     const btnDemo = document.getElementById('btnDemo');
+    const btnReset = document.getElementById('btnReset');
 
     // 1. UI: MANEJO DE ACORDEONES (Topografía Jerárquica)
     document.querySelectorAll('.region-trigger').forEach(trigger => {
@@ -37,6 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
     btnDemo?.addEventListener('click', () => {
         const randomCase = CLINICAL_CASES[Math.floor(Math.random() * CLINICAL_CASES.length)];
         loadCase(randomCase);
+        alert(`Demo Cargada: ${randomCase.title}\n\n${randomCase.short_clinical_summary}`);
+    });
+
+    btnReset?.addEventListener('click', () => {
+        form.reset();
+        document.querySelectorAll('.cascade-menu').forEach(m => {
+            m.classList.remove('open');
+            m.classList.add('hidden');
+        });
+        resultsPanel.classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     function loadCase(caseData) {
@@ -130,6 +142,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Conducta
         document.getElementById('suggestedConduct').textContent = res.conduct;
         document.getElementById('recommendedTimeframe').textContent = res.timeframe;
+
+        // Modifier Badge (Específico de v1.0.0)
+        // Limpiamos badges previos si existen
+        const oldBadge = document.getElementById('activeModifierBadge');
+        if (oldBadge) oldBadge.remove();
+
+        if (res.modifier) {
+            const modHtml = `
+                <div id="activeModifierBadge" class="mt-4 p-4 bg-indigo-50 border-l-4 border-indigo-500 rounded-r-xl">
+                    <span class="text-[9px] font-black text-indigo-400 uppercase tracking-widest block mb-1">Ajuste Clínico Activo</span>
+                    <span class="text-sm font-bold text-indigo-700">${res.modifier}</span>
+                </div>
+            `;
+            document.getElementById('suggestedConduct').insertAdjacentHTML('afterend', modHtml);
+        }
 
         // Red Flags
         const rfPanel = document.getElementById('redFlagsPanel');

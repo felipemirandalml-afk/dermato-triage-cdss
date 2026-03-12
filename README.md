@@ -1,97 +1,64 @@
-# DermatoTriage CDSS (v6.0) 🩺🚀
+# DermatoTriage CDSS (v1.0.0)
+**Clinical Decision Support System for Primary Care Triage**
 
-**Sistema de Apoyo a la Decisión Clínica (CDSS) para Triaje Dermatológico en Atención Primaria.**
-
-Este sistema es una aplicación **100% estática, offline-first**, diseñada para asistir a profesionales de la salud en la priorización de casos dermatológicos utilizando una arquitectura de **Single Source of Truth (v6.0)**.
+DermatoTriage is a lightweight, transparent, and high-performance inference engine designed to assist healthcare professionals in prioritizing dermatological patients. It focuses on identifying critical risks and ensuring safe referral practices.
 
 ---
 
-## 🧠 Arquitectura Técnica (v6.0)
+## 🚀 How It Works: The Hybrid Engine Logic
 
-El sistema se divide en tres capas desacopladas para máxima mantenibilidad:
+The system follows a **Three-Layer Hybrid Architecture** to ensure both statistical flexibility and clinical safety:
 
-1.  **Motor Clínico (`model.js`)**: Contiene la lógica canónica, el diccionario de variables (120+) y el motor de inferencia matemática basado en **Regresión Logística Multiclase (Softmax)**.
-2.  **Interfaz de Usuario (`ui.js`)**: Gestiona la captura dinámica de datos, la interacción visual (acordeones) y el renderizado premium de resultados.
-3.  **Presentación (`index.html`)**: Contenedor semántico optimizado con Tailwind CSS, libre de lógica embebida.
+### 1. Statistical Scoring Layer
+The engine processes over 120 semiological variables (morphology, timing, topography, red flags). 
+- **Base Score**: Each finding contributes a weight to a priority vector (P1, P2, P3).
+- **Softmax Inference**: Probabilities are computed to find the most likely baseline priority.
 
-## 🔬 El Motor: 120+ Variables
+### 2. Morphological Risk Modifiers
+Explicit heuristic rules that oversee the statistical model to prevent under-triage of "silent" but deadly signs:
+- **Necrosis/Ischemia**: Forces P1 if eschar or acute purpura is detected.
+- **Ocular Risk**: Forces P1 for periocular involvement with pain or vesicles.
+- **Malignancy**: Ensures P2 for chronic nodules or tumors.
 
-El modelo analiza más de **120 variables clínicas** distribuidas en:
+### 3. Context-Aware Modifiers (Systemic)
+The engine evaluates the **Patient Context** beyond the visible lesion:
+- **Immunosuppression**: Scales priority for opportunistic suspicions.
+- **Metabolic Risk**: Escalates ulcers in diabetic patients (Prevention of amputation).
+- **STI Suspicion**: Identifies patterns like palmar-plantar rashes for systemic referral.
 
-- **Banderas Rojas**: Inmunosupresión, fármacos sistémicos críticos y estado febril.
-- **Semiología Completa**: Mapeo jerárquico de lesiones primarias, líquidas y secundarias.
-- **Topografía Avanzada**: Desglose anatómico por regiones con sub-localizaciones dinámicas.
-- **Patrones de Distribución**: Identificación de patrones claves (Acral, Dermatomal, etc.).
+---
 
-## 🛡️ Seguridad y Transparencia (Explainability)
+## 🎯 Clinical Demo: Key Scenarios
+Use the "Cargar Demo" button to test these high-impact scenarios:
 
-El DermatoTriage CDSS v6.0 incluye un motor de **Explainability** que identifica los 5 factores de mayor peso matemático que impulsaron la recomendación de prioridad, permitiendo una toma de decisiones informada y auditable.
+1. **The Silent Emergency**: [TC-027] Necrosis Tisular. (Shows Morphological Modifiers in action).
+2. **The High-Risk Guest**: [TC-032] VIH + Moluscos. (Shows Context-Aware scaling).
+3. **The Benign Mimicker**: [TC-026] Exantema Súbito. (Shows safety downscaling in pediatrics).
+4. **The Critical Location**: [TC-024] Herpes Zóster Oftálmico. (Shows ocular protection).
+5. **The Oncology Case**: [TC-008] Carcinoma Basocelular. (Ensures chronic lesions aren't ignored).
 
-## 🚀 Capa de Interpretación Accionable (NUEVO)
-A diferencia de versiones anteriores, el sistema ahora traduce la probabilidad matemática en una **conducta clínica explícita**:
-- **Conducta Sugerida**: Recomendación directa sobre el flujo del paciente (Urgencias vs Especialista vs APS).
-- **Plazo Recomendado**: Tiempos de derivación basados en estándares clínicos internacionales.
-- **Red Flag Display**: Destaque visual inmediato de banderas rojas detectadas (compromiso mucoso, necrosis, fiebre, etc.).
-- **Justificación Clínica**: Resumen interpretado de por qué el caso ha sido priorizado.
+---
 
-## 🧪 Validación Clínica (v1.0)
+## 🛠️ Technical Stack
+- **Engine**: Vanilla JavaScript (ES Modules). No dependencies.
+- **UI**: HTML5 / CSS3 / Tailwind CSS (Modern Glassmorphism).
+- **Validation**: Custom Node.js harness for clinical concordance.
 
-Para asegurar la seguridad y precisión del motor, el sistema incluye un **Clinical Validation Harness** que permite verificar el comportamiento del algoritmo frente a casos médicos reales y evitar regresiones.
-
-### Casos Cubiertos
-- **Prioridad 1 (Urgencia)**: Red flags sistémicas, SJS/NET, Vasculitis, Fascitis Necrotizante.
-- **Prioridad 2 (Intermedia)**: Patologías inflamatorias agudas, sospecha de neoplasias, reacciones medicamentosas.
-- **Prioridad 3 (Estable)**: Patologías crónicas localizadas (Acné, Psoriasis, Dermatitis Atópica).
-
-### Cómo ejecutar la validación
-Requiere **Node.js**:
+## 🧪 Validation & Quality
+Current concordance: **100.0%** (40/40 Cases PASS).
+To run validation:
 ```bash
 npm run validate
 ```
-O directamente:
-```bash
-node tools/validate_clinical_cases.js
-```
-
-### Motor de Priorización Híbrido (v2.1)
-El sistema utiliza un enfoque de **Capas de Decisión Multifactorial**:
-1.  **Score Estadístico**: Pesos dinámicos (>120 variables).
-2.  **Morphological Modifiers**: Corrigen riesgos visuales (Necrosis, Ocular, Malignidad).
-3.  **Context-Aware Modifiers**: Ajustan la prioridad según el binomio lesión-huésped (Inmunosupresión, Riesgo Metabólico, ITS sistémica).
-
-### Boundary Case Stress Testing (v1.2)
-Set de validación expandido a **40 casos** complejos.
-- **Resultado Actual**: **100.0% Concordancia** (40/40 PASS).
-- **Enfoque**: Detección de mimickers sistémicos y protección de pacientes vulnerables.
-
-### Cómo agregar nuevos casos
-Edita el archivo `clinical_cases.js` siguiendo la estructura de objetos existente. Asegúrate de asignar la `expected_priority` según el consenso médico local.
-
-### Calibración Clínica Iterativa (v1.0)
-El sistema utiliza un proceso de **calibración dirigida por errores**. Los pesos en `model.js` se refinan periódicamente para maximizar la concordancia con los casos del harness. 
-- **Última Calibración**: 12/12 casos exitosos (100% de cobertura canónica).
-- **Trazabilidad**: Ver detalles en [CALIBRATION_NOTES.md](./CALIBRATION_NOTES.md).
-- **Control de Regresión**: Cada cambio en el motor debe ser verificado ejecutando el validador.
 
 ---
 
-## 🏗️ Uso
-
-1. Abre `index.html` en un navegador moderno. No requiere conexión ni instalación.
-
----
-
-## 🧪 Smoke Tests (Verificación Manual)
-
-Para asegurar la integridad del sistema:
-- **Caso Crítico**: Seleccionar *Fármacos Críticos* + *Ampollas* + *Estado Febril* + *Agudo* -> Debe resultar en **Prioridad 1 (Urgencia)**.
-- **Caso Estable**: Seleccionar *Escamas* + *Evolución Crónica* -> Debe resultar en **Prioridad 3 (Estable)**.
+## 📂 Project Documentation
+- [MAINTAINING.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/MAINTAINING.md): How to extend and maintain the system.
+- [CHANGELOG.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/CHANGELOG.md): History of clinical milestones.
+- [GENERALIZATION_AUDIT.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/GENERALIZATION_AUDIT.md): Coverage and clinical bias analysis.
+- [RISK_MODIFIERS.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/RISK_MODIFIERS.md): Technical details on safety rules.
+- [CONTEXT_MODIFIERS.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/CONTEXT_MODIFIERS.md): Details on context-aware logic.
 
 ---
-
-## ⚠️ Aviso Legal (Disclaimer)
-
-Esta herramienta es un **Sistema de Apoyo a la Decisión Clínica**. La recomendación de prioridad es sugerida y **no reemplaza el juicio clínico del médico**.
-
----
-© 2026 DermatoTriage System. Desarrollado por felipemirandalml-afk.
+**Disclaimer**: This tool is a decision support system for professionals. It does not replace clinical judgment.
