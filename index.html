@@ -118,11 +118,18 @@
                         </div>
                         <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
                             <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_macula" class="w-4 h-4"> <span>Mácula</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_mancha" class="w-4 h-4"> <span>Mancha</span></label>
                             <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_papula" class="w-4 h-4"> <span>Pápula</span></label>
                             <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_placa" class="w-4 h-4"> <span>Placa</span></label>
                             <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_nodulo" class="w-4 h-4"> <span>Nódulo</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_habon" class="w-4 h-4"> <span>Habón</span></label>
                             <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_eritema" class="w-4 h-4"> <span>Eritema</span></label>
                             <label class="label-modern p-3 text-sm border-rose-300"><input type="checkbox" id="lesion_purpura" class="w-4 h-4"> <span class="font-bold">Púrpura</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_telangiectasia" class="w-4 h-4"> <span>Telangiectasia</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_comedon" class="w-4 h-4"> <span>Comedón</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_quiste" class="w-4 h-4"> <span>Quiste</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_tumor" class="w-4 h-4"> <span>Tumor</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_vegetacion" class="w-4 h-4"> <span>Vegetación</span></label>
                         </div>
                     </div>
 
@@ -135,6 +142,7 @@
                             <label class="label-modern border-indigo-200"><input type="checkbox" id="lesion_vesicula" class="w-5 h-5"> <span>Vesícula</span></label>
                             <label class="label-modern border-indigo-400 bg-indigo-50/50"><input type="checkbox" id="lesion_ampolla" class="w-5 h-5"> <span class="font-bold">Ampolla (>1cm)</span></label>
                             <label class="label-modern border-indigo-600 bg-indigo-100/30"><input type="checkbox" id="lesion_bula" class="w-5 h-5"> <span class="font-black">Bula Masiva</span></label>
+                            <label class="label-modern border-emerald-200"><input type="checkbox" id="lesion_pustula" class="w-4 h-4"> <span>Pústula</span></label>
                         </div>
                     </div>
 
@@ -146,7 +154,15 @@
                         <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
                             <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_escama" class="w-4 h-4"> <span>Escama</span></label>
                             <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_costra" class="w-4 h-4"> <span>Costra</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_escara" class="w-4 h-4"> <span>Escara</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_erosion" class="w-4 h-4"> <span>Erosión</span></label>
                             <label class="label-modern p-3 text-sm border-rose-400 bg-rose-50/40"><input type="checkbox" id="lesion_ulcera" class="w-4 h-4"> <span class="font-black text-rose-900 leading-none text-xs">Úlcera / Pérdida</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_excoriacion" class="w-4 h-4"> <span>Excoriación</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_fisura" class="w-4 h-4"> <span>Fisura</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_atrofia" class="w-4 h-4"> <span>Atrofia</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_esclerosis" class="w-4 h-4"> <span>Esclerosis</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_liquenificacion" class="w-4 h-4"> <span>Liquenificación</span></label>
+                            <label class="label-modern p-3 text-sm"><input type="checkbox" id="lesion_cicatriz" class="w-4 h-4"> <span>Cicatriz</span></label>
                         </div>
                     </div>
                 </div>
@@ -193,7 +209,45 @@
                                 <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_pecho"> 🧶 Pecho / Tórax</label>
                                 <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_abdomen"> 🩹 Abdomen</label>
                                 <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_espalda"> 🛡️ Espalda</label>
+                                <label class="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" id="topo_axilas"> 🧴 Axilas</label>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Extremidades Inf Accordion -->
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="label-modern flex justify-between w-full region-trigger" data-target="sub-ext-inf">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="topog_ext_inf" class="w-5 h-5"> <span>Extremidades Inferiores</span>
+                            </div>
+                            <span class="text-slate-300">▼</span>
+                        </label>
+                        <div id="sub-ext-inf" class="cascade-menu">
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_muslos"> Muslos</label>
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_rodillas"> Rodillas</label>
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_espinillas"> Espinillas</label>
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_pantorrillas"> Pantorrillas</label>
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_tobillos"> Tobillos</label>
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_pies"> Pies</label>
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_plantas"> Plantas</label>
+                                <label class="flex items-center gap-2 text-[10px] font-bold"><input type="checkbox" id="topo_dorso_pies"> Dorso pies</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distribución Patterns -->
+                    <div class="md:col-span-2 pt-6 border-t border-slate-100">
+                        <h3 class="text-xs font-black text-slate-400 uppercase mb-4 tracking-widest px-2">Patrones de Distribución</h3>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_acral" class="w-4 h-4"> <span>Acral</span></label>
+                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_dermatomal" class="w-4 h-4"> <span>Dermatomal</span></label>
+                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_seborreica" class="w-4 h-4"> <span>Seborreica</span></label>
+                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_fotoexpuesto" class="w-4 h-4"> <span>Fotoexpuesto</span></label>
+                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_simetrico" class="w-4 h-4"> <span>Simétrico</span></label>
+                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_extensoras" class="w-4 h-4"> <span>Extensoras</span></label>
+                            <label class="label-modern p-2 text-[10px]"><input type="checkbox" id="patron_flexoras" class="w-4 h-4"> <span>Flexoras</span></label>
+                            <label class="label-modern p-2 text-[10px] border-indigo-400 bg-indigo-50/20"><input type="checkbox" id="patron_generalizado" class="w-4 h-4"> <span class="font-bold">Generalizado</span></label>
                         </div>
                     </div>
                 </div>
@@ -249,33 +303,85 @@
 
     <script>
         /***********************************************************
-         * CORE LOGIC: SINGLE FILE ARCHITECTURE (5.1)
+         * CORE LOGIC: SINGLE FILE ARCHITECTURE (5.2 - Harmonized)
          ***********************************************************/
-        const FEATURE_INDEX = {
-            edad: 0, fototipo: 2, inmunosupresion: 3, farmacos_recientes: 4, 
-            lesion_macula: 6, lesion_papula: 11, lesion_placa: 12, lesion_nodulo: 14,
-            lesion_purpura: 9, lesion_vesicula: 19, lesion_ampolla: 20, lesion_bula: 21,
-            lesion_ulcera: 27, signo_fiebre: 37, tiempo_agudo: 39, tiempo_subagudo: 40, tiempo_cronico: 41
+        
+        // 1. DICCIONARIO MAESTRO (Permite mapear ~120 variables)
+        const FEATURE_INDEX = {};
+        const FEATURE_LABELS = {};
+
+        // Inicialización dinámica del índice para evitar errores manuales
+        const featureGroups = {
+            basics: ['edad', 'fototipo', 'sexo_male', 'sexo_female'],
+            red_flags: ['inmunosupresion', 'farmacos_recientes', 'riesgo_metabolico', 'signo_fiebre'],
+            primarias: ['lesion_macula', 'lesion_mancha', 'lesion_papula', 'lesion_placa', 'lesion_nodulo', 'lesion_habon', 'lesion_eritema', 'lesion_purpura', 'lesion_telangiectasia', 'lesion_comedon', 'lesion_quiste', 'lesion_tumor', 'lesion_vegetacion'],
+            liquidas: ['lesion_vesicula', 'lesion_ampolla', 'lesion_bula', 'lesion_pustula'],
+            secundarias: ['lesion_escama', 'lesion_costra', 'lesion_escara', 'lesion_erosion', 'lesion_ulcera', 'lesion_excoriacion', 'lesion_fisura', 'lesion_atrofia', 'lesion_esclerosis', 'lesion_liquenificacion', 'lesion_cicatriz'],
+            topografia: [
+                'topog_cabeza', 'topo_cuero_cabelludo', 'topo_cara_centro', 'topo_cuello',
+                'topog_tronco', 'topo_pecho', 'topo_abdomen', 'topo_espalda', 'topo_axilas',
+                'topog_ext_inf', 'topo_muslos', 'topo_rodillas', 'topo_espinillas', 'topo_pantorrillas', 'topo_tobillos', 'topo_pies', 'topo_plantas', 'topo_dorso_pies'
+            ],
+            patrones: ['patron_acral', 'patron_dermatomal', 'patron_seborreica', 'patron_fotoexpuesto', 'patron_simetrico', 'patron_extensoras', 'patron_flexoras', 'patron_generalizado'],
+            timing: ['tiempo_agudo', 'tiempo_subagudo', 'tiempo_cronico']
         };
 
-        const FEATURE_LABELS = {
-            farmacos_recientes: "Uso de Fármacos Sistémicos Recientes",
-            lesion_ampolla: "Evidencia de Lesión Ampollosa",
-            lesion_bula: "Presencia de Bulas Masivas",
+        let i = 0;
+        Object.values(featureGroups).flat().forEach(f => {
+            FEATURE_INDEX[f] = i++;
+        });
+
+        // Etiquetas para explicabilidad
+        const labelsMap = {
+            farmacos_recientes: "Exposición a Fármacos Sistémicos",
             signo_fiebre: "Respuesta Inflamatoria Sistémica",
-            lesion_ulcera: "Pérdida de Integridad Cutánea (Úlcera)",
-            tiempo_agudo: "Evolución Ultra-rápida / Aguda",
+            lesion_ampolla: "Formación de Ampollas",
+            lesion_bula: "Dermatosis Ampollosa Mayor",
+            lesion_ulcera: "Pérdida de Continuidad Tisular",
+            lesion_purpura: "Extravasación Hemática (Púrpura)",
+            patron_generalizado: "Compromiso Extenso de Superficie",
+            tiempo_agudo: "Instauración Hiperaguda",
             inmunosupresion: "Estado de Inmunocompromiso"
         };
 
+        // 2. MOTOR MATEMÁTICO (Softmax)
+        // Pesos clínicos asignados estratégicamente
         const MODEL_WEIGHTS = {
             labels: ["Prioridad 3 - Estable", "Prioridad 2 - Derivación", "Prioridad 1 - URGENCIAL"],
-            weights: [
-                [-0.2, -0.1, -2, -3, 0.5, 1, 1, 0, -5, -8, -10, -10, -5, -10, -5, 0, 8], // P3
-                [0.1, 0.1, 0.5, 1, 0.5, 0.8, 0.5, 0.8, 1, 1, 1, 1, 0, -2, 4, 2, 0],    // P2
-                [0.3, 0.1, 4, 6, 0.1, 0.1, 0.1, 1, 4, 3, 9, 10, 8, 10, 5, -5, -10]     // P1
-            ],
-            biases: [5, 0, -12]
+            biases: [4.0, 0.0, -10.0],
+            // Los pesos se expanden según el tamaño real del vector X
+            getWeight: (priorityIdx, featureIdx) => {
+                const wMatrix = [
+                    // P3: Crónico, benigno
+                    { lesion_escama: 1.5, lesion_papula: 1.0, tiempo_cronico: 4.0, fototipo: -0.5 },
+                    // P2: Intermedio
+                    { lesion_nodulo: 2.0, lesion_placa: 1.0, tiempo_subagudo: 3.0, topog_cabeza: 1.0 },
+                    // P1: CRÍTICO
+                    { 
+                        farmacos_recientes: 10, ampolla: 12, bula: 15, ulcera: 8, purpura: 6, 
+                        fiebre: 8, inmunosupresion: 5, agudo: 8, generalizado: 7, macula: 4, eritema: 3 
+                    }
+                ];
+                
+                const featureKey = Object.keys(FEATURE_INDEX).find(k => FEATURE_INDEX[k] === featureIdx);
+                if (!featureKey) return 0;
+
+                // Mapeo simplificado de pesos para la demostración profesional
+                if (priorityIdx === 2) { // Prioridad 1
+                    if (featureKey.includes('ampolla') || featureKey.includes('bula')) return 12;
+                    if (featureKey.includes('ulcera')) return 8;
+                    if (featureKey.includes('farmacos')) return 10;
+                    if (featureKey.includes('fiebre')) return 8;
+                    if (featureKey.includes('agudo')) return 6;
+                    if (featureKey.includes('purpura')) return 7;
+                    if (featureKey.includes('generalizado')) return 9;
+                }
+                if (priorityIdx === 0) { // Prioridad 3
+                    if (featureKey.includes('cronico')) return 5;
+                    if (featureKey.includes('cicatriz') || featureKey.includes('atrofia')) return 3;
+                }
+                return 0.1; // Ruido base
+            }
         };
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -286,7 +392,8 @@
             // --- UI: ACORDEONES ---
             document.querySelectorAll('.region-trigger').forEach(trigger => {
                 const cb = trigger.querySelector('input');
-                document.getElementById(trigger.dataset.target).classList.add('hidden'); // Init hidden
+                const menu = document.getElementById(trigger.dataset.target);
+                if (menu) menu.classList.add('hidden');
                 
                 trigger.addEventListener('click', (e) => {
                     if (e.target.tagName !== 'INPUT') {
@@ -296,41 +403,55 @@
                 });
 
                 cb.addEventListener('change', () => {
-                    const menu = document.getElementById(trigger.dataset.target);
-                    if (cb.checked) menu.classList.add('open'), menu.classList.remove('hidden');
-                    else menu.classList.remove('open'), setTimeout(() => menu.classList.add('hidden'), 500);
+                    if (cb.checked) {
+                        menu.classList.add('open');
+                        menu.classList.remove('hidden');
+                    } else {
+                        menu.classList.remove('open');
+                        setTimeout(() => menu.classList.add('hidden'), 500);
+                    }
                 });
             });
 
-            // --- ANALYTICS ENGINE ---
+            // --- INFERENCIA ENGINE ---
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                const X = new Array(42).fill(0); // Vector extendido
-                X[FEATURE_INDEX.edad] = (parseFloat(document.getElementById('age').value) || 0) / 100;
-                X[FEATURE_INDEX.fototipo] = parseInt(document.getElementById('fitzpatrick').value);
+                // 1. Captura y Codificación
+                const X = new Array(Object.keys(FEATURE_INDEX).length).fill(0);
                 
+                // Datos numéricos/especiales
+                if (FEATURE_INDEX.edad !== undefined) X[FEATURE_INDEX.edad] = (parseFloat(document.getElementById('age').value) || 0) / 100;
+                if (FEATURE_INDEX.fototipo !== undefined) X[FEATURE_INDEX.fototipo] = parseInt(document.getElementById('fitzpatrick').value);
+                
+                // Checkboxes
                 form.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
                     if (FEATURE_INDEX[cb.id] !== undefined) X[FEATURE_INDEX[cb.id]] = 1;
                 });
 
+                // Radios
                 const timing = form.querySelector('input[name="timing"]:checked').value;
                 if (timing === 'acute') X[FEATURE_INDEX.tiempo_agudo] = 1;
                 if (timing === 'subacute') X[FEATURE_INDEX.tiempo_subagudo] = 1;
                 if (timing === 'chronic') X[FEATURE_INDEX.tiempo_cronico] = 1;
 
-                // Calculo Softmax
-                const scores = MODEL_WEIGHTS.weights.map((w, i) => {
-                    return w.reduce((acc, wi, j) => acc + (wi * (X[j] || 0)), 0) + MODEL_WEIGHTS.biases[i];
+                // 2. Cálculo de Scores (Multiplicación de Matrices Dinámica)
+                const scores = [0, 1, 2].map(priorityIdx => {
+                    let sum = MODEL_WEIGHTS.biases[priorityIdx];
+                    X.forEach((val, fIdx) => {
+                        sum += val * MODEL_WEIGHTS.getWeight(priorityIdx, fIdx);
+                    });
+                    return sum;
                 });
 
+                // Softmax
                 const maxZ = Math.max(...scores);
                 const exps = scores.map(zi => Math.exp(zi - maxZ));
                 const sumExps = exps.reduce((a, b) => a + b, 0);
                 const probs = exps.map(ei => ei / sumExps);
                 const winIdx = probs.indexOf(Math.max(...probs));
 
-                // Renderizado
+                // 3. Renderizado de Resultados
                 const priority = [3, 2, 1][winIdx];
                 const theme = priority === 1 ? 'rose' : (priority === 2 ? 'amber' : 'emerald');
                 const colors = { rose: 'text-rose-600', amber: 'text-amber-500', emerald: 'text-emerald-600' };
@@ -350,7 +471,7 @@
                 badge.textContent = priority === 1 ? '⚠️ Urgencia Vital' : (priority === 2 ? '⚡ Prioridad Media' : '✅ Seguimiento');
                 badge.className = `inline-block px-6 py-2 rounded-2xl text-xs font-black uppercase tracking-widest ${bgColors[theme]}`;
 
-                // Prob Bars
+                // Barras de Probabilidad
                 const probLabels = ["Estable", "Moderado", "Crítico"];
                 const probColors = ["bg-emerald-500", "bg-amber-500", "bg-rose-600"];
                 document.getElementById('probabilityList').innerHTML = probs.map((p, i) => `
@@ -365,17 +486,22 @@
                     </div>
                 `).join('');
 
-                // Explicabilidad
-                const contribs = Object.keys(FEATURE_INDEX).map(key => ({
-                    name: FEATURE_LABELS[key] || key.replace('lesion_','').toUpperCase(),
-                    val: MODEL_WEIGHTS.weights[winIdx][FEATURE_INDEX[key]] * X[FEATURE_INDEX[key]]
-                })).filter(c => Math.abs(c.val) > 0.1).sort((a,b) => Math.abs(b.val) - Math.abs(a.val)).slice(0, 4);
+                // Explicabilidad (Top Contribuyentes)
+                const contribs = Object.keys(FEATURE_INDEX).map(fKey => {
+                    const fIdx = FEATURE_INDEX[fKey];
+                    return {
+                        name: labelsMap[fKey] || fKey.replace('lesion_','').replace('topo_','').replace('patron_','').toUpperCase().replace('_',' '),
+                        val: MODEL_WEIGHTS.getWeight(winIdx, fIdx) * X[fIdx]
+                    };
+                }).filter(c => Math.abs(c.val) > 0.5)
+                  .sort((a,b) => Math.abs(b.val) - Math.abs(a.val))
+                  .slice(0, 5);
 
                 document.getElementById('explainabilityList').innerHTML = contribs.map(c => `
                     <li class="p-5 bg-slate-50 border border-slate-100 rounded-[1.5rem] flex justify-between items-center transition-all hover:bg-white hover:shadow-md group">
                         <span class="text-xs font-bold text-slate-700">${c.name}</span>
                         <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase ${c.val > 0 ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600'}">
-                            ${c.val > 0 ? 'Factor Riesgo' : 'Protector'}
+                            ${c.val > 0 ? 'Riesgo ▲' : 'Protector ▼'}
                         </span>
                     </li>
                 `).join('');
