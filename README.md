@@ -27,6 +27,13 @@ El modelo analiza más de **120 variables clínicas** distribuidas en:
 
 El DermatoTriage CDSS v6.0 incluye un motor de **Explainability** que identifica los 5 factores de mayor peso matemático que impulsaron la recomendación de prioridad, permitiendo una toma de decisiones informada y auditable.
 
+## 🚀 Capa de Interpretación Accionable (NUEVO)
+A diferencia de versiones anteriores, el sistema ahora traduce la probabilidad matemática en una **conducta clínica explícita**:
+- **Conducta Sugerida**: Recomendación directa sobre el flujo del paciente (Urgencias vs Especialista vs APS).
+- **Plazo Recomendado**: Tiempos de derivación basados en estándares clínicos internacionales.
+- **Red Flag Display**: Destaque visual inmediato de banderas rojas detectadas (compromiso mucoso, necrosis, fiebre, etc.).
+- **Justificación Clínica**: Resumen interpretado de por qué el caso ha sido priorizado.
+
 ## 🧪 Validación Clínica (v1.0)
 
 Para asegurar la seguridad y precisión del motor, el sistema incluye un **Clinical Validation Harness** que permite verificar el comportamiento del algoritmo frente a casos médicos reales y evitar regresiones.
