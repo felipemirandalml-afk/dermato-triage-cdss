@@ -53,6 +53,12 @@ O directamente:
 node tools/validate_clinical_cases.js
 ```
 
+### Boundary Case Stress Testing (v1.1)
+Para evaluar la robustez del motor clínico, se ha expandido el set de validación a **30 casos**, incluyendo situaciones frontera y diagnósticos diferenciales complejos.
+- **Propósito**: Detectar sobretriage en cuadros extensos pero benignos y asegurar la sensibilidad ante banderas rojas sutiles.
+- **Distribución de Casos**: Incluye casos pediátricos, geriátricos, enfermedades raras y presentaciones atípicas.
+- **Limitaciones**: El set es una guía de referencia técnica y no reemplaza la validación clínica externa multicéntrica.
+
 ### Cómo agregar nuevos casos
 Edita el archivo `clinical_cases.js` siguiendo la estructura de objetos existente. Asegúrate de asignar la `expected_priority` según el consenso médico local.
 

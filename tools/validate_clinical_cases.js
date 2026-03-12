@@ -23,6 +23,13 @@ console.log(`${COLORS.bright}${COLORS.cyan}=====================================
 
 let passed = 0;
 let failed = 0;
+const failingCases = [];
+
+// Estadísticas de distribución
+const stats = {
+    expected: { P1: 0, P2: 0, P3: 0 },
+    predicted: { P1: 0, P2: 0, P3: 0 }
+};
 
 CLINICAL_CASES.forEach((c, index) => {
     const X = encodeFeatures(c.input);
@@ -31,10 +38,20 @@ CLINICAL_CASES.forEach((c, index) => {
 
     const isMatch = result.priority === c.expected_priority;
     
+    // Track stats
+    stats.expected[`P${c.expected_priority}`]++;
+    stats.predicted[`P${result.priority}`]++;
+
     if (isMatch) {
         passed++;
     } else {
         failed++;
+        failingCases.push({
+            id: c.id,
+            title: c.title,
+            expected: c.expected_priority,
+            predicted: result.priority
+        });
     }
 
     const statusIcon = isMatch ? `${COLORS.green}✔ PASS${COLORS.reset}` : `${COLORS.red}✘ FAIL${COLORS.reset}`;
@@ -55,15 +72,32 @@ CLINICAL_CASES.forEach((c, index) => {
     console.log(`${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
 });
 
+const total = CLINICAL_CASES.length;
+const accuracy = ((passed / total) * 100).toFixed(1);
+
+console.log(`\n${COLORS.bright}ESTADÍSTICAS DE VALIDACIÓN:${COLORS.reset}`);
+console.log(`${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
+console.log(`Expected Distribution: P1: ${stats.expected.P1} | P2: ${stats.expected.P2} | P3: ${stats.expected.P3}`);
+console.log(`Predicted Distribution: P1: ${stats.predicted.P1} | P2: ${stats.predicted.P2} | P3: ${stats.predicted.P3}`);
+console.log(`Concordance Rate: ${COLORS.bright}${accuracy}%${COLORS.reset}`);
+console.log(`${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
+
 console.log(`\n${COLORS.bright}RESULTADO FINAL:${COLORS.reset}`);
 console.log(`${COLORS.green}Passed: ${passed}${COLORS.reset}`);
 console.log(`${COLORS.red}Failed: ${failed}${COLORS.reset}`);
-console.log(`Total:  ${CLINICAL_CASES.length}`);
+console.log(`Total:  ${total}`);
+
+if (failingCases.length > 0) {
+    console.log(`\n${COLORS.bright}${COLORS.red}CASOS FALLIDOS:${COLORS.reset}`);
+    failingCases.forEach(f => {
+        console.log(`- [${f.id}] ${f.title} (Exp: P${f.expected}, Got: P${f.predicted})`);
+    });
+}
 
 if (failed === 0) {
-    console.log(`\n${COLORS.bright}${COLORS.green}✅ VALIDACIÓN EXITOSA: El motor clínico es consistente con los casos índice.${COLORS.reset}\n`);
+    console.log(`\n${COLORS.bright}${COLORS.green}✅ VALIDACIÓN EXITOSA: El motor clínico es consistente con todos los casos.${COLORS.reset}\n`);
     process.exit(0);
 } else {
-    console.log(`\n${COLORS.bright}${COLORS.red}❌ VALIDACIÓN FALLIDA: Se detectaron ${failed} inconsistencias clínicas.${COLORS.reset}\n`);
+    console.log(`\n${COLORS.bright}${COLORS.red}❌ VALIDACIÓN INCOMPLETA: Se detectaron ${failed} inconsistencias en situaciones frontera.${COLORS.reset}\n`);
     process.exit(1);
 }
