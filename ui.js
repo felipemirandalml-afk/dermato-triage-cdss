@@ -1,92 +1,131 @@
-import { encodeFeatures, predict, explain } from './model.js';
+/**
+ * ui.js - Lógica de Interfaz CDSS Experto v4.0
+ */
+import { encodeFeatures, predict, explain, FEATURE_INDEX } from './model.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const triageForm = document.getElementById('triageForm');
     const resultsPanel = document.getElementById('resultsPanel');
-    const resultCard = document.getElementById('resultCard');
-    const priorityText = document.getElementById('priorityText');
-    const probabilityList = document.getElementById('probabilityList');
-    const explainabilityList = document.getElementById('explainabilityList');
 
+    // 1. Lógica de Topografía Jerárquica (Show/Hide)
+    const regionParents = document.querySelectorAll('.region-parent');
+    regionParents.forEach(parent => {
+        const checkbox = parent.querySelector('input');
+        const targetId = parent.getAttribute('data-target');
+        const targetContainer = document.getElementById(targetId);
+
+        checkbox.addEventListener('change', () => {
+            if (targetContainer) {
+                targetContainer.classList.toggle('hidden', !checkbox.checked);
+                // Si se desmarca el padre, desmarcar hijos para consistencia
+                if (!checkbox.checked) {
+                    targetContainer.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+                }
+            }
+        });
+    });
+
+    // 2. Manejador de Formulario
     triageForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        
+        // Captura automática de datos basada en el FEATURE_INDEX
+        const formData = captureDynamicData();
+        
+        if (!validateData(formData)) return;
 
-        // 1. Capturar datos del formulario
-        const formData = {
-            age: document.getElementById('age').value,
-            gender: document.querySelector('input[name="gender"]:checked')?.value,
-            fitzpatrick: document.getElementById('fitzpatrick').value,
-            // Comorbilidades
-            inmunosupresion: document.getElementById('inmunosupresion').checked,
-            farmacos_recientes: document.getElementById('farmacos_recientes').checked,
-            riesgo_metabolico: document.getElementById('riesgo_metabolico').checked,
-            atopia: document.getElementById('atopia').checked,
-            auto_inmune: document.getElementById('auto_inmune').checked,
-            enf_intestinal: document.getElementById('enf_intestinal').checked,
-            hepatopatia: document.getElementById('hepatopatia').checked,
-            sop_hirsutismo: document.getElementById('sop_hirsutismo').checked,
-            // Campos adicionales (opcionales para el modelo actual pero presentes en UI)
-            timing: document.getElementById('timing').value,
-            asymmetry: document.getElementById('asymmetry').checked,
-            borders: document.getElementById('borders').checked,
-            color: document.getElementById('color').checked,
-            diameter: document.getElementById('diameter').checked,
-            bleeding: document.getElementById('bleeding').checked,
-            growth: document.getElementById('growth').checked,
-        };
-
-        // 2. Validación simple
-        if (!formData.age || !formData.gender || !formData.fitzpatrick) {
-            alert('Por favor, complete los datos demográficos.');
-            return;
-        }
-
-        // 3. Inferencia
         const X = encodeFeatures(formData);
         const result = predict(X);
         const explanation = explain(X, result.classIdx);
 
-        // 4. Renderizar resultados
-        displayResults(result, explanation);
+        renderResults(result, explanation);
     });
 
-    function displayResults(result, explanation) {
-        // Mostrar panel
+    /**
+     * Captura todos los valores del formulario que coincidan con FEATURE_INDEX
+     */
+    function captureDynamicData() {
+        const data = {};
+        
+        // Capturar checkboxes por ID
+        Object.keys(FEATURE_INDEX).forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.type === 'checkbox') {
+                data[id] = el.checked;
+            }
+        });
+
+        // Capturar campos especiales
+        data.age = document.getElementById('age').value;
+        data.gender = document.getElementById('genderSelect').value;
+        data.fitzpatrick = document.getElementById('fitzpatrick').value;
+        data.timing = document.querySelector('input[name="timing"]:checked')?.value;
+
+        return data;
+    }
+
+    function validateData(data) {
+        if (!data.age) {
+             alert('Es obligatorio ingresar la edad del paciente.');
+             return false;
+        }
+        return true;
+    }
+
+    /**
+     * Renderizado de Calidad Clínica
+     */
+    function renderResults(result, explanation) {
         resultsPanel.classList.remove('hidden');
+        resultsPanel.classList.add('animate-pulse');
+        setTimeout(() => resultsPanel.classList.remove('animate-pulse'), 1000);
         resultsPanel.scrollIntoView({ behavior: 'smooth' });
 
-        // Color coding según prioridad
+        const priorityText = document.getElementById('priorityText');
         const styles = {
-            1: 'bg-red-100 text-red-800 border-red-200',
-            2: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-            3: 'bg-green-100 text-green-800 border-green-200'
+            1: 'text-red-600',
+            2: 'text-orange-500',
+            3: 'text-green-600'
         };
 
-        resultCard.className = `mt-6 p-6 rounded-lg border-2 ${styles[result.priority]}`;
-        priorityText.textContent = `Prioridad Sugerida: ${result.priority} (${result.label})`;
+        priorityText.textContent = result.label;
+        priorityText.className = `text-5xl font-black tracking-tighter uppercase italic ${styles[result.priority]}`;
 
-        // Probabilidades
-        probabilityList.innerHTML = result.probabilities.map((prob, i) => {
-            const labels = ["Prioridad 3 (Baja)", "Prioridad 2 (Media)", "Prioridad 1 (Alta)"];
-            return `
-                <div class="flex justify-between items-center text-sm mb-1">
+        // Render Probabilidades
+        const probList = document.getElementById('probabilityList');
+        const labels = ["Prioridad 3", "Prioridad 2", "Prioridad 1"];
+        const colors = ["bg-green-500", "bg-orange-500", "bg-red-500"];
+        
+        probList.innerHTML = result.probabilities.map((p, i) => `
+            <div>
+                <div class="flex justify-between text-[10px] font-bold uppercase text-slate-400 mb-1">
                     <span>${labels[i]}</span>
-                    <span class="font-mono font-bold">${(prob * 100).toFixed(1)}%</span>
+                    <span>${(p * 100).toFixed(1)}%</span>
                 </div>
-                <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden mb-3">
-                    <div class="bg-blue-600 h-full" style="width: ${prob * 100}%"></div>
+                <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div class="${colors[i]} h-full transition-all duration-1000" style="width: ${p * 100}%"></div>
                 </div>
-            `;
-        }).join('');
-
-        // Explicabilidad
-        explainabilityList.innerHTML = explanation.map(item => `
-            <li class="flex justify-between items-center p-2 bg-white bg-opacity-50 rounded mb-1">
-                <span class="text-xs font-medium">${item.name}</span>
-                <span class="text-xs flex items-center">
-                    ${item.value > 0 ? '▲ Aumenta prioridad' : '▼ Disminuye prioridad'}
-                </span>
-            </li>
+            </div>
         `).join('');
+
+        // Render Explicabilidad
+        const explainList = document.getElementById('explainabilityList');
+        if (explanation.length === 0) {
+            explainList.innerHTML = '<li class="text-slate-400 italic text-sm">Sin factores de peso dominantes detectados.</li>';
+        } else {
+            explainList.innerHTML = explanation.map(item => `
+                <li class="p-4 rounded-2xl border border-slate-100 flex justify-between items-center shadow-sm">
+                    <div>
+                        <p class="text-sm font-bold text-slate-800">${item.name}</p>
+                        <p class="text-[9px] uppercase tracking-widest ${item.value > 0 ? 'text-red-500' : 'text-indigo-500'} font-black">
+                            ${item.value > 0 ? 'Impulsa prioridad alta' : 'Sustenta prioridad baja'}
+                        </p>
+                    </div>
+                    <div class="text-lg font-black ${item.value > 0 ? 'text-red-100' : 'text-indigo-100'}">
+                        ${Math.abs(item.value).toFixed(1)}
+                    </div>
+                </li>
+            `).join('');
+        }
     }
 });
