@@ -3,13 +3,65 @@
  * Capa única de interacción, captura y renderizado.
  */
 import { encodeFeatures, predict, explain, FEATURE_INDEX } from './model.js';
+import { CLINICAL_CASES } from './clinical_cases.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('triageForm');
     const resultsPanel = document.getElementById('resultsPanel');
     const resultCard = document.getElementById('resultCard');
+    const btnDemo = document.getElementById('btnDemo');
 
     // 1. UI: MANEJO DE ACORDEONES (Topografía Jerárquica)
+    // ... (logic remains same, just ensuring querySelectorAll is used correctly below)
+
+    // 2. DEMO: CARGAR CASOS ALEATORIOS
+    btnDemo?.addEventListener('click', () => {
+        const randomCase = CLINICAL_CASES[Math.floor(Math.random() * CLINICAL_CASES.length)];
+        loadCase(randomCase);
+    });
+
+    function loadCase(caseData) {
+        form.reset();
+        
+        // Simular clicks para abrir acordeones si es necesario
+        document.querySelectorAll('.cascade-menu').forEach(m => {
+            m.classList.remove('open');
+            m.classList.add('hidden');
+        });
+
+        // Set basics
+        if (caseData.input.age) document.getElementById('age').value = caseData.input.age;
+        if (caseData.input.fitzpatrick) document.getElementById('fitzpatrick').value = caseData.input.fitzpatrick;
+        
+        // Set checkboxes and open parents
+        Object.keys(caseData.input).forEach(key => {
+            const el = document.getElementById(key);
+            if (el && el.type === 'checkbox') {
+                el.checked = true;
+                // Si es un sub-elemento, abrir el padre
+                const parentMenu = el.closest('.cascade-menu');
+                if (parentMenu) {
+                    parentMenu.classList.add('open');
+                    parentMenu.classList.remove('hidden');
+                    // Marcar el trigger del padre
+                    const triggerId = parentMenu.id.replace('sub-', 'topog_');
+                    const triggerEl = document.getElementById(triggerId);
+                    if (triggerEl) triggerEl.checked = true;
+                }
+            }
+        });
+
+        // Set timing
+        const timingRadio = form.querySelector(`input[name="timing"][value="${caseData.input.timing}"]`);
+        if (timingRadio) timingRadio.checked = true;
+
+        console.log(`Cargado Caso Demo: ${caseData.title}`);
+        
+        // Opcional: Submit automático
+        // form.dispatchEvent(new Event('submit'));
+    }
+
+    // (El resto de la lógica de acordeones y submit sigue igual...)
     document.querySelectorAll('.region-trigger').forEach(trigger => {
         const cb = trigger.querySelector('input');
         const menu = document.getElementById(trigger.dataset.target);

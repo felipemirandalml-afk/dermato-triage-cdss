@@ -27,6 +27,28 @@ El modelo analiza más de **120 variables clínicas** distribuidas en:
 
 El DermatoTriage CDSS v6.0 incluye un motor de **Explainability** que identifica los 5 factores de mayor peso matemático que impulsaron la recomendación de prioridad, permitiendo una toma de decisiones informada y auditable.
 
+## 🧪 Validación Clínica (v1.0)
+
+Para asegurar la seguridad y precisión del motor, el sistema incluye un **Clinical Validation Harness** que permite verificar el comportamiento del algoritmo frente a casos médicos reales y evitar regresiones.
+
+### Casos Cubiertos
+- **Prioridad 1 (Urgencia)**: Red flags sistémicas, SJS/NET, Vasculitis, Fascitis Necrotizante.
+- **Prioridad 2 (Intermedia)**: Patologías inflamatorias agudas, sospecha de neoplasias, reacciones medicamentosas.
+- **Prioridad 3 (Estable)**: Patologías crónicas localizadas (Acné, Psoriasis, Dermatitis Atópica).
+
+### Cómo ejecutar la validación
+Requiere **Node.js**:
+```bash
+npm run validate
+```
+O directamente:
+```bash
+node tools/validate_clinical_cases.js
+```
+
+### Cómo agregar nuevos casos
+Edita el archivo `clinical_cases.js` siguiendo la estructura de objetos existente. Asegúrate de asignar la `expected_priority` según el consenso médico local.
+
 ---
 
 ## 🏗️ Uso

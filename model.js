@@ -56,13 +56,15 @@ export const MODEL_WEIGHTS = {
         // PRIORIDAD 1: ALTA (Rojo)
         if (priorityIdx === 2) { 
             if (featureKey.includes('ampolla') || featureKey.includes('bula')) return 12;
-            if (featureKey.includes('ulcera')) return 8;
+            if (featureKey.includes('ulcera') || featureKey.includes('erosion')) return 8;
             if (featureKey.includes('farmacos')) return 10;
-            if (featureKey.includes('fiebre')) return 8;
-            if (featureKey.includes('agudo')) return 7;
-            if (featureKey.includes('purpura')) return 7;
+            if (featureKey.includes('fiebre')) return 9;
+            if (featureKey.includes('agudo')) return 8;
+            if (featureKey.includes('purpura')) return 10;
             if (featureKey.includes('generalizado')) return 9;
-            if (featureKey.includes('inmunosupresion')) return 5;
+            if (featureKey.includes('inmunosupresion')) return 6;
+            if (featureKey.includes('dolor')) return 7;
+            if (featureKey.includes('mucosas')) return 8;
         }
         
         // PRIORIDAD 3: BAJA (Verde)
@@ -74,9 +76,13 @@ export const MODEL_WEIGHTS = {
 
         // PRIORIDAD 2: MEDIA (Ámbar)
         if (priorityIdx === 1) {
-            if (featureKey.includes('nodulo') || featureKey.includes('tumor')) return 3;
+            if (featureKey.includes('nodulo') || featureKey.includes('tumor')) return 6;
             if (featureKey.includes('subagudo')) return 4;
             if (featureKey.includes('cabeza')) return 1;
+            if (featureKey.includes('dolor')) return 8;
+            if (featureKey.includes('vesicula')) return 5;
+            if (featureKey.includes('purpura')) return 6;
+            if (featureKey.includes('generalizado')) return 4;
         }
 
         return 0.1; // Ruido base para estabilidad numérica

@@ -1,0 +1,8 @@
+{
+  "name": "dermato-triage-cdss",
+  "version": "6.0.0",
+  "type": "module",
+  "scripts": {
+    "validate": "node tools/validate_clinical_cases.js"
+  }
+}
