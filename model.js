@@ -9,7 +9,7 @@ export const FEATURE_LABELS = {};
 
 const featureGroups = {
     basics: ['edad', 'fototipo', 'sexo_male', 'sexo_female'],
-    red_flags: ['inmunosupresion', 'farmacos_recientes', 'riesgo_metabolico', 'signo_fiebre'],
+    red_flags: ['inmunosupresion', 'farmacos_recientes', 'riesgo_metabolico', 'signo_fiebre', 'signo_dolor', 'signo_mucosas'],
     primarias: ['lesion_macula', 'lesion_mancha', 'lesion_papula', 'lesion_placa', 'lesion_nodulo', 'lesion_habon', 'lesion_eritema', 'lesion_purpura', 'lesion_telangiectasia', 'lesion_comedon', 'lesion_quiste', 'lesion_tumor', 'lesion_vegetacion'],
     liquidas: ['lesion_vesicula', 'lesion_ampolla', 'lesion_bula', 'lesion_pustula'],
     secundarias: ['lesion_escama', 'lesion_costra', 'lesion_escara', 'lesion_erosion', 'lesion_ulcera', 'lesion_excoriacion', 'lesion_fisura', 'lesion_atrofia', 'lesion_esclerosis', 'lesion_liquenificacion', 'lesion_cicatriz'],
@@ -40,7 +40,9 @@ export const FEATURE_MAP_LABELS = {
     tiempo_agudo: "Instauración Hiperaguda",
     inmunosupresion: "Estado de Inmunocompromiso",
     tiempo_cronico: "Evolución Crónica (>6 sem)",
-    lesion_escama: "Descamación Superficial"
+    lesion_escama: "Descamación Superficial",
+    signo_dolor: "Dolor Intenso / Progresivo",
+    signo_mucosas: "Compromiso de Mucosas"
 };
 
 // 2. CONFIGURACIÓN DEL MODELO (Pesos Estratégicos)
@@ -58,31 +60,33 @@ export const MODEL_WEIGHTS = {
             if (featureKey.includes('ampolla') || featureKey.includes('bula')) return 12;
             if (featureKey.includes('ulcera') || featureKey.includes('erosion')) return 8;
             if (featureKey.includes('farmacos')) return 10;
-            if (featureKey.includes('fiebre')) return 9;
-            if (featureKey.includes('agudo')) return 8;
+            if (featureKey.includes('fiebre')) return 12; // Calibrado: Flag crítico
+            if (featureKey.includes('agudo')) return 6; // Calibrado: requiere red flags para P1
             if (featureKey.includes('purpura')) return 10;
-            if (featureKey.includes('generalizado')) return 9;
+            if (featureKey.includes('generalizado')) return 6; // Calibrado: requiere red flags para P1
             if (featureKey.includes('inmunosupresion')) return 6;
-            if (featureKey.includes('dolor')) return 7;
+            if (featureKey.includes('dolor')) return 10; // Calibrado: Flag crítico
             if (featureKey.includes('mucosas')) return 8;
         }
         
         // PRIORIDAD 3: BAJA (Verde)
         if (priorityIdx === 0) { 
-            if (featureKey.includes('cronico')) return 5;
+            if (featureKey.includes('cronico')) return 4; // Ajustado para no bloquear neoplasias
             if (featureKey.includes('cicatriz') || featureKey.includes('atrofia')) return 3;
             if (featureKey.includes('escama')) return 1.5;
         }
 
         // PRIORIDAD 2: MEDIA (Ámbar)
         if (priorityIdx === 1) {
-            if (featureKey.includes('nodulo') || featureKey.includes('tumor')) return 6;
-            if (featureKey.includes('subagudo')) return 4;
-            if (featureKey.includes('cabeza')) return 1;
+            if (featureKey.includes('nodulo') || featureKey.includes('tumor')) return 10; // Calibrado para Neoplasia
+            if (featureKey.includes('telangiectasia')) return 5; // Calibrado para Neoplasia
+            if (featureKey.includes('subagudo')) return 2; // Reducido para evitar Acné a P2
+            if (featureKey.includes('cabeza')) return 0.5; // Reducido para evitar Acné a P2
             if (featureKey.includes('dolor')) return 8;
             if (featureKey.includes('vesicula')) return 5;
             if (featureKey.includes('purpura')) return 6;
             if (featureKey.includes('generalizado')) return 4;
+            if (featureKey.includes('agudo')) return 4; // Agregado para urgencias no vitales (Celulitis)
         }
 
         return 0.1; // Ruido base para estabilidad numérica

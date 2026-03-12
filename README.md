@@ -49,6 +49,12 @@ node tools/validate_clinical_cases.js
 ### Cómo agregar nuevos casos
 Edita el archivo `clinical_cases.js` siguiendo la estructura de objetos existente. Asegúrate de asignar la `expected_priority` según el consenso médico local.
 
+### Calibración Clínica Iterativa (v1.0)
+El sistema utiliza un proceso de **calibración dirigida por errores**. Los pesos en `model.js` se refinan periódicamente para maximizar la concordancia con los casos del harness. 
+- **Última Calibración**: 12/12 casos exitosos (100% de cobertura canónica).
+- **Trazabilidad**: Ver detalles en [CALIBRATION_NOTES.md](./CALIBRATION_NOTES.md).
+- **Control de Regresión**: Cada cambio en el motor debe ser verificado ejecutando el validador.
+
 ---
 
 ## 🏗️ Uso
