@@ -42,7 +42,11 @@ export const FEATURE_MAP_LABELS = {
     tiempo_cronico: "Evolución Crónica (>6 sem)",
     lesion_escama: "Descamación Superficial",
     signo_dolor: "Dolor Intenso / Progresivo",
-    signo_mucosas: "Compromiso de Mucosas"
+    signo_mucosas: "Compromiso de Mucosas",
+    lesion_nodulo: "Lesión Nodular",
+    lesion_tumor: "Lesión Tumoral / Masa",
+    lesion_erosion: "Erosiones Cutáneas",
+    lesion_ulcera: "Ulceración Profunda"
 };
 
 // 2. CONFIGURACIÓN DEL MODELO (Pesos Estratégicos)
@@ -159,4 +163,72 @@ export function explain(X, winningClassIdx) {
       .slice(0, 5);
 
     return contribs;
+}
+
+// 4. CAPA DE INTERPRETACIÓN CLÍNICA ACCIONABLE
+export const CLINICAL_GUI = {
+    recommendations: {
+        1: {
+            conduct: "Evaluación urgente / Derivación inmediata a Servicio de Urgencias.",
+            timeframe: "Inmediato (Hoy)",
+            color: "text-rose-600",
+            bg: "bg-rose-50"
+        },
+        2: {
+            conduct: "Derivación prioritaria a Dermatología o evaluación preferente por especialista.",
+            timeframe: "Plazo Corto (7-14 días)",
+            color: "text-amber-600",
+            bg: "bg-amber-50"
+        },
+        3: {
+            conduct: "Manejo ambulatorio estándar / Control programado o seguimiento por medicina general.",
+            timeframe: "Diferible (Según disponibilidad)",
+            color: "text-emerald-600",
+            bg: "bg-emerald-50"
+        }
+    },
+    warnings: "Esta herramienta es un apoyo a la decisión clínica y no reemplaza el juicio médico presencial. Si el paciente presenta compromiso hemodinámico o insuficiencia respiratoria, actúe según protocolo de emergencia independientemente del resultado."
+};
+
+export function interpretResult(X, prediction) {
+    const priority = prediction.priority;
+    const rec = CLINICAL_GUI.recommendations[priority];
+    
+    // Detección de Red Flags
+    const redFlags = [];
+    const rfMap = {
+        signo_mucosas: "Compromiso de Mucosas (Riesgo SJS/NET)",
+        signo_fiebre: "Fiebre / Respuesta Inflamatoria Sistémica",
+        signo_dolor: "Dolor Intenso (Sospecha de Infección Profunda/Necrosis)",
+        lesion_ampolla: "Dermatosis Ampollosa",
+        lesion_bula: "Presencia de Bulas Masivas",
+        lesion_purpura: "Púrpura Palpable (Sospecha Vasculitis)",
+        inmunosupresion: "Paciente Inmunocomprometido",
+        farmacos_recientes: "Antecedente de Fármacos Sistémicos Críticos"
+    };
+
+    Object.keys(rfMap).forEach(key => {
+        if (X[FEATURE_INDEX[key]] === 1) {
+            redFlags.push(rfMap[key]);
+        }
+    });
+
+    // Justificación Breve
+    const topSignals = explain(X, prediction.classIdx);
+    let justification = "Priorización basada en ";
+    if (topSignals.length > 0) {
+        justification += topSignals.map(s => s.name.toLowerCase()).join(", ") + ".";
+    } else {
+        justification = "Presentación clínica sin señales de alarma dominantes.";
+    }
+
+    return {
+        ...prediction,
+        conduct: rec.conduct,
+        timeframe: rec.timeframe,
+        redFlags: redFlags,
+        justification: justification,
+        ui: { color: rec.color, bg: rec.bg },
+        disclaimer: CLINICAL_GUI.warnings
+    };
 }

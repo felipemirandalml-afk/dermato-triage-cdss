@@ -283,26 +283,68 @@
 
         <!-- RESULTADOS MAESTROS -->
         <div id="resultsPanel" class="hidden pb-20 mt-12">
-            <div id="resultCard" class="bg-white rounded-[4rem] p-12 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border-4 transition-all duration-1000 transform scale-95 opacity-0">
-                <header class="text-center mb-16">
+            <div id="resultCard" class="bg-white rounded-[4rem] p-8 md:p-14 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border-4 transition-all duration-1000 transform scale-95 opacity-0">
+                
+                <!-- HEADER DE PRIORIDAD -->
+                <header class="text-center mb-12">
                     <div class="inline-block px-4 py-1.5 bg-slate-100 rounded-full text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Resultado de Prioridad</div>
-                    <h3 id="priorityText" class="text-6xl md:text-7xl font-black italic tracking-tighter uppercase leading-none mb-6"></h3>
-                    <div id="badgeStatus" class="inline-block px-6 py-2 rounded-2xl text-xs font-black uppercase tracking-widest"></div>
+                    <h3 id="priorityText" class="text-6xl md:text-8xl font-black italic tracking-tighter uppercase leading-none mb-6"></h3>
+                    <div id="badgeStatus" class="inline-block px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm"></div>
                 </header>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-                    <div class="space-y-8">
-                        <h4 class="text-sm font-black text-slate-400 uppercase tracking-widest border-b-2 border-slate-50 pb-3 flex justify-between">
-                            <span>Precisión del Modelo</span>
-                            <span class="text-indigo-600">Σ 1.0</span>
-                        </h4>
-                        <div id="probabilityList" class="space-y-6"></div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- COLUMNA IZQUIERDA: CONDUCTA Y FLAGS -->
+                    <div class="lg:col-span-7 space-y-10">
+                        
+                        <!-- CONDUCTA ACCIONABLE -->
+                        <div id="conductSection" class="p-8 rounded-[2.5rem] border-2 border-dashed border-slate-200">
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Conducta Sugerida</h4>
+                            <p id="suggestedConduct" class="text-2xl font-bold text-slate-800 leading-tight mb-4"></p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] font-black text-slate-400 uppercase">Plazo:</span>
+                                <span id="recommendedTimeframe" class="px-3 py-1 bg-slate-900 text-white text-[10px] font-bold rounded-full uppercase tracking-widest"></span>
+                            </div>
+                        </div>
+
+                        <!-- RED FLAGS DETECTADAS -->
+                        <div id="redFlagsPanel" class="hidden space-y-4">
+                            <h4 class="text-[10px] font-black text-rose-600 uppercase tracking-widest flex items-center gap-2">
+                                <span class="w-2 h-2 bg-rose-600 rounded-full animate-ping"></span> Banderas Rojas Detectadas
+                            </h4>
+                            <div id="redFlagsContainer" class="flex flex-wrap gap-2"></div>
+                        </div>
+
+                        <!-- JUSTIFICACIÓN CLÍNICA -->
+                        <div class="space-y-3">
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Justificación Clínica</h4>
+                            <p id="clinicalJustification" class="text-slate-600 font-medium leading-relaxed italic border-l-4 border-slate-200 pl-4"></p>
+                        </div>
                     </div>
-                    <div class="space-y-8">
-                        <h4 class="text-sm font-black text-slate-400 uppercase tracking-widest border-b-2 border-slate-50 pb-3">Factores de Peso Dominantes</h4>
-                        <ul id="explainabilityList" class="space-y-4"></ul>
+
+                    <!-- COLUMNA DERECHA: MÉTRICAS Y PESOS -->
+                    <div class="lg:col-span-5 space-y-10">
+                        <!-- Probabilidades -->
+                        <div class="space-y-6">
+                            <h4 class="text-sm font-black text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-3 flex justify-between">
+                                <span>Precisión</span>
+                                <span class="text-indigo-600 text-xs">Softmax Σ 1.0</span>
+                            </h4>
+                            <div id="probabilityList" class="space-y-5"></div>
+                        </div>
+
+                        <!-- Factores Dominantes -->
+                        <div class="space-y-6">
+                            <h4 class="text-sm font-black text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-3">Señales de Peso</h4>
+                            <ul id="explainabilityList" class="space-y-3 text-xs font-bold text-slate-600"></ul>
+                        </div>
                     </div>
                 </div>
+
+                <!-- DISCLAIMER FINAL -->
+                <footer class="mt-16 pt-10 border-t border-slate-100 italic text-center">
+                    <p id="disclaimerText" class="text-[10px] text-slate-400 max-w-2xl mx-auto leading-relaxed"></p>
+                </footer>
             </div>
         </div>
 
