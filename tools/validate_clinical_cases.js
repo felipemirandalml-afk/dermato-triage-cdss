@@ -3,7 +3,7 @@
  * Ejecuta el dataset de validación contra el motor clínico actual.
  */
 
-import { encodeFeatures, predict, explain } from '../model.js';
+import { encodeFeatures, predict, explain, interpretResult } from '../model.js';
 import { CLINICAL_CASES } from '../clinical_cases.js';
 
 const COLORS = {
@@ -33,8 +33,9 @@ const stats = {
 
 CLINICAL_CASES.forEach((c, index) => {
     const X = encodeFeatures(c.input);
-    const result = predict(X);
-    const explanation = explain(X, result.classIdx);
+    const raw = predict(X);
+    const result = interpretResult(X, raw); // Usamos la capa de interpretación (con modifiers)
+    const explanation = explain(X, raw.classIdx);
 
     const isMatch = result.priority === c.expected_priority;
     
@@ -59,6 +60,9 @@ CLINICAL_CASES.forEach((c, index) => {
     console.log(`${COLORS.bright}[${c.id}] ${c.title}${COLORS.reset}`);
     console.log(`   Summary: ${COLORS.blue}${c.short_clinical_summary}${COLORS.reset}`);
     console.log(`   Expected: P${c.expected_priority} | Predicted: ${isMatch ? COLORS.green : COLORS.red}P${result.priority}${COLORS.reset} (${result.label})`);
+    if (result.modifier) {
+        console.log(`   ${COLORS.yellow}✦ Modifier: ${result.modifier}${COLORS.reset}`);
+    }
     console.log(`   Status:   ${statusIcon}`);
 
     if (!isMatch) {

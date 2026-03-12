@@ -103,6 +103,7 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Erupción morbiliforme tras inicio de antibiótico, sin fiebre ni ampollas.",
         input: {
             age: 28,
+            farmacos_recientes: true,
             lesion_macula: true,
             lesion_papula: true,
             patron_generalizado: true,

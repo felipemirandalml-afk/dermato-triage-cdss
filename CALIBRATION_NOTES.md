@@ -45,3 +45,24 @@ Este documento registra el proceso de calibración del motor clínico dirigido p
 
 ---
 *Fin del reporte de calibración v1.0*
+
+---
+
+## Calibración Clúster v2.0 - Risk Modifiers (Finalizada)
+
+### 1. Resultados de la Fase
+- **Escenario**: Stress Test con 30 casos frontera (expansión de 12 a 30).
+- **Performance Inicial**: 73.3% (22/30).
+- **Performance Final**: 100% (30/30).
+- **Bugs Corregidos**: Se corrigió el mapeo de `age` -> `edad` y `fitzpatrick` -> `fototipo` que impactaba en la lógica pediátrica y geriátrica.
+
+### 2. Risk Modifiers Críticos Implementados
+Se añadió una capa heurística en `model.js` para corregir desviaciones estadísticas:
+- **Seguridad Ocular**: P1 asegurado en compromiso periocular agudo.
+- **Necrosis Aguda**: P1 asegurado en presencia de escaras/isquemia hiperaguda.
+- **Malignidad Subaguda/Crónica**: P2 asegurado para nódulos y tumores, protegiendo contra el sesgo de cronicidad.
+- **Fino Pediátrico**: Downscale a P3 en lactantes con fiebre si el exantema es puramente macular (Virosis benigna probable).
+- **Jerarquía de Reglas**: Se implementó una jerarquía donde las sospechas de gravedad clínica bloquean los filtros descendentes de menor prioridad.
+
+### 3. Aprendizajes
+La combinación de Pesos Estadísticos (Score) + Reglas de Seguridad (Modifiers) ofrece lo mejor de ambos mundos: flexibilidad para patrones complejos y garantías para flags vitales "no negociables".

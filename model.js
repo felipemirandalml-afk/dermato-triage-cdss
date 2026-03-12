@@ -103,13 +103,19 @@ export function encodeFeatures(formData) {
     
     // Mapeo dinámico: busca IDs del formData en el FEATURE_INDEX
     for (const [key, value] of Object.entries(formData)) {
+        // Mapeos especiales
+        if (key === 'age') {
+            X[FEATURE_INDEX.edad] = (parseFloat(value) || 0) / 100;
+            continue;
+        }
+        if (key === 'fitzpatrick') {
+            X[FEATURE_INDEX.fototipo] = parseInt(value) || 1;
+            continue;
+        }
+
         if (FEATURE_INDEX[key] !== undefined) {
             if (typeof value === 'boolean') {
                 X[FEATURE_INDEX[key]] = value ? 1 : 0;
-            } else if (key === 'age') {
-                X[FEATURE_INDEX.edad] = (parseFloat(value) || 0) / 100;
-            } else if (key === 'fitzpatrick') {
-                X[FEATURE_INDEX.fototipo] = parseInt(value) || 1;
             }
         }
     }
@@ -191,10 +197,13 @@ export const CLINICAL_GUI = {
 };
 
 export function interpretResult(X, prediction) {
-    const priority = prediction.priority;
+    // 1. Aplicar Modificadores Clínicos de Seguridad
+    const refinedPrediction = applyClinicalModifiers(X, prediction);
+    
+    const priority = refinedPrediction.priority;
     const rec = CLINICAL_GUI.recommendations[priority];
     
-    // Detección de Red Flags
+    // 2. Detección de Red Flags para UI
     const redFlags = [];
     const rfMap = {
         signo_mucosas: "Compromiso de Mucosas (Riesgo SJS/NET)",
@@ -213,9 +222,16 @@ export function interpretResult(X, prediction) {
         }
     });
 
-    // Justificación Breve
-    const topSignals = explain(X, prediction.classIdx);
-    let justification = "Priorización basada en ";
+    // 3. Justificación Dinámica
+    const topSignals = explain(X, refinedPrediction.classIdx);
+    let justification = "";
+    
+    if (refinedPrediction.modifier) {
+        justification = `[Ajuste Clínico] ${refinedPrediction.modifier}. Basado en `;
+    } else {
+        justification = "Priorización basada en ";
+    }
+
     if (topSignals.length > 0) {
         justification += topSignals.map(s => s.name.toLowerCase()).join(", ") + ".";
     } else {
@@ -223,7 +239,7 @@ export function interpretResult(X, prediction) {
     }
 
     return {
-        ...prediction,
+        ...refinedPrediction,
         conduct: rec.conduct,
         timeframe: rec.timeframe,
         redFlags: redFlags,
@@ -232,3 +248,107 @@ export function interpretResult(X, prediction) {
         disclaimer: CLINICAL_GUI.warnings
     };
 }
+
+/**
+ * 5. MODIFICADORES DE RIESGO CLÍNICO (Capas Heurísticas de Seguridad)
+ */
+export function applyClinicalModifiers(X, result) {
+    let finalPriority = result.priority;
+    let modifierApplied = null;
+
+    const has = (key) => X[FEATURE_INDEX[key]] === 1;
+
+    // A. RIESGO OCULAR / PERIOCULAR
+    if (has('topog_cabeza') && has('topo_cara_centro') && (has('lesion_vesicula') || has('signo_dolor'))) {
+        if (finalPriority > 1) {
+            finalPriority = 1;
+            modifierApplied = "Riesgo Ocular / Compromiso de Cara Centrofacial";
+        }
+    }
+
+    // B. ISQUEMIA O NECROSIS TISULAR
+    if ((has('lesion_escara') || has('lesion_ulcera') || has('lesion_purpura')) && has('tiempo_agudo')) {
+        if (finalPriority > 1) {
+            finalPriority = 1;
+            modifierApplied = "Signos de Isquemia o Necrosis Tisular Aguda";
+        }
+    }
+
+    // C. SOSPECHA AUTOINMUNE / AMPOLLOSA GRAVE
+    if ((has('lesion_ampolla') || has('lesion_erosion')) && 
+        (has('signo_mucosas') || has('signo_dolor') || has('patron_generalizado') || has('patron_seborreica')) &&
+        !has('tiempo_cronico')) {
+        if (finalPriority > 1) {
+            finalPriority = 1;
+            modifierApplied = "Sospecha de Dermatosis Ampollosa o Compromiso Sistémico";
+        }
+    }
+
+    // D. SOSPECHA DE MALIGNIDAD (Cáncer de Piel) - Bloquea downscales
+    const isSuspectTime = has('tiempo_cronico') || has('tiempo_subagudo');
+    const isMalignantLesion = has('lesion_nodulo') || has('lesion_tumor') || has('lesion_ulcera');
+    if (isSuspectTime && isMalignantLesion) {
+        if (finalPriority > 2) {
+            finalPriority = 2;
+            modifierApplied = "Sospecha de Lesión Maligna / Neoplasia (Alta Prioridad)";
+        }
+        return buildResult(finalPriority, modifierApplied, result);
+    }
+
+    // E. REACCIONES ESPECÍFICAS (Acrales / Farmacodermias Simples) - Bloquea downscales
+    if (has('patron_acral') && has('tiempo_agudo') && finalPriority > 2) {
+        finalPriority = 2;
+        modifierApplied = "Reacción Acral Aguda (Estudio de Gatillante)";
+        return buildResult(finalPriority, modifierApplied, result);
+    }
+
+    if (finalPriority === 1 && has('farmacos_recientes') && !has('signo_fiebre') && !has('signo_dolor') && !has('signo_mucosas') && !has('lesion_ampolla')) {
+        finalPriority = 2;
+        modifierApplied = "Exantema Medicamentoso Simple (Vigilancia Estándar)";
+        return buildResult(finalPriority, modifierApplied, result);
+    }
+
+    // F. DOWNSCALE DE SEGURIDAD (Refinamiento de falsos positivos)
+    const ageVal = X[FEATURE_INDEX.edad] || 0;
+    
+    // Lactantes con fiebre y solo máculas (Exantema Súbito)
+    if (finalPriority === 1 && has('signo_fiebre') && has('lesion_macula') && ageVal > 0 && ageVal <= 0.02) {
+        if (!has('signo_dolor') && !has('signo_mucosas') && !has('lesion_ampolla')) {
+            finalPriority = 3;
+            modifierApplied = "Exantema Viral Benigno Probable (Pediátrico)";
+            return buildResult(finalPriority, modifierApplied, result);
+        }
+    }
+
+    // Cuadros inflamatorios locales o generalizados estables (no agudos extremos)
+    if (finalPriority === 2 && !has('signo_fiebre') && !has('signo_dolor') && !has('farmacos_recientes')) {
+        if (!has('lesion_ampolla') && !has('lesion_purpura') && !has('lesion_erosion')) {
+            // Permitimos P3 si es localizado O si es generalizado pero ya subagudo/crónico
+            if (!has('patron_generalizado') || has('tiempo_subagudo') || has('tiempo_cronico')) {
+                finalPriority = 3;
+                modifierApplied = "Cuadro Inflamatorio Estable (Manejo Ambulatorio)";
+                return buildResult(finalPriority, modifierApplied, result);
+            }
+        }
+    }
+
+    if (modifierApplied) {
+        return buildResult(finalPriority, modifierApplied, result);
+    }
+
+    return result;
+}
+
+/**
+ * Helper para construir el objeto de resultado con el modificador
+ */
+function buildResult(priority, modifier, originalResult) {
+    const labels = { 1: "URGENCIAL", 2: "PRIORITARIO", 3: "ESTABLE" };
+    return {
+        ...originalResult,
+        priority: priority,
+        label: `Prioridad ${priority} - ${labels[priority]}`,
+        modifier: modifier
+    };
+}
+
