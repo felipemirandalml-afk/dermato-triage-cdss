@@ -449,5 +449,150 @@ export const CLINICAL_CASES = [
         },
         expected_priority: 3,
         notes: "Reacción local inflamatoria, no compromete la vida."
+    },
+    {
+        id: "TC-031",
+        title: "Sífilis Secundaria (Mimicker)",
+        short_clinical_summary: "Exantema morbiliforme en tronco con afectación de palmas y plantas.",
+        input: {
+            age: 29,
+            lesion_macula: true,
+            lesion_papula: true,
+            patron_acral: true,
+            patron_generalizado: true,
+            timing: "subacute"
+        },
+        expected_priority: 2,
+        notes: "MIMICKER. El patrón acral en cuadro generalizado debe escalar por sospecha de lúes."
+    },
+    {
+        id: "TC-032",
+        title: "Molusco Contagioso en VIH (+)",
+        short_clinical_summary: "Múltiples pápulas umbilicadas gigantes en cara en paciente con SIDA.",
+        input: {
+            age: 34,
+            inmunosupresion: true,
+            lesion_papula: true,
+            topog_cabeza: true,
+            timing: "chronic"
+        },
+        expected_priority: 2,
+        notes: "La inmunosupresión transforma un cuadro P3 en P2 por riesgo de infecciones oportunistas."
+    },
+    {
+        id: "TC-033",
+        title: "Sarcoptosis Noruega (Costrosa)",
+        short_clinical_summary: "Costras y escamas masivas en todo el cuerpo, paciente postrado, poco prurito.",
+        input: {
+            age: 85,
+            lesion_escama: true,
+            lesion_costra: true,
+            patron_generalizado: true,
+            timing: "chronic"
+        },
+        expected_priority: 2,
+        notes: "Altamente contagioso y riesgo de sepsis. Requiere derivación para aislamiento."
+    },
+    {
+        id: "TC-034",
+        title: "Pie Diabético Isquémico (Sospecha)",
+        short_clinical_summary: "Úlcera profunda en talón, piel fría, cianótica, sin fiebre.",
+        input: {
+            age: 68,
+            riesgo_metabolico: true,
+            lesion_ulcera: true,
+            topog_ext_inf: true,
+            topo_pies: true,
+            timing: "subacute"
+        },
+        expected_priority: 1,
+        notes: "Isquemia crítica en diabético es una urgencia de salvamento de extremidad."
+    },
+    {
+        id: "TC-035",
+        title: "Hidradenitis Supurativa Agudizada",
+        short_clinical_summary: "Absceso doloroso y fístulas en axila, múltiples recurrencias.",
+        input: {
+            age: 26,
+            lesion_nodulo: true,
+            lesion_pustula: true,
+            signo_dolor: true,
+            topog_tronco: true,
+            topo_axilas: true,
+            timing: "acute"
+        },
+        expected_priority: 2,
+        notes: "Cuadro muy doloroso que requiere drenaje o ajuste de tratamiento urgente."
+    },
+    {
+        id: "TC-036",
+        title: "Psoriasis Pustulosa Generalizada",
+        short_clinical_summary: "Lagos de pus estériles sobre base eritematosa extensa, paciente febril.",
+        input: {
+            age: 52,
+            lesion_eritema: true,
+            lesion_pustula: true,
+            signo_fiebre: true,
+            patron_generalizado: true,
+            timing: "acute"
+        },
+        expected_priority: 1,
+        notes: "URGENCIA. Variante grave de psoriasis con riesgo de falla sistémica."
+    },
+    {
+        id: "TC-037",
+        title: "Melanoma Subungueal",
+        short_clinical_summary: "Banda pigmentada ancha en uña de pulgar, distorsión de lámina.",
+        input: {
+            age: 50,
+            lesion_mancha: true,
+            patron_acral: true,
+            timing: "chronic"
+        },
+        expected_priority: 2,
+        notes: "Sospecha de malignidad en localización crítica."
+    },
+    {
+        id: "TC-038",
+        title: "Dermatitis Seborreica Severa (HIV inicial)",
+        short_clinical_summary: "Escamas amarillentas extensas en cara y pecho, paciente joven.",
+        input: {
+            age: 24,
+            lesion_escama: true,
+            lesion_eritema: true,
+            topog_cabeza: true,
+            patron_seborreica: true,
+            timing: "subacute"
+        },
+        expected_priority: 3,
+        notes: "Presentación severa, pero estable. Podría motivar estudio de VIH pero es P3."
+    },
+    {
+        id: "TC-039",
+        title: "Tiña Incógnito",
+        short_clinical_summary: "Placa roja poco definida en cara tras uso crónico de corticoides tópicos.",
+        input: {
+            age: 45,
+            lesion_eritema: true,
+            lesion_placa: true,
+            topog_cabeza: true,
+            timing: "chronic"
+        },
+        expected_priority: 3,
+        notes: "Error diagnóstico común, manejo ambulatorio."
+    },
+    {
+        id: "TC-040",
+        title: "Livedo Reticularis Agudo (Vasculitis)",
+        short_clinical_summary: "Red vascular cianótica persistente en piernas, dolor sordo.",
+        input: {
+            age: 33,
+            lesion_eritema: true,
+            signo_dolor: true,
+            topog_ext_inf: true,
+            timing: "acute"
+        },
+        expected_priority: 2,
+        notes: "Signo de compromiso vascular, requiere estudio prioritario."
     }
 ];
