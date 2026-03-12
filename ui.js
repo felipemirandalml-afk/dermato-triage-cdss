@@ -1,150 +1,131 @@
 /**
- * ui.js - Lógica de Interfaz Profesional CDSS v4.1
+ * ui.js - Lógica de Interfaz Consolidada CDSS v6.0
+ * Capa única de interacción, captura y renderizado.
  */
 import { encodeFeatures, predict, explain, FEATURE_INDEX } from './model.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const triageForm = document.getElementById('triageForm');
+    const form = document.getElementById('triageForm');
     const resultsPanel = document.getElementById('resultsPanel');
-    const stepCircles = document.querySelectorAll('.step-circle');
-    const stepText = document.querySelectorAll('.step-circle + span');
+    const resultCard = document.getElementById('resultCard');
 
-    // 1. Mostrar/Ocultar Topografía Jerárquica e Indicador de Progreso Dinámico
-    const regionParents = document.querySelectorAll('.region-parent');
-    regionParents.forEach(parent => {
-        const checkbox = parent.querySelector('input');
-        const targetId = parent.getAttribute('data-target');
-        const targetContainer = document.getElementById(targetId);
-
-        checkbox.addEventListener('change', () => {
-            if (targetContainer) {
-                if (checkbox.checked) {
-                    targetContainer.classList.remove('hidden');
-                } else {
-                    targetContainer.classList.add('hidden');
-                    // Reset hijos
-                    targetContainer.querySelectorAll('input').forEach(i => i.checked = false);
-                }
+    // 1. UI: MANEJO DE ACORDEONES (Topografía Jerárquica)
+    document.querySelectorAll('.region-trigger').forEach(trigger => {
+        const cb = trigger.querySelector('input');
+        const menu = document.getElementById(trigger.dataset.target);
+        if (menu) menu.classList.add('hidden');
+        
+        trigger.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'INPUT') {
+                cb.checked = !cb.checked;
+                cb.dispatchEvent(new Event('change'));
             }
-            updateProgress();
+        });
+
+        cb.addEventListener('change', () => {
+            if (cb.checked) {
+                menu.classList.add('open');
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.remove('open');
+                setTimeout(() => {
+                    if (!cb.checked) menu.classList.add('hidden');
+                }, 500);
+            }
         });
     });
 
-    // Escuchar cambios en cualquier input para actualizar el progreso visual
-    triageForm.addEventListener('change', updateProgress);
-
-    function updateProgress() {
-        // Lógica simple de progreso orientada visualmente
-        const hasDemog = document.getElementById('age').value !== '' && document.querySelector('input[name="gender"]:checked');
-        const hasComorb = document.querySelectorAll('section:nth-of-type(2) input:checked').length > 0;
-        const hasSemio = document.querySelectorAll('section:nth-of-type(3) input:checked').length > 0;
-        const hasTopo = document.querySelectorAll('section:nth-of-type(4) input:checked').length > 0;
-
-        const steps = [true, hasDemog, hasComorb, hasSemio]; // El circulo 1 es demog, etc.
-        
-        stepCircles.forEach((circle, i) => {
-            if (steps[i]) {
-                circle.className = 'step-circle step-active';
-                if (stepText[i]) stepText[i].className = 'text-[9px] font-bold text-indigo-600 uppercase';
-            } else {
-                circle.className = 'step-circle step-inactive';
-                if (stepText[i]) stepText[i].className = 'text-[9px] font-bold text-slate-400 uppercase';
-            }
-        });
-    }
-
-    // 2. Manejador de Formulario
-    triageForm.addEventListener('submit', (e) => {
+    // 2. INFERENCIA: MOTOR DE CAPTURA Y PROCESAMIENTO
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const formData = captureDynamicData();
-        
+        // 2.1 Captura Dinámica de Datos
+        const formData = {
+            age: document.getElementById('age').value,
+            fitzpatrick: document.getElementById('fitzpatrick').value,
+            timing: form.querySelector('input[name="timing"]:checked')?.value
+        };
+
+        // Capturar todos los checkboxes activos que coincidan con el motor
+        form.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+            formData[cb.id] = true;
+        });
+
         if (!validateData(formData)) return;
 
+        // 2.2 Inferencia Matemática
         const X = encodeFeatures(formData);
         const result = predict(X);
-        const explanation = explain(X, result.classIdx);
+        const contributionExplain = explain(X, result.classIdx);
 
-        renderResults(result, explanation);
+        // 2.3 Renderizado de Resultados
+        renderResults(result, contributionExplain);
     });
-
-    function captureDynamicData() {
-        const data = {};
-        Object.keys(FEATURE_INDEX).forEach(id => {
-            const el = document.getElementById(id);
-            if (el && el.type === 'checkbox') {
-                data[id] = el.checked;
-            }
-        });
-        data.age = document.getElementById('age').value;
-        data.gender = document.getElementById('genderSelect')?.value || document.querySelector('input[name="gender"]:checked')?.value;
-        data.fitzpatrick = document.getElementById('fitzpatrick').value;
-        data.timing = document.querySelector('input[name="timing"]:checked')?.value;
-        return data;
-    }
 
     function validateData(data) {
         if (!data.age) {
-             alert('Por favor, ingrese la edad del paciente.');
-             return false;
+            alert('Por favor, ingrese la edad del paciente.');
+            document.getElementById('age').focus();
+            return false;
         }
         return true;
     }
 
     /**
-     * Renderizado con Estética Médica Moderna
+     * Renderizado Maestro v6.0
      */
     function renderResults(result, explanation) {
+        const themes = {
+            1: { rose: 'text-rose-600', amber: 'text-amber-500', emerald: 'text-emerald-600' },
+            bg: { rose: 'bg-rose-100/50 text-rose-800', amber: 'bg-amber-100 text-amber-800', emerald: 'bg-emerald-100 text-emerald-800' },
+            border: { rose: '#e11d48', amber: '#f59e0b', emerald: '#10b981' }
+        };
+
+        const priority = result.priority;
+        const themeKey = priority === 1 ? 'rose' : (priority === 2 ? 'amber' : 'emerald');
+
+        // Mostrar Panel
         resultsPanel.classList.remove('hidden');
         resultsPanel.scrollIntoView({ behavior: 'smooth' });
 
-        const resultCard = document.getElementById('resultCard');
-        const priorityText = document.getElementById('priorityText');
-        
-        // Mapeo de colores profesionales definidos en el prompt
-        const themes = {
-            1: { bg: 'bg-rose-50', text: 'text-rose-600', border: 'border-rose-200' },
-            2: { bg: 'bg-amber-50', text: 'text-amber-500', border: 'border-amber-200' },
-            3: { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-200' }
-        };
+        // Animación de Entrada
+        setTimeout(() => {
+            resultCard.classList.remove('scale-95', 'opacity-0');
+            resultCard.classList.add('scale-100', 'opacity-100');
+            resultCard.style.borderColor = themes.border[themeKey];
+        }, 100);
 
-        const theme = themes[result.priority];
+        // Textos y Badges
+        document.getElementById('priorityText').textContent = result.label;
+        document.getElementById('priorityText').className = `text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-none mb-6 ${themes[1][themeKey]}`;
         
-        resultCard.className = `bg-white rounded-3xl p-8 border-t-8 shadow-xl transition-all duration-500 ${theme.bg} ${theme.border}`;
-        priorityText.textContent = result.label;
-        priorityText.className = `text-4xl md:text-5xl font-black tracking-tighter uppercase italic ${theme.text}`;
+        const badge = document.getElementById('badgeStatus');
+        badge.textContent = priority === 1 ? '⚠️ Urgencia Vital' : (priority === 2 ? '⚡ Prioridad Media' : '✅ Seguimiento');
+        badge.className = `inline-block px-6 py-2 rounded-2xl text-xs font-black uppercase tracking-widest ${themes.bg[themeKey]}`;
 
-        // Probabilidades con barras minimalistas
-        const probList = document.getElementById('probabilityList');
-        const labels = ["Prioridad 3", "Prioridad 2", "Prioridad 1"];
-        const barColors = ["bg-emerald-500", "bg-amber-500", "bg-rose-500"];
-        
-        probList.innerHTML = result.probabilities.map((p, i) => `
-            <div>
-                <div class="flex justify-between text-[10px] font-bold uppercase text-slate-400 mb-1">
-                    <span>${labels[i]}</span>
-                    <span class="font-mono">${(p * 100).toFixed(1)}%</span>
+        // Barras de Probabilidad
+        const probLabels = ["Estable", "Moderado", "Crítico"];
+        const probColors = ["bg-emerald-500", "bg-amber-500", "bg-rose-600"];
+        document.getElementById('probabilityList').innerHTML = result.probabilities.map((p, i) => `
+            <div class="space-y-2">
+                <div class="flex justify-between text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                    <span>${probLabels[i]}</span>
+                    <span class="text-slate-900">${(p*100).toFixed(1)}%</span>
                 </div>
-                <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <div class="${barColors[i]} h-full transition-all duration-1000 ease-out" style="width: ${p * 100}%"></div>
+                <div class="h-3 bg-slate-100 rounded-full overflow-hidden shadow-inner">
+                    <div class="${probColors[i]} h-full transition-all duration-1000 ease-out" style="width: ${p*100}%"></div>
                 </div>
             </div>
         `).join('');
 
-        // Explicabilidad con tarjetas de impacto
-        const explainList = document.getElementById('explainabilityList');
-        explainList.innerHTML = explanation.length > 0 ? explanation.map(item => `
-            <li class="bg-white/80 p-4 rounded-2xl border border-slate-100 flex justify-between items-center shadow-sm backdrop-blur-sm">
-                <div class="pr-4">
-                    <p class="text-sm font-bold text-slate-800 leading-tight">${item.name}</p>
-                    <p class="text-[9px] uppercase tracking-widest font-black mt-1 ${item.value > 0 ? 'text-rose-500' : 'text-emerald-600'}">
-                        ${item.value > 0 ? '▲ Aumenta Riesgo' : '▼ Sustento Protector'}
-                    </p>
-                </div>
-                <div class="text-xs font-black px-3 py-1 rounded-full ${item.value > 0 ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'}">
-                    ${Math.abs(item.value).toFixed(1)}
-                </div>
+        // Explicabilidad v6.0
+        document.getElementById('explainabilityList').innerHTML = explanation.map(c => `
+            <li class="p-5 bg-slate-50 border border-slate-100 rounded-[1.5rem] flex justify-between items-center transition-all hover:bg-white hover:shadow-md group">
+                <span class="text-xs font-bold text-slate-700">${c.name}</span>
+                <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase ${c.val > 0 ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600'}">
+                    ${c.val > 0 ? 'Riesgo ▲' : 'Protector ▼'}
+                </span>
             </li>
-        `).join('') : '<li class="text-slate-400 italic text-sm text-center py-4">Sin factores de peso críticos detectados.</li>';
+        `).join('');
     }
 });

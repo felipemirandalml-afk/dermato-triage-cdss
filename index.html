@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DermatoTriage PRO v5.1 - Master Edition</title>
+    <title>DermatoTriage PRO v6.0 - Arquitectura Consolidada</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
@@ -45,7 +45,7 @@
     <nav class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 px-6 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
             <div class="w-4 h-4 bg-indigo-600 rounded-full animate-pulse shadow-lg shadow-indigo-300"></div>
-            <span class="text-xs font-black uppercase tracking-[0.2em] text-slate-500">DermatoEngine v5.1</span>
+            <span class="text-xs font-black uppercase tracking-[0.2em] text-slate-500">DermatoEngine v6.0</span>
         </div>
         <div class="hidden md:block text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-4 py-1.5 rounded-full">
             Standard Clínico APS • 120+ Variables
@@ -269,7 +269,7 @@
                     </div>
                     
                     <button type="submit" class="btn-primary">Calcular Inferencia Clínica</button>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Análisis Basado en Red Logística Softmax v5.1</p>
+                    <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Análisis Basado en Red Logística Softmax v6.0 (Single Source of Truth)</p>
                 </div>
             </section>
         </form>
@@ -301,214 +301,6 @@
 
     </div>
 
-    <script>
-        /***********************************************************
-         * CORE LOGIC: SINGLE FILE ARCHITECTURE (5.2 - Harmonized)
-         ***********************************************************/
-        
-        // 1. DICCIONARIO MAESTRO (Permite mapear ~120 variables)
-        const FEATURE_INDEX = {};
-        const FEATURE_LABELS = {};
-
-        // Inicialización dinámica del índice para evitar errores manuales
-        const featureGroups = {
-            basics: ['edad', 'fototipo', 'sexo_male', 'sexo_female'],
-            red_flags: ['inmunosupresion', 'farmacos_recientes', 'riesgo_metabolico', 'signo_fiebre'],
-            primarias: ['lesion_macula', 'lesion_mancha', 'lesion_papula', 'lesion_placa', 'lesion_nodulo', 'lesion_habon', 'lesion_eritema', 'lesion_purpura', 'lesion_telangiectasia', 'lesion_comedon', 'lesion_quiste', 'lesion_tumor', 'lesion_vegetacion'],
-            liquidas: ['lesion_vesicula', 'lesion_ampolla', 'lesion_bula', 'lesion_pustula'],
-            secundarias: ['lesion_escama', 'lesion_costra', 'lesion_escara', 'lesion_erosion', 'lesion_ulcera', 'lesion_excoriacion', 'lesion_fisura', 'lesion_atrofia', 'lesion_esclerosis', 'lesion_liquenificacion', 'lesion_cicatriz'],
-            topografia: [
-                'topog_cabeza', 'topo_cuero_cabelludo', 'topo_cara_centro', 'topo_cuello',
-                'topog_tronco', 'topo_pecho', 'topo_abdomen', 'topo_espalda', 'topo_axilas',
-                'topog_ext_inf', 'topo_muslos', 'topo_rodillas', 'topo_espinillas', 'topo_pantorrillas', 'topo_tobillos', 'topo_pies', 'topo_plantas', 'topo_dorso_pies'
-            ],
-            patrones: ['patron_acral', 'patron_dermatomal', 'patron_seborreica', 'patron_fotoexpuesto', 'patron_simetrico', 'patron_extensoras', 'patron_flexoras', 'patron_generalizado'],
-            timing: ['tiempo_agudo', 'tiempo_subagudo', 'tiempo_cronico']
-        };
-
-        let i = 0;
-        Object.values(featureGroups).flat().forEach(f => {
-            FEATURE_INDEX[f] = i++;
-        });
-
-        // Etiquetas para explicabilidad
-        const labelsMap = {
-            farmacos_recientes: "Exposición a Fármacos Sistémicos",
-            signo_fiebre: "Respuesta Inflamatoria Sistémica",
-            lesion_ampolla: "Formación de Ampollas",
-            lesion_bula: "Dermatosis Ampollosa Mayor",
-            lesion_ulcera: "Pérdida de Continuidad Tisular",
-            lesion_purpura: "Extravasación Hemática (Púrpura)",
-            patron_generalizado: "Compromiso Extenso de Superficie",
-            tiempo_agudo: "Instauración Hiperaguda",
-            inmunosupresion: "Estado de Inmunocompromiso"
-        };
-
-        // 2. MOTOR MATEMÁTICO (Softmax)
-        // Pesos clínicos asignados estratégicamente
-        const MODEL_WEIGHTS = {
-            labels: ["Prioridad 3 - Estable", "Prioridad 2 - Derivación", "Prioridad 1 - URGENCIAL"],
-            biases: [4.0, 0.0, -10.0],
-            // Los pesos se expanden según el tamaño real del vector X
-            getWeight: (priorityIdx, featureIdx) => {
-                const wMatrix = [
-                    // P3: Crónico, benigno
-                    { lesion_escama: 1.5, lesion_papula: 1.0, tiempo_cronico: 4.0, fototipo: -0.5 },
-                    // P2: Intermedio
-                    { lesion_nodulo: 2.0, lesion_placa: 1.0, tiempo_subagudo: 3.0, topog_cabeza: 1.0 },
-                    // P1: CRÍTICO
-                    { 
-                        farmacos_recientes: 10, ampolla: 12, bula: 15, ulcera: 8, purpura: 6, 
-                        fiebre: 8, inmunosupresion: 5, agudo: 8, generalizado: 7, macula: 4, eritema: 3 
-                    }
-                ];
-                
-                const featureKey = Object.keys(FEATURE_INDEX).find(k => FEATURE_INDEX[k] === featureIdx);
-                if (!featureKey) return 0;
-
-                // Mapeo simplificado de pesos para la demostración profesional
-                if (priorityIdx === 2) { // Prioridad 1
-                    if (featureKey.includes('ampolla') || featureKey.includes('bula')) return 12;
-                    if (featureKey.includes('ulcera')) return 8;
-                    if (featureKey.includes('farmacos')) return 10;
-                    if (featureKey.includes('fiebre')) return 8;
-                    if (featureKey.includes('agudo')) return 6;
-                    if (featureKey.includes('purpura')) return 7;
-                    if (featureKey.includes('generalizado')) return 9;
-                }
-                if (priorityIdx === 0) { // Prioridad 3
-                    if (featureKey.includes('cronico')) return 5;
-                    if (featureKey.includes('cicatriz') || featureKey.includes('atrofia')) return 3;
-                }
-                return 0.1; // Ruido base
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('triageForm');
-            const resultsPanel = document.getElementById('resultsPanel');
-            const resultCard = document.getElementById('resultCard');
-
-            // --- UI: ACORDEONES ---
-            document.querySelectorAll('.region-trigger').forEach(trigger => {
-                const cb = trigger.querySelector('input');
-                const menu = document.getElementById(trigger.dataset.target);
-                if (menu) menu.classList.add('hidden');
-                
-                trigger.addEventListener('click', (e) => {
-                    if (e.target.tagName !== 'INPUT') {
-                        cb.checked = !cb.checked;
-                        cb.dispatchEvent(new Event('change'));
-                    }
-                });
-
-                cb.addEventListener('change', () => {
-                    if (cb.checked) {
-                        menu.classList.add('open');
-                        menu.classList.remove('hidden');
-                    } else {
-                        menu.classList.remove('open');
-                        setTimeout(() => menu.classList.add('hidden'), 500);
-                    }
-                });
-            });
-
-            // --- INFERENCIA ENGINE ---
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // 1. Captura y Codificación
-                const X = new Array(Object.keys(FEATURE_INDEX).length).fill(0);
-                
-                // Datos numéricos/especiales
-                if (FEATURE_INDEX.edad !== undefined) X[FEATURE_INDEX.edad] = (parseFloat(document.getElementById('age').value) || 0) / 100;
-                if (FEATURE_INDEX.fototipo !== undefined) X[FEATURE_INDEX.fototipo] = parseInt(document.getElementById('fitzpatrick').value);
-                
-                // Checkboxes
-                form.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-                    if (FEATURE_INDEX[cb.id] !== undefined) X[FEATURE_INDEX[cb.id]] = 1;
-                });
-
-                // Radios
-                const timing = form.querySelector('input[name="timing"]:checked').value;
-                if (timing === 'acute') X[FEATURE_INDEX.tiempo_agudo] = 1;
-                if (timing === 'subacute') X[FEATURE_INDEX.tiempo_subagudo] = 1;
-                if (timing === 'chronic') X[FEATURE_INDEX.tiempo_cronico] = 1;
-
-                // 2. Cálculo de Scores (Multiplicación de Matrices Dinámica)
-                const scores = [0, 1, 2].map(priorityIdx => {
-                    let sum = MODEL_WEIGHTS.biases[priorityIdx];
-                    X.forEach((val, fIdx) => {
-                        sum += val * MODEL_WEIGHTS.getWeight(priorityIdx, fIdx);
-                    });
-                    return sum;
-                });
-
-                // Softmax
-                const maxZ = Math.max(...scores);
-                const exps = scores.map(zi => Math.exp(zi - maxZ));
-                const sumExps = exps.reduce((a, b) => a + b, 0);
-                const probs = exps.map(ei => ei / sumExps);
-                const winIdx = probs.indexOf(Math.max(...probs));
-
-                // 3. Renderizado de Resultados
-                const priority = [3, 2, 1][winIdx];
-                const theme = priority === 1 ? 'rose' : (priority === 2 ? 'amber' : 'emerald');
-                const colors = { rose: 'text-rose-600', amber: 'text-amber-500', emerald: 'text-emerald-600' };
-                const bgColors = { rose: 'bg-rose-100/50 text-rose-800', amber: 'bg-amber-100 text-amber-800', emerald: 'bg-emerald-100 text-emerald-800' };
-
-                resultsPanel.classList.remove('hidden');
-                setTimeout(() => {
-                    resultCard.classList.remove('scale-95', 'opacity-0');
-                    resultCard.classList.add('scale-100', 'opacity-100');
-                    resultCard.style.borderColor = priority === 1 ? '#e11d48' : (priority === 2 ? '#f59e0b' : '#10b981');
-                }, 100);
-
-                document.getElementById('priorityText').textContent = MODEL_WEIGHTS.labels[winIdx];
-                document.getElementById('priorityText').className = `text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-none mb-6 ${colors[theme]}`;
-                
-                const badge = document.getElementById('badgeStatus');
-                badge.textContent = priority === 1 ? '⚠️ Urgencia Vital' : (priority === 2 ? '⚡ Prioridad Media' : '✅ Seguimiento');
-                badge.className = `inline-block px-6 py-2 rounded-2xl text-xs font-black uppercase tracking-widest ${bgColors[theme]}`;
-
-                // Barras de Probabilidad
-                const probLabels = ["Estable", "Moderado", "Crítico"];
-                const probColors = ["bg-emerald-500", "bg-amber-500", "bg-rose-600"];
-                document.getElementById('probabilityList').innerHTML = probs.map((p, i) => `
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-[10px] font-black uppercase text-slate-400 tracking-widest">
-                            <span>${probLabels[i]}</span>
-                            <span class="text-slate-900">${(p*100).toFixed(1)}%</span>
-                        </div>
-                        <div class="h-3 bg-slate-100 rounded-full overflow-hidden shadow-inner">
-                            <div class="${probColors[i]} h-full transition-all duration-1000 ease-out" style="width: ${p*100}%"></div>
-                        </div>
-                    </div>
-                `).join('');
-
-                // Explicabilidad (Top Contribuyentes)
-                const contribs = Object.keys(FEATURE_INDEX).map(fKey => {
-                    const fIdx = FEATURE_INDEX[fKey];
-                    return {
-                        name: labelsMap[fKey] || fKey.replace('lesion_','').replace('topo_','').replace('patron_','').toUpperCase().replace('_',' '),
-                        val: MODEL_WEIGHTS.getWeight(winIdx, fIdx) * X[fIdx]
-                    };
-                }).filter(c => Math.abs(c.val) > 0.5)
-                  .sort((a,b) => Math.abs(b.val) - Math.abs(a.val))
-                  .slice(0, 5);
-
-                document.getElementById('explainabilityList').innerHTML = contribs.map(c => `
-                    <li class="p-5 bg-slate-50 border border-slate-100 rounded-[1.5rem] flex justify-between items-center transition-all hover:bg-white hover:shadow-md group">
-                        <span class="text-xs font-bold text-slate-700">${c.name}</span>
-                        <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase ${c.val > 0 ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600'}">
-                            ${c.val > 0 ? 'Riesgo ▲' : 'Protector ▼'}
-                        </span>
-                    </li>
-                `).join('');
-
-                resultsPanel.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script type="module" src="./ui.js"></script>
 </body>
 </html>
