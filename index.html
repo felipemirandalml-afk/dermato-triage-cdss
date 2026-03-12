@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDSS Dermatológico - Triage Offline</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .form-section { @apply mb-8 p-6 bg-white rounded-xl shadow-sm border border-gray-100; }
+        .section-title { @apply text-lg font-bold text-gray-800 mb-4 flex items-center gap-2; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-900 font-sans">
+
+    <div class="max-w-3xl mx-auto px-4 py-8">
+        
+        <!-- Header -->
+        <header class="mb-10 text-center">
+            <h1 class="text-3xl font-extrabold text-indigo-700">DermatoTriage CDSS</h1>
+            <p class="text-gray-500 mt-2">Sistema de Apoyo a la Decisión Clínica Offline</p>
+            <div class="mt-4 p-4 bg-orange-50 border-l-4 border-orange-400 text-orange-800 text-xs italic">
+                Advertencia: Esta herramienta es un Sistema de Apoyo a la Decisión Clínica (CDSS). No reemplaza el juicio clínico del médico ni constituye un diagnóstico definitivo.
+            </div>
+        </header>
+
+        <!-- Formulario -->
+        <form id="triageForm" class="space-y-6">
+            
+            <!-- 1. Demografía -->
+            <section class="form-section">
+                <h2 class="section-title">
+                    <span class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                    Datos Demográficos
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="age" class="block text-sm font-medium text-gray-700 mb-1">Edad</label>
+                        <input type="number" id="age" min="0" max="120" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Sexo</label>
+                        <div class="flex gap-4 mt-2">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="gender" value="male" required class="text-indigo-600 focus:ring-indigo-500">
+                                <span class="text-sm">Masculino</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="gender" value="female" class="text-indigo-600 focus:ring-indigo-500">
+                                <span class="text-sm">Femenino</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Clínica y Temporalidad -->
+            <section class="form-section">
+                <h2 class="section-title">
+                    <span class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                    Contexto Clínico
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fitzpatrick" class="block text-sm font-medium text-gray-700 mb-1">Fototipo (Fitzpatrick)</label>
+                        <select id="fitzpatrick" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                            <option value="">Seleccionar...</option>
+                            <option value="1">I - Siempre se quema, nunca se broncea</option>
+                            <option value="2">II - Se quema fácilmente, se broncea poco</option>
+                            <option value="3">III - Se quema moderadamente, se broncea</option>
+                            <option value="4">IV - Se quema poco, se broncea fácil</option>
+                            <option value="5">V - Rara vez se quema, intenso bronceado</option>
+                            <option value="6">VI - Nunca se quema, piel muy oscura</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="timing" class="block text-sm font-medium text-gray-700 mb-1">Temporalidad</label>
+                        <select id="timing" required class="w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                            <option value="">Seleccionar...</option>
+                            <option value="acute">Agudo (< 2 semanas)</option>
+                            <option value="subacute">Subagudo (2-6 semanas)</option>
+                            <option value="chronic">Crónico (> 6 semanas)</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Comorbilidades y Antecedentes -->
+            <section class="form-section">
+                <h2 class="section-title">
+                    <span class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                    Comorbilidades y Antecedentes
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Riesgo Inmediato -->
+                    <div class="col-span-full mb-2">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Riesgo Inmediato</h3>
+                    </div>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="inmunosupresion" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">Inmunosupresión / Cáncer / VIH</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="farmacos_recientes" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">Inicio fármacos (< 4 sem.)</span>
+                    </label>
+
+                    <!-- Eje Metabólico/Vascular -->
+                    <div class="col-span-full mt-2 mb-2">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Eje Metabólico/Vascular</h3>
+                    </div>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="riesgo_metabolico" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">Obesidad / DM / HTA / DLP</span>
+                    </label>
+
+                    <!-- Eje Inmune/Inflamatorio -->
+                    <div class="col-span-full mt-2 mb-2">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Eje Inmune/Inflamatorio</h3>
+                    </div>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="atopia" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">Asma / Rinitis (Atopía)</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="auto_inmune" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">Enf. Tiroidea / Vitíligo / Lupus</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="enf_intestinal" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">Enf. Inflamatoria Intestinal</span>
+                    </label>
+
+                    <!-- Otros -->
+                    <div class="col-span-full mt-2 mb-2">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Otros</h3>
+                    </div>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="hepatopatia" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">Hepatitis C / Enf. Hepática</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="sop_hirsutismo" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm">SOP / Hirsutismo / Ciclos</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- 4. Morfología (Regla ABCD) -->
+            <section class="form-section">
+                <h2 class="section-title">
+                    <span class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span>
+                    Morfología de la Lesión (ABCD)
+                </h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="asymmetry" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm font-medium">Asimetría</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="borders" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm font-medium">Bordes Irregulares</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="color" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm font-medium">Color Heterogéneo</span>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" id="diameter" class="w-4 h-4 text-indigo-600 rounded">
+                        <span class="text-sm font-medium">Diámetro > 6mm</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- 5. Signos de Alarma -->
+            <section class="form-section">
+                <h2 class="section-title text-red-600">
+                    <span class="bg-red-100 text-red-600 w-8 h-8 rounded-full flex items-center justify-center text-sm">5</span>
+                    Signos de Alarma
+                </h2>
+                <div class="space-y-3">
+                    <label class="flex items-center gap-3 p-3 border border-red-100 bg-red-50 rounded-lg hover:bg-red-100 cursor-pointer">
+                        <input type="checkbox" id="bleeding" class="w-5 h-5 text-red-600 rounded">
+                        <div>
+                            <span class="text-sm font-bold block">Sangrado o Ulceración</span>
+                            <span class="text-xs text-red-600 italic">Pérdida de la integridad de la piel en la lesión</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center gap-3 p-3 border border-red-100 bg-red-50 rounded-lg hover:bg-red-100 cursor-pointer">
+                        <input type="checkbox" id="growth" class="w-5 h-5 text-red-600 rounded">
+                        <div>
+                            <span class="text-sm font-bold block">Rápido Crecimiento</span>
+                            <span class="text-xs text-red-600 italic">Cambios evidentes en tamaño en los últimos meses</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <button type="submit" class="w-full py-4 bg-indigo-700 text-white rounded-xl font-bold text-lg hover:bg-indigo-800 transition-colors shadow-lg active:transform active:scale-95">
+                Calcular Prioridad de Triage
+            </button>
+        </form>
+
+        <!-- Panel de Resultados (Oculto inicialmente) -->
+        <div id="resultsPanel" class="hidden mt-12 pb-12">
+            <div class="h-px bg-gray-200 w-full mb-10"></div>
+            
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Resultados del Triage</h2>
+            
+            <div id="resultCard" class="transition-all duration-300">
+                <h3 id="priorityText" class="text-xl font-extrabold text-center mb-6"></h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Probabilidades -->
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-600 uppercase mb-4 tracking-wider">Probabilidades del Modelo</h4>
+                        <div id="probabilityList"></div>
+                    </div>
+
+                    <!-- Análisis de Decisión -->
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-600 uppercase mb-4 tracking-wider">Análisis de Decisión (Explicabilidad)</h4>
+                        <p class="text-xs text-gray-500 mb-4 italic">Principales variables que influyeron en el cálculo:</p>
+                        <ul id="explainabilityList" class="space-y-2"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="mt-12 text-center text-[10px] text-gray-400 border-t pt-8">
+                &copy; 2026 DermatoTriage System. Basado en Regresión Logística Multiclase.
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="ui.js"></script>
+</body>
+</html>
