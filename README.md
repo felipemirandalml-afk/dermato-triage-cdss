@@ -81,6 +81,7 @@ npm run validate
 ---
 
 ## 📂 Project Documentation
+- [VALIDATION.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/VALIDATION.md): Evidencia de concordancia 100% y metodología de testeo.
 - [MAINTAINING.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/MAINTAINING.md): How to extend and maintain the system.
 - [CHANGELOG.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/CHANGELOG.md): History of clinical milestones.
 - [GENERALIZATION_AUDIT.md](file:///c:/Users/hp/.gemini/antigravity/playground/aphelion-gravity/GENERALIZATION_AUDIT.md): Coverage and clinical bias analysis.
