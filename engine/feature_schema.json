@@ -1,0 +1,35 @@
+{
+  "edad": "numeric",
+  "fototipo": "categorical",
+
+  "papula": "binary",
+  "placa": "binary",
+  "vesicula": "binary",
+  "pustula": "binary",
+  "bula_ampolla": "binary",
+  "escama": "binary",
+  "ulcera": "binary",
+  "purpura": "binary",
+
+  "dermatomal": "binary",
+  "intertriginoso": "binary",
+  "flexural": "binary",
+  "extensor": "binary",
+  "generalizado": "binary",
+  "localizado": "binary",
+
+  "agudo": "binary",
+  "subagudo": "binary",
+  "cronico": "binary",
+
+  "prurito": "binary",
+  "dolor": "binary",
+  "fiebre": "binary",
+
+  "farmacos_recientes": "binary",
+  "inmunosupresion": "binary",
+  "diabetes": "binary",
+  "hepatopatia": "binary",
+  "atopia": "binary",
+  "embarazo": "binary"
+}
