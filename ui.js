@@ -1,5 +1,5 @@
 import { encodeFeatures, predict, explain, interpretResult, FEATURE_INDEX } from './model.js';
-import { CLINICAL_CASES } from './clinical_cases.js';
+import { CLINICAL_CASES } from './data/clinical_cases.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('triageForm');

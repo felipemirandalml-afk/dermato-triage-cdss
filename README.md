@@ -42,10 +42,37 @@ Use the "Cargar Demo" button to test these high-impact scenarios:
 ## 🛠️ Technical Stack
 - **Engine**: Vanilla JavaScript (ES Modules). No dependencies.
 - **UI**: HTML5 / CSS3 / Tailwind CSS (Modern Glassmorphism).
-- **Validation**: Custom Node.js harness for clinical concordance.
+- **Validation**: Custom Node.js regression harness.
+
+## 🧩 Engineering Phase 1: Modular Architecture
+The system has been refactored into a layered architecture to improve auditability and prepare for Phase 2 (Probabilistic Models).
+
+### File Structure:
+- `/engine`: Core Triage Logic.
+  - `baseline_model.js`: Statistical scoring and softmax.
+  - `safety_modifiers.js`: Morphological red flags.
+  - `context_modifiers.js`: Patient context and systemic risk.
+  - `interpreter.js`: Explainability and clinical narrative.
+  - `feature_encoder.js`: Data structuring.
+  - `constants.js`: Canonical feature index and labels.
+- `/data`: External Assets.
+  - `clinical_cases.js`: Validation dataset (40 cases).
+- `model.js`: Main Engine Orchestrator.
+- `ui.js`: DOM interaction and rendering.
+
+### Data Flow:
+1. **Input**: Raw form data.
+2. **Encoding**: `feature_encoder` maps attributes to structured objects/vectors.
+3. **Inference**: `baseline_model` calculates the primary statistical score.
+4. **Safety Oversight**: `safety_modifiers` & `context_modifiers` apply explicit clinical "Shields" to escalate or refine priority.
+5. **Human Language**: `interpreter` turns numbers into a medical narrative with "signals" for the user.
+
+---
 
 ## 🧪 Validation & Quality
 Current concordance: **100.0%** (40/40 Cases PASS).
+The system uses a strict regression harness to ensure that architectural changes do not alter clinical outcomes.
+
 To run validation:
 ```bash
 npm run validate
