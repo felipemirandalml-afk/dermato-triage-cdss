@@ -544,64 +544,96 @@
                 </div>
             </form>
 
-            <!-- PANEL DE RESULTADOS (MODERNO Y SOBRIO) -->
-            <section id="resultsPanel" class="hidden mt-12 mb-20 animate-in slide-in-from-bottom-6 duration-700">
-                <div class="w-full h-px bg-slate-200 mb-8"></div>
+            <!-- PANEL DE RESULTADOS (INFORME CLÍNICO CDSS) -->
+            <section id="resultsPanel" class="hidden mt-16 mb-24 animate-in slide-in-from-bottom-8 duration-700">
+                <div class="w-full h-px bg-slate-200 mb-10"></div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    
-                    <!-- Columna Principal: El veredicto -->
-                    <div class="lg:col-span-12">
-                        <div id="resultCard" class="clinical-card p-0 overflow-hidden transition-all duration-500 transform border-t-4">
-                            
-                            <div class="p-8 md:p-12">
-                                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
-                                    <div>
-                                        <span id="badgeStatus" class="inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-4"></span>
-                                        <h2 id="priorityText" class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none"></h2>
-                                    </div>
-                                    <div class="md:text-right">
-                                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Conducta Sugerida</p>
-                                        <p id="suggestedConduct" class="text-lg md:text-xl font-bold text-slate-800 max-w-md leading-snug"></p>
-                                        <p id="recommendedTimeframe" class="text-sm font-bold text-blue-600 mt-2 italic"></p>
-                                    </div>
-                                </div>
-
-                                <div class="h-px bg-slate-100 my-8"></div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                    <!-- Detalles Clínicos -->
-                                    <div class="space-y-6">
-                                        <div>
-                                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Justificación del Algoritmo</h4>
-                                            <p id="clinicalJustification" class="text-sm text-slate-600 leading-relaxed italic"></p>
-                                        </div>
-                                        <div id="redFlagsPanel" class="hidden">
-                                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 italic">Banderas Rojas Detectadas</h4>
-                                            <div id="redFlagsContainer" class="flex flex-wrap gap-2"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Análisis de Probabilidades y Pesos -->
-                                    <div class="space-y-8">
-                                        <div>
-                                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Distribución de Probabilidad</h4>
-                                            <div id="probabilityList" class="space-y-4"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Principales Señales Semiológicas</h4>
-                                            <ul id="explainabilityList" class="space-y-2 text-xs"></ul>
-                                        </div>
-                                    </div>
+                <div class="max-w-[1300px] mx-auto">
+                    <div id="resultCard" class="clinical-card p-0 overflow-hidden transition-all duration-500 border-t-4 bg-white">
+                        
+                        <!-- 1. CABECERA DEL INFORME (Sobria y Profesional) -->
+                        <div class="border-b border-slate-100 p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-slate-50/30">
+                            <div class="flex flex-col items-center md:items-start">
+                                <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] block mb-3">Informe de Priorización de Triage</span>
+                                <div class="flex flex-col sm:flex-row items-center gap-4">
+                                    <h2 id="priorityLabel" class="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 leading-none lowercase first-letter:uppercase"></h2>
+                                    <span id="priorityBadge" class="px-4 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-widest border border-slate-200 shadow-sm"></span>
                                 </div>
                             </div>
-                            
-                            <!-- Pie de página del resultado -->
-                            <div class="bg-slate-50 px-8 py-4 border-t border-slate-100 flex justify-between items-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                                <span>Análisis Híbrido: Vectorial + Modificadores</span>
-                                <span id="disclaimerText" class="max-w-xs text-right opacity-60"></span>
+                            <div class="flex flex-col items-center md:items-end">
+                                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Validación CDSS Protocolizada</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 border border-slate-100 rounded-md">Regresión Logística v1.1</span>
+                                    <span class="text-xs font-bold text-slate-300">ID: DT-<span id="caseId">8823</span></span>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- 2. CUERPO DEL INFORME (Estructura de 2 Columnas) -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+                            
+                            <!-- COLUMNA IZQUIERDA: Recomendación & Justificación -->
+                            <div class="p-8 md:p-12 space-y-12">
+                                <!-- Bloque: Conducta Sugerida (Principal) -->
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-1.5 h-6 bg-blue-600 rounded-full"></div>
+                                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Sugerencia de Conducta Médica</h4>
+                                    </div>
+                                    <p id="suggestedConduct" class="text-2xl font-bold text-slate-800 leading-tight max-w-lg"></p>
+                                    <div class="inline-flex items-center gap-2 px-3 py-2 bg-blue-50/50 rounded-lg border border-blue-50/80">
+                                        <span class="text-xs font-bold text-blue-700 italic" id="recommendedTimeframe"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Bloque: Ajustes / Reglas (Dinámico) -->
+                                <div id="activeAdjustmentsPanel" class="hidden p-5 bg-amber-50/30 border border-amber-100/50 rounded-xl">
+                                    <h4 class="text-[10px] font-black text-amber-600 uppercase tracking-[0.2em] mb-3 italic">Modificadores Clínicos Aplicados</h4>
+                                    <div id="adjustmentsContainer" class="text-sm font-bold text-amber-800"></div>
+                                </div>
+
+                                <!-- Bloque: Justificación Textual -->
+                                <div class="space-y-4 pt-4 border-t border-slate-50">
+                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Justificación del Algoritmo</h4>
+                                    <p id="clinicalJustification" class="text-sm text-slate-500 leading-relaxed font-medium italic"></p>
+                                </div>
+                            </div>
+
+                            <!-- COLUMNA DERECHA: Análisis Técnico & Probabilidades -->
+                            <div class="p-8 md:p-12 bg-slate-50/20 space-y-12">
+                                <!-- Bloque: Distribución de Probabilidad -->
+                                <div>
+                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-8">Análisis Probabilístico Comparativo</h4>
+                                    <div id="probabilityList" class="space-y-6"></div>
+                                </div>
+
+                                <!-- Bloque: Señales Semiológicas -->
+                                <div class="space-y-6">
+                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Señales Predominantes Detectadas</h4>
+                                    <ul id="explainabilityList" class="space-y-3"></ul>
+                                </div>
+
+                                <!-- Bloque: Red Flags (Si existen) -->
+                                <div id="redFlagsPanel" class="hidden space-y-4">
+                                    <h4 class="text-[10px] font-black text-rose-500 uppercase tracking-[0.2em] italic">Señales de Alarma para Vigilancia</h4>
+                                    <div id="redFlagsContainer" class="flex flex-wrap gap-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. FOOTER TÉCNICO DISCRETO -->
+                        <div class="bg-slate-50 px-8 md:px-12 py-5 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Algoritmo CDSS-DermatoTriage Core v1.1 • Análisis Híbrido
+                            </span>
+                            <span class="text-[9px] font-bold text-slate-300 uppercase tracking-widest">© 2026 Plataforma de Soporte Clínico APS</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. DISCLAIMER EXTERNO (DISCRETO) -->
+                    <div class="mt-8 max-w-4xl mx-auto text-center px-10">
+                        <p id="disclaimerText" class="text-[11px] leading-relaxed text-slate-400 font-medium italic opacity-70"></p>
                     </div>
                 </div>
             </section>

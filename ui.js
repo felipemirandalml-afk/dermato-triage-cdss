@@ -126,44 +126,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderResults(res, formData) {
-        const themes = {
-            1: { color: 'text-rose-600', bg: 'bg-rose-100/50 text-rose-800', border: 'border-rose-500', bar: 'bg-rose-600' },
-            2: { color: 'text-amber-500', bg: 'bg-amber-100 text-amber-800', border: 'border-amber-400', bar: 'bg-amber-500' },
-            3: { color: 'text-emerald-600', bg: 'bg-emerald-100 text-emerald-800', border: 'border-emerald-500', bar: 'bg-emerald-500' }
-        };
-
-        const theme = themes[res.priority];
-
         resultsPanel.classList.remove('hidden');
         resultsPanel.scrollIntoView({ behavior: 'smooth' });
 
+        // Temas Visuales por Prioridad
+        const themes = {
+            1: { color: 'text-rose-600', badge: 'bg-rose-50 text-rose-700 border-rose-200', border: 'border-t-rose-600', score: 'bg-rose-600' },
+            2: { color: 'text-amber-600', badge: 'bg-amber-50 text-amber-700 border-amber-200', border: 'border-t-amber-500', score: 'bg-amber-500' },
+            3: { color: 'text-emerald-600', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200', border: 'border-t-emerald-500', score: 'bg-emerald-500' }
+        };
+        const theme = themes[res.priority] || themes[3];
+
         // Card Styling
-        resultCard.className = `clinical-card p-0 overflow-hidden transition-all duration-500 transform border-t-4 ${theme.border}`;
+        resultCard.className = `clinical-card p-0 overflow-hidden transition-all duration-500 border-t-4 bg-white ${theme.border}`;
 
         // Header
-        document.getElementById('priorityText').textContent = res.priority === 1 ? 'URGENCIAL' : (res.priority === 2 ? 'PRIORITARIO' : 'ESTABLE');
-        document.getElementById('priorityText').className = `text-4xl md:text-6xl font-black tracking-tighter leading-none ${theme.color}`;
+        const clinicalLabel = res.priority === 1 ? 'Urgencial' : (res.priority === 2 ? 'Prioritario' : 'Estable');
+        document.getElementById('priorityLabel').textContent = clinicalLabel;
+        document.getElementById('priorityLabel').className = `text-4xl md:text-5xl font-black tracking-tighter leading-none ${theme.color}`;
         
-        const badge = document.getElementById('badgeStatus');
-        badge.textContent = `Caso Priorizado como P${res.priority}`;
-        badge.className = `inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-4 ${theme.bg}`;
+        const badge = document.getElementById('priorityBadge');
+        badge.textContent = `Prioridad P${res.priority}`;
+        badge.className = `px-4 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-widest border shadow-sm ${theme.badge}`;
+
+        // Case ID
+        document.getElementById('caseId').textContent = Math.floor(1000 + Math.random() * 9000);
 
         // Conducta
         document.getElementById('suggestedConduct').textContent = res.conduct;
-        document.getElementById('recommendedTimeframe').textContent = `Plazo recomendado: ${res.timeframe}`;
+        document.getElementById('recommendedTimeframe').textContent = res.timeframe;
 
-        // Modifier Badge
-        const oldBadge = document.getElementById('activeModifierBadge');
-        if (oldBadge) oldBadge.remove();
-
+        // Modifier Panel (Ajustes de Seguridad)
+        const modPanel = document.getElementById('activeAdjustmentsPanel');
+        const modContainer = document.getElementById('adjustmentsContainer');
         if (res.modifier) {
-            const modHtml = `
-                <div id="activeModifierBadge" class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
-                    <span class="text-[9px] font-black text-blue-400 uppercase tracking-widest block mb-1">Ajuste Clínico de Seguridad</span>
-                    <span class="text-sm font-bold text-blue-700">${res.modifier}</span>
-                </div>
-            `;
-            document.getElementById('suggestedConduct').insertAdjacentHTML('afterend', modHtml);
+            modPanel.classList.remove('hidden');
+            modContainer.textContent = res.modifier;
+        } else {
+            modPanel.classList.add('hidden');
         }
 
         // Red Flags
@@ -183,33 +183,40 @@ document.addEventListener('DOMContentLoaded', () => {
         // Justificación
         document.getElementById('clinicalJustification').textContent = res.justification;
 
-        // Probabilidades
-        const probLabels = ["Estable", "Moderado", "Crítico"];
-        const probColors = ["bg-emerald-500", "bg-amber-500", "bg-rose-600"];
+        // Probabilidades (Diseño Compacto)
+        const probLabels = ["Estable (P3)", "Prioritario (P2)", "Urgencial (P1)"];
+        const probThemes = [themes[3], themes[2], themes[1]];
         document.getElementById('probabilityList').innerHTML = res.probabilities.map((p, i) => `
-            <div class="space-y-1">
-                <div class="flex justify-between text-[9px] font-black uppercase text-slate-400 tracking-widest">
-                    <span>Prioridad ${3-i}</span>
-                    <span class="text-slate-600">${(p*100).toFixed(1)}%</span>
+            <div class="space-y-2">
+                <div class="flex justify-between items-end">
+                    <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">${probLabels[i]}</span>
+                    <span class="text-xs font-bold text-slate-700 font-mono">${(p*100).toFixed(1)}%</span>
                 </div>
                 <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <div class="${probColors[i]} h-full transition-all duration-1000 ease-out" style="width: ${p*100}%"></div>
+                    <div class="${probThemes[i].score} h-full transition-all duration-1000 ease-out" style="width: ${p*100}%"></div>
                 </div>
             </div>
         `).join('');
 
-        // Señales de Peso
+        // Señales de Peso Semiológico
         const X = encodeFeatures(formData);
         const expl = explain(X, res.classIdx);
 
         document.getElementById('explainabilityList').innerHTML = expl.map(c => `
-            <li class="flex justify-between items-center py-1 border-b border-slate-50 last:border-0">
-                <span class="text-slate-500">${c.name}</span>
-                <span class="font-bold ${c.val > 0 ? 'text-blue-600' : 'text-emerald-600'}">${c.val > 0 ? '+' : ''}${c.val.toFixed(1)}</span>
+            <li class="flex justify-between items-center group">
+                <span class="text-sm font-medium text-slate-500 group-hover:text-slate-800 transition-colors">${c.name}</span>
+                <div class="flex items-center gap-2">
+                    <div class="w-16 h-1 bg-slate-50 rounded-full overflow-hidden">
+                        <div class="h-full ${c.val > 0 ? 'bg-blue-400' : 'bg-emerald-400'}" style="width: ${Math.min(100, Math.abs(c.val)*5)}%"></div>
+                    </div>
+                    <span class="text-[10px] font-bold font-mono w-8 text-right ${c.val > 0 ? 'text-blue-600' : 'text-emerald-600'}">
+                        ${c.val > 0 ? '+' : ''}${c.val.toFixed(1)}
+                    </span>
+                </div>
             </li>
         `).join('');
 
-        // Disclaimer
+        // Disclaimer Externo
         document.getElementById('disclaimerText').textContent = res.disclaimer;
     }
 });
