@@ -26,6 +26,12 @@ The engine evaluates the **Patient Context** beyond the visible lesion:
 - **Metabolic Risk**: Escalates ulcers in diabetic patients (Prevention of amputation).
 - **STI Suspicion**: Identifies patterns like palmar-plantar rashes for systemic referral.
 
+### 4. Probabilistic Syndrome Layer (New v1.1)
+Coexisting with the prioritization logic, a **Logistic Regression** model trained on clinical patterns provides a diagnostic presumption:
+- **Diagnostic Mapping**: Predicts the most likely clinical syndrome (e.g., Eczema vs. Viral infection).
+- **Softmax Confidence**: Displays the model's confidence degree for each case.
+- **Non-Interfering**: This layer provides context but DOES NOT override the heuristic safety priority.
+
 ---
 
 ## 🎯 Clinical Demo: Key Scenarios

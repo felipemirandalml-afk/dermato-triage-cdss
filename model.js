@@ -9,6 +9,7 @@ import { predictBaseline } from './engine/baseline_model.js';
 import { applySafetyModifiers, applyBlockModifiers } from './engine/safety_modifiers.js';
 import { applyContextModifiers, applyRefinementModifiers } from './engine/context_modifiers.js';
 import { interpretResult, explain, buildResult } from './engine/interpreter.js';
+import { predictProbabilisticSyndrome } from './engine/probabilistic_model.js';
 
 // Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
@@ -49,7 +50,12 @@ export function predict(X) {
 export function runTriage(formData) {
     const X = encodeFeatures(formData);
     const prediction = predict(X);
-    return interpretResult(X, prediction);
+    const result = interpretResult(X, prediction);
+    
+    // Nueva capa: Inferencia de Síndrome Probabilístico
+    result.probabilistic_analysis = predictProbabilisticSyndrome(formData);
+    
+    return result;
 }
 
 // Compatibilidad con validadores externos
