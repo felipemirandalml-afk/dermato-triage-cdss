@@ -1,4 +1,4 @@
-import { encodeFeatures, predict, explain, interpretResult, FEATURE_INDEX } from './model.js';
+import { encodeFeatures, predict, explain, interpretResult, runTriage, FEATURE_INDEX } from './model.js';
 import { CLINICAL_CASES } from './data/clinical_cases.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -108,9 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!validateData(formData)) return;
 
-        const X = encodeFeatures(formData);
-        const rawPrediction = predict(X);
-        const interpretation = interpretResult(X, rawPrediction);
+        const interpretation = runTriage(formData);
 
         renderResults(interpretation, formData);
     });
@@ -218,7 +216,42 @@ document.addEventListener('DOMContentLoaded', () => {
             const pa = res.probabilistic_analysis;
             document.getElementById('topSyndromeName').textContent = syndromeLabels[pa.top_syndrome] || pa.top_syndrome;
             document.getElementById('topSyndromeProb').textContent = `${(pa.top_probability * 100).toFixed(1)}%`;
+
+            // Lógica de Confianza Diagnóstica
+            const confPanel = document.getElementById('confidencePanel');
+            const confBadge = document.getElementById('confidenceBadge');
+            const confText = document.getElementById('confidenceText');
+            
+            confPanel.classList.remove('hidden');
+            
+            // Calcular Gap (Top1 vs Top2)
+            const sortedProbs = Object.values(pa.syndrome_probabilities).sort((a, b) => b - a);
+            const gap = sortedProbs[0] - sortedProbs[1];
+            
+            let level = "ALTA";
+            let colorClass = "bg-emerald-100 text-emerald-700 border-emerald-200";
+            let interpretation = "El modelo identifica un patrón clínico claro y consistente.";
+
+            if (pa.top_probability < 0.60) {
+                level = "BAJA";
+                colorClass = "bg-rose-100 text-rose-700 border-rose-200";
+                interpretation = "El modelo no identifica un patrón claro. Se requiere revisión exhaustiva.";
+            } else if (gap < 0.15) {
+                level = "AMBIGUO";
+                colorClass = "bg-amber-100 text-amber-700 border-amber-200";
+                interpretation = "Diferencial estrecho entre los dos diagnósticos más probables.";
+            } else if (pa.top_probability < 0.85) {
+                level = "MEDIA";
+                colorClass = "bg-blue-100 text-blue-700 border-blue-200";
+                interpretation = "El modelo sugiere una tendencia, pero con margen de variabilidad.";
+            }
+
+            confBadge.textContent = level;
+            confBadge.className = `text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none border ${colorClass}`;
+            confText.textContent = interpretation;
+            confPanel.className = `mt-3 p-3 rounded-lg border flex flex-col gap-1 transition-all duration-300 ${colorClass.split(' ')[0]} ${colorClass.split(' ')[2]}`;
         }
+
 
         // Señales de Peso Semiológico
         const X = encodeFeatures(formData);
