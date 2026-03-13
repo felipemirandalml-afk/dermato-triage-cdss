@@ -10,11 +10,11 @@ const featureGroups = {
     secundarias: ['lesion_escama', 'lesion_costra', 'lesion_escara', 'lesion_erosion', 'lesion_ulcera', 'lesion_excoriacion', 'lesion_fisura', 'lesion_atrofia', 'lesion_esclerosis', 'lesion_liquenificacion', 'lesion_cicatriz'],
     topografia: [
         'topog_cabeza', 'topo_cuero_cabelludo', 'topo_cara_centro', 'topo_cuello',
-        'topog_tronco', 'topo_pecho', 'topo_abdomen', 'topo_espalda', 'topo_axilas',
+        'topog_tronco', 'topo_pecho', 'topo_abdomen', 'topo_espalda', 'topo_axilas', 'topo_inguinal', 'topo_submamario',
         'topog_ext_sup', 'topo_hombros', 'topo_brazos', 'topo_codos', 'topo_antebrazos', 'topo_manos', 'topo_dorso_manos', 'topo_palmas',
         'topog_ext_inf', 'topo_muslos', 'topo_rodillas', 'topo_espinillas', 'topo_pantorrillas', 'topo_tobillos', 'topo_pies', 'topo_plantas', 'topo_dorso_pies'
     ],
-    patrones: ['patron_acral', 'patron_dermatomal', 'patron_seborreica', 'patron_fotoexpuesto', 'patron_simetrico', 'patron_extensoras', 'patron_flexoras', 'patron_generalizado'],
+    patrones: ['patron_acral', 'patron_dermatomal', 'patron_seborreica', 'patron_fotoexpuesto', 'patron_simetrico', 'patron_extensoras', 'patron_flexoras', 'patron_generalizado', 'patron_localizado', 'patron_intertriginoso', 'patron_lineal', 'patron_flexural', 'patron_extensor'],
     timing: ['tiempo_agudo', 'tiempo_subagudo', 'tiempo_cronico'],
     extended_context: [
         'antecedente_neoplasia', 'antecedente_autoinmune', 'antecedente_hepatopatia',
@@ -56,7 +56,15 @@ export const FEATURE_MAP_LABELS = {
     antecedente_viaje: "Viaje a Zona Tropical",
     antecedente_eii: "Enfermedad Inflamatoria Intestinal",
     antecedente_atopia: "Perfil Atópico",
-    antecedente_embarazo: "Estado de Embarazo"
+    antecedente_embarazo: "Estado de Embarazo",
+    patron_dermatomal: "Distribución Dermatomal (Segmentaria)",
+    patron_intertriginoso: "Patrón Intertriginoso (Pliegues)",
+    patron_flexural: "Distribución en Flexuras",
+    patron_extensor: "Distribución en Superficies Extensoras",
+    patron_lineal: "Distribución Lineal",
+    patron_localizado: "Lesión Localizada / Única",
+    topo_inguinal: "Región Inguinal / Genital",
+    topo_submamario: "Pliegue Submamario"
 };
 
 export const CLINICAL_GUI = {
