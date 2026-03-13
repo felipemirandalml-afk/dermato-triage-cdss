@@ -222,92 +222,122 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </section>
 
                     <!-- TAB 2: SEMIOLOGÍA -->
                     <section id="tab-morphology" class="tab-content hidden animate-in fade-in duration-300">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="mb-8">
+                            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Semiología de la Lesión</h2>
+                            <p class="text-sm text-slate-500 mt-2">Identifique las características morfológicas predominantes y el estado evolutivo de las lesiones.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             
                             <!-- Lesiones Primarias Sólidas -->
-                            <div class="clinical-card p-6">
-                                <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Morfología Sólida</h3>
-                                <div class="grid grid-cols-1 gap-2">
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_macula" class="w-4 h-4 text-blue-600"> Mácula (<1cm)
+                            <div class="clinical-card p-8">
+                                <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.2em] mb-6 border-b border-blue-50 pb-2">Morfología Sólida</h3>
+                                <div class="grid grid-cols-1 gap-1">
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_macula" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Mácula (< 1cm)</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_mancha" class="w-4 h-4 text-blue-600"> Mancha (>1cm)
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_mancha" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Mancha (> 1cm)</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700 font-bold border-l-2 border-blue-200 pl-3">
-                                        <input type="checkbox" id="lesion_papula" class="w-4 h-4 text-blue-600"> Pápula
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-blue-200 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_papula" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Pápula</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700 font-bold border-l-2 border-blue-200 pl-3">
-                                        <input type="checkbox" id="lesion_placa" class="w-4 h-4 text-blue-600"> Placa
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-blue-200 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_placa" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Placa</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700 font-bold border-l-4 border-amber-400 pl-3">
-                                        <input type="checkbox" id="lesion_nodulo" class="w-4 h-4 text-blue-600"> Nódulo
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-amber-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-amber-400 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_nodulo" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Nódulo</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700 font-bold border-l-4 border-amber-400 pl-3">
-                                        <input type="checkbox" id="lesion_tumor" class="w-4 h-4 text-blue-600"> Tumor / Masa
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-amber-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-amber-400 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_tumor" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Tumor / Masa</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_habon" class="w-4 h-4 text-blue-600"> Habón (Urticaria)
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_comedon" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Comedón</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_purpura" class="w-4 h-4 text-rose-600"> Púrpura / Petequias
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_habon" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Habón (Urticaria)</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/30 cursor-pointer text-base font-bold text-rose-700 border-l-4 border-rose-300 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_purpura" class="w-5 h-5 text-rose-600 rounded"> 
+                                        <span class="group-hover:text-rose-800">Púrpura / Petequias</span>
                                     </label>
                                 </div>
                             </div>
 
                             <!-- Lesiones de Contenido Líquido -->
-                            <div class="clinical-card p-6">
-                                <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Morfología Líquida</h3>
-                                <div class="grid grid-cols-1 gap-2">
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_vesicula" class="w-4 h-4 text-blue-600"> Vesícula (<1cm)
+                            <div class="clinical-card p-8">
+                                <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.2em] mb-6 border-b border-blue-50 pb-2">Morfología Líquida</h3>
+                                <div class="grid grid-cols-1 gap-1">
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_vesicula" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Vesícula (< 1cm)</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700 font-bold border-l-4 border-rose-500 pl-3">
-                                        <input type="checkbox" id="lesion_ampolla" class="w-4 h-4 text-blue-600"> Ampolla / Flictena
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-rose-500 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_ampolla" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Ampolla / Flictena</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700 font-bold border-l-4 border-rose-700 pl-3">
-                                        <input type="checkbox" id="lesion_bula" class="w-4 h-4 text-blue-600"> Bula (>2cm)
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-rose-700 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_bula" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Bula (> 2cm)</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_pustula" class="w-4 h-4 text-blue-600"> Pústula (Pus)
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_pustula" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Pústula (Pus)</span>
                                     </label>
-                                    <div class="h-px bg-slate-100 my-2"></div>
-                                    <h4 class="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-1">Evolución</h4>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_escama" class="w-4 h-4 text-blue-600"> Escama
+                                    
+                                    <div class="h-px bg-slate-100 my-4"></div>
+                                    <h4 class="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-3">Estados Evolutivos</h4>
+                                    
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_escama" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Escama</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_costra" class="w-4 h-4 text-blue-600"> Costra
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_costra" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Costra</span>
                                     </label>
                                 </div>
                             </div>
 
                             <!-- Secundarias y Daño Tisular -->
-                            <div class="clinical-card p-6">
-                                <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Daño Tisular / Secundarias</h3>
-                                <div class="grid grid-cols-1 gap-2">
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-rose-700">
-                                        <input type="checkbox" id="lesion_erosion" class="w-4 h-4 text-rose-600"> Erosión (Superficial)
+                            <div class="clinical-card p-8">
+                                <h3 class="text-xs font-black text-rose-600 uppercase tracking-[0.2em] mb-6 border-b border-rose-50 pb-2">Daño Tisular</h3>
+                                <div class="grid grid-cols-1 gap-1">
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/20 cursor-pointer text-base font-bold text-rose-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_erosion" class="w-5 h-5 text-rose-600 rounded"> 
+                                        <span class="group-hover:text-rose-800">Erosión (Superficial)</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-rose-800 font-bold border-l-4 border-rose-600 pl-3">
-                                        <input type="checkbox" id="lesion_ulcera" class="w-4 h-4 text-rose-600 focus:ring-rose-500"> Úlcera (Profunda)
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/30 cursor-pointer text-base font-bold text-rose-900 border-l-4 border-rose-600 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_ulcera" class="w-5 h-5 text-rose-600 rounded"> 
+                                        <span class="group-hover:text-rose-950">Úlcera (Profunda)</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-800 font-bold border-l-4 border-slate-900 pl-3">
-                                        <input type="checkbox" id="lesion_escara" class="w-4 h-4 text-slate-800 focus:ring-slate-900"> Escara (Necrosis)
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100/50 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-slate-900 pl-4 transition-all group">
+                                        <input type="checkbox" id="lesion_escara" class="w-5 h-5 text-slate-800 rounded"> 
+                                        <span class="group-hover:text-black">Escara (Necrosis)</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_atrofia" class="w-4 h-4 text-blue-600"> Atrofia / Adelgazamiento
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_atrofia" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Atrofia</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_liquenificacion" class="w-4 h-4 text-blue-600"> Liquenificación
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_liquenificacion" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Liquenificación</span>
                                     </label>
-                                    <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-700">
-                                        <input type="checkbox" id="lesion_cicatriz" class="w-4 h-4 text-blue-600"> Cicatriz
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                        <input type="checkbox" id="lesion_cicatriz" class="w-5 h-5 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700">Cicatriz</span>
                                     </label>
                                 </div>
                             </div>

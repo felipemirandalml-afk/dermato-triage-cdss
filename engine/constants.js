@@ -46,6 +46,7 @@ export const FEATURE_MAP_LABELS = {
     lesion_nodulo: "Lesión Nodular",
     lesion_tumor: "Lesión Tumoral / Masa",
     lesion_erosion: "Erosiones Cutáneas",
+    lesion_comedon: "Comedón (Cerrado/Abierto)",
     antecedente_neoplasia: "Antecedente de Neoplasia",
     antecedente_autoinmune: "Condición Autoinmune",
     antecedente_hepatopatia: "Hepatopatía Crónica",
