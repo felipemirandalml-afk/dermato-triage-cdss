@@ -198,6 +198,28 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
+        // Inferencia de Síndrome (ML)
+        if (res.probabilistic_analysis) {
+            const syndromeLabels = {
+                'eczema_dermatitis': "Eczema / Dermatitis",
+                'psoriasiform_dermatosis': "Dermatosis Psoriasiforme",
+                'bacterial_skin_infection': "Infección Bacteriana",
+                'viral_skin_infection': "Infección Viral",
+                'fungal_skin_infection': "Infección Fúngica",
+                'drug_reaction': "Reacción a Fármacos",
+                'urticarial_dermatosis': "Urticaria / Angioedema",
+                'vesiculobullous_disease': "Enfermedad Ampollosa",
+                'vasculitic_purpuric_disease': "Vasculitis / Púrpura",
+                'cutaneous_tumor_suspected': "Sospecha de Neoplasia Maligna",
+                'benign_cutaneous_tumor': "Tumoración Benigna",
+                'inflammatory_dermatosis_other': "Otra Dermatosis Inflamatoria"
+            };
+            
+            const pa = res.probabilistic_analysis;
+            document.getElementById('topSyndromeName').textContent = syndromeLabels[pa.top_syndrome] || pa.top_syndrome;
+            document.getElementById('topSyndromeProb').textContent = `${(pa.top_probability * 100).toFixed(1)}%`;
+        }
+
         // Señales de Peso Semiológico
         const X = encodeFeatures(formData);
         const expl = explain(X, res.classIdx);
