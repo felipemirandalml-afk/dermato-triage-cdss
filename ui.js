@@ -99,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
             timing: form.querySelector('input[name="timing"]:checked')?.value
         };
 
+        const sex = form.querySelector('input[name="sex"]:checked')?.value;
+        if (sex) formData[`sexo_${sex}`] = true;
+
         form.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
             formData[cb.id] = true;
         });

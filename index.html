@@ -27,9 +27,9 @@
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col items-center p-4 md:p-8">
+    <main class="flex-grow flex flex-col items-center p-4 md:p-10">
         <!-- CONTENEDOR MAESTRO -->
-        <div class="w-full max-w-5xl">
+        <div class="w-full max-w-[1300px]">
             
             <form id="triageForm" class="flex flex-col gap-6">
                 <!-- NAVEGACIÓN POR PASOS (TABS) -->
@@ -41,93 +41,187 @@
 
                 <!-- CONTENIDO DE TABS -->
                 <div class="min-h-[400px]">
-                    
-                    <!-- TAB 1: PACIENTE -->
+                                     <!-- TAB 1: PACIENTE -->
                     <section id="tab-patient" class="tab-content block animate-in fade-in duration-300">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <!-- Datos Demográficos -->
-                            <div class="clinical-card p-6 col-span-1">
-                                <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Perfil Demográfico</h3>
-                                <div class="space-y-4">
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Edad del Paciente</label>
-                                        <input type="number" id="age" placeholder="Años..." class="w-full p-3 border border-slate-200 rounded-md bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Fototipo (Fitzpatrick)</label>
-                                        <select id="fitzpatrick" class="w-full p-3 border border-slate-200 rounded-md bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                                            <option value="1">I - Siempre se quema</option>
-                                            <option value="2">II - Usualmente se quema</option>
-                                            <option value="3">III - Se broncea gradualmente</option>
-                                            <option value="4">IV - Bronceado fácil</option>
-                                            <option value="5">V - Piel oscura</option>
-                                            <option value="6">VI - Piel negra</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Sexo Biológico</label>
-                                        <div class="flex gap-4">
-                                            <label class="flex items-center gap-2 cursor-pointer">
-                                                <input type="radio" name="sex" value="male" id="sexo_male" class="w-4 h-4 text-blue-600">
-                                                <span class="text-sm">H</span>
-                                            </label>
-                                            <label class="flex items-center gap-2 cursor-pointer">
-                                                <input type="radio" name="sex" value="female" id="sexo_female" class="w-4 h-4 text-blue-600">
-                                                <span class="text-sm">M</span>
-                                            </label>
+                        <div class="mb-10">
+                            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Datos del Paciente</h2>
+                            <p class="text-sm text-slate-500 mt-2">Ingrese las características basales del paciente y antecedentes clínicos relevantes que puedan influir en el triage dermatológico.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                            <!-- Datos Demográficos (Vertical Sidebar-like) - 4 de 12 (33%) -->
+                            <div class="col-span-1 lg:col-span-4 space-y-8">
+                                <div class="clinical-card p-8">
+                                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Perfil Clínico Basal</h3>
+                                    <div class="space-y-6">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2 focus-within:text-blue-600 transition-colors">Edad (años)</label>
+                                            <input type="number" id="age" placeholder="85" class="w-full p-4 text-base border border-slate-200 rounded-lg bg-slate-50/50 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Fototipo (Fitzpatrick)</label>
+                                            <select id="fitzpatrick" class="w-full p-4 text-base border border-slate-200 rounded-lg bg-slate-50/50 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all cursor-pointer">
+                                                <option value="1">I – Siempre se quema</option>
+                                                <option value="2">II – Se quema fácilmente</option>
+                                                <option value="3">III – Intermedio (bronceado gradual)</option>
+                                                <option value="4">IV – Se broncea con facilidad</option>
+                                                <option value="5">V – Raramente se quema</option>
+                                                <option value="6">VI – Nunca se quema</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-500 uppercase mb-3">Sexo Biológico</label>
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <label class="flex items-center justify-center gap-3 p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-white hover:border-blue-300 transition-all has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50/50 group">
+                                                    <input type="radio" name="sex" value="male" id="sexo_male" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                                                    <span class="text-sm font-bold text-slate-600 group-hover:text-blue-700">Masculino</span>
+                                                </label>
+                                                <label class="flex items-center justify-center gap-3 p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-white hover:border-blue-300 transition-all has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50/50 group">
+                                                    <input type="radio" name="sex" value="female" id="sexo_female" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                                                    <span class="text-sm font-bold text-slate-600 group-hover:text-blue-700">Femenino</span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Contexto Clínico y Banderas Rojas -->
-                            <div class="clinical-card p-6 col-span-1 md:col-span-2">
-                                <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Contexto Clínico & Riesgos</h3>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <label class="flex items-start gap-3 p-3 border border-slate-100 rounded-md hover:bg-slate-50 transition-colors cursor-pointer group">
-                                        <input type="checkbox" id="inmunosupresion" class="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500">
-                                        <div>
-                                            <span class="block text-sm font-bold text-slate-700 group-hover:text-blue-700">Inmunosupresión</span>
-                                            <span class="text-[10px] text-slate-400 font-medium">VIH, Quimioterapia, Corticoides</span>
+                            <!-- Contexto Clínico (The main field) - 8 de 12 (66%) -->
+                            <div class="col-span-1 lg:col-span-8 space-y-8">
+                                <div class="clinical-card p-0 overflow-hidden">
+                                    <div class="bg-slate-50/80 px-8 py-5 border-b border-slate-200 flex justify-between items-center">
+                                        <h3 class="text-xs font-black text-slate-500 uppercase tracking-[0.2em]">Contexto Clínico & Antecedentes</h3>
+                                        <span class="text-[11px] font-bold text-slate-400 italic">Múltiple selección disponible</span>
+                                    </div>
+                                    
+                                    <div class="p-8">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                                            <!-- Grupo A -->
+                                            <div class="space-y-4">
+                                                <h4 class="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] border-b-2 border-blue-100 pb-2 mb-4">A. Riesgo Sistémico & Inmune</h4>
+                                                <div class="space-y-3">
+                                                    <label class="card-selectable flex items-start gap-4 p-4 border rounded-xl group min-h-[80px]">
+                                                        <input type="checkbox" id="inmunosupresion" class="mt-1.5 w-5 h-5 rounded border-slate-300">
+                                                        <div>
+                                                            <span class="block text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Inmunosupresión</span>
+                                                            <span class="text-xs text-slate-500 font-medium leading-relaxed">VIH, Quimioterapia, Médula, Corticoides</span>
+                                                        </div>
+                                                    </label>
+                                                    <label class="card-selectable flex items-start gap-4 p-4 border rounded-xl group min-h-[80px]">
+                                                        <input type="checkbox" id="antecedente_neoplasia" class="mt-1.5 w-5 h-5 rounded border-slate-300">
+                                                        <div>
+                                                            <span class="block text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Neoplasia activa o reciente</span>
+                                                            <span class="text-xs text-slate-500 font-medium leading-relaxed">Cáncer activo o tratado < 5 años</span>
+                                                        </div>
+                                                    </label>
+                                                    <label class="card-selectable flex items-start gap-4 p-4 border rounded-xl group min-h-[80px]">
+                                                        <input type="checkbox" id="antecedente_autoinmune" class="mt-1.5 w-5 h-5 rounded border-slate-300">
+                                                        <div>
+                                                            <span class="block text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Enfermedad Autoinmune</span>
+                                                            <span class="text-xs text-slate-500 font-medium leading-relaxed">Lupus, Tiroiditis, Artritis, Vasculitis</span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Grupo B -->
+                                            <div class="space-y-4">
+                                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] border-b-2 border-slate-100 pb-2 mb-4">B. Contexto Metabólico & Comorbilidad</h4>
+                                                <div class="space-y-3">
+                                                    <label class="card-selectable flex items-start gap-4 p-4 border rounded-xl group min-h-[80px]">
+                                                        <input type="checkbox" id="riesgo_metabolico" class="mt-1.5 w-5 h-5 rounded border-slate-300">
+                                                        <div>
+                                                            <span class="block text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Diabetes / Riesgo Metabólico</span>
+                                                            <span class="text-xs text-slate-500 font-medium leading-relaxed">Diabetes, HTA, Dislipidemia, Vascular</span>
+                                                        </div>
+                                                    </label>
+                                                    <label class="card-selectable flex items-start gap-4 p-4 border rounded-xl group min-h-[80px]">
+                                                        <input type="checkbox" id="farmacos_recientes" class="mt-1.5 w-5 h-5 rounded border-slate-300">
+                                                        <div>
+                                                            <span class="block text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Fármacos Sistémicos Recientes</span>
+                                                            <span class="text-xs text-slate-500 font-medium leading-relaxed">Iniciados en los últimos 2 meses</span>
+                                                        </div>
+                                                    </label>
+                                                    <label class="card-selectable flex items-start gap-4 p-4 border rounded-xl group min-h-[80px]">
+                                                        <input type="checkbox" id="antecedente_trauma" class="mt-1.5 w-5 h-5 rounded border-slate-300">
+                                                        <div>
+                                                            <span class="block text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Trauma / Procedimiento</span>
+                                                            <span class="text-xs text-slate-500 font-medium leading-relaxed">Cirugía, biopsia o herida local reciente</span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </label>
-                                    <label class="flex items-start gap-3 p-3 border border-slate-100 rounded-md hover:bg-slate-50 transition-colors cursor-pointer group">
-                                        <input type="checkbox" id="farmacos_recientes" class="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500">
-                                        <div>
-                                            <span class="block text-sm font-bold text-slate-700 group-hover:text-blue-700">Fármacos Recientes</span>
-                                            <span class="text-[10px] text-slate-400 font-medium">Iniciados en los últimos 2 meses</span>
+
+                                        <!-- Grupo C: banderas Rojas Mejoradas -->
+                                        <div class="mt-10 space-y-4">
+                                            <h4 class="text-[10px] font-black text-rose-500 uppercase tracking-[0.2em] border-b-2 border-rose-100 pb-2 mb-4 italic">🚩 Señales de Alarma Críticas</h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                                <label class="card-selectable-red flex items-start gap-5 p-5 border-2 rounded-2xl group">
+                                                    <input type="checkbox" id="signo_fiebre" class="mt-1.5 w-6 h-6 text-rose-600 rounded">
+                                                    <div>
+                                                        <span class="block text-base font-black text-rose-700 tracking-tight">Fiebre</span>
+                                                        <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest block mt-1">Sistémica</span>
+                                                    </div>
+                                                </label>
+                                                <label class="card-selectable-red flex items-start gap-5 p-5 border-2 rounded-2xl group">
+                                                    <input type="checkbox" id="signo_dolor" class="mt-1.5 w-6 h-6 text-rose-600 rounded">
+                                                    <div>
+                                                        <span class="block text-base font-black text-rose-700 tracking-tight">Dolor</span>
+                                                        <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest block mt-1">Intolerable</span>
+                                                    </div>
+                                                </label>
+                                                <label class="card-selectable-red flex items-start gap-5 p-5 border-2 rounded-2xl group">
+                                                    <input type="checkbox" id="signo_mucosas" class="mt-1.5 w-6 h-6 text-rose-600 rounded">
+                                                    <div>
+                                                        <span class="block text-base font-black text-rose-700 tracking-tight">Mucosas</span>
+                                                        <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest block mt-1">Conj/Oral/Gen</span>
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </label>
-                                    <label class="flex items-start gap-3 p-3 border border-slate-100 rounded-md hover:bg-slate-50 transition-colors cursor-pointer group">
-                                        <input type="checkbox" id="riesgo_metabolico" class="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500">
-                                        <div>
-                                            <span class="block text-sm font-bold text-slate-700 group-hover:text-blue-700">Riesgo Metabólico</span>
-                                            <span class="text-[10px] text-slate-400 font-medium">Diabetes, Insuficiencia Vascular</span>
+                                    </div>
+
+                                    <!-- Sub-panel de Antecedentes Específicos (Aprovechado horizontalmente) -->
+                                    <div class="bg-slate-50 px-8 py-5 border-t border-slate-200">
+                                        <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Otros antecedentes relevantes</h4>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                                <input type="checkbox" id="antecedente_viaje" class="w-4 h-4 rounded">
+                                                <span class="text-[11px] font-bold text-slate-600">Viaje Tropical</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                                <input type="checkbox" id="antecedente_embarazo" class="w-4 h-4 rounded">
+                                                <span class="text-[11px] font-bold text-slate-600">Embarazo</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                                <input type="checkbox" id="antecedente_atopia" class="w-4 h-4 rounded">
+                                                <span class="text-[11px] font-bold text-slate-600">Atopia</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                                <input type="checkbox" id="antecedente_obesidad" class="w-4 h-4 rounded">
+                                                <span class="text-[11px] font-bold text-slate-600">Obesidad</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                                <input type="checkbox" id="antecedente_hepatopatia" class="w-4 h-4 rounded">
+                                                <span class="text-[11px] font-bold text-slate-600">Hepatopatía</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                                <input type="checkbox" id="antecedente_eii" class="w-4 h-4 rounded">
+                                                <span class="text-[11px] font-bold text-slate-600">EII (Crohn/CU)</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                                <input type="checkbox" id="antecedente_quimico" class="w-4 h-4 rounded">
+                                                <span class="text-[11px] font-bold text-slate-600">Irritantes</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center justify-center gap-2 p-3 border border-dashed border-slate-200 rounded-lg text-slate-300 pointer-events-none">
+                                                <span class="text-[11px] font-bold uppercase tracking-widest italic">N/A</span>
+                                            </label>
                                         </div>
-                                    </label>
-                                    <label class="flex items-start gap-3 p-3 border border-slate-100 rounded-md border-rose-100 bg-rose-50/20 group cursor-pointer">
-                                        <input type="checkbox" id="signo_fiebre" class="mt-1 w-4 h-4 text-rose-600 border-rose-300 rounded focus:ring-rose-500">
-                                        <div>
-                                            <span class="block text-sm font-bold text-rose-700">Presencia de Fiebre</span>
-                                            <span class="text-[10px] text-rose-400 font-medium">Acompañando a la dermatosis</span>
-                                        </div>
-                                    </label>
-                                    <label class="flex items-start gap-3 p-3 border border-slate-100 rounded-md border-rose-100 bg-rose-50/20 group cursor-pointer">
-                                        <input type="checkbox" id="signo_dolor" class="mt-1 w-4 h-4 text-rose-600 border-rose-300 rounded focus:ring-rose-500">
-                                        <div>
-                                            <span class="block text-sm font-bold text-rose-700">Dolor Desproporcionado</span>
-                                            <span class="text-[10px] text-rose-400 font-medium">O prurito extremo intratable</span>
-                                        </div>
-                                    </label>
-                                    <label class="flex items-start gap-3 p-3 border border-slate-100 rounded-md border-rose-100 bg-rose-50/20 group cursor-pointer">
-                                        <input type="checkbox" id="signo_mucosas" class="mt-1 w-4 h-4 text-rose-600 border-rose-300 rounded focus:ring-rose-500">
-                                        <div>
-                                            <span class="block text-sm font-bold text-rose-700">Compromiso de Mucosas</span>
-                                            <span class="text-[10px] text-rose-400 font-medium">Oral, Genital, Conjuntival</span>
-                                        </div>
-                                    </label>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </section>
 
@@ -361,15 +455,25 @@
                     </section>
                 </div>
 
-                <!-- BOTONES DE NAVEGACIÓN Y ACCIÓN -->
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-slate-200 pt-6">
-                    <div class="flex gap-2">
-                        <button type="button" id="btnPrev" class="btn-outline hidden">Anterior</button>
-                        <button type="button" id="btnNext" class="btn-clinical">Siguiente</button>
+                <!-- ACCIONES Y PIE DE PÁGINA (Paso 1, 2, 3) -->
+                <div class="mt-12 space-y-12">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200 pt-10">
+                        <div class="flex gap-4">
+                            <button type="button" id="btnPrev" class="btn-outline hidden px-10 py-4 text-base font-bold">Anterior</button>
+                            <button type="button" id="btnNext" class="btn-clinical px-12 py-5 text-xl font-black">Siguiente →</button>
+                            <button type="submit" id="btnCalculate" class="btn-clinical hidden px-12 py-5 text-xl font-black bg-slate-800 hover:bg-slate-900 shadow-xl shadow-slate-200/50">Calcular Inferencia Clínica</button>
+                        </div>
+                        <div class="flex gap-4">
+                            <button type="button" id="btnReset" class="btn-outline px-8 py-3 text-sm font-bold border-slate-200 text-slate-400 hover:text-slate-600 hover:border-slate-300">Limpiar Formulario</button>
+                        </div>
                     </div>
-                    <div class="flex gap-2">
-                        <button type="button" id="btnReset" class="btn-outline">Limpiar</button>
-                        <button type="submit" id="btnCalculate" class="btn-clinical bg-slate-800 hover:bg-slate-900 hidden">Calcular Inferencia Clínica</button>
+
+                    <!-- Disclaimer Clínico Integrado -->
+                    <div class="max-w-4xl mx-auto text-center border-t border-slate-100 pt-8 pb-4">
+                        <p class="text-sm leading-relaxed text-slate-400 font-medium">
+                            <span class="font-black text-slate-500 uppercase tracking-[0.3em] text-[10px] block mb-3">Aviso de Soporte a la Decisión Clínica (CDSS)</span>
+                            Esta herramienta es exclusivamente para uso de personal de salud. Los algoritmos no reemplazan el juicio clínico médico presencial y se basan en protocolos de priorización dermatológica estandarizados (vectorización semiológica + modificadores de seguridad). En caso de emergencia vital, siga los protocolos locales de reanimación.
+                        </p>
                     </div>
                 </div>
             </form>
@@ -438,9 +542,11 @@
         </div>
     </main>
 
-    <footer class="p-8 text-center border-t border-slate-200 bg-white">
-        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mb-2">Herramienta de Soporte a la Decisión Clínica • CDSS-MED</p>
-        <p class="text-[9px] text-slate-300 max-w-xl mx-auto leading-relaxed">Uso exclusivo para personal de salud. No reemplaza el juicio clínico médico presencial. Los algoritmos de priorización están basados en guías locales de triage dermatológico para APS.</p>
+    <footer class="py-12 text-center border-t border-slate-100 bg-white/50 mt-12">
+        <div class="max-w-[1300px] mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">CDSS-DermatoTriage Core v1.1</p>
+            <p class="text-[10px] text-slate-300 font-bold uppercase tracking-widest">© 2026 Plataforma de Soporte Clínico APS</p>
+        </div>
     </footer>
 
     <script type="module" src="ui.js"></script>
