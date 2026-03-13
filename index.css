@@ -59,20 +59,38 @@ input[type="checkbox"], input[type="radio"] {
 
 /* Selectable Cards */
 .card-selectable {
-    @apply transition-all duration-200 cursor-pointer border-slate-100 hover:border-blue-200 hover:bg-blue-50/30;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid #f1f5f9; /* border-slate-100 */
+}
+
+.card-selectable:hover {
+    border-color: #bfdbfe; /* hover:border-blue-200 */
+    background-color: rgba(239, 246, 255, 0.3); /* hover:bg-blue-50/30 */
 }
 
 .card-selectable:has(input:checked) {
-    @apply border-blue-400 bg-blue-50/50 ring-1 ring-blue-400;
+    border-color: #60a5fa; /* border-blue-400 */
+    background-color: rgba(239, 246, 255, 0.5); /* bg-blue-50/50 */
+    box-shadow: 0 0 0 1px #60a5fa; /* ring-1 ring-blue-400 */
 }
 
 /* Red Flag State */
-.card-selectable-red:has(input:checked) {
-    @apply border-rose-400 bg-rose-50/50 ring-1 ring-rose-400;
+.card-selectable-red {
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid rgba(255, 228, 230, 0.5); /* border-rose-100/50 */
 }
 
-.card-selectable-red {
-    @apply transition-all duration-200 cursor-pointer border-rose-100/50 hover:border-rose-200 hover:bg-rose-50/30;
+.card-selectable-red:hover {
+    border-color: #fecdd3; /* hover:border-rose-200 */
+    background-color: rgba(255, 241, 242, 0.3); /* hover:bg-rose-50/30 */
+}
+
+.card-selectable-red:has(input:checked) {
+    border-color: #fb7185; /* border-rose-400 */
+    background-color: rgba(255, 241, 242, 0.5); /* bg-rose-50/50 */
+    box-shadow: 0 0 0 1px #fb7185; /* ring-1 ring-rose-400 */
 }
 
 /* Clinical Design System Classes */
