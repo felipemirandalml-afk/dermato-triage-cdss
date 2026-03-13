@@ -1,134 +1,141 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-    /* Colors - Slate Palette */
-    --slate-50: #f8fafc;
-    --slate-100: #f1f5f9;
-    --slate-200: #e2e8f0;
-    --slate-300: #cbd5e1;
-    --slate-400: #94a3b8;
-    --slate-500: #64748b;
-    --slate-600: #475569;
-    --slate-700: #334155;
-    --slate-800: #1e293b;
-    --slate-900: #0f172a;
-
-    /* Colors - Indigo Palette */
-    --indigo-50: #eef2ff;
-    --indigo-100: #e0e7ff;
-    --indigo-200: #c7d2fe;
-    --indigo-500: #6366f1;
-    --indigo-600: #4f46e5;
-    --indigo-700: #4338ca;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    --shadow-indigo: 0 20px 25px -5px rgba(79, 70, 229, 0.1);
+    --clinical-blue: #2563eb;
+    --clinical-bg: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
 }
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: var(--slate-100);
-    color: var(--slate-900);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--clinical-bg);
 }
 
-/* Component: Clinical Card */
-.card-clinical {
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Custom Scrollbar for Clinical Feel */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Transitions for Tabs */
+.tab-content {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Ensure inputs are clean */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    accent-color: var(--clinical-blue);
+}
+
+/* Selectable Cards */
+.card-selectable {
+    @apply transition-all duration-200 cursor-pointer border-slate-100 hover:border-blue-200 hover:bg-blue-50/30;
+}
+
+.card-selectable:has(input:checked) {
+    @apply border-blue-400 bg-blue-50/50 ring-1 ring-blue-400;
+}
+
+/* Red Flag State */
+.card-selectable-red:has(input:checked) {
+    @apply border-rose-400 bg-rose-50/50 ring-1 ring-rose-400;
+}
+
+.card-selectable-red {
+    @apply transition-all duration-200 cursor-pointer border-rose-100/50 hover:border-rose-200 hover:bg-rose-50/30;
+}
+
+/* Clinical Design System Classes */
+.clinical-border {
+    border: 1px solid #e2e8f0;
+}
+
+.clinical-card {
     background-color: #ffffff;
-    border-radius: 2.5rem;
-    box-shadow: var(--shadow-2xl);
-    border: 1px solid rgba(226, 232, 240, 0.6);
-    padding: 1.5rem;
-    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@media (min-width: 768px) {
-    .card-clinical {
-        padding: 2.5rem;
-    }
-}
-
-.card-clinical:hover {
-    box-shadow: var(--shadow-indigo);
-}
-
-/* Component: Modern Label */
-.label-modern {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #ffffff;
-    border: 1px solid var(--slate-200);
+    border: 1px solid #e2e8f0;
     border-radius: 1rem;
-    cursor: pointer;
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    user-select: none;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
 }
 
-.label-modern:hover {
-    border-color: var(--indigo-400);
-    background-color: rgba(238, 242, 255, 0.3); /* indigo-50/30 */
+.tab-active {
+    border-bottom: 2px solid var(--clinical-blue) !important;
+    color: var(--clinical-blue) !important;
+    font-weight: 700 !important;
 }
 
-.label-modern:active {
-    transform: scale(0.97);
+.tab-inactive {
+    color: #64748b;
 }
 
-/* Form Styles */
-input[type="checkbox"]:checked + span,
-input[type="radio"]:checked + span {
-    color: var(--indigo-700);
-    font-weight: 700;
+.tab-inactive:hover {
+    color: #334155;
 }
 
-/* Component: Cascade Menu */
-.cascade-menu {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 500ms ease-in-out;
-    background-color: rgba(248, 250, 252, 0.5); /* slate-50/50 */
-    border-radius: 1.5rem;
-    border-left: 4px solid var(--indigo-500);
-}
-
-.cascade-menu.open {
-    max-height: 1500px;
-    opacity: 100;
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* Component: Primary Button */
-.btn-primary {
-    width: 100%;
-    padding: 1.5rem 0;
-    background: linear-gradient(to right, var(--indigo-600), var(--indigo-700));
+.btn-clinical {
+    padding: 0.75rem 2rem;
+    background-color: var(--clinical-blue);
     color: #ffffff;
-    font-weight: 800;
-    font-size: 1.5rem;
-    border-radius: 2rem;
-    box-shadow: var(--shadow-xl);
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    text-transform: uppercase;
-    letter-spacing: -0.05em;
+    font-weight: 700;
     border: none;
+    border-radius: 0.75rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
-.btn-primary:hover {
-    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
-    transform: translateY(-0.25rem);
+.btn-clinical:hover {
+    background-color: #1d4ed8;
 }
 
-.btn-primary:active {
+.btn-clinical:active {
     transform: scale(0.95);
+}
+
+.btn-clinical:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.btn-outline {
+    padding: 0.75rem 2rem;
+    border: 1px solid #e2e8f0;
+    background-color: transparent;
+    color: #64748b;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background-color: #f1f5f9;
 }

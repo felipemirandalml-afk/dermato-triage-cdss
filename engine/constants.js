@@ -11,10 +11,16 @@ const featureGroups = {
     topografia: [
         'topog_cabeza', 'topo_cuero_cabelludo', 'topo_cara_centro', 'topo_cuello',
         'topog_tronco', 'topo_pecho', 'topo_abdomen', 'topo_espalda', 'topo_axilas',
+        'topog_ext_sup', 'topo_hombros', 'topo_brazos', 'topo_codos', 'topo_antebrazos', 'topo_manos', 'topo_dorso_manos', 'topo_palmas',
         'topog_ext_inf', 'topo_muslos', 'topo_rodillas', 'topo_espinillas', 'topo_pantorrillas', 'topo_tobillos', 'topo_pies', 'topo_plantas', 'topo_dorso_pies'
     ],
     patrones: ['patron_acral', 'patron_dermatomal', 'patron_seborreica', 'patron_fotoexpuesto', 'patron_simetrico', 'patron_extensoras', 'patron_flexoras', 'patron_generalizado'],
-    timing: ['tiempo_agudo', 'tiempo_subagudo', 'tiempo_cronico']
+    timing: ['tiempo_agudo', 'tiempo_subagudo', 'tiempo_cronico'],
+    extended_context: [
+        'antecedente_neoplasia', 'antecedente_autoinmune', 'antecedente_hepatopatia',
+        'antecedente_obesidad', 'antecedente_trauma', 'antecedente_quimico',
+        'antecedente_viaje', 'antecedente_eii', 'antecedente_atopia', 'antecedente_embarazo'
+    ]
 };
 
 export const FEATURE_INDEX = {};
@@ -39,7 +45,17 @@ export const FEATURE_MAP_LABELS = {
     signo_mucosas: "Compromiso de Mucosas",
     lesion_nodulo: "Lesión Nodular",
     lesion_tumor: "Lesión Tumoral / Masa",
-    lesion_erosion: "Erosiones Cutáneas"
+    lesion_erosion: "Erosiones Cutáneas",
+    antecedente_neoplasia: "Antecedente de Neoplasia",
+    antecedente_autoinmune: "Condición Autoinmune",
+    antecedente_hepatopatia: "Hepatopatía Crónica",
+    antecedente_obesidad: "Obesidad (IMC > 30)",
+    antecedente_trauma: "Trauma o Herida Reciente",
+    antecedente_quimico: "Exposición a Irritantes",
+    antecedente_viaje: "Viaje a Zona Tropical",
+    antecedente_eii: "Enfermedad Inflamatoria Intestinal",
+    antecedente_atopia: "Perfil Atópico",
+    antecedente_embarazo: "Estado de Embarazo"
 };
 
 export const CLINICAL_GUI = {
