@@ -4,7 +4,7 @@
  */
 
 import { encodeFeatures, predict, explain, interpretResult } from '../model.js';
-import { CLINICAL_CASES } from '../clinical_cases.js';
+import { CLINICAL_CASES } from '../data/clinical_cases.js';
 
 const COLORS = {
     reset: "\x1b[0m",
