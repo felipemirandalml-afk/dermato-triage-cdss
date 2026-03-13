@@ -6,38 +6,7 @@
     <title>DermatoTriage PRO v1.0.0 - Clinical Decision Support</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style type="text/tailwindcss">
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        
-        @layer base {
-            body { 
-                font-family: 'Plus Jakarta Sans', sans-serif; 
-                @apply bg-slate-100 text-slate-900 antialiased;
-            }
-        }
-
-        @layer components {
-            .card-clinical {
-                @apply bg-white rounded-[2.5rem] shadow-2xl border border-slate-200/60 p-6 md:p-10 transition-all duration-500 hover:shadow-indigo-100;
-            }
-            .label-modern {
-                @apply flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer transition-all hover:border-indigo-400 hover:bg-indigo-50/30 active:scale-[0.97] select-none shadow-sm;
-            }
-            input[type="checkbox"]:checked + span, 
-            input[type="radio"]:checked + span {
-                @apply text-indigo-700 font-bold;
-            }
-            .cascade-menu {
-                @apply max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-50/50 rounded-3xl border-l-4 border-indigo-500;
-            }
-            .cascade-menu.open {
-                @apply max-h-[1500px] opacity-100 mt-6 p-6 mb-4;
-            }
-            .btn-primary {
-                @apply w-full py-6 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-extrabold text-2xl rounded-[2rem] shadow-xl hover:shadow-indigo-200 hover:-translate-y-1 transition-all active:scale-95 uppercase tracking-tighter;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body class="bg-slate-100 min-h-screen pb-24">
 
