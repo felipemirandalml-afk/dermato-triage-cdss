@@ -14,6 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
     let currentTabIdx = 0;
+    let reasoningMap = null;
+
+    async function loadReasoningMap() {
+        try {
+            const response = await fetch('./engine/dermatology_reasoning_map.json');
+            reasoningMap = await response.json();
+            console.log('Clinical Reasoning Map Loaded');
+        } catch (e) {
+            console.warn('Clinical Reasoning Map not available offline currently:', e);
+        }
+    }
+    loadReasoningMap();
 
     // 1. UI: MANEJO DE TABS (Workflow Clínico)
     function switchTab(index) {
@@ -250,6 +262,39 @@ document.addEventListener('DOMContentLoaded', () => {
             confBadge.className = `text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none border ${colorClass}`;
             confText.textContent = interpretation;
             confPanel.className = `mt-3 p-3 rounded-lg border flex flex-col gap-1 transition-all duration-300 ${colorClass.split(' ')[0]} ${colorClass.split(' ')[2]}`;
+
+            // Capa de Razonamiento Clínico (Ontología)
+            const reasoningPanel = document.getElementById('reasoningPanel');
+            if (reasoningMap && pa.top_syndrome && reasoningMap[pa.top_syndrome]) {
+                const r = reasoningMap[pa.top_syndrome];
+                reasoningPanel.classList.remove('hidden');
+                document.getElementById('reasoningGroup').textContent = r.clinical_group.replace(/_/g, ' ');
+                document.getElementById('reasoningSubgroup').textContent = (r.subgroup || 'No especificado').replace(/_/g, ' ');
+                document.getElementById('reasoningSummary').textContent = r.reasoning_summary;
+                
+                document.getElementById('reasoningDifferentials').innerHTML = r.possible_differentials.slice(0, 5).map(diff => `
+                    <span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold border border-slate-200">
+                        ${diff}
+                    </span>
+                `).join('');
+
+                const rfContainer = document.getElementById('reasoningRedFlagsContainer');
+                const rfList = document.getElementById('reasoningRedFlags');
+                
+                if (r.red_flags && r.red_flags.length > 0) {
+                    rfContainer.classList.remove('hidden');
+                    rfList.innerHTML = r.red_flags.map(f => `
+                        <div class="flex items-start gap-2">
+                            <span class="text-rose-500 font-black">•</span>
+                            <span class="text-[10px] font-bold text-slate-500 leading-tight">${f}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    rfContainer.classList.add('hidden');
+                }
+            } else {
+                reasoningPanel.classList.add('hidden');
+            }
         }
 
 
