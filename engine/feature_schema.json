@@ -31,5 +31,21 @@
   "diabetes": "binary",
   "hepatopatia": "binary",
   "atopia": "binary",
-  "embarazo": "binary"
+  "embarazo": "binary",
+  "eritema": "binary",
+  "hiperpigmentacion": "binary",
+  "hipopigmentacion": "binary",
+  "costra": "binary",
+  "erosion": "binary",
+  "excoriacion": "binary",
+  "liquenificacion": "binary",
+  "nodulo": "binary",
+  "quiste": "binary",
+  "induracion": "binary",
+  "telangiectasias": "binary",
+  "atrofia": "binary",
+  "habon": "binary",
+  "comedon": "binary",
+  "surco": "binary"
+
 }

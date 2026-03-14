@@ -14,21 +14,31 @@ def train_dermato_triage_model():
     data_path = os.path.join(base_dir, "data", "training_cases.csv")
     output_path = os.path.join(base_dir, "engine", "model_coefficients.json")
     
-    # 1. Cargar datos
+    # 1. Cargar datos y esquema
     if not os.path.exists(data_path):
         print(f"Error: No se encontró el archivo {data_path}")
         return
 
+    schema_path = os.path.join(base_dir, "engine", "feature_schema.json")
+    with open(schema_path, "r", encoding="utf-8") as f:
+        schema = json.load(f)
+    
+    # Lista de features esperadas (excluyendo el target)
+    expected_features = list(schema.keys())
+    
     df = pd.read_csv(data_path)
     
     # Verificación mínima de datos
-    if len(df) < 2:
+    if len(df) < 5:
         print("Error: El dataset debe tener al menos algunos ejemplos para entrenar.")
         return
 
     # 2. Separar Features (X) y Target (y)
-    X = df.drop("target", axis=1)
+    # Solo tomamos las columnas presentes en el esquema + target
+    available_cols = [col for col in expected_features if col in df.columns]
+    X = df[available_cols]
     y = df["target"]
+
 
     # 3. Procesamiento de variables categóricas (fototipo)
     # Fototipo es categórico (1-6), lo convertimos a dummies
