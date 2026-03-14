@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNext = document.getElementById('btnNext');
     const btnPrev = document.getElementById('btnPrev');
     const btnCalculate = document.getElementById('btnCalculate');
-    
+
     const tabs = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
     let currentTabIdx = 0;
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. UI: MANEJO DE TABS (Workflow Clínico)
     function switchTab(index) {
         currentTabIdx = index;
-        
+
         // Update Buttons
         btnPrev.classList.toggle('hidden', index === 0);
         btnNext.classList.toggle('hidden', index === tabs.length - 1);
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset();
         if (caseData.input.age) document.getElementById('age').value = caseData.input.age;
         if (caseData.input.fitzpatrick) document.getElementById('fitzpatrick').value = caseData.input.fitzpatrick;
-        
+
         Object.keys(caseData.input).forEach(key => {
             const el = document.getElementById(key);
             if (el && el.type === 'checkbox') {
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. INFERENCIA Y RENDER
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         const formData = {
             age: document.getElementById('age').value,
             fitzpatrick: document.getElementById('fitzpatrick').value,
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const clinicalLabel = res.priority === 1 ? 'Urgencial' : (res.priority === 2 ? 'Prioritario' : 'Estable');
         document.getElementById('priorityLabel').textContent = clinicalLabel;
         document.getElementById('priorityLabel').className = `text-4xl md:text-5xl font-black tracking-tighter leading-none ${theme.color}`;
-        
+
         const badge = document.getElementById('priorityBadge');
         badge.textContent = `Prioridad P${res.priority}`;
         badge.className = `px-4 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-widest border shadow-sm ${theme.badge}`;
@@ -200,10 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="space-y-2">
                 <div class="flex justify-between items-end">
                     <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">${probLabels[i]}</span>
-                    <span class="text-xs font-bold text-slate-700 font-mono">${(p*100).toFixed(1)}%</span>
+                    <span class="text-xs font-bold text-slate-700 font-mono">${(p * 100).toFixed(1)}%</span>
                 </div>
                 <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <div class="${probThemes[i].score} h-full transition-all duration-1000 ease-out" style="width: ${p*100}%"></div>
+                    <div class="${probThemes[i].score} h-full transition-all duration-1000 ease-out" style="width: ${p * 100}%"></div>
                 </div>
             </div>
         `).join('');
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'benign_cutaneous_tumor': "Tumoración Benigna",
                 'inflammatory_dermatosis_other': "Otra Dermatosis Inflamatoria"
             };
-            
+
             const pa = res.probabilistic_analysis;
             document.getElementById('topSyndromeName').textContent = syndromeLabels[pa.top_syndrome] || pa.top_syndrome;
             document.getElementById('topSyndromeProb').textContent = `${(pa.top_probability * 100).toFixed(1)}%`;
@@ -233,13 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const confPanel = document.getElementById('confidencePanel');
             const confBadge = document.getElementById('confidenceBadge');
             const confText = document.getElementById('confidenceText');
-            
+
             confPanel.classList.remove('hidden');
-            
+
             // Calcular Gap (Top1 vs Top2)
             const sortedProbs = Object.values(pa.syndrome_probabilities).sort((a, b) => b - a);
             const gap = sortedProbs[0] - sortedProbs[1];
-            
+
             let level = "ALTA";
             let colorClass = "bg-emerald-100 text-emerald-700 border-emerald-200";
             let interpretation = "El modelo identifica un patrón clínico claro y consistente.";
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('reasoningGroup').textContent = r.clinical_group.replace(/_/g, ' ');
                 document.getElementById('reasoningSubgroup').textContent = (r.subgroup || 'No especificado').replace(/_/g, ' ');
                 document.getElementById('reasoningSummary').textContent = r.reasoning_summary;
-                
+
                 document.getElementById('reasoningDifferentials').innerHTML = r.possible_differentials.slice(0, 5).map(diff => `
                     <span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold border border-slate-200">
                         ${diff}
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const rfContainer = document.getElementById('reasoningRedFlagsContainer');
                 const rfList = document.getElementById('reasoningRedFlags');
-                
+
                 if (r.red_flags && r.red_flags.length > 0) {
                     rfContainer.classList.remove('hidden');
                     rfList.innerHTML = r.red_flags.map(f => `
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="text-sm font-medium text-slate-500 group-hover:text-slate-800 transition-colors">${c.name}</span>
                 <div class="flex items-center gap-2">
                     <div class="w-16 h-1 bg-slate-50 rounded-full overflow-hidden">
-                        <div class="h-full ${c.val > 0 ? 'bg-blue-400' : 'bg-emerald-400'}" style="width: ${Math.min(100, Math.abs(c.val)*5)}%"></div>
+                        <div class="h-full ${c.val > 0 ? 'bg-blue-400' : 'bg-emerald-400'}" style="width: ${Math.min(100, Math.abs(c.val) * 5)}%"></div>
                     </div>
                     <span class="text-[10px] font-bold font-mono w-8 text-right ${c.val > 0 ? 'text-blue-600' : 'text-emerald-600'}">
                         ${c.val > 0 ? '+' : ''}${c.val.toFixed(1)}
