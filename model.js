@@ -10,6 +10,7 @@ import { applySafetyModifiers, applyBlockModifiers } from './engine/safety_modif
 import { applyContextModifiers, applyRefinementModifiers } from './engine/context_modifiers.js';
 import { interpretResult, explain, buildResult } from './engine/interpreter.js';
 import { predictProbabilisticSyndrome } from './engine/probabilistic_model.js';
+import { getOntologyInfoForSyndrome } from './engine/ontology_service.js';
 
 // Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
@@ -52,8 +53,15 @@ export function runTriage(formData) {
     const prediction = predict(X);
     const result = interpretResult(X, prediction);
     
-    // Nueva capa: Inferencia de Síndrome Probabilístico
-    result.probabilistic_analysis = predictProbabilisticSyndrome(formData);
+    // Capa: Inferencia de Síndrome Probabilístico
+    const probabilisticAnalysis = predictProbabilisticSyndrome(formData);
+    result.probabilistic_analysis = probabilisticAnalysis;
+    
+    // Nueva Capa: Enriquecimiento con Ontología Derm1M
+    const ontologyInfo = getOntologyInfoForSyndrome(probabilisticAnalysis.top_syndrome);
+    if (ontologyInfo) {
+        result.ontology_info = ontologyInfo;
+    }
     
     return result;
 }
