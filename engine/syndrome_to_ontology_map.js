@@ -1,11 +1,12 @@
 /**
  * syndrome_to_ontology_map.js - Mapeo estático de síndromes a la ontología Derm1M
+ * Refinado para coherencia clínica y visualización en Triage (APS).
  */
 
 export const SYNDROME_TO_ONTOLOGY_MAP = {
   "eczema_dermatitis": {
-    "macro_group": "inflammatory",
-    "subgroup": "non-infectious",
+    "macro_group": "Inflamatorio",
+    "subgroup": "Dermatitis / Eczema",
     "ontology_reference": "Eczema",
     "differentials": [
       "Atopic dermatitis",
@@ -13,12 +14,12 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
       "Seborrheic dermatitis",
       "Nummular eczema",
       "Dyshidrosiform eczema",
-      "Lichen simplex chronicus, "
+      "Lichen simplex chronicus"
     ]
   },
   "psoriasiform_dermatosis": {
-    "macro_group": "inflammatory",
-    "subgroup": "non-infectious",
+    "macro_group": "Inflamatorio",
+    "subgroup": "Dermatosis Psoriasiforme",
     "ontology_reference": "Psoriasis",
     "differentials": [
       "Psoriasis (plaque)",
@@ -29,9 +30,9 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
     ]
   },
   "bacterial_skin_infection": {
-    "macro_group": "inflammatory",
-    "subgroup": "infectious",
-    "ontology_reference": "bacterial",
+    "macro_group": "Infeccioso",
+    "subgroup": "Bacteriano",
+    "ontology_reference": "Infección bacteriana",
     "differentials": [
       "Cellulitis",
       "Impetigo",
@@ -42,9 +43,9 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
     ]
   },
   "viral_skin_infection": {
-    "macro_group": "inflammatory",
-    "subgroup": "infectious",
-    "ontology_reference": "viral",
+    "macro_group": "Infeccioso",
+    "subgroup": "Viral",
+    "ontology_reference": "Infección viral",
     "differentials": [
       "Herpes simplex virus",
       "Herpes zoster",
@@ -55,9 +56,9 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
     ]
   },
   "fungal_skin_infection": {
-    "macro_group": "inflammatory",
-    "subgroup": "infectious",
-    "ontology_reference": "fungal",
+    "macro_group": "Infeccioso",
+    "subgroup": "Fúngico / Micótico",
+    "ontology_reference": "Infección fúngica",
     "differentials": [
       "Tinea corporis",
       "Tinea pedis",
@@ -68,87 +69,82 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
     ]
   },
   "drug_reaction": {
-    "macro_group": "inflammatory",
-    "subgroup": "non-infectious",
-    "ontology_reference": "Drug eruption, Drug eruptions & reactions",
+    "macro_group": "Inflamatorio",
+    "subgroup": "Reacción a Fármacos",
+    "ontology_reference": "Toxicodermia",
     "differentials": [
       "Fixed drug eruption",
       "Acute generalized exanthematous pustulosis",
-      "Stevens-Johnson syndrome",
-      "Riehl melanosis"
+      "Stevens-Johnson syndrome"
     ]
   },
   "urticarial_dermatosis": {
-    "macro_group": "reaction patterns and descriptive terms",
-    "subgroup": "Hypersensitivity, allergic reaction",
+    "macro_group": "Patrón de Reacción",
+    "subgroup": "Hipersensibilidad",
     "ontology_reference": "Urticaria",
     "differentials": [
       "Urticaria",
       "Urticarial vasculitis",
-      "Pruritic urticarial papules and plaques of pregnancy, PUPPP",
-      "Insect bite"
+      "Insect bite",
+      "PUPPP (Pruritic urticarial papules and plaques of pregnancy)"
     ]
   },
   "vesiculobullous_disease": {
-    "macro_group": "inflammatory",
-    "subgroup": "non-infectious",
-    "ontology_reference": "Bullous disease",
+    "macro_group": "Inflamatorio",
+    "subgroup": "Ampolloso Autoinmune",
+    "ontology_reference": "Enfermedad ampollosa",
     "differentials": [
       "Bullous pemphigoid",
       "Pemphigus vulgaris",
       "Dermatitis herpetiformis",
-      "acquired autoimmune bullous diseaseherpes gestationis",
-      "Transient acantholytic dermatosis, Grover's disease, Transient acantholytic dermatosis"
+      "Transient acantholytic dermatosis"
     ]
   },
   "vasculitic_purpuric_disease": {
-    "macro_group": "inflammatory",
-    "subgroup": "non-infectious",
-    "ontology_reference": "Localized cutaneous vasculitis",
+    "macro_group": "Vascular",
+    "subgroup": "Vasculitis / Púrpura",
+    "ontology_reference": "Vasculitis cutánea",
     "differentials": [
       "Leukocytoclastic vasculitis",
-      "Pigmented purpuric eruption, Pigmented progressive purpuric dermatosis",
+      "Pigmented purpuric eruption",
       "Urticarial vasculitis",
-      "Erythema elevatum diutinum",
-      "Actinic solar damage(solar purpura)"
+      "Erythema elevatum diutinum"
     ]
   },
   "cutaneous_tumor_suspected": {
-    "macro_group": "proliferations",
-    "subgroup": "malignant",
-    "ontology_reference": "malignant",
+    "macro_group": "Proliferativo",
+    "subgroup": "Malignidad Sospechada",
+    "ontology_reference": "Neoplasia maligna",
     "differentials": [
       "Basal cell carcinoma",
       "Squamous cell carcinoma",
-      "Malignant melanoma, melanoma",
+      "Malignant melanoma",
       "Bowen's disease",
-      "Keratoacanthoma",
-      "Merkel cell carcinoma"
+      "Keratoacanthoma"
     ]
   },
   "benign_cutaneous_tumor": {
-    "macro_group": "proliferations",
-    "subgroup": "benign",
-    "ontology_reference": "benign",
+    "macro_group": "Proliferativo",
+    "subgroup": "Benigno",
+    "ontology_reference": "Tumoración benigna",
     "differentials": [
       "Seborrheic keratosis",
       "Dermatofibroma",
       "Melanocytic nevus",
       "Lipoma",
-      "Fibroma molle",
-      "Angioma, Hemangioma"
+      "Angioma / Hemangioma"
     ]
   },
   "inflammatory_dermatosis_other": {
-    "macro_group": "inflammatory",
-    "subgroup": "non-infectious",
-    "ontology_reference": "Inflammatory dermatosis",
+    "macro_group": "Inflamatorio",
+    "subgroup": "Otras Dermatosis",
+    "ontology_reference": "Dermatitis inespecífica",
     "differentials": [
       "Rosacea",
       "Pityriasis rosea",
       "Granuloma annulare",
       "Lichen planus",
-      "Sarcoidosis, Cutaneous sarcoidosis",
+      "Sarcoidosis",
       "Pityriasis lichenoides"
     ]
   }

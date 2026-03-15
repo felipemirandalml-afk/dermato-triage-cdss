@@ -269,17 +269,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (ontologyInfo) {
                 reasoningPanel.classList.remove('hidden');
-                document.getElementById('reasoningGroup').textContent = ontologyInfo.macro_group.replace(/_/g, ' ');
-                document.getElementById('reasoningSubgroup').textContent = (ontologyInfo.subgroup || 'No especificado').replace(/_/g, ' ');
-                document.getElementById('reasoningSummary').textContent = `Referencia Ontológica: ${ontologyInfo.ontology_reference}`;
+                document.getElementById('reasoningGroup').textContent = ontologyInfo.macro_group;
+                document.getElementById('reasoningSubgroup').textContent = ontologyInfo.subgroup || 'Sin Subgrupo';
+                document.getElementById('reasoningSummary').textContent = `Foco Clínico: ${ontologyInfo.ontology_reference}`;
 
                 document.getElementById('reasoningDifferentials').innerHTML = ontologyInfo.differentials.slice(0, 6).map(diff => `
-                    <span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold border border-slate-200">
+                    <span class="px-2 py-1 bg-white text-slate-600 rounded text-[10px] font-bold border border-slate-200 shadow-sm">
                         ${diff}
                     </span>
                 `).join('');
 
-                // Ocultar sección de red flags de ontología si no existen en el nuevo mapeo
                 document.getElementById('reasoningRedFlagsContainer').classList.add('hidden');
             } else if (reasoningMap && pa.top_syndrome && reasoningMap[pa.top_syndrome]) {
                 // Fallback a mapa de razonamiento antiguo si existe
