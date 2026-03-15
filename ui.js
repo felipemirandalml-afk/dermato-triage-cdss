@@ -279,7 +279,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     </span>
                 `).join('');
 
-                document.getElementById('reasoningRedFlagsContainer').classList.add('hidden');
+                // Mostrar Hallazgos Cardinales (Claves Diagnósticas)
+                const rfContainer = document.getElementById('reasoningRedFlagsContainer');
+                const rfList = document.getElementById('reasoningRedFlags');
+                const rfLabel = rfContainer.querySelector('span');
+
+                if (ontologyInfo.applied_cardinal_rules && ontologyInfo.applied_cardinal_rules.length > 0) {
+                    rfContainer.classList.remove('hidden');
+                    rfLabel.textContent = "Claves Diagnósticas (Hallazgos Cardinales)";
+                    rfLabel.className = "text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-2 italic";
+                    
+                    rfList.innerHTML = ontologyInfo.applied_cardinal_rules.map(rule => `
+                        <div class="flex items-start gap-2">
+                            <span class="text-blue-500 font-black">•</span>
+                            <div class="flex flex-col">
+                                <span class="text-[10px] font-bold text-slate-700 leading-tight">${rule.label}</span>
+                                <span class="text-[9px] text-slate-400 italic">${rule.rationale}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    rfContainer.classList.add('hidden');
+                }
             } else if (reasoningMap && pa.top_syndrome && reasoningMap[pa.top_syndrome]) {
                 // Fallback a mapa de razonamiento antiguo si existe
                 const r = reasoningMap[pa.top_syndrome];

@@ -140,12 +140,14 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
     "subgroup": "Otras Dermatosis",
     "ontology_reference": "Dermatitis inespecífica",
     "differentials": [
+      "Acne vulgaris",
       "Rosacea",
       "Pityriasis rosea",
       "Granuloma annulare",
       "Lichen planus",
       "Sarcoidosis",
-      "Pityriasis lichenoides"
+      "Pityriasis lichenoides",
+      "Hidradenitis suppurativa"
     ]
   }
 };

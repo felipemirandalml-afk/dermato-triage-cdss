@@ -11,6 +11,7 @@ import { applyContextModifiers, applyRefinementModifiers } from './engine/contex
 import { interpretResult, explain, buildResult } from './engine/interpreter.js';
 import { predictProbabilisticSyndrome } from './engine/probabilistic_model.js';
 import { getOntologyInfoForSyndrome } from './engine/ontology_service.js';
+import { rankDifferentials } from './engine/differential_ranker.js';
 
 // Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
@@ -57,10 +58,13 @@ export function runTriage(formData) {
     const probabilisticAnalysis = predictProbabilisticSyndrome(formData);
     result.probabilistic_analysis = probabilisticAnalysis;
     
-    // Nueva Capa: Enriquecimiento con Ontología Derm1M
+    // Capa: Enriquecimiento con Ontología Derm1M
     const ontologyInfo = getOntologyInfoForSyndrome(probabilisticAnalysis.top_syndrome);
     if (ontologyInfo) {
         result.ontology_info = ontologyInfo;
+        
+        // Capa: Ranker de Hallazgos Cardinales (Lógica Patognomónica)
+        result.ontology_info = rankDifferentials(formData, result);
     }
     
     return result;
