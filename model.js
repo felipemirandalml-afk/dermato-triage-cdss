@@ -21,27 +21,49 @@ export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explai
  */
 export function predict(X, helper) {
     const baseline = predictBaseline(X, FEATURE_INDEX);
+    const triggered_rules = [];
     
-    // Pipeline de Modificadores (Secuencial con "Early Return" si hay coincidencia de regla)
+    let currentPriority = baseline.priority;
+    let currentModifier = baseline.modifier;
+
+    // Pipeline de Modificadores (Secuencial y Aditivo para Explicabilidad)
     
     // 1. Capa de Seguridad Crítica (Morfología)
-    const safety = applySafetyModifiers(helper, baseline);
-    if (safety && safety.match) return buildResult(safety.priority, safety.modifier, baseline);
+    const safety = applySafetyModifiers(helper, { priority: currentPriority, modifier: currentModifier });
+    if (safety.match) {
+        currentPriority = safety.priority;
+        currentModifier = safety.modifier;
+        triggered_rules.push(...safety.rules);
+    }
     
     // 2. Capa de Contexto Sistémico
-    const context = applyContextModifiers(helper, baseline);
-    if (context && context.match) return buildResult(context.priority, context.modifier, baseline);
+    const context = applyContextModifiers(helper, { priority: currentPriority, modifier: currentModifier });
+    if (context.match) {
+        currentPriority = context.priority;
+        currentModifier = context.modifier;
+        triggered_rules.push(...context.rules);
+    }
     
     // 3. Capa de Bloqueo (Escudos de Malignidad/Reacciones Urgentes)
-    const block = applyBlockModifiers(helper, baseline);
-    if (block && block.match) return buildResult(block.priority, block.modifier, baseline);
+    const block = applyBlockModifiers(helper, { priority: currentPriority, modifier: currentModifier });
+    if (block.match) {
+        currentPriority = block.priority;
+        currentModifier = block.modifier;
+        triggered_rules.push(...block.rules);
+    }
     
     // 4. Capa de Refinamiento (Downscales controlados)
-    const refinement = applyRefinementModifiers(helper, baseline);
-    if (refinement && refinement.match) return buildResult(refinement.priority, refinement.modifier, baseline);
+    const refinement = applyRefinementModifiers(helper, { priority: currentPriority, modifier: currentModifier });
+    if (refinement.match) {
+        currentPriority = refinement.priority;
+        currentModifier = refinement.modifier;
+        triggered_rules.push(...refinement.rules);
+    }
     
-    // Si ningún modificador aplica, retornamos el baseline estadístico
-    return baseline;
+    const finalResult = buildResult(currentPriority, currentModifier, baseline);
+    finalResult.triggered_rules = triggered_rules;
+
+    return finalResult;
 }
 
 /**

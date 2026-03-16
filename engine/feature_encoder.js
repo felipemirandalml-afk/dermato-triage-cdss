@@ -67,7 +67,26 @@ export function encodeFeatures(formData) {
         }
     }
 
-    // 5. Creación del Helper y retorno unificado
+    // 5. Features Compuestas (Interacciones Clínicas Críticas)
+    // Estas variables permiten capturar la no-linealidad de ciertos síntomas
+    if (featureMap.fiebre === 1 && featureMap.purpura === 1) {
+        X[FEATURE_INDEX.interaccion_fiebre_purpura] = 1;
+        featureMap.interaccion_fiebre_purpura = 1;
+    }
+    if (featureMap.fiebre === 1 && featureMap.bula_ampolla === 1) {
+        X[FEATURE_INDEX.interaccion_fiebre_ampolla] = 1;
+        featureMap.interaccion_fiebre_ampolla = 1;
+    }
+    if (featureMap.inmunosupresion === 1 && featureMap.agudo === 1) {
+        X[FEATURE_INDEX.interaccion_inmuno_agudo] = 1;
+        featureMap.interaccion_inmuno_agudo = 1;
+    }
+    if (featureMap.dolor === 1 && featureMap.agudo === 1) {
+        X[FEATURE_INDEX.interaccion_dolor_agudo] = 1;
+        featureMap.interaccion_dolor_agudo = 1;
+    }
+
+    // 6. Creación del Helper y retorno unificado
     const helper = createFeatureHelper(X);
 
     return {

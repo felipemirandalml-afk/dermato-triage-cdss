@@ -1,5 +1,6 @@
-import { encodeFeatures, predict, explain, interpretResult, runTriage, FEATURE_INDEX } from './model.js';
+import { encodeFeatures, predict, explain, interpretResult, runTriage, FEATURE_INDEX, FEATURE_MAP_LABELS } from './model.js';
 import { CLINICAL_CASES } from './data/clinical_cases.js';
+import { generateClinicalReport } from './engine/export_service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('triageForm');
@@ -15,6 +16,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabContents = document.querySelectorAll('.tab-content');
     let currentTabIdx = 0;
     let reasoningMap = null;
+    let lastResult = null;
+    let lastFormData = null;
+
+    // --- FASE 4: EXPORTACIÓN & IMPRESIÓN ---
+    const btnCopy = document.getElementById('btnCopyReport');
+    const btnPrint = document.getElementById('btnPrintReport');
+
+    btnCopy?.addEventListener('click', async () => {
+        if (!lastResult || !lastFormData) return;
+        
+        const report = generateClinicalReport(lastFormData, lastResult);
+        try {
+            await navigator.clipboard.writeText(report);
+            
+            // Feedback visual
+            const originalText = btnCopy.innerHTML;
+            btnCopy.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                ¡Copiado!
+            `;
+            setTimeout(() => {
+                btnCopy.innerHTML = originalText;
+            }, 2000);
+        } catch (err) {
+            console.error('Error al copiar:', err);
+            alert('No se pudo copiar al portapapeles.');
+        }
+    });
+
+    btnPrint?.addEventListener('click', () => {
+        window.print();
+    });
 
     async function loadReasoningMap() {
         try {
@@ -121,6 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!validateData(formData)) return;
 
         const interpretation = runTriage(formData);
+        
+        lastResult = interpretation;
+        lastFormData = formData;
 
         renderResults(interpretation, formData);
     });
@@ -226,7 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const pa = res.probabilistic_analysis;
-            document.getElementById('topSyndromeName').textContent = syndromeLabels[pa.top_syndrome] || pa.top_syndrome;
+            const topSyndrome = pa.top_syndrome;
+            document.getElementById('topSyndromeName').textContent = topSyndrome ? (syndromeLabels[topSyndrome] || topSyndrome) : "Patrón Indeterminado";
             document.getElementById('topSyndromeProb').textContent = `${(pa.top_probability * 100).toFixed(1)}%`;
 
             // Lógica de Confianza Diagnóstica
@@ -236,32 +275,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             confPanel.classList.remove('hidden');
 
-            // Calcular Gap (Top1 vs Top2)
-            const sortedProbs = Object.values(pa.syndrome_probabilities).sort((a, b) => b - a);
-            const gap = sortedProbs[0] - sortedProbs[1];
+            const levelMap = {
+                "high": { label: "ALTA", color: "bg-emerald-100 text-emerald-700 border-emerald-200", text: "El modelo identifica un patrón clínico claro y consistente." },
+                "medium": { label: "MEDIA", color: "bg-blue-100 text-blue-700 border-blue-200", text: "El modelo sugiere una tendencia, pero con margen de variabilidad." },
+                "low": { label: "BAJA / AMBIGUO", color: "bg-rose-100 text-rose-700 border-rose-200", text: pa.message || "Patrón indeterminado. Se requiere evaluación clínica directa." }
+            };
 
-            let level = "ALTA";
-            let colorClass = "bg-emerald-100 text-emerald-700 border-emerald-200";
-            let interpretation = "El modelo identifica un patrón clínico claro y consistente.";
+            const config = levelMap[pa.confidence_level] || levelMap.low;
 
-            if (pa.top_probability < 0.60) {
-                level = "BAJA";
-                colorClass = "bg-rose-100 text-rose-700 border-rose-200";
-                interpretation = "El modelo no identifica un patrón claro. Se requiere revisión exhaustiva.";
-            } else if (gap < 0.15) {
-                level = "AMBIGUO";
-                colorClass = "bg-amber-100 text-amber-700 border-amber-200";
-                interpretation = "Diferencial estrecho entre los dos diagnósticos más probables.";
-            } else if (pa.top_probability < 0.85) {
-                level = "MEDIA";
-                colorClass = "bg-blue-100 text-blue-700 border-blue-200";
-                interpretation = "El modelo sugiere una tendencia, pero con margen de variabilidad.";
-            }
-
-            confBadge.textContent = level;
-            confBadge.className = `text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none border ${colorClass}`;
-            confText.textContent = interpretation;
-            confPanel.className = `mt-3 p-3 rounded-lg border flex flex-col gap-1 transition-all duration-300 ${colorClass.split(' ')[0]} ${colorClass.split(' ')[2]}`;
+            confBadge.textContent = config.label;
+            confBadge.className = `text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none border ${config.color}`;
+            confText.textContent = config.text;
+            confPanel.className = `mt-3 p-3 rounded-lg border flex flex-col gap-1 transition-all duration-300 ${config.color.split(' ')[0]} ${config.color.split(' ')[2]}`;
 
             // Capa de Razonamiento Clínico (Ontología Derm1M)
             const reasoningPanel = document.getElementById('reasoningPanel');
@@ -335,23 +360,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        // Señales de Peso Semiológico
-        const { X } = encodeFeatures(formData);
-        const expl = explain(X, res.classIdx);
-
-        document.getElementById('explainabilityList').innerHTML = expl.map(c => `
-            <li class="flex justify-between items-center group">
-                <span class="text-sm font-medium text-slate-500 group-hover:text-slate-800 transition-colors">${c.name}</span>
-                <div class="flex items-center gap-2">
-                    <div class="w-16 h-1 bg-slate-50 rounded-full overflow-hidden">
-                        <div class="h-full ${c.val > 0 ? 'bg-blue-400' : 'bg-emerald-400'}" style="width: ${Math.min(100, Math.abs(c.val) * 5)}%"></div>
+        // RAZONAMIENTO DEL SISTEMA (FASE 3)
+        const pa = res.probabilistic_analysis;
+        
+        // 1. Alertas de Triage (Reglas Heurísticas)
+        const alertsContainer = document.getElementById('triageAlertsContainer');
+        if (res.triggered_rules && res.triggered_rules.length > 0) {
+            alertsContainer.innerHTML = res.triggered_rules.map(rule => {
+                const isCritical = rule.includes('🚨');
+                const isWarning = rule.includes('⚠️');
+                const bgColor = isCritical ? 'bg-rose-50 border-rose-100' : (isWarning ? 'bg-amber-50 border-amber-100' : 'bg-blue-50 border-blue-100');
+                return `
+                    <div class="flex items-center gap-2 p-2 ${bgColor} border rounded-lg">
+                        <span class="text-[11px] font-black text-slate-800">${rule}</span>
                     </div>
-                    <span class="text-[10px] font-bold font-mono w-8 text-right ${c.val > 0 ? 'text-blue-600' : 'text-emerald-600'}">
-                        ${c.val > 0 ? '+' : ''}${c.val.toFixed(1)}
-                    </span>
+                `;
+            }).join('');
+        } else {
+            alertsContainer.innerHTML = '<span class="text-[10px] text-slate-400 italic">No se requirieron ajustes heurísticos adicionales.</span>';
+        }
+
+        // 2. Importancia de Features (Probabilística)
+        const formatFeat = (f) => {
+            const label = (FEATURE_MAP_LABELS && FEATURE_MAP_LABELS[f.key]) || 
+                         f.key.replace('lesion_','').replace('topo_','').replace('topog_','').replace('patron_','').toUpperCase().replace(/_/g, ' ');
+            return `
+                <div class="flex justify-between items-center group">
+                    <span class="text-[11px] font-bold text-slate-500 group-hover:text-slate-800 transition-colors uppercase tracking-tight">${label}</span>
+                    <div class="flex items-center gap-2">
+                        <div class="w-12 h-1 bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full ${f.impact > 0 ? 'bg-emerald-400' : 'bg-rose-400'}" style="width: ${Math.min(100, Math.abs(f.impact) * 8)}%"></div>
+                        </div>
+                        <span class="text-[10px] font-black w-6 text-right ${f.impact > 0 ? 'text-emerald-600' : 'text-rose-600'}">
+                            ${f.impact > 0 ? '+' : '-'}${Math.abs(f.impact).toFixed(1)}
+                        </span>
+                    </div>
                 </div>
-            </li>
-        `).join('');
+            `;
+        };
+
+        if (pa && pa.feature_importance) {
+            const posCont = document.getElementById('positiveImportanceContainer');
+            const negCont = document.getElementById('negativeImportanceContainer');
+            
+            posCont.innerHTML = pa.feature_importance.positive.length > 0 
+                ? pa.feature_importance.positive.map(formatFeat).join('') 
+                : '<span class="text-[10px] text-slate-300 italic">Sin aportes positivos significativos</span>';
+                
+            negCont.innerHTML = pa.feature_importance.negative.length > 0 
+                ? pa.feature_importance.negative.map(formatFeat).join('') 
+                : '<span class="text-[10px] text-slate-300 italic">Sin factores de descarte significativos</span>';
+        }
 
         // Disclaimer Externo
         document.getElementById('disclaimerText').textContent = res.disclaimer;
