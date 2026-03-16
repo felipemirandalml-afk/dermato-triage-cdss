@@ -46,6 +46,9 @@
   "atrofia": "binary",
   "habon": "binary",
   "comedon": "binary",
-  "surco": "binary"
-
+  "surco": "binary",
+  "interaccion_fiebre_purpura": "binary",
+  "interaccion_fiebre_ampolla": "binary",
+  "interaccion_inmuno_agudo": "binary",
+  "interaccion_dolor_agudo": "binary"
 }

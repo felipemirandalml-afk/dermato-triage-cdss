@@ -11,7 +11,8 @@ export const PROBABILISTIC_FEATURES = [
     "farmacos_recientes", "inmunosupresion", "diabetes", "hepatopatia", "atopia", "embarazo",
     "eritema", "hiperpigmentacion", "hipopigmentacion", "costra", "erosion", "excoriacion",
     "liquenificacion", "nodulo", "quiste", "induracion", "telangiectasias", "atrofia", "habon", "comedon", "surco",
-    "ft_I", "ft_II", "ft_III", "ft_IV", "ft_V", "ft_VI"
+    "ft_I", "ft_II", "ft_III", "ft_IV", "ft_V", "ft_VI",
+    "interaccion_fiebre_purpura", "interaccion_fiebre_ampolla", "interaccion_inmuno_agudo", "interaccion_dolor_agudo"
 ];
 
 // 2. Características Adicionales (Lógica Heurística, Anatomía y Detalles UI)
@@ -71,6 +72,27 @@ export const FEATURE_MAP_LABELS = {
     extensor: "Distribución en Superficies Extensoras",
     lineal: "Distribución Lineal",
     localizado: "Lesión Localizada / Única",
+    topog_cabeza: "Cabeza y Cuello",
+    topog_tronco: "Tronco",
+    topog_ext_sup: "Miembros Superiores",
+    topog_ext_inf: "Miembros Inferiores",
+    patron_acral: "Patrón Acral (Manos/Pies)",
+    patron_simetrico: "Distribución Simétrica",
+    lesion_macula: "Mácula",
+    lesion_papula: "Pápula",
+    lesion_placa: "Placa",
+    lesion_vesicula: "Vesícula",
+    lesion_pustula: "Pústula",
+    lesion_habon: "Habón / Roncha",
+    lesion_costra: "Costra",
+    lesion_escara: "Escara / Necrosis",
+    lesion_atrofia: "Atrofia",
+    lesion_liquenificacion: "Liquenificación",
+    lesion_cicatriz: "Cicatriz",
+    topo_cara_centro: "Cara Centrofacial",
+    topo_cuero_cabelludo: "Cuero Cabelludo",
+    topo_pies: "Pies / Plantas",
+    topo_manos: "Manos / Palmas",
     topo_inguinal: "Región Inguinal / Genital",
     topo_submamario: "Pliegue Submamario"
 };

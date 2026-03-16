@@ -16,6 +16,7 @@ export const CLINICAL_CASES = [
             timing: "chronic"
         },
         expected_priority: 3,
+        expected_syndrome: "eczema_dermatitis",
         notes: "Caso estable, manejo ambulatorio estándar."
     },
     {
@@ -31,6 +32,7 @@ export const CLINICAL_CASES = [
             timing: "subacute"
         },
         expected_priority: 3,
+        expected_syndrome: "inflammatory_dermatosis_other",
         notes: "Condición común, sin riesgo vital."
     },
     {
@@ -48,6 +50,7 @@ export const CLINICAL_CASES = [
             timing: "chronic"
         },
         expected_priority: 3,
+        expected_syndrome: "psoriasiform_dermatosis",
         notes: "Aunque es extensa, la ausencia de eritrodermia o fiebre la mantiene en P3."
     },
     {
@@ -594,5 +597,321 @@ export const CLINICAL_CASES = [
         },
         expected_priority: 2,
         notes: "Signo de compromiso vascular, requiere estudio prioritario."
+    },
+    // --- NUEVOS CASOS DE FASE 2: BENCHMARK AVANZADO ---
+    {
+        id: "TC-041",
+        title: "Celulitis Aguda vs Estasis",
+        short_clinical_summary: "Eritema unilateral en pierna, caliente, con fiebre de 38.5C y dolor intenso.",
+        input: {
+            age: 62,
+            lesion_eritema: true,
+            signo_dolor: true,
+            signo_fiebre: true,
+            topog_ext_inf: true,
+            topo_pantorrillas: true,
+            timing: "acute"
+        },
+        expected_priority: 1,
+        expected_syndrome: "bacterial_skin_infection",
+        notes: "La presencia de fiebre y unilateralidad obliga a P1 por riesgo de sepsis/eripsela grave."
+    },
+    {
+        id: "TC-042",
+        title: "Dermatitis de Estasis Bilateral",
+        short_clinical_summary: "Eritema en ambas piernas de meses de evolución, sin fiebre, prurito leve.",
+        input: {
+            age: 68,
+            lesion_eritema: true,
+            lesion_escama: true,
+            topog_ext_inf: true,
+            topo_tobillos: true,
+            patron_simetrico: true,
+            timing: "chronic"
+        },
+        expected_priority: 3,
+        expected_syndrome: "eczema_dermatitis",
+        notes: "Cronicidad y bilateralidad sin signos de alarma sugieren manejo ambulatorio."
+    },
+    {
+        id: "TC-043",
+        title: "Farmacodermia Aguda (Toxidermia)",
+        short_clinical_summary: "Exantema morbiliforme súbito tras inicio de antibiótico, prurito intenso.",
+        input: {
+            age: 45,
+            lesion_eritema: true,
+            lesion_papula: true,
+            antecedente_farmacos: true,
+            generalizado: true,
+            timing: "acute"
+        },
+        expected_priority: 2,
+        expected_syndrome: "drug_reaction",
+        notes: "Urgencia relativa por riesgo de progresión a formas graves."
+    },
+    {
+        id: "TC-044",
+        title: "Exantema Viral Inespecífico",
+        short_clinical_summary: "Erupción generalizada tras cuadro prodrómico de tos y rinorrea, febrícula.",
+        input: {
+            age: 8,
+            lesion_eritema: true,
+            lesion_papula: true,
+            signo_fiebre: true,
+            generalizado: true,
+            timing: "acute"
+        },
+        expected_priority: 3,
+        expected_syndrome: "viral_skin_infection",
+        notes: "Cuadro viral autolimitado en pediatría, habitualmente P3."
+    },
+    {
+        id: "TC-045",
+        title: "Tiña de Cuerpo Extensa",
+        short_clinical_summary: "Placas anulares con borde activo descamativo en tronco y extremidades.",
+        input: {
+            age: 32,
+            lesion_placa: true,
+            lesion_escama: true,
+            patron_anular: true,
+            generalizado: true,
+            timing: "subacute"
+        },
+        expected_priority: 3,
+        expected_syndrome: "fungal_skin_infection",
+        notes: "Tiña extensa, requiere antifúngicos sistémicos pero no es urgencia."
+    },
+    {
+        id: "TC-046",
+        title: "Psoriasis Eritrodérmica (Grave)",
+        short_clinical_summary: "Eritema universal (>90% SC), escalofríos y malestar general.",
+        input: {
+            age: 55,
+            lesion_eritema: true,
+            lesion_escama: true,
+            generalizado: true,
+            signo_fiebre: true,
+            timing: "acute"
+        },
+        expected_priority: 1,
+        expected_syndrome: "psoriasiform_dermatosis",
+        notes: "La eritrodermia aguda con compromiso sistémico es una emergencia dermatológica."
+    },
+    {
+        id: "TC-047",
+        title: "Sepsis de Origen Cutáneo (Inmuno)",
+        short_clinical_summary: "Paciente en quimioterapia con placa necrótica incipiente en axila y fiebre.",
+        input: {
+            age: 48,
+            riesgo_inmunosupresion: true,
+            signo_fiebre: true,
+            lesion_ulcera: true,
+            topog_tronco: true,
+            topo_axilas: true,
+            timing: "acute"
+        },
+        expected_priority: 1,
+        expected_syndrome: "bacterial_skin_infection",
+        notes: "Inmunosuprimido + Fiebre + Lesión aguda = P1 Mandatorio."
+    },
+    {
+        id: "TC-048",
+        title: "Vasculitis Leucocitoclástica Grave",
+        short_clinical_summary: "Púrpura palpable en piernas, dolor intenso y fiebre.",
+        input: {
+            age: 30,
+            lesion_purpura: true,
+            signo_dolor: true,
+            signo_fiebre: true,
+            topog_ext_inf: true,
+            timing: "acute"
+        },
+        expected_priority: 1,
+        expected_syndrome: "vasculitic_purpuric_disease",
+        notes: "Púrpura + Fiebre sugiere vasculitis sistémica o meningococcemia."
+    },
+    {
+        id: "TC-049",
+        title: "NET (Necrólisis Epidérmica Tóxica)",
+        short_clinical_summary: "Desprendimiento cutáneo, signo de Nikolsky positivo y fiebre alta.",
+        input: {
+            age: 40,
+            lesion_bula: true,
+            lesion_erosion: true,
+            signo_mucosas: true,
+            signo_fiebre: true,
+            timing: "acute"
+        },
+        expected_priority: 1,
+        expected_syndrome: "drug_reaction",
+        notes: "Emergencia absoluta, riesgo vital inmediato."
+    },
+    {
+        id: "TC-050",
+        title: "Herpes Simple Periocular",
+        short_clinical_summary: "Vesículas en párpado superior con edema y dolor.",
+        input: {
+            age: 28,
+            lesion_vesicula: true,
+            signo_dolor: true,
+            topog_cabeza: true,
+            timing: "acute"
+        },
+        expected_priority: 2,
+        expected_syndrome: "viral_skin_infection",
+        notes: "Riesgo de compromiso ocular (queratitis), requiere evaluación pronta."
+    },
+    {
+        id: "TC-051",
+        title: "Foliculitis por Jacuzzi (Pseudomona)",
+        short_clinical_summary: "Pústulas foliculares tronco tras uso de tina caliente.",
+        input: {
+            age: 25,
+            lesion_pustula: true,
+            topog_tronco: true,
+            timing: "acute"
+        },
+        expected_priority: 3,
+        expected_syndrome: "bacterial_skin_infection",
+        notes: "Cuadro bacteriano superficial autolimitado."
+    },
+    {
+        id: "TC-052",
+        title: "Lupus Eritematoso Sistémico (Rash)",
+        short_clinical_summary: "Eritema malar en alas de mariposa, artralgias y fotosensibilidad.",
+        input: {
+            age: 22,
+            lesion_eritema: true,
+            patron_fotoexpuesto: true,
+            topog_cabeza: true,
+            topo_cara_centro: true,
+            timing: "subacute"
+        },
+        expected_priority: 2,
+        expected_syndrome: "inflammatory_dermatosis_other",
+        notes: "Estudio sistémico prioritario."
+    },
+    {
+        id: "TC-053",
+        title: "Melanoma Amelanótico",
+        short_clinical_summary: "Nódulo rosado de crecimiento rápido en pierna.",
+        input: {
+            age: 50,
+            lesion_nodulo: true,
+            lesion_eritema: true,
+            topog_ext_inf: true,
+            timing: "subacute"
+        },
+        expected_priority: 2,
+        expected_syndrome: "cutaneous_tumor_suspected",
+        notes: "Nódulo sospechoso, requiere biopsia urgente."
+    },
+    {
+        id: "TC-054",
+        title: "Queratosis Actínica Inflamada",
+        short_clinical_summary: "Lesión escamosa rasposa en cuero cabelludo calvo.",
+        input: {
+            age: 80,
+            lesion_escama: true,
+            topog_cabeza: true,
+            topo_cuero_cabelludo: true,
+            timing: "chronic"
+        },
+        expected_priority: 3,
+        expected_syndrome: "benign_cutaneous_tumor",
+        notes: "Premaligno común, manejo ambulatorio."
+    },
+    {
+        id: "TC-055",
+        title: "Pie de Atleta con Celulitis",
+        short_clinical_summary: "Maceración interdigital crónica con eritema ascendente agudo y dolor.",
+        input: {
+            age: 45,
+            lesion_erosion: true,
+            signo_dolor: true,
+            topog_ext_inf: true,
+            topo_pies: true,
+            patron_intertriginoso: true,
+            timing: "acute"
+        },
+        expected_priority: 2,
+        expected_syndrome: "bacterial_skin_infection",
+        notes: "La complicación aguda (celulitis) eleva la prioridad de la tiña basal."
+    },
+    {
+        id: "TC-056",
+        title: "Urticaria Aguda sin Angioedema",
+        short_clinical_summary: "Habones pruriginosos diseminados, < 24h de evolución.",
+        input: {
+            age: 19,
+            lesion_habon: true,
+            prurito: true,
+            generalizado: true,
+            timing: "acute"
+        },
+        expected_priority: 3,
+        expected_syndrome: "urticarial_dermatosis",
+        notes: "Si no hay compromiso de vía aérea ni hipotensión, es P3."
+    },
+    {
+        id: "TC-057",
+        title: "Escabiasis (Sarna) Nodular",
+        short_clinical_summary: "Pápulas y nódulos extremadamente pruriginosos en genitales.",
+        input: {
+            age: 26,
+            lesion_nodulo: true,
+            lesion_papula: true,
+            prurito: true,
+            timing: "chronic"
+        },
+        expected_priority: 3,
+        expected_syndrome: "inflammatory_dermatosis_other",
+        notes: "Impacto en calidad de vida pero sin riesgo sistémico."
+    },
+    {
+        id: "TC-058",
+        title: "Erisipela Facial",
+        short_clinical_summary: "Placa eritematosa brillante en mejilla con borde elevado y fiebre.",
+        input: {
+            age: 72,
+            lesion_eritema: true,
+            signo_fiebre: true,
+            topog_cabeza: true,
+            timing: "acute"
+        },
+        expected_priority: 1,
+        expected_syndrome: "bacterial_skin_infection",
+        notes: "Erisipela facial requiere P1 por riesgo de complicaciones en SNC."
+    },
+    {
+        id: "TC-059",
+        title: "Pitiriasis Rosada (Medallón)",
+        short_clinical_summary: "Placa única heraldica seguida de brote en árbol de navidad.",
+        input: {
+            age: 24,
+            lesion_placa: true,
+            lesion_escama: true,
+            topog_tronco: true,
+            timing: "subacute"
+        },
+        expected_priority: 3,
+        expected_syndrome: "inflammatory_dermatosis_other",
+        notes: "Cuadro benigno autolimitado."
+    },
+    {
+        id: "TC-060",
+        title: "Carcinoma Basocelular Ulcerado",
+        short_clinical_summary: "Lesión aperlada con úlcera central en nariz, años de evolución.",
+        input: {
+            age: 65,
+            lesion_nodulo: true,
+            lesion_ulcera: true,
+            topog_cabeza: true,
+            topo_cara_centro: true,
+            timing: "chronic"
+        },
+        expected_priority: 3,
+        expected_syndrome: "cutaneous_tumor_suspected",
+        notes: "Tumor de crecimiento lento, derivación estándar."
     }
 ];
