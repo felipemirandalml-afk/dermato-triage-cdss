@@ -83,13 +83,9 @@ export function runTriage(formData) {
     const probabilisticAnalysis = predictProbabilisticSyndrome(X);
     result.probabilistic_analysis = probabilisticAnalysis;
     
-    // 5. Enriquecimiento con Ontología y Ranker de Hallazgos
-    const ontologyInfo = getOntologyInfoForSyndrome(probabilisticAnalysis.top_syndrome);
-    if (ontologyInfo) {
-        result.ontology_info = ontologyInfo;
-        // El ranker ya no necesita re-encodear formData, usa el helper
-        result.ontology_info = rankDifferentials(helper, result);
-    }
+    // 5. Cálculo de Diagnóstico Diferencial Clínico (Top 3)
+    const differentialRanking = rankDifferentials(probabilisticAnalysis.top_syndrome, helper);
+    result.differential_ranking = differentialRanking;
     
     return result;
 }
