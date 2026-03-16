@@ -288,74 +288,31 @@ document.addEventListener('DOMContentLoaded', () => {
             confText.textContent = config.text;
             confPanel.className = `mt-3 p-3 rounded-lg border flex flex-col gap-1 transition-all duration-300 ${config.color.split(' ')[0]} ${config.color.split(' ')[2]}`;
 
-            // Capa de Razonamiento Clínico (Ontología Derm1M)
-            const reasoningPanel = document.getElementById('reasoningPanel');
-            const ontologyInfo = res.ontology_info;
+            // Capa de Diagnóstico Diferencial Clínico (Top 3)
+            const diffPanel = document.getElementById('differentialPanel');
+            const diffContainer = document.getElementById('differentialRankingContainer');
 
-            if (ontologyInfo) {
-                reasoningPanel.classList.remove('hidden');
-                document.getElementById('reasoningGroup').textContent = ontologyInfo.macro_group;
-                document.getElementById('reasoningSubgroup').textContent = ontologyInfo.subgroup || 'Sin Subgrupo';
-                document.getElementById('reasoningSummary').textContent = `Foco Clínico: ${ontologyInfo.ontology_reference}`;
-
-                document.getElementById('reasoningDifferentials').innerHTML = ontologyInfo.differentials.slice(0, 6).map(diff => `
-                    <span class="px-2 py-1 bg-white text-slate-600 rounded text-[10px] font-bold border border-slate-200 shadow-sm">
-                        ${diff}
-                    </span>
-                `).join('');
-
-                // Mostrar Hallazgos Cardinales (Claves Diagnósticas)
-                const rfContainer = document.getElementById('reasoningRedFlagsContainer');
-                const rfList = document.getElementById('reasoningRedFlags');
-                const rfLabel = rfContainer.querySelector('span');
-
-                if (ontologyInfo.applied_cardinal_rules && ontologyInfo.applied_cardinal_rules.length > 0) {
-                    rfContainer.classList.remove('hidden');
-                    rfLabel.textContent = "Claves Diagnósticas (Hallazgos Cardinales)";
-                    rfLabel.className = "text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-2 italic";
-
-                    rfList.innerHTML = ontologyInfo.applied_cardinal_rules.map(rule => `
-                        <div class="flex items-start gap-2">
-                            <span class="text-blue-500 font-black">•</span>
-                            <div class="flex flex-col">
-                                <span class="text-[10px] font-bold text-slate-700 leading-tight">${rule.label}</span>
-                                <span class="text-[9px] text-slate-400 italic">${rule.rationale}</span>
-                            </div>
+            if (res.differential_ranking && res.differential_ranking.length > 0) {
+                diffPanel.classList.remove('hidden');
+                diffContainer.innerHTML = res.differential_ranking.map((item, idx) => `
+                    <div class="flex flex-col gap-1 p-3 bg-white border border-slate-100 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-black text-slate-800 uppercase tracking-tight">${item.disease_name}</span>
+                            <span class="text-[9px] font-black ${idx === 0 ? 'text-blue-600 bg-blue-50' : 'text-slate-400 bg-slate-50'} px-2 py-0.5 rounded">
+                                Rank ${idx + 1}
+                            </span>
                         </div>
-                    `).join('');
-                } else {
-                    rfContainer.classList.add('hidden');
-                }
-            } else if (reasoningMap && pa.top_syndrome && reasoningMap[pa.top_syndrome]) {
-                // Fallback a mapa de razonamiento antiguo si existe
-                const r = reasoningMap[pa.top_syndrome];
-                reasoningPanel.classList.remove('hidden');
-                document.getElementById('reasoningGroup').textContent = r.clinical_group.replace(/_/g, ' ');
-                document.getElementById('reasoningSubgroup').textContent = (r.subgroup || 'No especificado').replace(/_/g, ' ');
-                document.getElementById('reasoningSummary').textContent = r.reasoning_summary;
-
-                document.getElementById('reasoningDifferentials').innerHTML = r.possible_differentials.slice(0, 5).map(diff => `
-                    <span class="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold border border-slate-200">
-                        ${diff}
-                    </span>
-                `).join('');
-
-                const rfContainer = document.getElementById('reasoningRedFlagsContainer');
-                const rfList = document.getElementById('reasoningRedFlags');
-
-                if (r.red_flags && r.red_flags.length > 0) {
-                    rfContainer.classList.remove('hidden');
-                    rfList.innerHTML = r.red_flags.map(f => `
-                        <div class="flex items-start gap-2">
-                            <span class="text-rose-500 font-black">•</span>
-                            <span class="text-[10px] font-bold text-slate-500 leading-tight">${f}</span>
+                        <div class="flex flex-wrap gap-1 mt-1">
+                            ${item.matched_rules.map(rule => `
+                                <span class="text-[9px] font-semibold text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100 italic">
+                                    • ${rule}
+                                </span>
+                            `).join('')}
                         </div>
-                    `).join('');
-                } else {
-                    rfContainer.classList.add('hidden');
-                }
+                    </div>
+                `).join('');
             } else {
-                reasoningPanel.classList.add('hidden');
+                diffPanel.classList.add('hidden');
             }
         }
 

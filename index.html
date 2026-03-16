@@ -633,46 +633,24 @@
                                         </div>
                                         <p id="confidenceText" class="text-[10px] font-semibold text-slate-500 mt-1 leading-tight italic"></p>
                                     </div>
-                                    <!-- Capa de Razonamiento Clínico (Ontología) -->
-                                    <div id="reasoningPanel" class="mt-6 pt-6 border-t border-slate-100 hidden animate-in fade-in slide-in-from-top-4 duration-500">
+                                    <!-- Diagnósticos Diferenciales (FASE DIFFERENTIALS) -->
+                                    <div id="differentialPanel" class="mt-8 pt-8 border-t border-slate-100 hidden animate-in fade-in slide-in-from-top-4 duration-500">
                                         <div class="flex items-center gap-2 mb-4">
                                             <div class="w-1.5 h-4 bg-slate-400 rounded-full"></div>
-                                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic">Razonamiento Médico Jerárquico</h4>
+                                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic">Diagnósticos Diferenciales Sugeridos</h4>
                                         </div>
                                         
-                                        <div class="space-y-4">
-                                            <!-- Grupo y Subgrupo -->
-                                            <div class="grid grid-cols-2 gap-4">
-                                                <div>
-                                                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Grupo Clínico</span>
-                                                    <span id="reasoningGroup" class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded block truncate"></span>
-                                                </div>
-                                                <div>
-                                                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Subgrupo</span>
-                                                    <span id="reasoningSubgroup" class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded block truncate"></span>
-                                                </div>
-                                            </div>
+                                        <div id="differentialRankingContainer" class="space-y-4 mb-6">
+                                            <!-- Inyectado por ui.js -->
+                                        </div>
 
-                                            <!-- Resumen Clínico -->
-                                            <div>
-                                                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Análisis de la Entidad</span>
-                                                <p id="reasoningSummary" class="text-[11px] text-slate-600 leading-relaxed font-semibold italic"></p>
-                                            </div>
-
-                                            <!-- Diferenciales Sugeridos -->
-                                            <div>
-                                                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-2">Diagnóstico Diferencial Estrecho</span>
-                                                <div id="reasoningDifferentials" class="flex flex-wrap gap-1.5"></div>
-                                            </div>
-
-                                            <!-- Red Flags Ontológicas -->
-                                            <div id="reasoningRedFlagsContainer" class="hidden pt-2">
-                                                <span class="text-[9px] font-black text-rose-400 uppercase tracking-widest block mb-2 italic">Vigilancia Específica (Ontología)</span>
-                                                <div id="reasoningRedFlags" class="space-y-1"></div>
-                                            </div>
+                                        <!-- Disclaimer Clínico Obligatorio -->
+                                        <div class="bg-yellow-50 text-xs text-gray-600 rounded-lg p-3 border border-yellow-100 leading-relaxed italic">
+                                            <span class="font-bold text-yellow-700">⚠️ Aviso:</span> 
+                                            Estos diferenciales son sugerencias semiológicas basadas en reglas heurísticas. 
+                                            No constituyen un diagnóstico médico definitivo y requieren correlación clínica directa.
                                         </div>
                                     </div>
-                                </div>
 
 
                                 <!-- RAZONAMIENTO DEL SISTEMA (FASE 3 - EXPLICABILIDAD) -->
