@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     rfContainer.classList.remove('hidden');
                     rfLabel.textContent = "Claves Diagnósticas (Hallazgos Cardinales)";
                     rfLabel.className = "text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-2 italic";
-                    
+
                     rfList.innerHTML = ontologyInfo.applied_cardinal_rules.map(rule => `
                         <div class="flex items-start gap-2">
                             <span class="text-blue-500 font-black">•</span>
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Señales de Peso Semiológico
-        const X = encodeFeatures(formData);
+        const { X } = encodeFeatures(formData);
         const expl = explain(X, res.classIdx);
 
         document.getElementById('explainabilityList').innerHTML = expl.map(c => `

@@ -798,62 +798,6 @@ const MODEL_DATA = {
  * Mapea los datos del formulario al vector de features esperado por el modelo.
  * Implementa una búsqueda dinámica para evitar hardcodear cada feature.
  */
-function prepareFeatureVector(formData) {
-  const { features } = MODEL_DATA.metadata;
-  const vector = new Array(features.length).fill(0);
-
-  // Mapeos especiales manuales (raíces constantes)
-  const manualMappings = {
-    'age': 'edad',
-    'riesgo_metabolico': 'diabetes',
-    'fitzpatrick': 'fototipo' // Manejado aparte por dummies
-  };
-
-  features.forEach((feature, idx) => {
-    // 1. Manejo de Edad
-    if (feature === 'edad') {
-        vector[idx] = parseFloat(formData.age) || 0;
-        return;
-    }
-
-    // 2. Manejo de Fototipo (Dummies ft_I, ft_II, etc.)
-    if (feature.startsWith('ft_')) {
-        const roman = feature.split('_')[1];
-        const romanMap = { 'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6 };
-        if (parseInt(formData.fitzpatrick) === romanMap[roman]) {
-            vector[idx] = 1;
-        }
-        return;
-    }
-
-    // 3. Manejo de Timing (agudo, subagudo, cronico)
-    if (['agudo', 'subagudo', 'cronico'].includes(feature)) {
-        const timingMap = { 'acute': 'agudo', 'subacute': 'subagudo', 'chronic': 'cronico' };
-        if (timingMap[formData.timing] === feature) {
-            vector[idx] = 1;
-        }
-        return;
-    }
-
-    // 4. Mapeo Dinámico por prefijos clínicos (lesion_, patron_, signo_, antecedente_, farmacos_)
-    const prefixes = ['lesion_', 'patron_', 'signo_', 'antecedente_', 'farmacos_', ''];
-    for (const prefix of prefixes) {
-        const formKey = prefix + feature;
-        if (formData[formKey] === true) {
-            vector[idx] = 1;
-            break;
-        }
-    }
-
-    // Caso especial: bula_ampolla mapea a lesion_ampolla o lesion_bula
-    if (feature === 'bula_ampolla' && (formData.lesion_ampolla || formData.lesion_bula)) {
-        vector[idx] = 1;
-    }
-  });
-
-  return vector;
-}
-
 /**
  * Aplica el escalado de StandardScaler usado en el entrenamiento.
  */
@@ -874,9 +818,11 @@ function softmax(logits) {
 
 /**
  * Ejecuta la predicción del modelo probabilístico.
+ * @param {Array} X - Vector de features unificado (raw)
  */
-export function predictProbabilisticSyndrome(formData) {
-  const rawVector = prepareFeatureVector(formData);
+export function predictProbabilisticSyndrome(X) {
+  // El modelo espera exactamente las primeras 48 features en el orden definido en constants.js
+  const rawVector = X.slice(0, 48);
   const scaledVector = applyScaling(rawVector);
   
   const { intercept, coefficients } = MODEL_DATA.parameters;

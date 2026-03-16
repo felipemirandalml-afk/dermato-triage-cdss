@@ -32,8 +32,8 @@ const stats = {
 };
 
 CLINICAL_CASES.forEach((c, index) => {
-    const X = encodeFeatures(c.input);
-    const raw = predict(X);
+    const { X, helper } = encodeFeatures(c.input);
+    const raw = predict(X, helper);
     const result = interpretResult(X, raw); // Usamos la capa de interpretación (con modifiers)
     const explanation = explain(X, raw.classIdx);
 

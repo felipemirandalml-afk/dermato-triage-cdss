@@ -9,15 +9,13 @@ import { createFeatureHelper, encodeFeatures } from './feature_encoder.js';
 /**
  * Procesa la información de la ontología aplicando el conocimiento dermatológico cardinal.
  * 
- * @param {Object} formData - Datos brutos del formulario
+ * @param {Object} helper - Feature helper ya procesado
  * @param {Object} result - Objeto de resultado generado por runTriage
  * @returns {Object} El objeto ontology_info modificado (o el original si no aplica nada)
  */
-export function rankDifferentials(formData, result) {
+export function rankDifferentials(helper, result) {
     if (!result.ontology_info) return null;
 
-    const X = encodeFeatures(formData);
-    const helper = createFeatureHelper(X);
     const ontologyInfo = { ...result.ontology_info };
     const matchedRules = [];
 

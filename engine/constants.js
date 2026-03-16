@@ -1,68 +1,76 @@
 /**
  * constants.js - Diccionarios maestros y configuraciones del motor
+ * Refactorizado: Single Source of Truth para el vocabulario clínico.
  */
 
-const featureGroups = {
-    basics: ['edad', 'fototipo', 'sexo_male', 'sexo_female'],
-    red_flags: ['inmunosupresion', 'farmacos_recientes', 'riesgo_metabolico', 'signo_fiebre', 'signo_dolor', 'signo_mucosas'],
-    primarias: ['lesion_macula', 'lesion_mancha', 'lesion_papula', 'lesion_placa', 'lesion_nodulo', 'lesion_habon', 'lesion_eritema', 'lesion_purpura', 'lesion_telangiectasia', 'lesion_comedon', 'lesion_quiste', 'lesion_tumor', 'lesion_vegetacion'],
-    liquidas: ['lesion_vesicula', 'lesion_ampolla', 'lesion_bula', 'lesion_pustula'],
-    secundarias: ['lesion_escama', 'lesion_costra', 'lesion_escara', 'lesion_erosion', 'lesion_ulcera', 'lesion_excoriacion', 'lesion_fisura', 'lesion_atrofia', 'lesion_esclerosis', 'lesion_liquenificacion', 'lesion_cicatriz'],
-    topografia: [
-        'topog_cabeza', 'topo_cuero_cabelludo', 'topo_cara_centro', 'topo_cuello',
-        'topog_tronco', 'topo_pecho', 'topo_abdomen', 'topo_espalda', 'topo_axilas', 'topo_inguinal', 'topo_submamario',
-        'topog_ext_sup', 'topo_hombros', 'topo_brazos', 'topo_codos', 'topo_antebrazos', 'topo_manos', 'topo_dorso_manos', 'topo_palmas',
-        'topog_ext_inf', 'topo_muslos', 'topo_rodillas', 'topo_espinillas', 'topo_pantorrillas', 'topo_tobillos', 'topo_pies', 'topo_plantas', 'topo_dorso_pies'
-    ],
-    patrones: ['patron_acral', 'patron_dermatomal', 'patron_seborreica', 'patron_fotoexpuesto', 'patron_simetrico', 'patron_extensoras', 'patron_flexoras', 'patron_generalizado', 'patron_localizado', 'patron_intertriginoso', 'patron_lineal', 'patron_flexural', 'patron_extensor'],
-    timing: ['tiempo_agudo', 'tiempo_subagudo', 'tiempo_cronico'],
-    extended_context: [
-        'antecedente_neoplasia', 'antecedente_autoinmune', 'antecedente_hepatopatia',
-        'antecedente_obesidad', 'antecedente_trauma', 'antecedente_quimico',
-        'antecedente_viaje', 'antecedente_eii', 'antecedente_atopia', 'antecedente_embarazo'
-    ]
-};
+// 1. Definición del Vector de Inferencia Probabilística (Orden Estricto del Modelo)
+export const PROBABILISTIC_FEATURES = [
+    "edad", "papula", "placa", "vesicula", "pustula", "bula_ampolla", "escama", "ulcera", "purpura",
+    "dermatomal", "intertriginoso", "flexural", "extensor", "generalizado", "localizado",
+    "agudo", "subagudo", "cronico", "prurito", "dolor", "fiebre",
+    "farmacos_recientes", "inmunosupresion", "diabetes", "hepatopatia", "atopia", "embarazo",
+    "eritema", "hiperpigmentacion", "hipopigmentacion", "costra", "erosion", "excoriacion",
+    "liquenificacion", "nodulo", "quiste", "induracion", "telangiectasias", "atrofia", "habon", "comedon", "surco",
+    "ft_I", "ft_II", "ft_III", "ft_IV", "ft_V", "ft_VI"
+];
+
+// 2. Características Adicionales (Lógica Heurística, Anatomía y Detalles UI)
+const EXTRA_CLINICAL_FEATURES = [
+    // Demografía/Basales extra
+    'sexo_male', 'sexo_female',
+    // Lesiones primarias no incluidas en el modelo probabilístico
+    'macula', 'mancha', 'tumor', 'vegetacion',
+    // Lesiones secundarias extra
+    'escara', 'fisura', 'esclerosis', 'cicatriz',
+    // Topografía Detallada
+    'topog_cabeza', 'topo_cuero_cabelludo', 'topo_cara_centro', 'topo_cuello',
+    'topog_tronco', 'topo_pecho', 'topo_abdomen', 'topo_espalda', 'topo_axilas', 'topo_inguinal', 'topo_submamario',
+    'topog_ext_sup', 'topo_hombros', 'topo_brazos', 'topo_codos', 'topo_antebrazos', 'topo_manos', 'topo_dorso_manos', 'topo_palmas',
+    'topog_ext_inf', 'topo_muslos', 'topo_rodillas', 'topo_espinillas', 'topo_pantorrillas', 'topo_tobillos', 'topo_pies', 'topo_plantas', 'topo_dorso_pies',
+    // Patrones extra
+    'patron_acral', 'patron_seborreica', 'patron_fotoexpuesto', 'patron_simetrico', 'patron_lineal',
+    // Contexto extra
+    'antecedente_neoplasia', 'antecedente_autoinmune', 'antecedente_obesidad', 'antecedente_trauma', 'antecedente_quimico', 'antecedente_viaje', 'antecedente_eii',
+    // Señales específicas
+    'signo_mucosas'
+];
 
 export const FEATURE_INDEX = {};
-let i = 0;
-Object.values(featureGroups).flat().forEach(f => {
-    FEATURE_INDEX[f] = i++;
+[...PROBABILISTIC_FEATURES, ...EXTRA_CLINICAL_FEATURES].forEach((f, idx) => {
+    FEATURE_INDEX[f] = idx;
 });
 
 export const FEATURE_MAP_LABELS = {
     farmacos_recientes: "Exposición a Fármacos Sistémicos",
-    signo_fiebre: "Respuesta Inflamatoria Sistémica",
-    lesion_ampolla: "Formación de Ampollas",
-    lesion_bula: "Dermatosis Ampollosa Mayor",
-    lesion_ulcera: "Pérdida de Continuidad Tisular",
-    lesion_purpura: "Extravasación Hemática (Púrpura)",
-    patron_generalizado: "Compromiso Extenso de Superficie",
-    tiempo_agudo: "Instauración Hiperaguda",
+    fiebre: "Respuesta Inflamatoria Sistémica (Fiebre)",
+    bula_ampolla: "Formación de Ampollas / Bulas",
+    ulcera: "Pérdida de Continuidad Tisular (Úlcera)",
+    purpura: "Extravasación Hemática (Púrpura)",
+    generalizado: "Compromiso Extenso de Superficie",
+    agudo: "Instauración Hiperaguda (Fast-onset)",
     inmunosupresion: "Estado de Inmunocompromiso",
-    tiempo_cronico: "Evolución Crónica (>6 sem)",
-    lesion_escama: "Descamación Superficial",
-    signo_dolor: "Dolor Intenso / Progresivo",
+    cronico: "Evolución Crónica (>6 sem)",
+    escama: "Descamación Superficial",
+    dolor: "Dolor Intenso / Progresivo",
     signo_mucosas: "Compromiso de Mucosas",
-    lesion_nodulo: "Lesión Nodular",
-    lesion_tumor: "Lesión Tumoral / Masa",
-    lesion_erosion: "Erosiones Cutáneas",
-    lesion_comedon: "Comedón (Cerrado/Abierto)",
+    nodulo: "Lesión Nodular",
+    tumor: "Lesión Tumoral / Masa",
+    erosion: "Erosiones Cutáneas",
+    comedon: "Presencia de Comedones",
     antecedente_neoplasia: "Antecedente de Neoplasia",
     antecedente_autoinmune: "Condición Autoinmune",
-    antecedente_hepatopatia: "Hepatopatía Crónica",
-    antecedente_obesidad: "Obesidad (IMC > 30)",
+    hepatopatia: "Hepatopatía Crónica",
+    diabetes: "Diabetes Mellitus / Riesgo Metabólico",
     antecedente_trauma: "Trauma o Herida Reciente",
-    antecedente_quimico: "Exposición a Irritantes",
     antecedente_viaje: "Viaje a Zona Tropical",
-    antecedente_eii: "Enfermedad Inflamatoria Intestinal",
-    antecedente_atopia: "Perfil Atópico",
-    antecedente_embarazo: "Estado de Embarazo",
-    patron_dermatomal: "Distribución Dermatomal (Segmentaria)",
-    patron_intertriginoso: "Patrón Intertriginoso (Pliegues)",
-    patron_flexural: "Distribución en Flexuras",
-    patron_extensor: "Distribución en Superficies Extensoras",
-    patron_lineal: "Distribución Lineal",
-    patron_localizado: "Lesión Localizada / Única",
+    atopia: "Perfil Atópico (Dermatitis/Asma)",
+    embarazo: "Estado de Embarazo",
+    dermatomal: "Distribución Dermatomal (Segmentaria)",
+    intertriginoso: "Patrón Intertriginoso (Pliegues)",
+    flexural: "Distribución en Flexuras",
+    extensor: "Distribución en Superficies Extensoras",
+    lineal: "Distribución Lineal",
+    localizado: "Lesión Localizada / Única",
     topo_inguinal: "Región Inguinal / Genital",
     topo_submamario: "Pliegue Submamario"
 };

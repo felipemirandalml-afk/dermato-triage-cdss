@@ -17,12 +17,10 @@ import { rankDifferentials } from './engine/differential_ranker.js';
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
 
 /**
- * Función principal de inferencia (API unificada)
- * Implementa el pipeline clínico en el orden canónico para preservar comportamiento.
+ * Función principal de inferencia (Orquestación del Pipeline)
  */
-export function predict(X) {
+export function predict(X, helper) {
     const baseline = predictBaseline(X, FEATURE_INDEX);
-    const helper = createFeatureHelper(X);
     
     // Pipeline de Modificadores (Secuencial con "Early Return" si hay coincidencia de regla)
     
@@ -47,30 +45,35 @@ export function predict(X) {
 }
 
 /**
- * API de alto nivel para triage
+ * API de alto nivel para triage: Punto de entrada principal
  */
 export function runTriage(formData) {
-    const X = encodeFeatures(formData);
-    const prediction = predict(X);
+    // 1. Encoding Único (Single Source of Truth)
+    const { X, featureMap, helper } = encodeFeatures(formData);
+
+    // 2. Predicción de Prioridad (Híbrida: Baseline + Modificadores)
+    const prediction = predict(X, helper);
+    
+    // 3. Construcción del Resultado Básico e Interpretación
     const result = interpretResult(X, prediction);
     
-    // Capa: Inferencia de Síndrome Probabilístico
-    const probabilisticAnalysis = predictProbabilisticSyndrome(formData);
+    // 4. Inferencia de Síndrome Probabilístico (ML)
+    const probabilisticAnalysis = predictProbabilisticSyndrome(X);
     result.probabilistic_analysis = probabilisticAnalysis;
     
-    // Capa: Enriquecimiento con Ontología Derm1M
+    // 5. Enriquecimiento con Ontología y Ranker de Hallazgos
     const ontologyInfo = getOntologyInfoForSyndrome(probabilisticAnalysis.top_syndrome);
     if (ontologyInfo) {
         result.ontology_info = ontologyInfo;
-        
-        // Capa: Ranker de Hallazgos Cardinales (Lógica Patognomónica)
-        result.ontology_info = rankDifferentials(formData, result);
+        // El ranker ya no necesita re-encodear formData, usa el helper
+        result.ontology_info = rankDifferentials(helper, result);
     }
     
     return result;
 }
 
-// Compatibilidad con validadores externos
+// Compatibilidad con validadores y utilidades
 export function applyClinicalModifiers(X, result) {
-    return predict(X);
+    const helper = createFeatureHelper(X);
+    return predict(X, helper);
 }

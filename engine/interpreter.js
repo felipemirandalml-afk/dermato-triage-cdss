@@ -37,11 +37,10 @@ export function interpretResult(X, prediction) {
     const redFlags = [];
     const rfMap = {
         signo_mucosas: "Compromiso de Mucosas (Riesgo SJS/NET)",
-        signo_fiebre: "Fiebre / Respuesta Inflamatoria Sistémica",
-        signo_dolor: "Dolor Intenso (Sospecha de Infección Profunda/Necrosis)",
-        lesion_ampolla: "Dermatosis Ampollosa",
-        lesion_bula: "Presencia de Bulas Masivas",
-        lesion_purpura: "Púrpura Palpable (Sospecha Vasculitis)",
+        fiebre: "Fiebre / Respuesta Inflamatoria Sistémica",
+        dolor: "Dolor Intenso (Sospecha de Infección Profunda/Necrosis)",
+        bula_ampolla: "Dermatosis Ampollosa / Bulas",
+        purpura: "Púrpura Palpable (Sospecha Vasculitis)",
         inmunosupresion: "Paciente Inmunocompromedido",
         farmacos_recientes: "Antecedente de Fármacos Sistémicos Críticos"
     };

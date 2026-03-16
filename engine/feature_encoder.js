@@ -1,44 +1,84 @@
 /**
- * feature_encoder.js - Transformación de inputs brutos a features del motor
+ * feature_encoder.js - Single Source of Truth para la transformación de features.
+ * Transforma formData de la UI en representaciones numéricas y semánticas.
  */
-import { FEATURE_INDEX } from './constants.js';
+import { FEATURE_INDEX, PROBABILISTIC_FEATURES } from './constants.js';
 
 export function encodeFeatures(formData) {
+    // 1. Inicializar vector X con el tamaño del diccionario total
     const X = new Array(Object.keys(FEATURE_INDEX).length).fill(0);
-    
-    // Mapeo dinámico: busca IDs del formData en el FEATURE_INDEX
-    for (const [key, value] of Object.entries(formData)) {
-        // Mapeos numéricos/especiales
-        if (key === 'age') {
-            X[FEATURE_INDEX.edad] = (parseFloat(value) || 0) / 100;
-            continue;
-        }
-        if (key === 'fitzpatrick') {
-            X[FEATURE_INDEX.fototipo] = parseInt(value) || 1;
+    const featureMap = {};
+
+    // 2. Mapeos de Datos Básicos y Demografía
+    const age = parseFloat(formData.age) || 0;
+    X[FEATURE_INDEX.edad] = age;
+    featureMap.edad = age;
+
+    const fitzpatrick = parseInt(formData.fitzpatrick) || 1;
+    X[FEATURE_INDEX.fototipo] = fitzpatrick; // Para baseline si lo usa
+    featureMap.fototipo = fitzpatrick;
+
+    // Expansión de Dummies de Fitzpatrick (ft_I...ft_VI)
+    const ftKey = `ft_${romanize(fitzpatrick)}`;
+    if (FEATURE_INDEX[ftKey] !== undefined) {
+        X[FEATURE_INDEX[ftKey]] = 1;
+    }
+
+    // Sexo
+    if (formData.sex === 'male') X[FEATURE_INDEX.sexo_male] = 1;
+    if (formData.sex === 'female') X[FEATURE_INDEX.sexo_female] = 1;
+
+    // 3. Mapeo de Timing
+    const timingMap = { 'acute': 'agudo', 'subacute': 'subagudo', 'chronic': 'cronico' };
+    if (formData.timing && timingMap[formData.timing]) {
+        const key = timingMap[formData.timing];
+        X[FEATURE_INDEX[key]] = 1;
+        featureMap[key] = 1;
+    }
+
+    // 4. Mapeo de Morfología, Topografía y Contexto
+    for (const [rawKey, value] of Object.entries(formData)) {
+        if (value !== true) continue;
+
+        // Intentar mapeo directo primero (Preserva prefijos como patron_ o topo_)
+        if (FEATURE_INDEX[rawKey] !== undefined) {
+            X[FEATURE_INDEX[rawKey]] = 1;
+            featureMap[rawKey] = 1;
             continue;
         }
 
-        // Mapeos booleanos
-        if (FEATURE_INDEX[key] !== undefined) {
-            if (typeof value === 'boolean') {
-                X[FEATURE_INDEX[key]] = value ? 1 : 0;
-            }
+        // Mapeos de normalización si el directo falla
+        let targetKey = rawKey;
+        if (rawKey === 'signo_fiebre') targetKey = 'fiebre';
+        if (rawKey === 'signo_dolor') targetKey = 'dolor';
+        if (rawKey === 'riesgo_metabolico') targetKey = 'diabetes';
+        
+        // Strip de prefijos para buscar en los 48 base del modelo probabilístico
+        if (rawKey.startsWith('lesion_')) targetKey = rawKey.replace('lesion_', '');
+        if (rawKey.startsWith('patron_')) targetKey = rawKey.replace('patron_', '');
+        if (rawKey.startsWith('antecedente_')) targetKey = rawKey.replace('antecedente_', '');
+
+        // Uniones especiales
+        if (targetKey === 'ampolla' || targetKey === 'bula') targetKey = 'bula_ampolla';
+
+        if (FEATURE_INDEX[targetKey] !== undefined) {
+            X[FEATURE_INDEX[targetKey]] = 1;
+            featureMap[targetKey] = 1;
         }
     }
 
-    // Mapeo de Timing (radiogroup en UI)
-    if (formData.timing) {
-        if (formData.timing === 'acute') X[FEATURE_INDEX.tiempo_agudo] = 1;
-        if (formData.timing === 'subacute') X[FEATURE_INDEX.tiempo_subagudo] = 1;
-        if (formData.timing === 'chronic') X[FEATURE_INDEX.tiempo_cronico] = 1;
-    }
+    // 5. Creación del Helper y retorno unificado
+    const helper = createFeatureHelper(X);
 
-    return X;
+    return {
+        X: X,
+        featureMap: featureMap,
+        helper: helper
+    };
 }
 
 /**
  * Crea un helper con métodos semánticos para consultar features
- * Evita depender de FEATURE_INDEX[key] en la lógica de modifiers
  */
 export function createFeatureHelper(X) {
     return {
@@ -46,4 +86,12 @@ export function createFeatureHelper(X) {
         get: (key) => X[FEATURE_INDEX[key]],
         X: X
     };
+}
+
+/**
+ * Utilidad para mapear fototipo a romano (I-VI)
+ */
+function romanize(num) {
+    const map = { 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V', 6: 'VI' };
+    return map[num] || 'I';
 }

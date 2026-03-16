@@ -7,38 +7,37 @@
 const WEIGHT_MATRIX = {
     // Pesos que impulsan hacia P1 (URGENCIAL)
     P1: {
-        lesion_ampolla: 12,
-        lesion_bula: 12,
-        lesion_ulcera: 8,
-        lesion_erosion: 8,
+        bula_ampolla: 12,
+        ulcera: 8,
+        erosion: 8,
         farmacos_recientes: 10,
-        signo_fiebre: 12,
-        tiempo_agudo: 6,
-        lesion_purpura: 10,
-        patron_generalizado: 6,
+        fiebre: 12,
+        agudo: 6,
+        purpura: 10,
+        generalizado: 6,
         inmunosupresion: 6,
-        signo_dolor: 10,
+        dolor: 10,
         signo_mucosas: 8
     },
     // Pesos que impulsan hacia P2 (PRIORITARIO)
     P2: {
-        lesion_nodulo: 10,
-        lesion_tumor: 10,
-        lesion_telangiectasia: 5,
-        tiempo_subagudo: 2,
+        nodulo: 10,
+        tumor: 10,
+        telangiectasias: 5,
+        subagudo: 2,
         topog_cabeza: 0.5,
-        signo_dolor: 8,
-        lesion_vesicula: 5,
-        lesion_purpura: 6,
-        patron_generalizado: 4,
-        tiempo_agudo: 4
+        dolor: 8,
+        vesicula: 5,
+        purpura: 6,
+        generalizado: 4,
+        agudo: 4
     },
     // Pesos que impulsan hacia P3 (ESTABLE)
     P3: {
-        tiempo_cronico: 4,
-        lesion_cicatriz: 3,
-        lesion_atrofia: 3,
-        lesion_escama: 1.5
+        cronico: 4,
+        cicatriz: 3,
+        atrofia: 3,
+        escama: 1.5
     }
 };
 
