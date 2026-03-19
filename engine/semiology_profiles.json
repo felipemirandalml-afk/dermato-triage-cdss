@@ -1,0 +1,3995 @@
+{
+  "pigmented progressive purpuric dermatosis": {
+    "hiperpigmentacion": 0.344,
+    "papula": 0.094,
+    "placa": 0.083,
+    "eritema": 0.208,
+    "macula": 0.125
+  },
+  "melasma": {
+    "macula": 0.112,
+    "hiperpigmentacion": 0.052
+  },
+  "mucosal melanotic macule": {
+    "macula": 0.879,
+    "eritema": 0.076,
+    "hiperpigmentacion": 0.303
+  },
+  "acne": {
+    "cicatriz": 0.189,
+    "papula": 0.254,
+    "pustula": 0.218,
+    "quiste": 0.104,
+    "nodulo": 0.098,
+    "eritema": 0.084
+  },
+  "scar": {
+    "atrofia": 0.104,
+    "cicatriz": 0.939,
+    "papula": 0.059
+  },
+  "no definitive diagnosis": {
+    "nodulo": 0.054,
+    "eritema": 0.112,
+    "ulcera": 0.075,
+    "papula": 0.093,
+    "cicatriz": 0.062,
+    "hiperpigmentacion": 0.052
+  },
+  "cutaneous t cell lymphoma": {
+    "placa": 0.259,
+    "hiperpigmentacion": 0.058,
+    "eritema": 0.189,
+    "nodulo": 0.232,
+    "papula": 0.166,
+    "ulcera": 0.154,
+    "tumor": 0.05
+  },
+  "keratosis": {
+    "papula": 0.198,
+    "placa": 0.106
+  },
+  "porokeratosis": {
+    "placa": 0.166,
+    "papula": 0.134,
+    "eritema": 0.053,
+    "escama": 0.053,
+    "atrofia": 0.097
+  },
+  "impetigo": {
+    "costra": 0.376,
+    "bula_ampolla": 0.178,
+    "erosion": 0.078,
+    "eritema": 0.149,
+    "pustula": 0.139,
+    "vesicula": 0.119,
+    "papula": 0.155
+  },
+  "scleroderma": {
+    "atrofia": 0.188,
+    "eritema": 0.09,
+    "esclerosis": 0.09,
+    "placa": 0.143,
+    "telangiectasias": 0.056,
+    "cicatriz": 0.069,
+    "nodulo": 0.053,
+    "ulcera": 0.133
+  },
+  "lichen sclerosis et atrophicus": {
+    "placa": 0.16,
+    "hiperpigmentacion": 0.095,
+    "erosion": 0.062,
+    "atrofia": 0.383,
+    "eritema": 0.116,
+    "esclerosis": 0.065,
+    "cicatriz": 0.145,
+    "macula": 0.056,
+    "papula": 0.074
+  },
+  "palmoplantar pustulosis": {
+    "pustula": 0.729,
+    "papula": 0.123,
+    "eritema": 0.22,
+    "placa": 0.072,
+    "escama": 0.061,
+    "vesicula": 0.101
+  },
+  "angioma": {
+    "papula": 0.147,
+    "ulcera": 0.078,
+    "placa": 0.065,
+    "nodulo": 0.103,
+    "tumor": 0.06
+  },
+  "hyperpigmentation": {
+    "macula": 0.072,
+    "hiperpigmentacion": 0.062,
+    "cicatriz": 0.054
+  },
+  "post-inflammatory hyperpigmentation": {
+    "cicatriz": 0.065
+  },
+  "herpes zoster": {
+    "vesicula": 0.402,
+    "papula": 0.242,
+    "costra": 0.09,
+    "eritema": 0.208,
+    "ulcera": 0.065,
+    "bula_ampolla": 0.083
+  },
+  "verruca vulgaris": {
+    "macula": 0.063,
+    "papula": 0.357,
+    "nodulo": 0.13
+  },
+  "squamous cell carcinoma": {
+    "escama": 0.053,
+    "ulcera": 0.163,
+    "nodulo": 0.08,
+    "placa": 0.073,
+    "costra": 0.073,
+    "eritema": 0.06,
+    "papula": 0.066,
+    "tumor": 0.098
+  },
+  "psoriasis": {
+    "placa": 0.1,
+    "eritema": 0.065,
+    "escama": 0.098
+  },
+  "pigmented purpuric eruption": {
+    "macula": 0.072,
+    "papula": 0.411,
+    "eritema": 0.301,
+    "vesicula": 0.26,
+    "hiperpigmentacion": 0.341
+  },
+  "neurofibroma": {
+    "macula": 0.256,
+    "papula": 0.061,
+    "nodulo": 0.272,
+    "tumor": 0.244
+  },
+  "ulcer": {
+    "ulcera": 0.97
+  },
+  "angiofibroma": {
+    "esclerosis": 0.071,
+    "nodulo": 0.405,
+    "placa": 0.143,
+    "eritema": 0.071,
+    "hipopigmentacion": 0.071,
+    "papula": 0.286,
+    "tumor": 0.143
+  },
+  "tuberous sclerosis": {
+    "esclerosis": 0.441,
+    "placa": 0.093,
+    "macula": 0.254,
+    "hiperpigmentacion": 0.076,
+    "nodulo": 0.076,
+    "papula": 0.119,
+    "tumor": 0.068
+  },
+  "epidermal nevus": {
+    "placa": 0.306,
+    "hiperpigmentacion": 0.095,
+    "papula": 0.278,
+    "eritema": 0.05
+  },
+  "nevus": {
+    "macula": 0.068,
+    "hiperpigmentacion": 0.315,
+    "papula": 0.062
+  },
+  "vitiligo": {
+    "macula": 0.135,
+    "hiperpigmentacion": 0.115,
+    "hipopigmentacion": 0.073
+  },
+  "drug eruption": {
+    "placa": 0.054,
+    "papula": 0.351,
+    "eritema": 0.527,
+    "bula_ampolla": 0.055
+  },
+  "fixed drug eruption": {
+    "placa": 0.072,
+    "eritema": 0.259,
+    "bula_ampolla": 0.059,
+    "vesicula": 0.053,
+    "macula": 0.053
+  },
+  "amyloidosis": {
+    "papula": 0.358,
+    "nodulo": 0.087,
+    "macula": 0.067,
+    "placa": 0.064
+  },
+  "lichen amyloidosis": {
+    "papula": 0.652,
+    "escama": 0.065,
+    "placa": 0.087,
+    "eritema": 0.065,
+    "nodulo": 0.065
+  },
+  "paget's disease": {
+    "costra": 0.091,
+    "escama": 0.697,
+    "eritema": 0.061,
+    "erosion": 0.061
+  },
+  "onchocerciasis": {
+    "ulcera": 0.182,
+    "liquenificacion": 0.273,
+    "papula": 0.182,
+    "nodulo": 0.364,
+    "eritema": 0.182,
+    "excoriacion": 0.182,
+    "atrofia": 0.273,
+    "macula": 0.091,
+    "hiperpigmentacion": 0.091,
+    "costra": 0.091
+  },
+  "nail disease": {
+    "eritema": 0.073
+  },
+  "venous lake": {
+    "papula": 0.3,
+    "vesicula": 0.05,
+    "hipopigmentacion": 0.1,
+    "nodulo": 0.2,
+    "macula": 0.05
+  },
+  "atopic dermatitis": {
+    "papula": 0.158,
+    "costra": 0.071,
+    "escama": 0.067,
+    "eritema": 0.197,
+    "liquenificacion": 0.057,
+    "placa": 0.055
+  },
+  "eczema": {
+    "eritema": 0.078,
+    "costra": 0.066,
+    "vesicula": 0.066,
+    "papula": 0.248
+  },
+  "xerosis": {
+    "escama": 0.111,
+    "papula": 0.086
+  },
+  "dermatitis": {
+    "papula": 0.288,
+    "costra": 0.07,
+    "escama": 0.067,
+    "eritema": 0.208,
+    "vesicula": 0.075
+  },
+  "vasculitis": {
+    "ulcera": 0.241,
+    "nodulo": 0.149,
+    "papula": 0.175,
+    "eritema": 0.194,
+    "placa": 0.059
+  },
+  "basal cell carcinoma": {
+    "nodulo": 0.1,
+    "ulcera": 0.154,
+    "telangiectasias": 0.06,
+    "papula": 0.077,
+    "tumor": 0.071
+  },
+  "rosacea": {
+    "eritema": 0.155,
+    "telangiectasias": 0.096,
+    "papula": 0.191,
+    "pustula": 0.116
+  },
+  "café-au-lait spots": {
+    "macula": 0.364,
+    "nodulo": 0.091,
+    "papula": 0.091,
+    "hiperpigmentacion": 0.091
+  },
+  "melanoma": {
+    "hiperpigmentacion": 0.157,
+    "nodulo": 0.098,
+    "tumor": 0.057
+  },
+  "hand foot and mouth disease": {
+    "vesicula": 0.343,
+    "erosion": 0.111,
+    "eritema": 0.185,
+    "papula": 0.12,
+    "ulcera": 0.37
+  },
+  "stevens-johnson syndrome": {
+    "macula": 0.101,
+    "vesicula": 0.078,
+    "costra": 0.07,
+    "erosion": 0.108,
+    "eritema": 0.274,
+    "papula": 0.06,
+    "bula_ampolla": 0.136,
+    "cicatriz": 0.085
+  },
+  "cutaneous manifestation": {
+    "escama": 0.912
+  },
+  "striae": {
+    "atrofia": 0.161,
+    "placa": 0.065,
+    "eritema": 0.054
+  },
+  "epidermolysis bullosa": {
+    "eritema": 0.084,
+    "cicatriz": 0.389,
+    "erosion": 0.227,
+    "atrofia": 0.06,
+    "bula_ampolla": 0.267,
+    "costra": 0.084,
+    "vesicula": 0.081
+  },
+  "cutaneous lupus": {
+    "pustula": 0.488,
+    "papula": 0.136,
+    "eritema": 0.497,
+    "placa": 0.146,
+    "atrofia": 0.071,
+    "cicatriz": 0.067,
+    "nodulo": 0.077,
+    "ulcera": 0.071
+  },
+  "tinea": {
+    "placa": 0.125,
+    "papula": 0.174,
+    "escama": 0.157,
+    "eritema": 0.17,
+    "macula": 0.058
+  },
+  "tinea versicolor": {
+    "macula": 0.145,
+    "papula": 0.109,
+    "escama": 0.142,
+    "hiperpigmentacion": 0.122,
+    "placa": 0.065
+  },
+  "subcutaneous nodule": {
+    "nodulo": 1,
+    "eritema": 0.056,
+    "quiste": 0.056
+  },
+  "hidradenitis suppurativa": {
+    "nodulo": 0.188,
+    "ulcera": 0.068,
+    "cicatriz": 0.203,
+    "papula": 0.242,
+    "pustula": 0.068,
+    "erosion": 0.106,
+    "placa": 0.15,
+    "eritema": 0.063,
+    "quiste": 0.063,
+    "costra": 0.106
+  },
+  "nodule": {
+    "nodulo": 1
+  },
+  "hemangioma": {
+    "ulcera": 0.064,
+    "papula": 0.067,
+    "nodulo": 0.053,
+    "tumor": 0.363
+  },
+  "erosive pustular dermatosis of the scalp": {
+    "pustula": 0.911,
+    "costra": 0.311,
+    "erosion": 0.156,
+    "eritema": 0.111,
+    "placa": 0.089,
+    "papula": 0.089
+  },
+  "condyloma acuminatum": {
+    "papula": 0.34
+  },
+  "skin diseases caused by warts": {
+    "papula": 0.19
+  },
+  "hypertrophic scar": {
+    "cicatriz": 0.955
+  },
+  "acanthosis nigricans": {
+    "placa": 0.141,
+    "hiperpigmentacion": 0.068
+  },
+  "cyst": {
+    "quiste": 0.828,
+    "papula": 0.059,
+    "nodulo": 0.117
+  },
+  "ichthyosis": {
+    "escama": 0.516,
+    "eritema": 0.133
+  },
+  "flat wart": {
+    "papula": 0.306
+  },
+  "dariers disease": {
+    "placa": 0.254,
+    "papula": 0.712,
+    "eritema": 0.169,
+    "hipopigmentacion": 0.051,
+    "hiperpigmentacion": 0.051,
+    "escama": 0.051
+  },
+  "excoriation disorder": {
+    "cicatriz": 0.375,
+    "excoriacion": 0.938
+  },
+  "linear and whorled nevoid hypermelanosis": {
+    "macula": 0.083,
+    "hiperpigmentacion": 0.083
+  },
+  "lichen planus": {
+    "papula": 0.219,
+    "placa": 0.118,
+    "eritema": 0.053,
+    "escama": 0.053
+  },
+  "lupus erythematosus": {
+    "pustula": 0.363,
+    "eritema": 0.557,
+    "papula": 0.096,
+    "placa": 0.131,
+    "atrofia": 0.062,
+    "ulcera": 0.062,
+    "escama": 0.06,
+    "cicatriz": 0.066
+  },
+  "blister": {
+    "papula": 0.101,
+    "bula_ampolla": 0.194,
+    "eritema": 0.23,
+    "vesicula": 0.144
+  },
+  "scabies": {
+    "surco": 0.13,
+    "papula": 0.216,
+    "nodulo": 0.115,
+    "costra": 0.161
+  },
+  "trichoblastoma": {
+    "nodulo": 0.154,
+    "tumor": 0.731
+  },
+  "nummular eczema": {
+    "placa": 0.467,
+    "macula": 0.067,
+    "escama": 0.233,
+    "eritema": 0.2,
+    "costra": 0.167,
+    "erosion": 0.067,
+    "papula": 0.15
+  },
+  "annular erythema": {
+    "eritema": 0.945,
+    "papula": 0.068,
+    "placa": 0.131
+  },
+  "urticaria": {
+    "placa": 0.059,
+    "papula": 0.338,
+    "eritema": 0.121,
+    "habon": 0.133
+  },
+  "syphilis": {
+    "papula": 0.274,
+    "escama": 0.082,
+    "ulcera": 0.482,
+    "eritema": 0.146,
+    "nodulo": 0.064,
+    "placa": 0.073
+  },
+  "lichen simplex chronicus": {
+    "liquenificacion": 0.185,
+    "placa": 0.228,
+    "eritema": 0.069,
+    "excoriacion": 0.108,
+    "papula": 0.255,
+    "costra": 0.05,
+    "nodulo": 0.077
+  },
+  "plaque": {
+    "placa": 1
+  },
+  "polymorphic eruption of pregnancy": {
+    "papula": 0.563,
+    "placa": 0.313,
+    "eritema": 0.375,
+    "hipopigmentacion": 0.063,
+    "telangiectasias": 0.063,
+    "vesicula": 0.125
+  },
+  "lipoid proteinosis": {
+    "papula": 0.55,
+    "liquenificacion": 0.05,
+    "cicatriz": 0.25,
+    "placa": 0.1,
+    "esclerosis": 0.05,
+    "macula": 0.1,
+    "nodulo": 0.15,
+    "bula_ampolla": 0.1,
+    "costra": 0.15,
+    "vesicula": 0.05
+  },
+  "cutis marmorata telangiectatica congenita": {
+    "atrofia": 0.364,
+    "telangiectasias": 0.182,
+    "macula": 0.182,
+    "pustula": 0.091,
+    "ulcera": 0.091
+  },
+  "pityriasis lichenoides": {
+    "vesicula": 0.081,
+    "eritema": 0.209,
+    "papula": 0.628,
+    "pustula": 0.058,
+    "costra": 0.198,
+    "cicatriz": 0.058,
+    "ulcera": 0.07,
+    "hiperpigmentacion": 0.14,
+    "escama": 0.186,
+    "macula": 0.105,
+    "placa": 0.058
+  },
+  "pityriasis lichenoides chronica": {
+    "vesicula": 0.08,
+    "eritema": 0.24,
+    "hiperpigmentacion": 0.16,
+    "papula": 0.6,
+    "escama": 0.2,
+    "macula": 0.16,
+    "costra": 0.08
+  },
+  "steatocystoma multiplex": {
+    "quiste": 1,
+    "nodulo": 0.111,
+    "papula": 0.067
+  },
+  "candidiasis": {
+    "eritema": 0.265,
+    "placa": 0.103,
+    "pustula": 0.103,
+    "papula": 0.1,
+    "costra": 0.054
+  },
+  "necrotizing fasciitis": {
+    "pustula": 0.08,
+    "ulcera": 0.227,
+    "eritema": 0.17,
+    "bula_ampolla": 0.091,
+    "placa": 0.091
+  },
+  "varicella": {
+    "vesicula": 0.492,
+    "eritema": 0.171,
+    "cicatriz": 0.088,
+    "papula": 0.306,
+    "pustula": 0.114,
+    "costra": 0.249,
+    "macula": 0.076,
+    "ulcera": 0.159
+  },
+  "herpes simplex virus": {
+    "ulcera": 0.163,
+    "vesicula": 0.502,
+    "costra": 0.116,
+    "eritema": 0.122,
+    "erosion": 0.063,
+    "bula_ampolla": 0.144,
+    "papula": 0.207
+  },
+  "petechiae": {
+    "papula": 0.156,
+    "eritema": 0.125,
+    "macula": 0.063,
+    "purpura": 0.063
+  },
+  "necrobiosis lipoidica": {
+    "ulcera": 0.187,
+    "eritema": 0.11,
+    "papula": 0.055,
+    "telangiectasias": 0.077,
+    "placa": 0.319,
+    "atrofia": 0.11
+  },
+  "erythema migrans": {
+    "eritema": 0.856,
+    "papula": 0.078
+  },
+  "mycosis fungoides": {
+    "placa": 0.34,
+    "eritema": 0.315,
+    "papula": 0.06,
+    "tumor": 0.053
+  },
+  "syringoma": {
+    "papula": 0.138,
+    "tumor": 0.487,
+    "cicatriz": 0.099
+  },
+  "folliculitis": {
+    "pustula": 0.206,
+    "papula": 0.439,
+    "vesicula": 0.095,
+    "bula_ampolla": 0.054,
+    "eritema": 0.09,
+    "cicatriz": 0.07
+  },
+  "poikiloderma": {
+    "telangiectasias": 0.122,
+    "atrofia": 0.204,
+    "eritema": 0.231
+  },
+  "cutaneous leishmaniasis": {
+    "costra": 0.147,
+    "ulcera": 0.412,
+    "cicatriz": 0.076,
+    "papula": 0.147,
+    "eritema": 0.218,
+    "placa": 0.2,
+    "nodulo": 0.188
+  },
+  "chilblain": {
+    "pustula": 0.103,
+    "nodulo": 0.077,
+    "placa": 0.09,
+    "atrofia": 0.09,
+    "eritema": 0.346,
+    "papula": 0.141,
+    "ulcera": 0.115,
+    "costra": 0.051,
+    "escama": 0.09
+  },
+  "actinic solar damage(actinic keratosis)": {
+    "macula": 0.076,
+    "papula": 0.234,
+    "placa": 0.127,
+    "eritema": 0.184,
+    "hiperpigmentacion": 0.184,
+    "escama": 0.165,
+    "costra": 0.057
+  },
+  "pyogenic granuloma": {
+    "nodulo": 0.11,
+    "papula": 0.071,
+    "ulcera": 0.09,
+    "tumor": 0.208
+  },
+  "neurotic excoriations": {
+    "costra": 0.067,
+    "excoriacion": 1,
+    "cicatriz": 0.4,
+    "erosion": 0.133,
+    "macula": 0.067,
+    "hiperpigmentacion": 0.067
+  },
+  "bowen's disease": {
+    "macula": 0.12,
+    "escama": 0.176,
+    "placa": 0.287,
+    "hiperpigmentacion": 0.148,
+    "costra": 0.13,
+    "nodulo": 0.056,
+    "eritema": 0.176,
+    "papula": 0.194,
+    "ulcera": 0.083
+  },
+  "juvenile plantar dermatosis": {
+    "eritema": 0.524,
+    "escama": 0.095
+  },
+  "lepromatous leprosy": {
+    "ulcera": 0.077,
+    "nodulo": 0.385,
+    "papula": 0.128,
+    "placa": 0.231,
+    "eritema": 0.179,
+    "hiperpigmentacion": 0.077,
+    "macula": 0.205
+  },
+  "cellulitis": {
+    "bula_ampolla": 0.066,
+    "eritema": 0.276,
+    "papula": 0.063
+  },
+  "granuloma annulare": {
+    "papula": 0.349,
+    "nodulo": 0.173,
+    "placa": 0.238,
+    "eritema": 0.186
+  },
+  "sarcoidosis": {
+    "cicatriz": 0.102,
+    "nodulo": 0.318,
+    "placa": 0.213,
+    "eritema": 0.111,
+    "papula": 0.166,
+    "ulcera": 0.064
+  },
+  "confluent and reticulated papillomatosis": {
+    "papula": 0.323,
+    "placa": 0.108
+  },
+  "pressure ulcer": {
+    "ulcera": 0.975,
+    "eritema": 0.063
+  },
+  "metastatic carcinoma": {
+    "eritema": 0.179,
+    "nodulo": 0.536,
+    "papula": 0.25,
+    "costra": 0.143,
+    "erosion": 0.143
+  },
+  "excoriated papules": {
+    "papula": 1,
+    "excoriacion": 1,
+    "vesicula": 0.167,
+    "eritema": 0.167,
+    "pustula": 0.083
+  },
+  "perniosis": {
+    "nodulo": 0.273,
+    "eritema": 0.182
+  },
+  "grover's disease": {
+    "papula": 0.529,
+    "vesicula": 0.294,
+    "excoriacion": 0.118,
+    "eritema": 0.118,
+    "costra": 0.176,
+    "bula_ampolla": 0.176,
+    "erosion": 0.059
+  },
+  "bullous pemphigoid": {
+    "eritema": 0.204,
+    "costra": 0.081,
+    "erosion": 0.172,
+    "bula_ampolla": 0.643,
+    "placa": 0.101,
+    "vesicula": 0.084,
+    "cicatriz": 0.062
+  },
+  "ecthyma": {
+    "vesicula": 0.144,
+    "bula_ampolla": 0.233,
+    "ulcera": 0.422,
+    "eritema": 0.422,
+    "costra": 0.4,
+    "pustula": 0.411,
+    "papula": 0.167,
+    "nodulo": 0.078,
+    "macula": 0.056
+  },
+  "ecthyma gangrenosum": {
+    "vesicula": 0.067,
+    "bula_ampolla": 0.3,
+    "ulcera": 0.667,
+    "eritema": 0.3,
+    "costra": 0.067,
+    "papula": 0.067,
+    "pustula": 0.2
+  },
+  "milker's nodule": {
+    "nodulo": 1
+  },
+  "polymorphous light eruption": {
+    "eritema": 0.217,
+    "papula": 0.411,
+    "placa": 0.124,
+    "vesicula": 0.124
+  },
+  "pityriasis lichenoides et varioliformis acuta": {
+    "papula": 0.9,
+    "vesicula": 0.15,
+    "pustula": 0.25,
+    "costra": 0.55,
+    "eritema": 0.5,
+    "cicatriz": 0.25,
+    "ulcera": 0.05,
+    "erosion": 0.1,
+    "excoriacion": 0.05,
+    "escama": 0.05
+  },
+  "verrucous plaque": {
+    "placa": 1,
+    "eritema": 0.15,
+    "costra": 0.1,
+    "ulcera": 0.15,
+    "papula": 0.05
+  },
+  "lentigo": {
+    "macula": 0.175,
+    "hiperpigmentacion": 0.074
+  },
+  "lentigo maligna": {
+    "macula": 0.125,
+    "nodulo": 0.05,
+    "hiperpigmentacion": 0.056,
+    "cicatriz": 0.188
+  },
+  "nodular fasciitis": {
+    "nodulo": 0.756,
+    "papula": 0.22,
+    "placa": 0.171,
+    "eritema": 0.146
+  },
+  "erythematous": {
+    "placa": 0.125,
+    "escama": 0.083,
+    "eritema": 0.208
+  },
+  "vascular": {
+    "papula": 0.061,
+    "ulcera": 0.176,
+    "telangiectasias": 0.051,
+    "pustula": 0.064,
+    "tumor": 0.207
+  },
+  "melanocytic nevus": {
+    "macula": 0.074,
+    "hiperpigmentacion": 0.825
+  },
+  "lymphangioma": {
+    "papula": 0.097,
+    "vesicula": 0.323,
+    "quiste": 0.274,
+    "tumor": 0.097,
+    "telangiectasias": 0.129
+  },
+  "morbilliform eruption": {
+    "papula": 0.64,
+    "eritema": 0.76,
+    "macula": 0.2
+  },
+  "hand eczema": {
+    "vesicula": 0.086,
+    "papula": 0.137,
+    "eritema": 0.065
+  },
+  "traumatic ulcer": {
+    "ulcera": 1
+  },
+  "nodular lesion": {
+    "nodulo": 1
+  },
+  "eschar": {
+    "hiperpigmentacion": 0.067,
+    "cicatriz": 0.067,
+    "papula": 0.133,
+    "ulcera": 0.2
+  },
+  "palpable purpura": {
+    "papula": 0.455,
+    "placa": 0.091,
+    "vesicula": 0.091,
+    "eritema": 0.182
+  },
+  "papulosquamous disorder": {
+    "papula": 0.75,
+    "placa": 0.667,
+    "escama": 0.333,
+    "eritema": 0.417,
+    "nodulo": 0.083,
+    "hiperpigmentacion": 0.083
+  },
+  "pyoderma": {
+    "eritema": 0.273,
+    "ulcera": 0.346,
+    "papula": 0.081,
+    "nodulo": 0.065,
+    "pustula": 0.354,
+    "costra": 0.154,
+    "placa": 0.133
+  },
+  "pyoderma gangrenosum": {
+    "eritema": 0.248,
+    "ulcera": 0.546,
+    "papula": 0.07,
+    "nodulo": 0.06,
+    "pustula": 0.308,
+    "placa": 0.128,
+    "cicatriz": 0.063,
+    "costra": 0.084
+  },
+  "morphea": {
+    "papula": 0.161,
+    "hiperpigmentacion": 0.129,
+    "eritema": 0.215,
+    "placa": 0.344,
+    "atrofia": 0.247,
+    "nodulo": 0.059,
+    "cicatriz": 0.059,
+    "esclerosis": 0.07
+  },
+  "kerion": {
+    "papula": 0.176,
+    "pustula": 0.353,
+    "nodulo": 0.471,
+    "costra": 0.471,
+    "macula": 0.059,
+    "placa": 0.059,
+    "eritema": 0.118,
+    "cicatriz": 0.059
+  },
+  "pemphigus vulgaris": {
+    "vesicula": 0.093,
+    "costra": 0.296,
+    "erosion": 0.44,
+    "eritema": 0.12,
+    "placa": 0.058,
+    "bula_ampolla": 0.196,
+    "ulcera": 0.127
+  },
+  "superficial wound of body region": {
+    "ulcera": 0.459,
+    "cicatriz": 0.189,
+    "papula": 0.324
+  },
+  "café au lait macule": {
+    "macula": 0.761
+  },
+  "pustular psoriasis": {
+    "pustula": 0.788,
+    "eritema": 0.284,
+    "placa": 0.079
+  },
+  "intertrigo": {
+    "erosion": 0.092,
+    "papula": 0.299,
+    "eritema": 0.277,
+    "placa": 0.147,
+    "vesicula": 0.06
+  },
+  "prurigo": {
+    "nodulo": 0.482,
+    "papula": 0.38,
+    "excoriacion": 0.069,
+    "eritema": 0.129,
+    "costra": 0.071,
+    "vesicula": 0.077
+  },
+  "prurigo nodularis": {
+    "nodulo": 0.623,
+    "papula": 0.382,
+    "excoriacion": 0.073,
+    "costra": 0.064,
+    "eritema": 0.064,
+    "vesicula": 0.1,
+    "bula_ampolla": 0.091
+  },
+  "lupus profundus": {
+    "pustula": 0.7,
+    "nodulo": 0.1
+  },
+  "chromoblastomycosis": {
+    "placa": 0.103,
+    "nodulo": 0.077,
+    "papula": 0.077,
+    "tumor": 0.256
+  },
+  "erythema nodosum": {
+    "eritema": 0.973,
+    "nodulo": 0.54
+  },
+  "pityriasis rubra pilaris": {
+    "papula": 0.38,
+    "placa": 0.212,
+    "eritema": 0.409,
+    "escama": 0.139
+  },
+  "erythematous nodule": {
+    "nodulo": 1,
+    "eritema": 1,
+    "papula": 0.053
+  },
+  "acne keloidalis nuchae": {
+    "papula": 0.5,
+    "nodulo": 0.15,
+    "eritema": 0.1,
+    "cicatriz": 0.25,
+    "placa": 0.15,
+    "hiperpigmentacion": 0.2,
+    "macula": 0.1,
+    "pustula": 0.1
+  },
+  "cutaneous dermatomyositis manifestation": {
+    "eritema": 0.283,
+    "telangiectasias": 0.051,
+    "papula": 0.355,
+    "placa": 0.123,
+    "ulcera": 0.058,
+    "escama": 0.297
+  },
+  "multiple papules": {
+    "papula": 1,
+    "eritema": 0.133,
+    "hiperpigmentacion": 0.067
+  },
+  "pityriasis alba": {
+    "macula": 0.093,
+    "hiperpigmentacion": 0.151,
+    "escama": 0.233,
+    "papula": 0.058
+  },
+  "erythema toxicum neonatorum": {
+    "pustula": 0.533,
+    "eritema": 1,
+    "macula": 0.233,
+    "papula": 0.167,
+    "placa": 0.067
+  },
+  "blue nevus": {
+    "papula": 0.163,
+    "nodulo": 0.096,
+    "macula": 0.058
+  },
+  "stasis ulcer": {
+    "ulcera": 1,
+    "pustula": 0.063,
+    "placa": 0.063,
+    "eritema": 0.188,
+    "vesicula": 0.188,
+    "bula_ampolla": 0.188,
+    "costra": 0.125
+  },
+  "granuloma inguinale": {
+    "placa": 0.091,
+    "ulcera": 0.818,
+    "nodulo": 0.091
+  },
+  "abscess": {
+    "costra": 0.258,
+    "papula": 0.06
+  },
+  "muzzle rash": {
+    "eritema": 0.689,
+    "papula": 0.738,
+    "macula": 0.155
+  },
+  "juvenile xanthogranuloma": {
+    "nodulo": 0.345,
+    "papula": 0.429,
+    "eritema": 0.095,
+    "placa": 0.107
+  },
+  "post-inflammatory hypopigmentation": {
+    "macula": 0.174,
+    "hiperpigmentacion": 0.095,
+    "placa": 0.053,
+    "cicatriz": 0.095
+  },
+  "hypersensitivity": {
+    "eritema": 0.197,
+    "papula": 0.359,
+    "vesicula": 0.085,
+    "nodulo": 0.099,
+    "ulcera": 0.085
+  },
+  "dermatofibroma": {
+    "papula": 0.079,
+    "nodulo": 0.157,
+    "cicatriz": 0.155,
+    "tumor": 0.168
+  },
+  "alopecia areata": {
+    "cicatriz": 0.083,
+    "macula": 0.071,
+    "eritema": 0.095
+  },
+  "alopecia": {
+    "cicatriz": 0.179,
+    "macula": 0.052,
+    "placa": 0.061,
+    "eritema": 0.116
+  },
+  "cutaneous b-cell lymphoma": {
+    "placa": 0.306,
+    "eritema": 0.333,
+    "nodulo": 0.472,
+    "telangiectasias": 0.056,
+    "papula": 0.167,
+    "escama": 0.056
+  },
+  "subcutaneous mass": {
+    "nodulo": 1
+  },
+  "langerhans cell histiocytosis": {
+    "papula": 0.554,
+    "escama": 0.072,
+    "costra": 0.193,
+    "eritema": 0.289,
+    "erosion": 0.084,
+    "placa": 0.205
+  },
+  "lymphomatoid papulosis": {
+    "ulcera": 0.108,
+    "nodulo": 0.459,
+    "eritema": 0.162,
+    "papula": 0.432,
+    "costra": 0.216,
+    "cicatriz": 0.135,
+    "atrofia": 0.054,
+    "tumor": 0.054
+  },
+  "keratoderma": {
+    "papula": 0.143,
+    "eritema": 0.29,
+    "placa": 0.157
+  },
+  "cutaneous tuberculosis manifestation": {
+    "ulcera": 0.595,
+    "nodulo": 0.107
+  },
+  "aphthous stomatitis": {
+    "ulcera": 0.727,
+    "costra": 0.091,
+    "erosion": 0.091,
+    "vesicula": 0.091,
+    "macula": 0.091,
+    "papula": 0.091,
+    "eritema": 0.091
+  },
+  "neurofibromatosis": {
+    "macula": 0.347,
+    "nodulo": 0.315,
+    "tumor": 0.261
+  },
+  "tungiasis": {
+    "papula": 0.182,
+    "costra": 0.091,
+    "macula": 0.091,
+    "hiperpigmentacion": 0.091,
+    "surco": 0.091
+  },
+  "erythematous maculopapular exanthem": {
+    "papula": 1,
+    "eritema": 1,
+    "macula": 0.636,
+    "vesicula": 0.091
+  },
+  "contact dermatitis": {
+    "vesicula": 0.069,
+    "eritema": 0.072,
+    "papula": 0.233
+  },
+  "nail psoriasis": {
+    "eritema": 0.204,
+    "placa": 0.093,
+    "macula": 0.204,
+    "nodulo": 0.056,
+    "papula": 0.093,
+    "hiperpigmentacion": 0.056
+  },
+  "sebaceous hyperplasia": {
+    "nodulo": 0.185,
+    "papula": 0.444,
+    "placa": 0.059
+  },
+  "pruritic urticarial papules and plaques of pregnancy": {
+    "papula": 0.739,
+    "eritema": 0.261,
+    "placa": 0.457
+  },
+  "actinic solar damage(solar elastosis)": {
+    "atrofia": 0.133
+  },
+  "gianotti-crosti syndrome": {
+    "papula": 0.842,
+    "vesicula": 0.263,
+    "placa": 0.053,
+    "ulcera": 0.053,
+    "eritema": 0.263
+  },
+  "nodules": {
+    "nodulo": 1,
+    "eritema": 0.167,
+    "papula": 0.056,
+    "placa": 0.056
+  },
+  "milia": {
+    "pustula": 0.065,
+    "papula": 0.332,
+    "eritema": 0.092,
+    "quiste": 0.12,
+    "placa": 0.068,
+    "vesicula": 0.071
+  },
+  "porphyria": {
+    "bula_ampolla": 0.34,
+    "cicatriz": 0.265,
+    "erosion": 0.109,
+    "ulcera": 0.109,
+    "vesicula": 0.075,
+    "costra": 0.068,
+    "eritema": 0.082,
+    "quiste": 0.156
+  },
+  "acne vulgaris": {
+    "papula": 0.289,
+    "pustula": 0.284,
+    "cicatriz": 0.216,
+    "eritema": 0.062,
+    "nodulo": 0.067,
+    "quiste": 0.108
+  },
+  "erythema ab igne": {
+    "eritema": 0.854
+  },
+  "rubella": {
+    "eritema": 0.333,
+    "papula": 0.333,
+    "macula": 0.167
+  },
+  "tinea corporis": {
+    "escama": 0.188,
+    "eritema": 0.267,
+    "papula": 0.12,
+    "placa": 0.21,
+    "costra": 0.067
+  },
+  "stasis dermatitis": {
+    "placa": 0.067,
+    "costra": 0.06,
+    "eritema": 0.188,
+    "papula": 0.315,
+    "ulcera": 0.128,
+    "escama": 0.067,
+    "vesicula": 0.081,
+    "bula_ampolla": 0.081
+  },
+  "hailey hailey disease": {
+    "placa": 0.471,
+    "costra": 0.118,
+    "erosion": 0.412,
+    "eritema": 0.235,
+    "macula": 0.059,
+    "bula_ampolla": 0.059,
+    "papula": 0.059
+  },
+  "angiokeratoma": {
+    "macula": 0.059,
+    "papula": 0.317,
+    "nodulo": 0.089,
+    "eritema": 0.099,
+    "placa": 0.079
+  },
+  "crohn's disease cutaneous manifestation": {
+    "placa": 0.367,
+    "costra": 0.133,
+    "ulcera": 0.2,
+    "eritema": 0.4,
+    "papula": 0.233
+  },
+  "actinic solar damage(telangiectasia)": {
+    "telangiectasias": 0.944
+  },
+  "hansen's disease": {
+    "escama": 0.105,
+    "telangiectasias": 0.053,
+    "macula": 0.158,
+    "hiperpigmentacion": 0.053,
+    "atrofia": 0.053,
+    "placa": 0.053
+  },
+  "leukonychia": {
+    "macula": 0.227,
+    "hipopigmentacion": 0.091
+  },
+  "linear iga disease": {
+    "erosion": 0.167,
+    "bula_ampolla": 0.139,
+    "eritema": 0.167,
+    "vesicula": 0.056,
+    "ulcera": 0.056
+  },
+  "staphylococcal scalded skin syndrome": {
+    "costra": 0.274,
+    "erosion": 0.115,
+    "eritema": 0.331,
+    "vesicula": 0.089,
+    "papula": 0.07,
+    "pustula": 0.089,
+    "bula_ampolla": 0.159
+  },
+  "incontinentia pigmenti": {
+    "papula": 0.129,
+    "vesicula": 0.157,
+    "bula_ampolla": 0.114,
+    "placa": 0.057,
+    "hiperpigmentacion": 0.171,
+    "atrofia": 0.1,
+    "macula": 0.086,
+    "eritema": 0.1
+  },
+  "seborrheic keratoses": {
+    "papula": 0.531,
+    "placa": 0.247,
+    "escama": 0.086,
+    "costra": 0.062,
+    "eritema": 0.136
+  },
+  "lichen aureus": {
+    "placa": 0.083,
+    "hiperpigmentacion": 0.167,
+    "papula": 0.083
+  },
+  "pityriasis rosea": {
+    "placa": 0.062,
+    "escama": 0.155,
+    "eritema": 0.113,
+    "papula": 0.129
+  },
+  "lipoma": {
+    "placa": 0.051,
+    "nodulo": 0.241,
+    "papula": 0.139,
+    "quiste": 0.051,
+    "tumor": 0.314
+  },
+  "exfoliative erythroderma": {
+    "macula": 0.057,
+    "bula_ampolla": 0.057,
+    "costra": 0.057,
+    "erosion": 0.189,
+    "eritema": 0.642,
+    "escama": 0.151,
+    "placa": 0.075,
+    "papula": 0.132
+  },
+  "sweet syndrome": {
+    "bula_ampolla": 0.062,
+    "placa": 0.333,
+    "eritema": 0.512,
+    "papula": 0.178,
+    "nodulo": 0.209,
+    "vesicula": 0.062,
+    "pustula": 0.101
+  },
+  "tuberculoid leprosy": {
+    "placa": 0.486,
+    "eritema": 0.378,
+    "ulcera": 0.054,
+    "atrofia": 0.081,
+    "nodulo": 0.135,
+    "macula": 0.081,
+    "hiperpigmentacion": 0.135,
+    "papula": 0.108
+  },
+  "erythematous papules and plaques": {
+    "papula": 1,
+    "placa": 1,
+    "eritema": 1,
+    "escama": 0.105,
+    "atrofia": 0.053
+  },
+  "erythromelalgia": {
+    "eritema": 0.909,
+    "ulcera": 0.273
+  },
+  "molluscum contagiosum": {
+    "papula": 0.488,
+    "nodulo": 0.067,
+    "eritema": 0.076
+  },
+  "foot ulcer": {
+    "ulcera": 0.996
+  },
+  "aplasia cutis congenita": {
+    "hiperpigmentacion": 0.083,
+    "atrofia": 0.25,
+    "cicatriz": 0.25,
+    "erosion": 0.167,
+    "ulcera": 0.25,
+    "papula": 0.083,
+    "eritema": 0.083,
+    "costra": 0.083,
+    "placa": 0.083
+  },
+  "nodular lesions": {
+    "nodulo": 0.969
+  },
+  "parapsoriasis": {
+    "placa": 0.476,
+    "eritema": 0.095,
+    "papula": 0.071
+  },
+  "leukoplakia": {
+    "placa": 0.3,
+    "papula": 0.08,
+    "hipopigmentacion": 0.06
+  },
+  "cradle cap": {
+    "papula": 0.176,
+    "eritema": 0.235,
+    "pustula": 0.059,
+    "costra": 0.176,
+    "escama": 0.294
+  },
+  "cutaneous bpdcn manifestation": {
+    "nodulo": 0.9,
+    "eritema": 0.2,
+    "placa": 0.1
+  },
+  "angiolymphoid hyperplasia with eosinophilia": {
+    "nodulo": 0.714,
+    "placa": 0.286,
+    "papula": 0.571
+  },
+  "lentigo maligna melanoma": {
+    "nodulo": 0.467,
+    "hiperpigmentacion": 0.067,
+    "papula": 0.133,
+    "placa": 0.133,
+    "macula": 0.2
+  },
+  "erythema multiforme": {
+    "eritema": 0.855,
+    "papula": 0.133,
+    "vesicula": 0.052
+  },
+  "condyloma": {
+    "papula": 0.339,
+    "nodulo": 0.06,
+    "erosion": 0.071
+  },
+  "onychomycosis": {
+    "escama": 0.088,
+    "eritema": 0.05,
+    "papula": 0.055
+  },
+  "candidal balanoposthitis": {
+    "pustula": 0.091,
+    "eritema": 0.091,
+    "hipopigmentacion": 0.091
+  },
+  "mucous membrane pemphigoid": {
+    "erosion": 0.4,
+    "ulcera": 0.25,
+    "papula": 0.1,
+    "vesicula": 0.15,
+    "eritema": 0.1,
+    "cicatriz": 0.2,
+    "bula_ampolla": 0.05
+  },
+  "exfoliative dermatitis": {
+    "papula": 0.263,
+    "eritema": 0.474,
+    "macula": 0.053,
+    "erosion": 0.07,
+    "pustula": 0.088,
+    "placa": 0.07
+  },
+  "exanthem subitum": {
+    "papula": 0.9,
+    "eritema": 0.6,
+    "macula": 0.7
+  },
+  "acute generalized exanthematous pustulosis": {
+    "papula": 0.24,
+    "eritema": 0.567,
+    "pustula": 0.798
+  },
+  "chronic venous insufficiency": {
+    "ulcera": 0.2,
+    "cicatriz": 0.4
+  },
+  "erythematous papules": {
+    "papula": 1,
+    "eritema": 1,
+    "costra": 0.063
+  },
+  "scrofuloderma": {
+    "ulcera": 0.429,
+    "nodulo": 0.5,
+    "eritema": 0.214,
+    "cicatriz": 0.357,
+    "placa": 0.214,
+    "pustula": 0.071,
+    "papula": 0.071,
+    "costra": 0.071
+  },
+  "tinea cruris": {
+    "placa": 0.202,
+    "pustula": 0.058,
+    "papula": 0.168,
+    "eritema": 0.335,
+    "escama": 0.156
+  },
+  "orf": {
+    "macula": 0.143,
+    "ulcera": 0.143,
+    "eritema": 0.286,
+    "pustula": 0.25,
+    "papula": 0.179,
+    "costra": 0.143,
+    "nodulo": 0.464
+  },
+  "mastocytosis": {
+    "papula": 0.814,
+    "eritema": 0.116,
+    "macula": 0.605
+  },
+  "cutaneous larva migrans": {
+    "vesicula": 0.116,
+    "bula_ampolla": 0.126,
+    "eritema": 0.242,
+    "nodulo": 0.063,
+    "placa": 0.063,
+    "papula": 0.179
+  },
+  "diffuse xanthoma": {
+    "placa": 0.3,
+    "nodulo": 0.557,
+    "papula": 0.329
+  },
+  "discoid eczema": {
+    "placa": 0.35,
+    "costra": 0.3,
+    "vesicula": 0.15,
+    "escama": 0.15,
+    "liquenificacion": 0.05,
+    "papula": 0.05,
+    "nodulo": 0.05,
+    "eritema": 0.05
+  },
+  "xeroderma pigmentosum": {
+    "cicatriz": 0.113,
+    "eritema": 0.135,
+    "macula": 0.106,
+    "hiperpigmentacion": 0.142,
+    "papula": 0.064
+  },
+  "port wine stain": {
+    "macula": 0.103,
+    "telangiectasias": 0.057,
+    "papula": 0.057
+  },
+  "irritant contact dermatitis": {
+    "eritema": 0.085,
+    "vesicula": 0.064,
+    "papula": 0.245,
+    "bula_ampolla": 0.059
+  },
+  "cutaneous anthrax": {
+    "vesicula": 0.101,
+    "papula": 0.131,
+    "pustula": 0.152,
+    "eritema": 0.091,
+    "ulcera": 0.374,
+    "costra": 0.071
+  },
+  "local infection of wound": {
+    "eritema": 0.118,
+    "pustula": 0.059,
+    "ulcera": 0.471,
+    "escama": 0.059,
+    "cicatriz": 0.059,
+    "papula": 0.176
+  },
+  "telogen effluvium": {
+    "hiperpigmentacion": 0.083,
+    "papula": 0.208,
+    "eritema": 0.167,
+    "placa": 0.125
+  },
+  "beaded papules": {
+    "papula": 0.8,
+    "placa": 0.05,
+    "cicatriz": 0.05
+  },
+  "nevus spilus": {
+    "macula": 0.367,
+    "papula": 0.2,
+    "hiperpigmentacion": 0.1,
+    "vesicula": 0.067,
+    "nodulo": 0.067
+  },
+  "granuloma faciale": {
+    "nodulo": 0.091,
+    "placa": 0.409,
+    "eritema": 0.136
+  },
+  "oral thrush": {
+    "placa": 0.133,
+    "vesicula": 0.067,
+    "eritema": 0.067,
+    "erosion": 0.267
+  },
+  "onycholysis": {
+    "eritema": 0.208,
+    "atrofia": 0.083
+  },
+  "gottron's papules": {
+    "papula": 0.976,
+    "escama": 0.098,
+    "eritema": 0.122,
+    "placa": 0.512
+  },
+  "photosensitivity disorder": {
+    "eritema": 0.286,
+    "papula": 0.071,
+    "cicatriz": 0.214,
+    "vesicula": 0.071
+  },
+  "keratoacanthoma": {
+    "nodulo": 0.2,
+    "papula": 0.174
+  },
+  "granulation tissue": {
+    "ulcera": 0.176,
+    "bula_ampolla": 0.059,
+    "costra": 0.059,
+    "nodulo": 0.059,
+    "quiste": 0.235,
+    "cicatriz": 0.294
+  },
+  "erythema gyratum repens": {
+    "eritema": 1,
+    "placa": 0.103,
+    "papula": 0.172
+  },
+  "pityrosporum folliculitis": {
+    "papula": 0.51,
+    "pustula": 0.236,
+    "eritema": 0.07
+  },
+  "leukocytoclastic vasculitis": {
+    "bula_ampolla": 0.083,
+    "papula": 0.729,
+    "eritema": 0.063,
+    "vesicula": 0.063
+  },
+  "coxsackievirus infection": {
+    "vesicula": 0.905,
+    "eritema": 0.381,
+    "erosion": 0.095,
+    "papula": 0.143
+  },
+  "eczema herpeticum": {
+    "vesicula": 0.512,
+    "costra": 0.302,
+    "escama": 0.093,
+    "erosion": 0.395,
+    "eritema": 0.14,
+    "papula": 0.07,
+    "ulcera": 0.093
+  },
+  "erythematous patch": {
+    "eritema": 1,
+    "nodulo": 0.083,
+    "bula_ampolla": 0.083,
+    "ulcera": 0.083,
+    "macula": 0.167
+  },
+  "calciphylaxis": {
+    "placa": 0.2,
+    "ulcera": 0.5,
+    "cicatriz": 0.1,
+    "eritema": 0.167
+  },
+  "dermatitis herpetiformis": {
+    "vesicula": 0.562,
+    "costra": 0.065,
+    "papula": 0.333,
+    "excoriacion": 0.092,
+    "eritema": 0.131,
+    "erosion": 0.078
+  },
+  "cutaneous sarcoidosis": {
+    "nodulo": 0.25,
+    "pustula": 0.067,
+    "eritema": 0.183,
+    "papula": 0.3,
+    "ulcera": 0.083,
+    "placa": 0.283,
+    "cicatriz": 0.133,
+    "costra": 0.05
+  },
+  "trichotillomania": {
+    "macula": 0.143
+  },
+  "chemical burn": {
+    "ulcera": 0.364,
+    "erosion": 0.091,
+    "cicatriz": 0.091,
+    "costra": 0.091
+  },
+  "lichen nitidus": {
+    "papula": 0.706,
+    "hiperpigmentacion": 0.074,
+    "eritema": 0.074,
+    "vesicula": 0.059,
+    "pustula": 0.059
+  },
+  "foreign body granuloma": {
+    "nodulo": 0.333,
+    "placa": 0.083,
+    "cicatriz": 0.167,
+    "papula": 0.083
+  },
+  "dress syndrome": {
+    "papula": 0.417,
+    "macula": 0.083,
+    "eritema": 0.333,
+    "costra": 0.167
+  },
+  "tinea pedis": {
+    "eritema": 0.255,
+    "escama": 0.154,
+    "placa": 0.09,
+    "vesicula": 0.059,
+    "erosion": 0.069,
+    "papula": 0.064,
+    "pustula": 0.064
+  },
+  "cutaneous systemic sclerosis manifestation": {
+    "esclerosis": 0.78,
+    "telangiectasias": 0.16,
+    "cicatriz": 0.08,
+    "ulcera": 0.1
+  },
+  "exanthema": {
+    "macula": 0.143,
+    "papula": 0.857,
+    "eritema": 0.857,
+    "bula_ampolla": 0.095
+  },
+  "rhinophyma": {
+    "placa": 0.167,
+    "nodulo": 0.056,
+    "eritema": 0.093,
+    "papula": 0.093,
+    "cicatriz": 0.222,
+    "tumor": 0.074
+  },
+  "peutz-jeghers syndrome": {
+    "macula": 0.478,
+    "hiperpigmentacion": 0.13
+  },
+  "deep fungal infection": {
+    "placa": 0.076,
+    "costra": 0.217,
+    "eritema": 0.12,
+    "nodulo": 0.435,
+    "ulcera": 0.326,
+    "papula": 0.272,
+    "pustula": 0.054,
+    "cicatriz": 0.054
+  },
+  "cutaneous hiv manifestation": {
+    "macula": 0.069,
+    "papula": 0.448,
+    "costra": 0.103,
+    "telangiectasias": 0.103
+  },
+  "pseudofolliculitis barbae": {
+    "papula": 0.5,
+    "pustula": 0.357,
+    "eritema": 0.071,
+    "cicatriz": 0.143,
+    "hiperpigmentacion": 0.071
+  },
+  "erythema elevatum diutinum": {
+    "ulcera": 0.063,
+    "eritema": 0.937,
+    "nodulo": 0.381,
+    "placa": 0.111,
+    "papula": 0.063
+  },
+  "erythema annulare centrifugum": {
+    "eritema": 0.97,
+    "placa": 0.089,
+    "papula": 0.139,
+    "escama": 0.059
+  },
+  "keloid": {
+    "cicatriz": 0.61,
+    "nodulo": 0.066
+  },
+  "keratosis pilaris": {
+    "papula": 0.427,
+    "eritema": 0.072
+  },
+  "rocky mountain spotted fever": {
+    "papula": 0.421,
+    "eritema": 0.368,
+    "macula": 0.737,
+    "purpura": 0.053,
+    "vesicula": 0.053
+  },
+  "ehlers danlos syndrome": {
+    "cicatriz": 0.508,
+    "placa": 0.051,
+    "ulcera": 0.051,
+    "atrofia": 0.203,
+    "macula": 0.119,
+    "costra": 0.085
+  },
+  "cheilitis": {
+    "eritema": 0.144,
+    "costra": 0.389,
+    "ulcera": 0.133,
+    "erosion": 0.128
+  },
+  "lipodermatosclerosis": {
+    "esclerosis": 0.739,
+    "macula": 0.087,
+    "eritema": 0.087
+  },
+  "hydroa vacciniforme": {
+    "papula": 0.583,
+    "vesicula": 0.583,
+    "hiperpigmentacion": 0.25,
+    "cicatriz": 0.667,
+    "ulcera": 0.083,
+    "pustula": 0.083,
+    "costra": 0.167,
+    "bula_ampolla": 0.083
+  },
+  "mongolian spot": {
+    "macula": 0.632,
+    "hiperpigmentacion": 0.053
+  },
+  "furuncle": {
+    "pustula": 0.25,
+    "eritema": 0.054,
+    "nodulo": 0.304
+  },
+  "viral exanthem": {
+    "papula": 0.35,
+    "vesicula": 0.057
+  },
+  "cancer": {
+    "ulcera": 0.533,
+    "nodulo": 0.267,
+    "quiste": 0.067,
+    "costra": 0.067,
+    "erosion": 0.067,
+    "telangiectasias": 0.067,
+    "cicatriz": 0.067,
+    "eritema": 0.067,
+    "tumor": 0.067
+  },
+  "tattoo reaction": {
+    "papula": 0.583,
+    "escama": 0.083,
+    "nodulo": 0.5,
+    "placa": 0.333,
+    "costra": 0.25,
+    "eritema": 0.417
+  },
+  "eosinophilic fasciitis": {
+    "papula": 0.4,
+    "eritema": 0.6,
+    "placa": 0.1,
+    "esclerosis": 0.2
+  },
+  "clinical diagnosis: pityriasis versicolor": {
+    "macula": 0.231,
+    "hiperpigmentacion": 0.308,
+    "papula": 0.077,
+    "escama": 0.077
+  },
+  "kaposi sarcoma": {
+    "nodulo": 0.271,
+    "placa": 0.104,
+    "ulcera": 0.17,
+    "tumor": 0.096
+  },
+  "closed comedones": {
+    "papula": 0.083
+  },
+  "cutaneous kawasaki disease manifestation": {
+    "eritema": 0.556,
+    "papula": 0.089
+  },
+  "halo nevus": {
+    "hiperpigmentacion": 0.304,
+    "hipopigmentacion": 0.217
+  },
+  "callus": {
+    "nodulo": 0.053,
+    "eritema": 0.053,
+    "placa": 0.158,
+    "ulcera": 0.053,
+    "papula": 0.053
+  },
+  "oral mucositis": {
+    "erosion": 0.263,
+    "ulcera": 0.632,
+    "eritema": 0.158,
+    "costra": 0.158
+  },
+  "boil": {
+    "pustula": 0.083,
+    "nodulo": 0.083,
+    "cicatriz": 0.083
+  },
+  "orf disease": {
+    "nodulo": 0.583,
+    "cicatriz": 0.167,
+    "vesicula": 0.833,
+    "pustula": 0.333,
+    "costra": 0.833,
+    "tumor": 0.167,
+    "papula": 0.417
+  },
+  "corticosteroid-responsive dermatosis": {
+    "placa": 0.077,
+    "nodulo": 0.154,
+    "papula": 0.462,
+    "eritema": 0.308,
+    "bula_ampolla": 0.154,
+    "erosion": 0.077,
+    "liquenificacion": 0.077,
+    "ulcera": 0.077
+  },
+  "pearly penile papules": {
+    "papula": 0.763
+  },
+  "subcutaneous nodules": {
+    "nodulo": 1,
+    "eritema": 0.059,
+    "quiste": 0.059
+  },
+  "benign tumor": {
+    "nodulo": 0.333,
+    "papula": 0.167,
+    "hiperpigmentacion": 0.056,
+    "eritema": 0.111,
+    "tumor": 0.556
+  },
+  "epidermoid cyst": {
+    "nodulo": 0.089,
+    "quiste": 0.922
+  },
+  "phrynoderma": {
+    "papula": 0.9,
+    "escama": 0.2,
+    "costra": 0.1
+  },
+  "erythema infectiosum": {
+    "eritema": 1,
+    "papula": 0.26
+  },
+  "bullous dermatosis": {
+    "bula_ampolla": 0.935,
+    "costra": 0.065,
+    "erosion": 0.129,
+    "eritema": 0.226,
+    "vesicula": 0.065,
+    "placa": 0.065
+  },
+  "atopic eruption of pregnancy": {
+    "papula": 0.667,
+    "eritema": 0.333,
+    "costra": 0.083,
+    "nodulo": 0.083
+  },
+  "nail dystrophy": {
+    "papula": 0.065,
+    "macula": 0.065,
+    "atrofia": 0.065
+  },
+  "cutaneous polyarteritis nodosa": {
+    "ulcera": 0.263,
+    "nodulo": 0.474,
+    "eritema": 0.053
+  },
+  "bullous eruption": {
+    "bula_ampolla": 1,
+    "erosion": 0.083,
+    "eritema": 0.167,
+    "vesicula": 0.083,
+    "placa": 0.083
+  },
+  "fox-fordyce disease": {
+    "papula": 0.692,
+    "eritema": 0.154
+  },
+  "macular-papular eruption": {
+    "papula": 1,
+    "eritema": 0.75,
+    "macula": 0.313,
+    "placa": 0.063
+  },
+  "malignant tumor": {
+    "erosion": 0.059,
+    "nodulo": 0.824,
+    "eritema": 0.471,
+    "costra": 0.118,
+    "papula": 0.059,
+    "ulcera": 0.059,
+    "telangiectasias": 0.059,
+    "tumor": 0.176
+  },
+  "lichenoid eruption": {
+    "placa": 0.25,
+    "papula": 0.417,
+    "escama": 0.083
+  },
+  "degos disease": {
+    "macula": 0.214,
+    "hiperpigmentacion": 0.286,
+    "atrofia": 0.286,
+    "papula": 0.214,
+    "eritema": 0.071,
+    "ulcera": 0.071
+  },
+  "measles": {
+    "macula": 0.295,
+    "papula": 0.409,
+    "eritema": 0.295
+  },
+  "freckle": {
+    "macula": 0.2,
+    "placa": 0.167,
+    "atrofia": 0.167,
+    "hiperpigmentacion": 0.167
+  },
+  "mucinosis": {
+    "papula": 0.442,
+    "eritema": 0.346,
+    "nodulo": 0.115,
+    "placa": 0.212
+  },
+  "neutrophilic dermatoses": {
+    "placa": 0.429,
+    "pustula": 0.357,
+    "ulcera": 0.357,
+    "escama": 0.071,
+    "eritema": 0.429,
+    "bula_ampolla": 0.071,
+    "costra": 0.071,
+    "nodulo": 0.071
+  },
+  "erythema craquele": {
+    "eritema": 0.969,
+    "costra": 0.125,
+    "escama": 0.188
+  },
+  "acquired autoimmune bullous diseaseherpes gestationis": {
+    "papula": 0.194,
+    "eritema": 0.516,
+    "bula_ampolla": 0.226,
+    "placa": 0.29,
+    "vesicula": 0.161
+  },
+  "annular plaque": {
+    "placa": 1,
+    "papula": 0.091,
+    "eritema": 0.091
+  },
+  "rheumatoid nodule": {
+    "nodulo": 0.943,
+    "eritema": 0.057,
+    "papula": 0.114
+  },
+  "poroma": {
+    "papula": 0.077,
+    "ulcera": 0.154,
+    "hiperpigmentacion": 0.231,
+    "costra": 0.115,
+    "nodulo": 0.269,
+    "escama": 0.077,
+    "eritema": 0.115,
+    "placa": 0.077,
+    "tumor": 0.115
+  },
+  "rickettsialpox": {
+    "macula": 0.7,
+    "papula": 0.4,
+    "vesicula": 0.2,
+    "pustula": 0.2,
+    "costra": 0.5,
+    "nodulo": 0.2,
+    "ulcera": 0.3
+  },
+  "miliaria": {
+    "pustula": 0.143,
+    "eritema": 0.169,
+    "vesicula": 0.234,
+    "bula_ampolla": 0.052,
+    "papula": 0.481,
+    "macula": 0.052
+  },
+  "recurrent aphthous stomatitis": {
+    "ulcera": 1
+  },
+  "lupus panniculitis": {
+    "pustula": 0.615,
+    "ulcera": 0.077,
+    "eritema": 0.154,
+    "papula": 0.077,
+    "macula": 0.077,
+    "atrofia": 0.077,
+    "hiperpigmentacion": 0.077,
+    "hipopigmentacion": 0.077
+  },
+  "facial pigmentation": {
+    "hiperpigmentacion": 0.4,
+    "placa": 0.1,
+    "macula": 0.2
+  },
+  "digital fibroma": {
+    "eritema": 0.071,
+    "papula": 0.286,
+    "nodulo": 0.571
+  },
+  "actinomycetoma": {
+    "nodulo": 0.348,
+    "eritema": 0.13,
+    "ulcera": 0.087,
+    "tumor": 0.217,
+    "costra": 0.174
+  },
+  "transient neonatal pustular melanosis": {
+    "macula": 0.35,
+    "pustula": 1,
+    "escama": 0.4,
+    "hiperpigmentacion": 0.3,
+    "papula": 0.1,
+    "eritema": 0.05
+  },
+  "unilateral laterothoracic exanthem": {
+    "papula": 0.615,
+    "placa": 0.077,
+    "eritema": 0.615,
+    "cicatriz": 0.154,
+    "macula": 0.077
+  },
+  "cutaneous crohn's disease manifestation": {
+    "placa": 0.167,
+    "ulcera": 0.556,
+    "erosion": 0.056,
+    "eritema": 0.278,
+    "nodulo": 0.222
+  },
+  "erythematous plaque": {
+    "placa": 0.974,
+    "eritema": 0.974,
+    "ulcera": 0.053,
+    "cicatriz": 0.053,
+    "hiperpigmentacion": 0.053,
+    "papula": 0.053,
+    "erosion": 0.053,
+    "costra": 0.132,
+    "nodulo": 0.053
+  },
+  "cutaneous nodules": {
+    "nodulo": 0.8,
+    "eritema": 0.1
+  },
+  "exogenous ochronosis": {
+    "macula": 0.364,
+    "papula": 0.273,
+    "hiperpigmentacion": 0.273,
+    "escama": 0.091,
+    "telangiectasias": 0.273
+  },
+  "monkeypox": {
+    "pustula": 0.348,
+    "papula": 0.254,
+    "eritema": 0.063,
+    "ulcera": 0.059,
+    "vesicula": 0.118,
+    "costra": 0.31
+  },
+  "neurodermatitis": {
+    "eritema": 0.052,
+    "papula": 0.159,
+    "liquenificacion": 0.173,
+    "escama": 0.059
+  },
+  "pompholyx": {
+    "vesicula": 0.938,
+    "bula_ampolla": 0.25,
+    "eritema": 0.25,
+    "costra": 0.063,
+    "erosion": 0.125,
+    "pustula": 0.063,
+    "escama": 0.063
+  },
+  "telangiectasia macularis eruptiva perstans": {
+    "telangiectasias": 0.9,
+    "macula": 0.2,
+    "eritema": 0.2,
+    "papula": 0.1
+  },
+  "dysplastic nevus": {
+    "macula": 0.136,
+    "cicatriz": 0.091,
+    "hiperpigmentacion": 0.136
+  },
+  "cutis marmorata": {
+    "eritema": 0.167
+  },
+  "angular cheilitis": {
+    "pustula": 0.052,
+    "eritema": 0.241,
+    "costra": 0.293,
+    "ulcera": 0.138,
+    "placa": 0.069,
+    "erosion": 0.276,
+    "atrofia": 0.052
+  },
+  "atrophie blanche": {
+    "ulcera": 0.647,
+    "cicatriz": 0.353,
+    "atrofia": 0.412,
+    "eritema": 0.059,
+    "telangiectasias": 0.118,
+    "esclerosis": 0.059,
+    "placa": 0.235,
+    "costra": 0.059
+  },
+  "skin cancer": {
+    "ulcera": 0.082,
+    "nodulo": 0.063,
+    "cicatriz": 0.082,
+    "macula": 0.072,
+    "hiperpigmentacion": 0.058,
+    "tumor": 0.068
+  },
+  "angioedema": {
+    "habon": 0.36,
+    "eritema": 0.24,
+    "ulcera": 0.2
+  },
+  "bullous disease": {
+    "vesicula": 0.068,
+    "bula_ampolla": 0.851
+  },
+  "cutaneous leukemia manifestation": {
+    "nodulo": 0.174,
+    "ulcera": 0.087,
+    "papula": 0.391,
+    "placa": 0.152,
+    "eritema": 0.239
+  },
+  "nevus depigmentosus": {
+    "macula": 0.172,
+    "hiperpigmentacion": 0.172,
+    "hipopigmentacion": 0.103
+  },
+  "mycobacterium marinum infection": {
+    "placa": 0.182,
+    "ulcera": 0.182,
+    "nodulo": 0.182,
+    "eritema": 0.091,
+    "escama": 0.091
+  },
+  "pilar cyst": {
+    "quiste": 1
+  },
+  "cutaneous covid-19 manifestation": {
+    "vesicula": 0.063,
+    "eritema": 0.292,
+    "placa": 0.104,
+    "ulcera": 0.125
+  },
+  "netherton syndrome": {
+    "escama": 0.2,
+    "eritema": 0.5,
+    "excoriacion": 0.05,
+    "placa": 0.05,
+    "pustula": 0.25
+  },
+  "macular-papular rash": {
+    "macula": 0.636,
+    "papula": 1,
+    "eritema": 0.455
+  },
+  "longitudinal melanonychia": {
+    "hiperpigmentacion": 0.12
+  },
+  "paronychia": {
+    "pustula": 0.072,
+    "costra": 0.072,
+    "eritema": 0.193,
+    "vesicula": 0.06,
+    "papula": 0.096
+  },
+  "idiopathic guttate hypomelanosis": {
+    "macula": 0.134,
+    "hiperpigmentacion": 0.104
+  },
+  "cutaneous necrosis": {
+    "ulcera": 0.371
+  },
+  "systemic disease": {
+    "papula": 0.116,
+    "nodulo": 0.116,
+    "eritema": 0.233,
+    "ulcera": 0.116,
+    "pustula": 0.07
+  },
+  "cutaneous venous insufficiency manifestation": {
+    "ulcera": 0.143,
+    "esclerosis": 0.071,
+    "eritema": 0.071
+  },
+  "foreign body": {
+    "cicatriz": 0.071
+  },
+  "systemic sclerosis": {
+    "esclerosis": 0.278,
+    "telangiectasias": 0.111,
+    "erosion": 0.222,
+    "cicatriz": 0.278,
+    "ulcera": 0.167
+  },
+  "livedo reticularis": {
+    "macula": 0.061,
+    "papula": 0.061,
+    "ulcera": 0.061,
+    "nodulo": 0.061,
+    "eritema": 0.182,
+    "esclerosis": 0.091
+  },
+  "palpable migrating erythema": {
+    "nodulo": 0.15,
+    "eritema": 0.9,
+    "costra": 0.15,
+    "vesicula": 0.1,
+    "erosion": 0.1,
+    "pustula": 0.05,
+    "ulcera": 0.1
+  },
+  "dermatosis papulosa nigra": {
+    "papula": 0.273,
+    "hiperpigmentacion": 0.136
+  },
+  "erythematous patches": {
+    "eritema": 1,
+    "placa": 0.1,
+    "bula_ampolla": 0.1
+  },
+  "majocchi granuloma": {
+    "papula": 0.429,
+    "nodulo": 0.286,
+    "placa": 0.357,
+    "escama": 0.214,
+    "pustula": 0.286,
+    "hiperpigmentacion": 0.143,
+    "telangiectasias": 0.071,
+    "eritema": 0.071
+  },
+  "lyme disease": {
+    "eritema": 0.736,
+    "papula": 0.057,
+    "placa": 0.218
+  },
+  "xanthelasma": {
+    "placa": 0.219,
+    "papula": 0.068
+  },
+  "inverse psoriasis": {
+    "placa": 0.273,
+    "atrofia": 0.091,
+    "eritema": 0.5,
+    "escama": 0.273,
+    "papula": 0.136
+  },
+  "cutaneous leprosy manifestation": {
+    "nodulo": 0.375,
+    "placa": 0.125,
+    "ulcera": 0.375,
+    "eritema": 0.083
+  },
+  "pachyonychia congenita": {
+    "quiste": 0.333,
+    "papula": 0.133
+  },
+  "eruptive xanthoma": {
+    "papula": 0.315,
+    "placa": 0.241,
+    "eritema": 0.074,
+    "nodulo": 0.185
+  },
+  "hyperkeratotic plaques": {
+    "placa": 1,
+    "eritema": 0.1,
+    "hiperpigmentacion": 0.05,
+    "liquenificacion": 0.05
+  },
+  "insect bite": {
+    "papula": 0.63,
+    "vesicula": 0.166,
+    "bula_ampolla": 0.135
+  },
+  "lichen striatus": {
+    "papula": 0.573,
+    "hiperpigmentacion": 0.083,
+    "eritema": 0.083,
+    "escama": 0.094
+  },
+  "medication-induced cutaneous pigmentation": {
+    "macula": 0.231,
+    "papula": 0.077,
+    "hiperpigmentacion": 0.231,
+    "placa": 0.077
+  },
+  "scleromyxedema": {
+    "papula": 0.545,
+    "nodulo": 0.091,
+    "eritema": 0.136,
+    "cicatriz": 0.136
+  },
+  "drug reaction with eosinophilia and systemic symptoms": {
+    "papula": 0.348,
+    "eritema": 0.87,
+    "escama": 0.13,
+    "placa": 0.087,
+    "erosion": 0.087,
+    "hiperpigmentacion": 0.087,
+    "pustula": 0.087,
+    "ulcera": 0.087
+  },
+  "erythema dyschromicum perstans": {
+    "eritema": 0.923,
+    "macula": 0.154,
+    "hiperpigmentacion": 0.128
+  },
+  "erythematous plaques": {
+    "placa": 1,
+    "eritema": 1,
+    "erosion": 0.107,
+    "escama": 0.071,
+    "hiperpigmentacion": 0.071
+  },
+  "poikiloderma of civatte": {
+    "atrofia": 0.286,
+    "telangiectasias": 0.214,
+    "eritema": 0.143,
+    "hiperpigmentacion": 0.071,
+    "nodulo": 0.071
+  },
+  "lupus pernio": {
+    "pustula": 0.176,
+    "placa": 0.059,
+    "nodulo": 0.412
+  },
+  "tuberculosis verrucosa cutis": {
+    "placa": 0.5,
+    "ulcera": 0.3,
+    "papula": 0.3,
+    "pustula": 0.2,
+    "costra": 0.2,
+    "cicatriz": 0.3,
+    "nodulo": 0.1,
+    "vesicula": 0.1,
+    "escama": 0.1
+  },
+  "flagellate erythema": {
+    "papula": 0.143,
+    "placa": 0.143,
+    "eritema": 1
+  },
+  "infantile acropustulosis": {
+    "vesicula": 0.429,
+    "pustula": 1,
+    "erosion": 0.071,
+    "escama": 0.143,
+    "papula": 0.214
+  },
+  "phytophotodermatitis": {
+    "eritema": 0.231,
+    "bula_ampolla": 0.128,
+    "papula": 0.231,
+    "macula": 0.051,
+    "vesicula": 0.077
+  },
+  "behcets disease": {
+    "ulcera": 0.75,
+    "eritema": 0.281,
+    "cicatriz": 0.125,
+    "erosion": 0.063,
+    "papula": 0.063,
+    "vesicula": 0.063,
+    "pustula": 0.063
+  },
+  "oral hairy leukoplakia": {
+    "hipopigmentacion": 0.05,
+    "papula": 0.05
+  },
+  "calcinosis cutis": {
+    "nodulo": 0.349,
+    "papula": 0.186,
+    "eritema": 0.209,
+    "hipopigmentacion": 0.07
+  },
+  "pilomatricoma": {
+    "nodulo": 0.135,
+    "quiste": 0.404,
+    "tumor": 0.192
+  },
+  "merkel cell carcinoma": {
+    "nodulo": 0.372,
+    "ulcera": 0.193,
+    "tumor": 0.483
+  },
+  "follicular papules": {
+    "papula": 1,
+    "placa": 0.08,
+    "eritema": 0.36
+  },
+  "chancroid": {
+    "eritema": 0.056,
+    "ulcera": 0.833,
+    "cicatriz": 0.056
+  },
+  "cutaneous tumor": {
+    "ulcera": 0.333,
+    "costra": 0.067,
+    "nodulo": 0.067,
+    "hiperpigmentacion": 0.067,
+    "tumor": 0.467
+  },
+  "sunburn": {
+    "eritema": 0.175,
+    "hiperpigmentacion": 0.063,
+    "papula": 0.063
+  },
+  "guttate psoriasis": {
+    "papula": 0.276,
+    "placa": 0.138,
+    "eritema": 0.172,
+    "escama": 0.241,
+    "macula": 0.052,
+    "cicatriz": 0.155
+  },
+  "acute vesicular dermatitis": {
+    "papula": 0.556,
+    "vesicula": 1,
+    "eritema": 0.444,
+    "costra": 0.056,
+    "cicatriz": 0.056
+  },
+  "tick bite": {
+    "nodulo": 0.182,
+    "papula": 0.273,
+    "costra": 0.182,
+    "eritema": 0.455,
+    "surco": 0.182
+  },
+  "actinic solar damage(solar purpura)": {
+    "papula": 0.274,
+    "eritema": 0.233,
+    "atrofia": 0.068,
+    "nodulo": 0.055
+  },
+  "herald patch": {
+    "escama": 0.1,
+    "eritema": 0.1
+  },
+  "smallpox": {
+    "cicatriz": 0.188,
+    "macula": 0.188,
+    "papula": 0.313,
+    "vesicula": 0.438,
+    "pustula": 0.563,
+    "eritema": 0.313,
+    "costra": 0.063
+  },
+  "cutaneous mastocytosis": {
+    "placa": 0.182,
+    "macula": 0.364,
+    "eritema": 0.227,
+    "papula": 0.273,
+    "telangiectasias": 0.091
+  },
+  "cutaneous horn": {
+    "papula": 0.131,
+    "tumor": 0.262
+  },
+  "raynaud phenomenon": {
+    "papula": 0.182,
+    "eritema": 0.227,
+    "ulcera": 0.091
+  },
+  "borderline tuberculoid leprosy": {
+    "placa": 0.333,
+    "eritema": 0.667,
+    "macula": 0.167,
+    "telangiectasias": 0.167
+  },
+  "acrokeratosis verruciformis": {
+    "placa": 0.056,
+    "papula": 0.889
+  },
+  "geographic tongue": {
+    "eritema": 0.318,
+    "erosion": 0.068,
+    "papula": 0.091,
+    "atrofia": 0.386
+  },
+  "cryptococcosis": {
+    "papula": 0.13,
+    "ulcera": 0.565
+  },
+  "pyostomatitis vegetans": {
+    "ulcera": 0.4,
+    "eritema": 0.1,
+    "placa": 0.2,
+    "costra": 0.5,
+    "erosion": 0.1,
+    "pustula": 0.15,
+    "nodulo": 0.05
+  },
+  "plaques": {
+    "papula": 0.2,
+    "placa": 1,
+    "nodulo": 0.2,
+    "eritema": 0.3,
+    "escama": 0.1
+  },
+  "cutaneous polyarteritis nodosa manifestation": {
+    "nodulo": 0.5,
+    "ulcera": 0.4
+  },
+  "erythrasma": {
+    "placa": 0.138,
+    "telangiectasias": 0.062,
+    "eritema": 0.077
+  },
+  "porokeratosis of mibelli": {
+    "placa": 0.438,
+    "escama": 0.063,
+    "atrofia": 0.063,
+    "papula": 0.063,
+    "eritema": 0.25
+  },
+  "ulerythema ophryogenes": {
+    "eritema": 0.846,
+    "papula": 0.231,
+    "cicatriz": 0.308
+  },
+  "leprosy": {
+    "ulcera": 0.071,
+    "costra": 0.081
+  },
+  "verrucae": {
+    "placa": 0.071,
+    "papula": 0.357,
+    "nodulo": 0.143
+  },
+  "infected eczema": {
+    "pustula": 0.143,
+    "escama": 0.071,
+    "papula": 0.143,
+    "vesicula": 0.286,
+    "bula_ampolla": 0.214,
+    "costra": 0.143,
+    "placa": 0.071,
+    "eritema": 0.071
+  },
+  "necrosis": {
+    "ulcera": 0.171
+  },
+  "juvenile dermatomyositis": {
+    "papula": 0.55,
+    "eritema": 0.3,
+    "telangiectasias": 0.15,
+    "atrofia": 0.05,
+    "ulcera": 0.05
+  },
+  "glomus tumor": {
+    "placa": 0.091,
+    "papula": 0.091,
+    "nodulo": 0.182,
+    "macula": 0.091,
+    "tumor": 0.636
+  },
+  "scalp psoriasis": {
+    "escama": 0.558,
+    "placa": 0.154,
+    "eritema": 0.25
+  },
+  "congenital nevus": {
+    "nodulo": 0.143,
+    "macula": 0.107,
+    "hiperpigmentacion": 0.071
+  },
+  "bacterial infection": {
+    "pustula": 0.057,
+    "bula_ampolla": 0.086,
+    "ulcera": 0.057,
+    "papula": 0.057,
+    "costra": 0.143
+  },
+  "exanthem": {
+    "eritema": 0.571,
+    "papula": 0.571,
+    "macula": 0.286,
+    "vesicula": 0.143,
+    "costra": 0.071,
+    "pustula": 0.071
+  },
+  "kaposi's sarcoma of skin": {
+    "papula": 0.5,
+    "placa": 0.357,
+    "macula": 0.071,
+    "nodulo": 0.214,
+    "vesicula": 0.071,
+    "bula_ampolla": 0.071
+  },
+  "erythema induratum of bazin": {
+    "eritema": 1,
+    "nodulo": 0.1
+  },
+  "infection": {
+    "cicatriz": 0.143,
+    "ulcera": 0.143,
+    "eritema": 0.071,
+    "pustula": 0.071
+  },
+  "candida intertrigo": {
+    "papula": 0.667,
+    "placa": 0.2,
+    "erosion": 0.067,
+    "eritema": 0.267
+  },
+  "herpetic gingivostomatitis": {
+    "vesicula": 0.541,
+    "erosion": 0.216,
+    "eritema": 0.297,
+    "costra": 0.135,
+    "ulcera": 0.27,
+    "bula_ampolla": 0.081
+  },
+  "allergic reaction": {
+    "papula": 0.194,
+    "eritema": 0.104
+  },
+  "cutaneous rheumatoid arthritis manifestation": {
+    "ulcera": 0.14,
+    "nodulo": 0.605
+  },
+  "intraepidermal carcinoma": {
+    "hiperpigmentacion": 0.091,
+    "placa": 0.364,
+    "eritema": 0.364,
+    "escama": 0.545,
+    "erosion": 0.545
+  },
+  "fibrous papule": {
+    "papula": 1
+  },
+  "venous malformation": {
+    "nodulo": 0.107,
+    "tumor": 0.107
+  },
+  "cutaneous photodamage": {
+    "telangiectasias": 0.182
+  },
+  "urticarial vasculitis": {
+    "papula": 0.167,
+    "placa": 0.2,
+    "macula": 0.267,
+    "eritema": 0.333,
+    "hiperpigmentacion": 0.1,
+    "habon": 0.2
+  },
+  "knuckle pads": {
+    "erosion": 0.188,
+    "liquenificacion": 0.188,
+    "nodulo": 0.063,
+    "cicatriz": 0.313
+  },
+  "mucormycosis": {
+    "ulcera": 0.313,
+    "tumor": 0.063
+  },
+  "clear cell acanthoma": {
+    "eritema": 0.083,
+    "nodulo": 0.194,
+    "papula": 0.056,
+    "placa": 0.056,
+    "tumor": 0.333
+  },
+  "inflammatory": {
+    "placa": 0.308,
+    "eritema": 0.385,
+    "ulcera": 0.077,
+    "macula": 0.231,
+    "cicatriz": 0.231,
+    "quiste": 0.077,
+    "pustula": 0.077,
+    "hiperpigmentacion": 0.077
+  },
+  "bullous hemorrhagic dermatosis": {
+    "bula_ampolla": 0.818,
+    "eritema": 0.091,
+    "vesicula": 0.182,
+    "cicatriz": 0.091
+  },
+  "cutaneous cushing's syndrome manifestation": {
+    "macula": 0.091,
+    "atrofia": 0.182
+  },
+  "staphylococcal infection": {
+    "costra": 0.093,
+    "eritema": 0.056,
+    "pustula": 0.074,
+    "macula": 0.056
+  },
+  "actinomycosis": {
+    "nodulo": 0.145,
+    "ulcera": 0.101
+  },
+  "coccidioidomycosis": {
+    "placa": 0.2,
+    "eritema": 0.1,
+    "papula": 0.1,
+    "pustula": 0.1,
+    "ulcera": 0.1,
+    "nodulo": 0.2
+  },
+  "dry skin": {
+    "quiste": 0.172,
+    "escama": 0.103
+  },
+  "drug reaction with eosinophilia and systemic symptoms (dress) syndrome": {
+    "papula": 0.636,
+    "placa": 0.091,
+    "eritema": 0.455,
+    "erosion": 0.091,
+    "macula": 0.091,
+    "escama": 0.091
+  },
+  "excoriation": {
+    "excoriacion": 0.931,
+    "erosion": 0.517,
+    "costra": 0.103
+  },
+  "acute and chronic dermatitis": {
+    "eritema": 0.177,
+    "liquenificacion": 0.053,
+    "papula": 0.381
+  },
+  "acute dermatitis": {
+    "eritema": 0.15,
+    "papula": 0.4,
+    "placa": 0.05,
+    "pustula": 0.1,
+    "vesicula": 0.05,
+    "escama": 0.2,
+    "costra": 0.2
+  },
+  "mal de meleda": {
+    "placa": 0.7,
+    "eritema": 0.3
+  },
+  "chondrodermatitis nodularis helicis": {
+    "nodulo": 0.917,
+    "papula": 0.167,
+    "erosion": 0.167,
+    "ulcera": 0.083,
+    "costra": 0.083
+  },
+  "cutaneous systemic sclerosis": {
+    "placa": 0.071,
+    "esclerosis": 0.286,
+    "papula": 0.071,
+    "eritema": 0.071,
+    "telangiectasias": 0.357
+  },
+  "cutaneous graft-versus-host disease": {
+    "ulcera": 0.118,
+    "macula": 0.353,
+    "placa": 0.118,
+    "escama": 0.059,
+    "papula": 0.176,
+    "eritema": 0.294,
+    "telangiectasias": 0.118
+  },
+  "milium": {
+    "bula_ampolla": 0.091,
+    "papula": 0.636,
+    "hipopigmentacion": 0.182
+  },
+  "sweet’s syndrome": {
+    "placa": 0.4,
+    "eritema": 0.2,
+    "costra": 0.2,
+    "nodulo": 0.2,
+    "pustula": 0.1,
+    "papula": 0.1,
+    "escama": 0.1,
+    "bula_ampolla": 0.1
+  },
+  "nodular sclerosis": {
+    "nodulo": 0.706,
+    "eritema": 0.353,
+    "papula": 0.235,
+    "esclerosis": 0.294,
+    "placa": 0.059,
+    "hiperpigmentacion": 0.059,
+    "hipopigmentacion": 0.059
+  },
+  "histoplasmosis": {
+    "ulcera": 0.675,
+    "papula": 0.1,
+    "placa": 0.05,
+    "pustula": 0.075,
+    "nodulo": 0.075
+  },
+  "prurigo pigmentosa": {
+    "papula": 0.133,
+    "excoriacion": 0.067,
+    "eritema": 0.133
+  },
+  "maceration": {
+    "macula": 0.5,
+    "pustula": 0.1,
+    "eritema": 0.2,
+    "erosion": 0.3
+  },
+  "dermatomyositis": {
+    "papula": 0.272,
+    "eritema": 0.222,
+    "telangiectasias": 0.051
+  },
+  "atrophic plaque": {
+    "macula": 0.077,
+    "atrofia": 1,
+    "placa": 0.923,
+    "ulcera": 0.077,
+    "hiperpigmentacion": 0.154,
+    "escama": 0.077,
+    "eritema": 0.231,
+    "cicatriz": 0.077,
+    "papula": 0.077
+  },
+  "gangrene": {
+    "ulcera": 0.6
+  },
+  "cutaneous hypothyroidism manifestation": {
+    "ulcera": 0.182
+  },
+  "lichen spinulosus": {
+    "papula": 0.786,
+    "escama": 0.214,
+    "costra": 0.214,
+    "cicatriz": 0.214
+  },
+  "acquired perforating dermatosis": {
+    "papula": 0.455,
+    "hiperpigmentacion": 0.091,
+    "costra": 0.364,
+    "ulcera": 0.182,
+    "macula": 0.091,
+    "eritema": 0.273,
+    "placa": 0.091,
+    "cicatriz": 0.091
+  },
+  "squamous papilloma": {
+    "papula": 0.091,
+    "tumor": 0.727
+  },
+  "umbilicated papules": {
+    "papula": 1
+  },
+  "frictional melanosis": {
+    "escama": 0.077
+  },
+  "macule": {
+    "macula": 0.931
+  },
+  "erythematous macules": {
+    "macula": 1,
+    "papula": 0.083,
+    "vesicula": 0.083,
+    "eritema": 1,
+    "escama": 0.083,
+    "erosion": 0.167,
+    "nodulo": 0.083,
+    "bula_ampolla": 0.083
+  },
+  "fordyce spots": {
+    "macula": 0.429,
+    "papula": 0.357,
+    "hipopigmentacion": 0.071,
+    "placa": 0.071
+  },
+  "desquamation": {
+    "eritema": 0.333,
+    "papula": 0.152,
+    "cicatriz": 0.091,
+    "escama": 0.091
+  },
+  "beau's lines": {
+    "cicatriz": 0.182,
+    "vesicula": 0.091,
+    "quiste": 0.091
+  },
+  "verruca plantaris": {
+    "papula": 0.385,
+    "placa": 0.231,
+    "macula": 0.077
+  },
+  "bulla": {
+    "bula_ampolla": 1,
+    "vesicula": 0.133,
+    "pustula": 0.133
+  },
+  "reactive arthritis": {
+    "erosion": 0.1,
+    "eritema": 0.4,
+    "papula": 0.1,
+    "placa": 0.2,
+    "costra": 0.2,
+    "pustula": 0.1,
+    "ulcera": 0.3
+  },
+  "atypical pigmented lesion": {
+    "hiperpigmentacion": 0.75,
+    "escama": 0.083
+  },
+  "cutaneous histoplasmosis manifestation": {
+    "papula": 0.273,
+    "placa": 0.273,
+    "eritema": 0.273,
+    "nodulo": 0.364,
+    "costra": 0.182,
+    "ulcera": 0.364
+  },
+  "parry-romberg syndrome": {
+    "atrofia": 0.909,
+    "cicatriz": 0.091,
+    "habon": 0.182
+  },
+  "leukoderma": {
+    "macula": 0.158,
+    "hipopigmentacion": 0.053,
+    "atrofia": 0.053,
+    "hiperpigmentacion": 0.053,
+    "costra": 0.105,
+    "ulcera": 0.105
+  },
+  "cutaneous tumor manifestation": {
+    "costra": 0.083,
+    "ulcera": 0.75,
+    "placa": 0.083,
+    "nodulo": 0.083,
+    "tumor": 0.167
+  },
+  "erythematous papule": {
+    "papula": 1,
+    "eritema": 1,
+    "ulcera": 0.091
+  },
+  "cold panniculitis": {
+    "macula": 0.067,
+    "eritema": 0.533,
+    "placa": 0.133,
+    "papula": 0.067,
+    "vesicula": 0.067,
+    "costra": 0.133
+  },
+  "lichenification": {
+    "liquenificacion": 0.95,
+    "excoriacion": 0.05,
+    "eritema": 0.05
+  },
+  "cutaneous sporotrichosis": {
+    "placa": 0.2,
+    "ulcera": 0.3,
+    "nodulo": 0.4,
+    "quiste": 0.1,
+    "costra": 0.25,
+    "papula": 0.1,
+    "pustula": 0.1
+  },
+  "benign neoplasm": {
+    "nodulo": 0.077,
+    "hiperpigmentacion": 0.923,
+    "macula": 0.077
+  },
+  "sezary syndrome": {
+    "escama": 0.273,
+    "eritema": 0.273,
+    "macula": 0.091,
+    "papula": 0.182,
+    "nodulo": 0.091,
+    "placa": 0.091
+  },
+  "benign fibrous histiocytoma": {
+    "nodulo": 0.857,
+    "eritema": 0.071,
+    "telangiectasias": 0.071,
+    "papula": 0.071,
+    "cicatriz": 0.071
+  },
+  "sycosis barbae": {
+    "pustula": 0.7,
+    "papula": 0.4,
+    "nodulo": 0.1,
+    "eritema": 0.2,
+    "costra": 0.1
+  },
+  "epidermodysplasia verruciformis": {
+    "placa": 0.3,
+    "hiperpigmentacion": 0.2,
+    "papula": 0.3,
+    "macula": 0.1,
+    "ulcera": 0.1,
+    "eritema": 0.2
+  },
+  "erythema marginatum": {
+    "papula": 0.273,
+    "eritema": 0.909
+  },
+  "bacterial blepharitis": {
+    "vesicula": 0.083,
+    "eritema": 0.083,
+    "costra": 0.917,
+    "cicatriz": 0.5
+  },
+  "inflammatory dermatosis": {
+    "papula": 0.684,
+    "placa": 0.053,
+    "eritema": 0.211,
+    "ulcera": 0.053,
+    "nodulo": 0.053,
+    "pustula": 0.105,
+    "liquenificacion": 0.053
+  },
+  "infiltrated plaque": {
+    "placa": 1,
+    "ulcera": 0.2,
+    "eritema": 0.3
+  },
+  "cutaneous diabetes manifestation": {
+    "bula_ampolla": 0.053,
+    "ulcera": 0.158,
+    "atrofia": 0.079,
+    "placa": 0.079,
+    "telangiectasias": 0.079,
+    "macula": 0.289
+  },
+  "cutaneous myiasis": {
+    "nodulo": 0.472
+  },
+  "fungal dermatitis": {
+    "pustula": 0.061,
+    "eritema": 0.061,
+    "costra": 0.394,
+    "papula": 0.212,
+    "escama": 0.091
+  },
+  "cutaneous atrophy": {
+    "atrofia": 0.769,
+    "telangiectasias": 0.077,
+    "cicatriz": 0.154,
+    "placa": 0.077
+  },
+  "mucocele": {
+    "nodulo": 0.083,
+    "quiste": 0.292
+  },
+  "cutaneous diphtheria": {
+    "ulcera": 0.75
+  },
+  "comedo": {
+    "atrofia": 0.059,
+    "tumor": 0.059
+  },
+  "arsenical keratosis": {
+    "papula": 0.5,
+    "ulcera": 0.444,
+    "placa": 0.056,
+    "eritema": 0.056
+  },
+  "hand-foot syndrome": {
+    "eritema": 0.583,
+    "macula": 0.083,
+    "hiperpigmentacion": 0.083
+  },
+  "psoriatic arthritis": {
+    "placa": 0.058,
+    "escama": 0.058,
+    "eritema": 0.058
+  },
+  "viral exanthems: roseola": {
+    "macula": 0.2,
+    "papula": 0.533,
+    "eritema": 0.333
+  },
+  "leukemia cutis": {
+    "nodulo": 0.9,
+    "eritema": 0.9,
+    "pustula": 0.1,
+    "ulcera": 0.1
+  },
+  "lymphogranuloma venereum": {
+    "erosion": 0.273,
+    "cicatriz": 0.364,
+    "vesicula": 0.182,
+    "ulcera": 0.455,
+    "eritema": 0.182,
+    "papula": 0.091,
+    "pustula": 0.091
+  },
+  "marshall-white syndrome": {
+    "macula": 0.059
+  },
+  "papilloma": {
+    "tumor": 0.5
+  },
+  "urticaria pigmentosa": {
+    "papula": 0.2,
+    "placa": 0.267,
+    "hiperpigmentacion": 0.067,
+    "macula": 0.133,
+    "nodulo": 0.267,
+    "habon": 0.067
+  },
+  "diabetic bullae": {
+    "bula_ampolla": 0.923
+  },
+  "neutrophilic dermatosis": {
+    "papula": 0.611,
+    "eritema": 0.056,
+    "nodulo": 0.167,
+    "pustula": 0.389
+  },
+  "heliotrope rash": {
+    "papula": 0.071,
+    "eritema": 0.571
+  },
+  "diabetic dermopathy": {
+    "macula": 0.062
+  },
+  "lymphatic malformation": {
+    "quiste": 0.538,
+    "tumor": 0.154
+  },
+  "varicose veins of lower extremity": {
+    "ulcera": 0.455,
+    "papula": 0.364
+  },
+  "atrophy": {
+    "atrofia": 0.583,
+    "cicatriz": 0.083,
+    "telangiectasias": 0.167,
+    "esclerosis": 0.167
+  },
+  "chronic actinic dermatitis": {
+    "liquenificacion": 0.13,
+    "costra": 0.13,
+    "papula": 0.109,
+    "eritema": 0.13
+  },
+  "keratolysis exfoliativa of wende": {
+    "escama": 0.062,
+    "ulcera": 0.138
+  },
+  "induration": {
+    "nodulo": 0.118,
+    "placa": 0.059
+  },
+  "laugier-hunziker syndrome": {
+    "macula": 0.4,
+    "hiperpigmentacion": 0.1
+  },
+  "sturge-weber syndrome": {
+    "macula": 0.091,
+    "eritema": 0.091
+  },
+  "cutaneous chemotherapy manifestation": {
+    "eritema": 0.083
+  },
+  "fordyce granules": {
+    "papula": 0.933
+  },
+  "adenoma sebaceum": {
+    "papula": 0.722,
+    "nodulo": 0.167,
+    "macula": 0.222,
+    "tumor": 0.167
+  },
+  "cutaneous t-cell lymphoma": {
+    "placa": 0.364,
+    "nodulo": 0.068,
+    "tumor": 0.273,
+    "ulcera": 0.057,
+    "papula": 0.08,
+    "eritema": 0.091
+  },
+  "macules": {
+    "macula": 1,
+    "papula": 0.077,
+    "placa": 0.077,
+    "eritema": 0.077
+  },
+  "malignant fibrous histiocytoma": {
+    "papula": 0.083,
+    "nodulo": 0.083,
+    "quiste": 0.083,
+    "hiperpigmentacion": 0.083,
+    "tumor": 0.417,
+    "ulcera": 0.083
+  },
+  "cutaneous neoplasm": {
+    "nodulo": 0.429,
+    "costra": 0.143,
+    "erosion": 0.071,
+    "tumor": 0.643
+  },
+  "epidermal atrophy": {
+    "atrofia": 0.9
+  },
+  "sarcoptic mange": {
+    "costra": 0.1,
+    "pustula": 0.1,
+    "eritema": 0.3,
+    "papula": 0.2
+  },
+  "toxic erythema of chemotherapy": {
+    "erosion": 0.1,
+    "eritema": 1
+  },
+  "erosions": {
+    "macula": 0.063,
+    "bula_ampolla": 0.063,
+    "erosion": 1,
+    "eritema": 0.063,
+    "costra": 0.875
+  },
+  "discoid lupus": {
+    "placa": 0.087,
+    "escama": 0.087,
+    "eritema": 0.116,
+    "atrofia": 0.087,
+    "cicatriz": 0.13
+  },
+  "colloid milium": {
+    "papula": 0.5
+  },
+  "erosion": {
+    "erosion": 0.903,
+    "costra": 0.065
+  },
+  "cutaneous diabetes mellitus manifestation": {
+    "bula_ampolla": 0.071,
+    "ulcera": 0.071,
+    "eritema": 0.071,
+    "telangiectasias": 0.071,
+    "placa": 0.286,
+    "papula": 0.071,
+    "atrofia": 0.071
+  },
+  "kawasaki disease": {
+    "eritema": 0.712
+  },
+  "behçet's disease": {
+    "ulcera": 1,
+    "eritema": 0.288
+  },
+  "clinical diagnosis": {
+    "placa": 0.074,
+    "papula": 0.074,
+    "vesicula": 0.111,
+    "quiste": 0.093,
+    "habon": 0.093,
+    "cicatriz": 0.148,
+    "tumor": 0.111,
+    "eritema": 0.056
+  },
+  "anthrax": {
+    "pustula": 0.269,
+    "ulcera": 0.192
+  },
+  "'lupus'": {
+    "pustula": 1
+  },
+  "'other connective tissue diseases'": {
+    "pustula": 1
+  },
+  "episcleritis": {
+    "nodulo": 0.088
+  },
+  "lantigal maligna": {
+    "ulcera": 0.063
+  },
+  "polymyositis": {
+    "escama": 0.988
+  },
+  "purpura": {
+    "macula": 0.077,
+    "papula": 0.051
+  },
+  "hemorrhage": {
+    "macula": 0.417
+  },
+  "photosensitivity": {
+    "ulcera": 0.083
+  },
+  "seborrheic dermatitis": {
+    "eritema": 0.096,
+    "escama": 0.125
+  },
+  "venous malformations": {
+    "telangiectasias": 0.05
+  },
+  "morphia": {
+    "placa": 0.091
+  },
+  "probable pemphigus": {
+    "erosion": 0.8,
+    "eritema": 0.1,
+    "ulcera": 0.1
+  },
+  "pemphigoid": {
+    "cicatriz": 0.111,
+    "eritema": 0.056,
+    "bula_ampolla": 0.111,
+    "erosion": 0.167,
+    "ulcera": 0.333
+  },
+  "pediculosis": {
+    "macula": 0.091,
+    "excoriacion": 0.182
+  },
+  "annular lichenoid dermatitis of youth": {
+    "costra": 0.057
+  },
+  "hashimoto-prisco": {
+    "tumor": 0.176,
+    "nodulo": 0.353
+  },
+  "erythema nordicum": {
+    "eritema": 0.308
+  },
+  "bowen disease": {
+    "eritema": 0.143,
+    "ulcera": 0.095
+  },
+  "sebaceous gland carcinoma": {
+    "nodulo": 0.08,
+    "tumor": 0.38
+  },
+  "darier disease": {
+    "bula_ampolla": 0.069,
+    "papula": 0.69,
+    "costra": 0.069
+  },
+  "trichylemoma": {
+    "nodulo": 0.923,
+    "tumor": 0.154
+  },
+  "perioral dermatitis": {
+    "papula": 0.068
+  },
+  "dermatophilosis": {
+    "costra": 1,
+    "ulcera": 0.905
+  },
+  "leishmaniasis": {
+    "ulcera": 0.211,
+    "macula": 0.211
+  },
+  "melanosis": {
+    "cicatriz": 0.125
+  },
+  "based on the information provided": {
+    "papula": 0.095,
+    "eritema": 0.571,
+    "atrofia": 0.238,
+    "ulcera": 0.19,
+    "vesicula": 0.143
+  },
+  "frictional lichenoid eruption": {
+    "papula": 0.364
+  },
+  "xanthomas": {
+    "papula": 0.2,
+    "nodulo": 0.333,
+    "placa": 0.156
+  },
+  "cutaneous tuberculosis": {
+    "cicatriz": 0.125,
+    "papula": 0.052,
+    "ulcera": 0.208,
+    "placa": 0.052,
+    "costra": 0.125,
+    "eritema": 0.083,
+    "nodulo": 0.052,
+    "quiste": 0.052
+  },
+  "sweet's syndrome": {
+    "placa": 0.267,
+    "eritema": 0.267,
+    "papula": 0.067
+  },
+  "xanthoma": {
+    "nodulo": 0.219,
+    "tumor": 0.156
+  },
+  "allergic purpura": {
+    "eritema": 0.326,
+    "papula": 0.065
+  },
+  "macular papillary rash": {
+    "macula": 0.652,
+    "papula": 0.261
+  },
+  "lichen erythematosus": {
+    "erosion": 0.182,
+    "bula_ampolla": 0.121
+  },
+  "vapomas": {
+    "tumor": 0.4
+  },
+  "erythroderma": {
+    "eritema": 0.121,
+    "escama": 0.146
+  },
+  "blepharitis": {
+    "costra": 0.263,
+    "telangiectasias": 0.053
+  },
+  "pityriasis versicolor": {
+    "escama": 0.354,
+    "macula": 0.063
+  },
+  "photosensitive dermatitis": {
+    "eritema": 0.077
+  },
+  "paget disease": {
+    "escama": 0.8,
+    "placa": 0.1,
+    "eritema": 0.1,
+    "tumor": 0.05
+  },
+  "acute neutrophilic dermatosis": {
+    "pustula": 1
+  },
+  "erythema": {
+    "eritema": 0.597
+  },
+  "adenosquamous carcinoma": {
+    "tumor": 1
+  },
+  "sebaceous gland ectopia": {
+    "papula": 0.429
+  },
+  "sporotrichosis": {
+    "papula": 0.058,
+    "nodulo": 0.135,
+    "ulcera": 0.173,
+    "eritema": 0.058
+  },
+  "spider veins": {
+    "telangiectasias": 0.5
+  },
+  "ecrine acrospiroma": {
+    "costra": 1,
+    "ulcera": 1
+  },
+  "pemphigus foliaceus": {
+    "erosion": 0.423,
+    "papula": 0.269,
+    "bula_ampolla": 0.269,
+    "costra": 0.231,
+    "escama": 0.115
+  },
+  "toxic epidermal necrolysis": {
+    "erosion": 0.661,
+    "costra": 0.129,
+    "eritema": 0.097
+  },
+  "dermatophytosis": {
+    "placa": 0.24
+  },
+  "talangiectasia": {
+    "telangiectasias": 1
+  },
+  "ringworm": {
+    "papula": 0.06,
+    "vesicula": 0.06,
+    "pustula": 0.06
+  },
+  "keratocanthoma": {
+    "tumor": 0.08
+  },
+  "mast cell tumor": {
+    "ulcera": 0.538,
+    "tumor": 1,
+    "nodulo": 0.077,
+    "cicatriz": 0.077
+  },
+  "steven johnson syndrome": {
+    "eritema": 0.341,
+    "costra": 0.136,
+    "ulcera": 0.136,
+    "bula_ampolla": 0.068
+  },
+  "trichoadenoma": {
+    "tumor": 1
+  },
+  "trichopithelioma": {
+    "tumor": 0.8,
+    "quiste": 0.133,
+    "papula": 0.133
+  },
+  "erythema annularis centrifugum": {
+    "eritema": 0.971
+  },
+  "lupus": {
+    "eritema": 0.111,
+    "placa": 0.056
+  },
+  "lichen sclerosis": {
+    "telangiectasias": 0.148,
+    "esclerosis": 0.407,
+    "cicatriz": 0.259,
+    "placa": 0.185
+  },
+  "trichoepithelioma": {
+    "quiste": 1
+  },
+  "angiosarcoma": {
+    "tumor": 0.593,
+    "placa": 0.111
+  },
+  "toxic epidermal necrolysis (ten)": {
+    "costra": 0.071,
+    "eritema": 0.714
+  },
+  "necrobiosis lipidica diabeticorum": {
+    "ulcera": 0.855,
+    "telangiectasias": 0.927,
+    "placa": 0.109
+  },
+  "herpes simplex": {
+    "vesicula": 0.471,
+    "costra": 0.235,
+    "ulcera": 0.059
+  },
+  "besitz disease": {
+    "papula": 0.909,
+    "eritema": 1
+  },
+  "cutaneous malignancy": {
+    "tumor": 0.767,
+    "ulcera": 0.116
+  },
+  "gingivitis": {
+    "eritema": 0.125
+  },
+  "benign pigmented lesion": {
+    "hiperpigmentacion": 1,
+    "macula": 0.067,
+    "escama": 0.067
+  },
+  "cutaneous autoimmune manifestation": {
+    "papula": 0.087,
+    "placa": 0.087
+  },
+  "chalazion": {
+    "nodulo": 0.083,
+    "quiste": 0.083
+  },
+  "pinguecula": {
+    "nodulo": 0.135
+  },
+  "ehlers-danlos syndrome": {
+    "cicatriz": 0.765
+  },
+  "lichen": {
+    "costra": 0.192,
+    "papula": 0.462
+  },
+  "scleritis": {
+    "nodulo": 0.385
+  },
+  "mammary paget disease": {
+    "placa": 0.083,
+    "eritema": 0.083,
+    "escama": 0.875
+  },
+  "adesopilase": {
+    "placa": 1,
+    "eritema": 1
+  },
+  "polymorphic light eruption": {
+    "papula": 1,
+    "vesicula": 0.964,
+    "escama": 0.071
+  },
+  "lymphedema": {
+    "erosion": 0.087
+  },
+  "lipodermoid": {
+    "tumor": 0.667
+  },
+  "lplk": {
+    "macula": 0.3
+  },
+  "post-inflammatory erythema": {
+    "eritema": 0.1
+  },
+  "dermatophyte infection": {
+    "eritema": 0.1
+  },
+  "cutaneous autoimmune disease manifestation": {
+    "ulcera": 0.154
+  },
+  "cutaneous bashet's syndrome manifestation": {
+    "papula": 0.833,
+    "placa": 0.833,
+    "eritema": 0.25,
+    "pustula": 0.583,
+    "ulcera": 0.167,
+    "cicatriz": 0.167
+  },
+  "sand-worm eruption": {
+    "costra": 0.063,
+    "eritema": 0.063
+  },
+  "bessette's syndrome": {
+    "nodulo": 0.357
+  },
+  "lupus vulgaris": {
+    "ulcera": 0.083,
+    "nodulo": 0.167,
+    "eritema": 0.167,
+    "cicatriz": 0.417,
+    "erosion": 0.083,
+    "atrofia": 0.167
+  },
+  "erythema annular centrifugum": {
+    "eritema": 1,
+    "escama": 0.636
+  },
+  "papillomas": {
+    "tumor": 0.4
+  },
+  "liposarcoma": {
+    "tumor": 0.846,
+    "cicatriz": 0.077
+  },
+  "cutaneous manifestation of cirrhosis": {
+    "macula": 1
+  },
+  "nivus": {
+    "tumor": 0.167
+  },
+  "cutaneous infection": {
+    "ulcera": 0.206
+  },
+  "abrasion": {
+    "papula": 0.679,
+    "vesicula": 0.5,
+    "bula_ampolla": 0.5
+  },
+  "scrape": {
+    "papula": 0.731,
+    "vesicula": 0.538,
+    "bula_ampolla": 0.538
+  },
+  "or scab": {
+    "papula": 0.731,
+    "vesicula": 0.538,
+    "bula_ampolla": 0.538
+  },
+  "chronic dermatitis": {
+    "papula": 0.739
+  },
+  "nos": {
+    "papula": 0.769
+  },
+  "carcinoma": {
+    "cicatriz": 0.077,
+    "ulcera": 0.308,
+    "nodulo": 0.231,
+    "tumor": 0.615
+  },
+  "o or e - ecchymoses present": {
+    "vesicula": 0.429,
+    "bula_ampolla": 0.429,
+    "papula": 0.786
+  },
+  "sebaceous carcinoma": {
+    "tumor": 0.125
+  },
+  "angiomyopnea": {
+    "nodulo": 0.235
+  },
+  "linear iga bullous dermatosis": {
+    "vesicula": 0.2,
+    "bula_ampolla": 0.2,
+    "erosion": 0.2
+  },
+  "acrodermatitis enteropathica": {
+    "escama": 0.091
+  },
+  "cutaneous bacterial infection": {
+    "ulcera": 0.625,
+    "erosion": 0.125
+  },
+  "ciliditis": {
+    "placa": 0.697,
+    "eritema": 0.697
+  },
+  "pemphigus": {
+    "erosion": 0.44,
+    "ulcera": 0.28,
+    "bula_ampolla": 0.56,
+    "costra": 0.08
+  },
+  "dermatofibrosarcoma protuberans": {
+    "placa": 0.5,
+    "nodulo": 0.583,
+    "vesicula": 0.083,
+    "tumor": 0.083
+  },
+  "radiation dermatitis": {
+    "costra": 0.2,
+    "ulcera": 0.4,
+    "eritema": 0.1
+  },
+  "severe achyntosis": {
+    "atrofia": 0.316
+  },
+  "herpes labialis": {
+    "vesicula": 1,
+    "costra": 0.714
+  },
+  "shcheklakov's disease": {
+    "erosion": 1
+  },
+  "neumann's vegetative panphygus": {
+    "erosion": 1,
+    "pustula": 0.412
+  },
+  "angular chelitis": {
+    "costra": 0.091,
+    "eritema": 0.091
+  },
+  "thrombophlebitis": {
+    "eritema": 0.154
+  },
+  "actinic granuloma": {
+    "papula": 0.15,
+    "eritema": 0.55,
+    "costra": 0.05,
+    "nodulo": 0.05,
+    "placa": 0.05,
+    "atrofia": 0.05
+  },
+  "mycetoma": {
+    "nodulo": 0.333,
+    "tumor": 0.051
+  },
+  "raynaud's phenomenon": {
+    "telangiectasias": 0.333
+  },
+  "epidermal hyperplasia": {
+    "erosion": 0.182
+  },
+  "malassezia infection": {
+    "macula": 0.9,
+    "papula": 0.4
+  },
+  "pioderma gangrenosum": {
+    "ulcera": 0.947,
+    "cicatriz": 0.053
+  },
+  "phlycten": {
+    "nodulo": 1
+  },
+  "cutaneous fungal infection": {
+    "cicatriz": 0.08
+  },
+  "pedunculated fibroids": {
+    "tumor": 0.3
+  },
+  "telangiectasis": {
+    "telangiectasias": 1
+  },
+  "iridema": {
+    "papula": 0.583,
+    "placa": 0.583,
+    "eritema": 0.917
+  },
+  "genital molluscum": {
+    "papula": 1
+  },
+  "cutaneous lymphoma": {
+    "placa": 0.485,
+    "atrofia": 0.121,
+    "eritema": 0.303,
+    "papula": 0.152,
+    "nodulo": 0.152,
+    "tumor": 0.121
+  },
+  "p10 hamartoma syndrome": {
+    "papula": 0.545,
+    "placa": 0.364,
+    "cicatriz": 0.182
+  },
+  "arthritis": {
+    "ulcera": 0.6,
+    "pustula": 0.2,
+    "telangiectasias": 0.2
+  },
+  "sebaceous adenoma": {
+    "tumor": 0.214
+  },
+  "cutaneous covid-19 manifestations": {
+    "ulcera": 0.4,
+    "eritema": 0.8
+  },
+  "autoimmune dermatitis": {
+    "cicatriz": 0.929
+  },
+  "sally acanthoma": {
+    "nodulo": 0.571
+  },
+  "varicose veins with cutaneous manifestations": {
+    "telangiectasias": 1
+  },
+  "lymphoma": {
+    "tumor": 0.6
+  },
+  "azhira": {
+    "eritema": 0.143
+  },
+  "non-pigmented pagetoid disease": {
+    "escama": 0.524
+  },
+  "melia": {
+    "quiste": 0.091
+  },
+  "thyroid eye disease": {
+    "eritema": 0.2
+  },
+  "cicatricial pemphigoid": {
+    "bula_ampolla": 1
+  },
+  "central blastic lymphoma": {
+    "tumor": 1
+  },
+  "glaucomatous optic atrophy": {
+    "atrofia": 1
+  },
+  "cutaneous insulin resistance manifestation": {
+    "papula": 0.25
+  },
+  "cd30 positive large cell transformation": {
+    "nodulo": 1,
+    "tumor": 1
+  },
+  "bechet's disease": {
+    "ulcera": 0.2
+  },
+  "cutaneous metastasis": {
+    "nodulo": 0.4,
+    "eritema": 0.4,
+    "ulcera": 0.3,
+    "tumor": 0.3,
+    "telangiectasias": 0.1
+  },
+  "ossn (ocular surface squamous neoplasia)": {
+    "tumor": 1
+  },
+  "crusted weeping": {
+    "costra": 1
+  }
+}
