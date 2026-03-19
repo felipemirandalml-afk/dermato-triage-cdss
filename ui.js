@@ -200,12 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
         resultCard.className = `clinical-card p-0 overflow-hidden transition-all duration-500 border-t-4 bg-white ${theme.border}`;
 
         // Header
-        const clinicalLabel = res.priority === 1 ? 'Urgencial' : (res.priority === 2 ? 'Prioritario' : 'Estable');
+        const clinicalLabel = res.priority === 1 ? 'Urgencia' : (res.priority === 2 ? 'Prioritario' : 'Estable');
         document.getElementById('priorityLabel').textContent = clinicalLabel;
         document.getElementById('priorityLabel').className = `text-5xl md:text-6xl font-black tracking-tighter leading-none ${theme.color} lowercase first-letter:uppercase`;
 
         const badge = document.getElementById('priorityBadge');
-        badge.textContent = `Prioridad P${res.priority}`;
+        badge.textContent = `Nivel Triage P${res.priority}`;
         badge.className = `px-5 py-2 rounded-full text-[12px] font-black uppercase tracking-[0.1em] border shadow-sm ${theme.badge}`;
 
         // Case ID
@@ -267,19 +267,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const levelMap = {
                 "high": { 
-                    label: "CONFIANZA ALTA", 
+                    label: "ALTA CONSISTENCIA", 
                     color: "bg-emerald-50 text-emerald-700 border-emerald-100", 
-                    text: "El modelo identifica un patrón clínico altamente consistente con el síndrome sugerido." 
+                    text: "Presentación clínica altamente compatible con las pautas diagnósticas del síndrome sugerido." 
                 },
                 "medium": { 
-                    label: "CONFIANZA MEDIA", 
+                    label: "SUGESTIVO", 
                     color: "bg-blue-50 text-blue-700 border-blue-100", 
-                    text: "El modelo sugiere una tendencia diagnóstica probable, pero existen hallazgos atípicos." 
+                    text: "El patrón es probable, pero se recomienda descartar diagnósticos diferenciales con examen físico." 
                 },
                 "low": { 
-                    label: "AMBIGUO / BAJA", 
+                    label: "ANÁLISIS AMBIGUO", 
                     color: "bg-rose-50 text-rose-700 border-rose-100", 
-                    text: pa.message || "Presentación clínica indeterminada o contradictoria. Se requiere evaluación física exhaustiva." 
+                    text: pa.message || "Presentación atípica o indeterminada. No se puede descartar sobreposición de cuadros. Se sugiere interconsulta." 
                 }
             };
 
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="flex justify-between items-center">
                             <h6 class="text-sm font-black text-slate-800 uppercase tracking-tight">${item.disease_name}</h6>
                             <span class="text-[9px] font-black ${idx === 0 ? 'text-blue-600 bg-blue-50' : 'text-slate-400 bg-slate-50'} px-2 py-1 rounded-lg">
-                                RANK ${idx + 1}
+                                PRESUNCIÓN RANK ${idx + 1}
                             </span>
                         </div>
                         <div class="flex flex-wrap gap-1.5">
@@ -341,19 +341,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 2. Importancia de Features (Probabilística)
+        // Agrupación por Categoría para claridad clínica
+        const CATEGORY_MAP = {
+            'lesion_': 'Morfología',
+            'topo_': 'Topografía',
+            'topog_': 'Topografía',
+            'patron_': 'Semiología',
+            'signo_': 'Sistémico',
+            'edad': 'Basales',
+            'farmacos': 'Antecedentes',
+            'inmuno': 'Antecedentes'
+        };
+
         const formatFeat = (f) => {
             const label = (FEATURE_MAP_LABELS && FEATURE_MAP_LABELS[f.key]) || 
                          f.key.replace('lesion_','').replace('topo_','').replace('topog_','').replace('patron_','').toUpperCase().replace(/_/g, ' ');
+            
+            let category = 'Otros';
+            for (const [prefix, cat] of Object.entries(CATEGORY_MAP)) {
+                if (f.key.startsWith(prefix)) {
+                    category = cat;
+                    break;
+                }
+            }
+
             return `
-                <div class="flex justify-between items-center group">
-                    <span class="text-[11px] font-bold text-slate-500 group-hover:text-slate-800 transition-colors uppercase tracking-tight">${label}</span>
-                    <div class="flex items-center gap-2">
-                        <div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                            <div class="h-full ${f.impact > 0 ? 'bg-emerald-400' : 'bg-rose-400'}" style="width: ${Math.min(100, Math.abs(f.impact) * 8)}%"></div>
+                <div class="flex flex-col group py-1.5 border-b border-slate-50 last:border-0">
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-col">
+                            <span class="text-[11px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors uppercase tracking-tight">${label}</span>
+                            <span class="text-[8px] font-black text-slate-300 uppercase tracking-widest">${category}</span>
                         </div>
-                        <span class="text-[10px] font-black w-8 text-right font-mono ${f.impact > 0 ? 'text-emerald-600' : 'text-rose-600'}">
-                            ${f.impact > 0 ? '+' : '-'}${Math.abs(f.impact).toFixed(1)}
-                        </span>
+                        <div class="flex items-center gap-2">
+                            <div class="w-16 h-1 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full ${f.impact > 0 ? 'bg-emerald-400' : 'bg-rose-400'}" style="width: ${Math.min(100, Math.abs(f.impact) * 8)}%"></div>
+                            </div>
+                            <span class="text-[9px] font-black w-7 text-right font-mono ${f.impact > 0 ? 'text-emerald-500' : 'text-rose-500'}">
+                                ${f.impact > 0 ? '+' : '-'}${Math.abs(f.impact).toFixed(1)}
+                            </span>
+                        </div>
                     </div>
                 </div>
             `;
@@ -365,11 +391,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             posCont.innerHTML = pa.feature_importance.positive.length > 0 
                 ? pa.feature_importance.positive.map(formatFeat).join('') 
-                : '<span class="text-[10px] text-slate-300 italic">No hay hallazgos con peso positivo significativo</span>';
+                : '<span class="text-[10px] text-slate-300 italic">No hay aportes determinantes presentes</span>';
                 
             negCont.innerHTML = pa.feature_importance.negative.length > 0 
                 ? pa.feature_importance.negative.map(formatFeat).join('') 
-                : '<span class="text-[10px] text-slate-300 italic">No hay factores de descarte detectados</span>';
+                : '<span class="text-[10px] text-slate-300 italic">No hay factores de discordancia detectados</span>';
         }
 
         // Red Flags Container
