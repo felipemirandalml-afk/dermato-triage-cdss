@@ -35,11 +35,72 @@ const EXTRA_CLINICAL_FEATURES = [
     // Señales específicas
     'signo_mucosas'
 ];
-
 export const FEATURE_INDEX = {};
 [...PROBABILISTIC_FEATURES, ...EXTRA_CLINICAL_FEATURES].forEach((f, idx) => {
     FEATURE_INDEX[f] = idx;
 });
+
+/**
+ * 3. Diccionario de Alias para Compatibilidad (UI/Datasets -> Canonical)
+ * Centraliza el mapeo de nombres descriptivos a las llaves internas del motor.
+ */
+export const FEATURE_ALIASES = {
+    // Red Flags / Síntomas Sistémicos
+    'signo_fiebre': 'fiebre',
+    'fiebre_si': 'fiebre',
+    'signo_dolor': 'dolor',
+    'dolor_si': 'dolor',
+    'riesgo_metabolico': 'diabetes',
+
+    // Lesiones Primarias/Secundarias (Mapeo de prefijo lesion_)
+    'lesion_macula': 'macula',
+    'lesion_mancha': 'mancha',
+    'lesion_papula': 'papula',
+    'lesion_placa': 'placa',
+    'lesion_vesicula': 'vesicula',
+    'lesion_pustula': 'pustula',
+    'lesion_bula': 'bula_ampolla',
+    'lesion_ampolla': 'bula_ampolla',
+    'lesion_habon': 'habon',
+    'lesion_nodulo': 'nodulo',
+    'lesion_ulcera': 'ulcera',
+    'lesion_costra': 'costra',
+    'lesion_escama': 'escama',
+    'lesion_escara': 'escara',
+    'lesion_atrofia': 'atrofia',
+    'lesion_liquenificacion': 'liquenificacion',
+    'lesion_cicatriz': 'cicatriz',
+    'lesion_comedon': 'comedon',
+    'lesion_surco': 'surco',
+    'lesion_quiste': 'quiste',
+    'lesion_erosion': 'erosion',
+    'lesion_excoriacion': 'excoriacion',
+    'lesion_induracion': 'induracion',
+    'lesion_purpura': 'purpura',
+    'lesion_tumor': 'tumor',
+    'lesion_eritema': 'eritema',
+    'lesion_hiperpigmentacion': 'hiperpigmentacion',
+    'lesion_hipopigmentacion': 'hipopigmentacion',
+
+    // Antecedentes Personales (Mapeo de prefijo antecedente_)
+    'antecedente_inmunosupresion': 'inmunosupresion',
+    'antecedente_diabetes': 'diabetes',
+    'antecedente_atopia': 'atopia',
+    'antecedente_embarazo': 'embarazo',
+    'antecedente_hepatopatia': 'hepatopatia',
+    'antecedente_neoplasia': 'antecedente_neoplasia',
+    'antecedente_autoinmune': 'antecedente_autoinmune',
+    'antecedente_obesidad': 'antecedente_obesidad',
+    'antecedente_trauma': 'antecedente_trauma',
+    'antecedente_quimico': 'antecedente_quimico',
+    'antecedente_viaje': 'antecedente_viaje',
+    'antecedente_eii': 'antecedente_eii',
+    
+    // Parche de Tiempos si vienen prefijados
+    'patron_agudo': 'agudo',
+    'patron_subagudo': 'subagudo',
+    'patron_cronico': 'cronico'
+};
 
 export const FEATURE_MAP_LABELS = {
     farmacos_recientes: "Exposición a Fármacos Sistémicos",
@@ -78,17 +139,17 @@ export const FEATURE_MAP_LABELS = {
     topog_ext_inf: "Miembros Inferiores",
     patron_acral: "Patrón Acral (Manos/Pies)",
     patron_simetrico: "Distribución Simétrica",
-    lesion_macula: "Mácula",
-    lesion_papula: "Pápula",
-    lesion_placa: "Placa",
-    lesion_vesicula: "Vesícula",
-    lesion_pustula: "Pústula",
-    lesion_habon: "Habón / Roncha",
-    lesion_costra: "Costra",
-    lesion_escara: "Escara / Necrosis",
-    lesion_atrofia: "Atrofia",
-    lesion_liquenificacion: "Liquenificación",
-    lesion_cicatriz: "Cicatriz",
+    macula: "Mácula",
+    papula: "Pápula",
+    placa: "Placa",
+    vesicula: "Vesícula",
+    pustula: "Pústula",
+    habon: "Habón / Roncha",
+    costra: "Costra",
+    escara: "Escara / Necrosis",
+    atrofia: "Atrofia",
+    liquenificacion: "Liquenificación",
+    cicatriz: "Cicatriz",
     topo_cara_centro: "Cara Centrofacial",
     topo_cuero_cabelludo: "Cuero Cabelludo",
     topo_pies: "Pies / Plantas",
