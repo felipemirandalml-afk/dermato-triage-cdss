@@ -1,3 +1,7 @@
+// Umbrales etarios clínicos para modificadores de contexto (años reales)
+const AGE_THRESHOLD_GERIATRIC = 75; // Alta vulnerabilidad geriátrica
+const AGE_THRESHOLD_INFANT = 2;     // Período de lactantes
+
 export function applyContextModifiers(helper, currentResult) {
     const { has, get } = helper;
     let priority = currentResult.priority;
@@ -46,7 +50,7 @@ export function applyContextModifiers(helper, currentResult) {
 
     // E. CONTEXTO GERIÁTRICO / VULNERABILIDAD
     const ageVal = get('edad'); 
-    if (ageVal > 0.75 && has('generalizado') && (has('costra') || has('escama'))) {
+    if (ageVal >= AGE_THRESHOLD_GERIATRIC && has('generalizado') && (has('costra') || has('escama'))) {
         const desc = "Vulnerabilidad Geriátrica: Cuadro Generalizado Costroso";
         rules.push(`ℹ️ Contexto: ${desc}`);
         if (priority > 2) {
@@ -71,7 +75,7 @@ export function applyRefinementModifiers(helper, currentResult) {
 
     // F. DOWNSCALES DE SEGURIDAD
     // Lactantes con fiebre y solo máculas (Exantema Súbito)
-    if (priority === 1 && has('fiebre') && has('macula') && ageVal > 0 && ageVal <= 2) {
+    if (priority === 1 && has('fiebre') && has('macula') && ageVal > 0 && ageVal <= AGE_THRESHOLD_INFANT) {
         if (!has('dolor') && !has('signo_mucosas') && !has('bula_ampolla')) {
             const desc = "Exantema Viral Benigno Probable (Pediátrico)";
             rules.push(`✨ Refinamiento: ${desc}`);

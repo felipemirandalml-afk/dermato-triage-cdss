@@ -6,6 +6,10 @@
  * priorizar diagnósticos específicos cuando existen "anclas" clínicas fuertes.
  */
 
+// Umbrales etarios para anclaje epidemiológico (años reales)
+const AGE_THRESHOLD_ELDERLY_BP = 60;        // Penfigoide Ampolloso (habitual > 60 años)
+const AGE_THRESHOLD_PEDIATRIC_IMPETIGO = 12; // Impétigo (población infantil y escolar)
+
 export const CARDINAL_FEATURE_RULES = [
     {
         id: "comedones",
@@ -30,7 +34,7 @@ export const CARDINAL_FEATURE_RULES = [
         label: "Ampollas de techo firme",
         priority: "high",
         // Aproximación: Ampolla en paciente mayor (común en Penfigoide)
-        conditions: (h) => h.has('bula_ampolla') && h.get('edad') > 0.6,
+        conditions: (h) => h.has('bula_ampolla') && h.get('edad') >= AGE_THRESHOLD_ELDERLY_BP,
         boost_differentials: ["Bullous pemphigoid"],
         suppress_differentials: ["Pemphigus vulgaris"],
         rationale: "La firmeza del techo y la epidemiología (edad avanzada) orientan a clivaje subepidérmico."
@@ -94,7 +98,7 @@ export const CARDINAL_FEATURE_RULES = [
         id: "costras_melicericas",
         label: "Costras mielicéricas (Impétigo)",
         priority: "medium",
-        conditions: (h) => h.has('costra') && h.has('topo_cara_centro') && h.get('edad') < 0.2,
+        conditions: (h) => h.has('costra') && h.has('topo_cara_centro') && h.get('edad') <= AGE_THRESHOLD_PEDIATRIC_IMPETIGO,
         boost_differentials: ["Impetigo"],
         suppress_differentials: ["Dermatitis atópica"],
         rationale: "Las costras color miel en rostro (especialmente niños) son patognomónicas de impétigo."
