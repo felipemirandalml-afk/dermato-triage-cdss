@@ -39,7 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 ¡Copiado!
             `;
             setTimeout(() => {
-                btnCopy.innerHTML = originalText;
+                btnCopy.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                    </svg>
+                    Copiar Reporte
+                `;
             }, 2000);
         } catch (err) {
             console.error('Error al copiar:', err);
@@ -177,6 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsPanel.classList.remove('hidden');
         resultsPanel.scrollIntoView({ behavior: 'smooth' });
 
+        // Timestamp Formateado (Médico)
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('es-CL', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const timeStr = now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+        document.getElementById('currentTimestamp').textContent = `${dateStr} ${timeStr}`;
+
         // Temas Visuales por Prioridad
         const themes = {
             1: { color: 'text-rose-600', badge: 'bg-rose-50 text-rose-700 border-rose-200', border: 'border-t-rose-600', score: 'bg-rose-600' },
@@ -191,11 +202,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Header
         const clinicalLabel = res.priority === 1 ? 'Urgencial' : (res.priority === 2 ? 'Prioritario' : 'Estable');
         document.getElementById('priorityLabel').textContent = clinicalLabel;
-        document.getElementById('priorityLabel').className = `text-4xl md:text-5xl font-black tracking-tighter leading-none ${theme.color}`;
+        document.getElementById('priorityLabel').className = `text-5xl md:text-6xl font-black tracking-tighter leading-none ${theme.color} lowercase first-letter:uppercase`;
 
         const badge = document.getElementById('priorityBadge');
         badge.textContent = `Prioridad P${res.priority}`;
-        badge.className = `px-4 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-widest border shadow-sm ${theme.badge}`;
+        badge.className = `px-5 py-2 rounded-full text-[12px] font-black uppercase tracking-[0.1em] border shadow-sm ${theme.badge}`;
 
         // Case ID
         document.getElementById('caseId').textContent = Math.floor(1000 + Math.random() * 9000);
@@ -203,6 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Conducta
         document.getElementById('suggestedConduct').textContent = res.conduct;
         document.getElementById('recommendedTimeframe').textContent = res.timeframe;
+
+        // Red Flag Badge
+        const redFlagBadge = document.getElementById('redFlagBadge');
+        if (res.redFlags && res.redFlags.length > 0) {
+            redFlagBadge.classList.remove('hidden');
+        } else {
+            redFlagBadge.classList.add('hidden');
+        }
 
         // Modifier Panel (Ajustes de Seguridad)
         const modPanel = document.getElementById('activeAdjustmentsPanel');
@@ -214,37 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modPanel.classList.add('hidden');
         }
 
-        // Red Flags
-        const rfPanel = document.getElementById('redFlagsPanel');
-        const rfContainer = document.getElementById('redFlagsContainer');
-        if (res.redFlags && res.redFlags.length > 0) {
-            rfPanel.classList.remove('hidden');
-            rfContainer.innerHTML = res.redFlags.map(flag => `
-                <span class="px-3 py-1 bg-rose-50 text-rose-600 border border-rose-100 rounded text-[10px] font-bold uppercase tracking-tight">
-                    • ${flag}
-                </span>
-            `).join('');
-        } else {
-            rfPanel.classList.add('hidden');
-        }
-
         // Justificación
         document.getElementById('clinicalJustification').textContent = res.justification;
-
-        // Probabilidades (Diseño Compacto)
-        const probLabels = ["Estable (P3)", "Prioritario (P2)", "Urgencial (P1)"];
-        const probThemes = [themes[3], themes[2], themes[1]];
-        document.getElementById('probabilityList').innerHTML = res.probabilities.map((p, i) => `
-            <div class="space-y-2">
-                <div class="flex justify-between items-end">
-                    <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">${probLabels[i]}</span>
-                    <span class="text-xs font-bold text-slate-700 font-mono">${(p * 100).toFixed(1)}%</span>
-                </div>
-                <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <div class="${probThemes[i].score} h-full transition-all duration-1000 ease-out" style="width: ${p * 100}%"></div>
-                </div>
-            </div>
-        `).join('');
 
         // Inferencia de Síndrome (ML)
         if (res.probabilistic_analysis) {
@@ -276,17 +266,29 @@ document.addEventListener('DOMContentLoaded', () => {
             confPanel.classList.remove('hidden');
 
             const levelMap = {
-                "high": { label: "ALTA", color: "bg-emerald-100 text-emerald-700 border-emerald-200", text: "El modelo identifica un patrón clínico claro y consistente." },
-                "medium": { label: "MEDIA", color: "bg-blue-100 text-blue-700 border-blue-200", text: "El modelo sugiere una tendencia, pero con margen de variabilidad." },
-                "low": { label: "BAJA / AMBIGUO", color: "bg-rose-100 text-rose-700 border-rose-200", text: pa.message || "Patrón indeterminado. Se requiere evaluación clínica directa." }
+                "high": { 
+                    label: "CONFIANZA ALTA", 
+                    color: "bg-emerald-50 text-emerald-700 border-emerald-100", 
+                    text: "El modelo identifica un patrón clínico altamente consistente con el síndrome sugerido." 
+                },
+                "medium": { 
+                    label: "CONFIANZA MEDIA", 
+                    color: "bg-blue-50 text-blue-700 border-blue-100", 
+                    text: "El modelo sugiere una tendencia diagnóstica probable, pero existen hallazgos atípicos." 
+                },
+                "low": { 
+                    label: "AMBIGUO / BAJA", 
+                    color: "bg-rose-50 text-rose-700 border-rose-100", 
+                    text: pa.message || "Presentación clínica indeterminada o contradictoria. Se requiere evaluación física exhaustiva." 
+                }
             };
 
             const config = levelMap[pa.confidence_level] || levelMap.low;
 
             confBadge.textContent = config.label;
-            confBadge.className = `text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none border ${config.color}`;
+            confBadge.className = `text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none border ${config.color}`;
             confText.textContent = config.text;
-            confPanel.className = `mt-3 p-3 rounded-lg border flex flex-col gap-1 transition-all duration-300 ${config.color.split(' ')[0]} ${config.color.split(' ')[2]}`;
+            confPanel.className = `p-5 rounded-2xl border transition-all duration-300 ${config.color}`;
 
             // Capa de Diagnóstico Diferencial Clínico (Top 3)
             const diffPanel = document.getElementById('differentialPanel');
@@ -295,16 +297,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (res.differential_ranking && res.differential_ranking.length > 0) {
                 diffPanel.classList.remove('hidden');
                 diffContainer.innerHTML = res.differential_ranking.map((item, idx) => `
-                    <div class="flex flex-col gap-1 p-3 bg-white border border-slate-100 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex flex-col gap-3 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-black text-slate-800 uppercase tracking-tight">${item.disease_name}</span>
-                            <span class="text-[9px] font-black ${idx === 0 ? 'text-blue-600 bg-blue-50' : 'text-slate-400 bg-slate-50'} px-2 py-0.5 rounded">
-                                Rank ${idx + 1}
+                            <h6 class="text-sm font-black text-slate-800 uppercase tracking-tight">${item.disease_name}</h6>
+                            <span class="text-[9px] font-black ${idx === 0 ? 'text-blue-600 bg-blue-50' : 'text-slate-400 bg-slate-50'} px-2 py-1 rounded-lg">
+                                RANK ${idx + 1}
                             </span>
                         </div>
-                        <div class="flex flex-wrap gap-1 mt-1">
+                        <div class="flex flex-wrap gap-1.5">
                             ${item.matched_rules.map(rule => `
-                                <span class="text-[9px] font-semibold text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100 italic">
+                                <span class="text-[9px] font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded-md border border-slate-100/50 italic">
                                     • ${rule}
                                 </span>
                             `).join('')}
@@ -316,7 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-
         // RAZONAMIENTO DEL SISTEMA (FASE 3)
         const pa = res.probabilistic_analysis;
         
@@ -326,15 +327,17 @@ document.addEventListener('DOMContentLoaded', () => {
             alertsContainer.innerHTML = res.triggered_rules.map(rule => {
                 const isCritical = rule.includes('🚨');
                 const isWarning = rule.includes('⚠️');
-                const bgColor = isCritical ? 'bg-rose-50 border-rose-100' : (isWarning ? 'bg-amber-50 border-amber-100' : 'bg-blue-50 border-blue-100');
+                const bgColor = isCritical ? 'bg-rose-50 border-rose-100 text-rose-800' : (isWarning ? 'bg-amber-50 border-amber-100 text-amber-800' : 'bg-blue-50 border-blue-100 text-blue-800');
+                const icon = isCritical ? '🚩' : (isWarning ? '⚠️' : 'ℹ️');
                 return `
-                    <div class="flex items-center gap-2 p-2 ${bgColor} border rounded-lg">
-                        <span class="text-[11px] font-black text-slate-800">${rule}</span>
+                    <div class="flex items-center gap-3 p-3 ${bgColor} border rounded-xl font-bold text-xs">
+                        <span class="text-lg leading-none">${icon}</span>
+                        <span>${rule.replace('🚨','').replace('⚠️','').trim()}</span>
                     </div>
                 `;
             }).join('');
         } else {
-            alertsContainer.innerHTML = '<span class="text-[10px] text-slate-400 italic">No se requirieron ajustes heurísticos adicionales.</span>';
+            alertsContainer.innerHTML = '<span class="text-[10px] text-slate-400 italic font-medium">Protocolo estándar sin alertas excepcionales detectadas.</span>';
         }
 
         // 2. Importancia de Features (Probabilística)
@@ -345,10 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="flex justify-between items-center group">
                     <span class="text-[11px] font-bold text-slate-500 group-hover:text-slate-800 transition-colors uppercase tracking-tight">${label}</span>
                     <div class="flex items-center gap-2">
-                        <div class="w-12 h-1 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                             <div class="h-full ${f.impact > 0 ? 'bg-emerald-400' : 'bg-rose-400'}" style="width: ${Math.min(100, Math.abs(f.impact) * 8)}%"></div>
                         </div>
-                        <span class="text-[10px] font-black w-6 text-right ${f.impact > 0 ? 'text-emerald-600' : 'text-rose-600'}">
+                        <span class="text-[10px] font-black w-8 text-right font-mono ${f.impact > 0 ? 'text-emerald-600' : 'text-rose-600'}">
                             ${f.impact > 0 ? '+' : '-'}${Math.abs(f.impact).toFixed(1)}
                         </span>
                     </div>
@@ -362,11 +365,26 @@ document.addEventListener('DOMContentLoaded', () => {
             
             posCont.innerHTML = pa.feature_importance.positive.length > 0 
                 ? pa.feature_importance.positive.map(formatFeat).join('') 
-                : '<span class="text-[10px] text-slate-300 italic">Sin aportes positivos significativos</span>';
+                : '<span class="text-[10px] text-slate-300 italic">No hay hallazgos con peso positivo significativo</span>';
                 
             negCont.innerHTML = pa.feature_importance.negative.length > 0 
                 ? pa.feature_importance.negative.map(formatFeat).join('') 
-                : '<span class="text-[10px] text-slate-300 italic">Sin factores de descarte significativos</span>';
+                : '<span class="text-[10px] text-slate-300 italic">No hay factores de descarte detectados</span>';
+        }
+
+        // Red Flags Container
+        const rfPanel = document.getElementById('redFlagsPanel');
+        const rfContainer = document.getElementById('redFlagsContainer');
+        if (res.redFlags && res.redFlags.length > 0) {
+            rfPanel.classList.remove('hidden');
+            rfContainer.innerHTML = res.redFlags.map(flag => `
+                <span class="px-4 py-2 bg-rose-50 text-rose-700 border border-rose-100 rounded-xl text-[10px] font-black uppercase tracking-tight flex items-center gap-2 animate-in zoom-in-95 duration-300">
+                    <span class="w-1.5 h-1.5 bg-rose-500 rounded-full animate-pulse"></span>
+                    ${flag}
+                </span>
+            `).join('');
+        } else {
+            rfPanel.classList.add('hidden');
         }
 
         // Disclaimer Externo

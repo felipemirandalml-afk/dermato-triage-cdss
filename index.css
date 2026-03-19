@@ -157,3 +157,44 @@ input[type="checkbox"], input[type="radio"] {
 .btn-outline:hover {
     background-color: #f1f5f9;
 }
+
+/* Specialized Clinical Styling for Results */
+.clinical-card {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+.text-rose-600 { color: #e11d48; }
+.text-amber-600 { color: #d97706; }
+.text-emerald-600 { color: #059669; }
+
+.bg-rose-50 { background-color: #fff1f2; }
+.bg-amber-50 { background-color: #fffbeb; }
+.bg-emerald-50 { background-color: #ecfdf5; }
+.bg-blue-50 { background-color: #eff6ff; }
+
+/* Custom Animation Durations */
+.duration-1000 {
+    animation-duration: 1200ms;
+}
+
+.slide-in-from-bottom-12 {
+    animation: slideInBottom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInBottom {
+    from {
+        opacity: 0; transform: translateY(3rem);
+    }
+    to {
+        opacity: 1; transform: translateY(0);
+    }
+}
+
+@media print {
+    .no-print { display: none !important; }
+    body { background: white; padding: 0; }
+    .clinical-card { box-shadow: none; border: 1px solid #e2e8f0; border-radius: 0; }
+    .max-w-\[1300px\] { max-width: 100% !important; margin: 0; }
+    #resultsPanel { margin-top: 0; }
+}
+

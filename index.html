@@ -556,172 +556,198 @@
             </form>
 
             <!-- PANEL DE RESULTADOS (INFORME CLÍNICO CDSS) -->
-            <section id="resultsPanel" class="hidden mt-16 mb-24 animate-in slide-in-from-bottom-8 duration-700">
-                <div class="w-full h-px bg-slate-200 mb-10"></div>
+            <section id="resultsPanel" class="hidden mt-16 mb-24 animate-in slide-in-from-bottom-12 duration-1000">
+                <div class="h-px bg-slate-200 mb-12"></div>
                 
-                <div class="max-w-[1300px] mx-auto">
+                <div class="max-w-[1300px] mx-auto space-y-8">
                     <div id="resultCard" class="clinical-card p-0 overflow-hidden transition-all duration-500 border-t-4 bg-white">
                         
-                        <!-- 1. CABECERA DEL INFORME (Sobria y Profesional) -->
-                        <div class="border-b border-slate-100 p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-slate-50/30">
+                        <!-- 1. CABECERA DE DECISIÓN (The "What") -->
+                        <div class="border-b border-slate-100 p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-slate-50/50">
                             <div class="flex flex-col items-center md:items-start">
-                                <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] block mb-3">Informe de Priorización de Triage</span>
-                                <div class="flex flex-col sm:flex-row items-center gap-4">
-                                    <h2 id="priorityLabel" class="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 leading-none lowercase first-letter:uppercase"></h2>
-                                    <span id="priorityBadge" class="px-4 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-widest border border-slate-200 shadow-sm"></span>
+                                <span class="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] block mb-4">Resultado de Priorización Clínica</span>
+                                <div class="flex flex-col sm:flex-row items-center gap-6">
+                                    <h2 id="priorityLabel" class="text-5xl md:text-6xl font-black tracking-tighter leading-none lowercase first-letter:uppercase"></h2>
+                                    <div class="flex flex-col items-start gap-1">
+                                        <span id="priorityBadge" class="px-5 py-2 rounded-full text-[12px] font-black uppercase tracking-[0.1em] border shadow-sm"></span>
+                                        <span class="text-[10px] text-slate-400 font-bold px-1">Protocolo CDSS v1.1</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex flex-col items-center md:items-end">
-                                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Validación CDSS Protocolizada</span>
-                                <div class="flex items-center gap-3">
-                                    <span class="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 border border-slate-100 rounded-md">Regresión Logística v1.1</span>
-                                    <span class="text-xs font-bold text-slate-300">ID: DT-<span id="caseId">8823</span></span>
+                            <div class="flex flex-col items-center md:items-end text-center md:text-right">
+                                <p id="clinicalJustification" class="text-sm text-slate-500 leading-relaxed font-bold italic max-w-sm"></p>
+                                <div class="mt-4 flex items-center gap-3">
+                                    <span class="text-[10px] font-bold text-slate-300">ID CASO: <span id="caseId">8823</span></span>
+                                    <span class="h-3 w-px bg-slate-200"></span>
+                                    <span class="text-[10px] font-bold text-slate-300" id="currentTimestamp"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 2. CUERPO DEL INFORME (Estructura de 2 Columnas) -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-                            
-                            <!-- COLUMNA IZQUIERDA: Recomendación & Justificación -->
-                            <div class="p-8 md:p-12 space-y-12">
-                                <!-- Bloque: Conducta Sugerida (Principal) -->
-                                <div class="space-y-4">
+                        <!-- 2. CONDUCTA MÉDICA (The "Now What") -->
+                        <div class="bg-white p-8 md:p-12 border-b border-slate-50">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                                <div class="lg:col-span-7 space-y-6">
                                     <div class="flex items-center gap-3">
                                         <div class="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-                                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Sugerencia de Conducta Médica</h4>
+                                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Plan de Acción Sugerido</h4>
                                     </div>
-                                    <p id="suggestedConduct" class="text-2xl font-bold text-slate-800 leading-tight max-w-lg"></p>
-                                    <div class="inline-flex items-center gap-2 px-3 py-2 bg-blue-50/50 rounded-lg border border-blue-50/80">
-                                        <span class="text-xs font-bold text-blue-700 italic" id="recommendedTimeframe"></span>
-                                    </div>
-                                </div>
-
-                                <!-- Bloque: Ajustes / Reglas (Dinámico) -->
-                                <div id="activeAdjustmentsPanel" class="hidden p-5 bg-amber-50/30 border border-amber-100/50 rounded-xl">
-                                    <h4 class="text-[10px] font-black text-amber-600 uppercase tracking-[0.2em] mb-3 italic">Modificadores Clínicos Aplicados</h4>
-                                    <div id="adjustmentsContainer" class="text-sm font-bold text-amber-800"></div>
-                                </div>
-
-                                <!-- Bloque: Justificación Textual -->
-                                <div class="space-y-4 pt-4 border-t border-slate-50">
-                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Justificación del Algoritmo</h4>
-                                    <p id="clinicalJustification" class="text-sm text-slate-500 leading-relaxed font-medium italic"></p>
-                                </div>
-                            </div>
-
-                            <!-- COLUMNA DERECHA: Análisis Técnico & Probabilidades -->
-                            <div class="p-8 md:p-12 bg-slate-50/20 space-y-12">
-                                <!-- Bloque: Distribución de Probabilidad -->
-                                <div>
-                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-8">Análisis Probabilístico Comparativo</h4>
-                                    <div id="probabilityList" class="space-y-6"></div>
-                                </div>
-
-                                <!-- Bloque: Inferencia de Síndrome (ML) -->
-                                    <div class="pt-6 border-t border-slate-100">
-                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 italic">Presunción Diagnóstica (Probabilística)</h4>
-                                    <div class="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-lg shadow-sm">
-                                        <span id="topSyndromeName" class="text-xs font-bold text-slate-700">Calculando...</span>
-                                        <span id="topSyndromeProb" class="text-[10px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded">0%</span>
-                                    </div>
-                                    <!-- Indicador de Confianza Diagnóstica -->
-                                    <div id="confidencePanel" class="mt-3 p-3 rounded-lg border flex flex-col gap-1 hidden transition-all duration-300">
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-[9px] font-black uppercase tracking-widest text-slate-400 leading-none">Confianza Diagnóstica</span>
-                                            <span id="confidenceBadge" class="text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none"></span>
+                                    <p id="suggestedConduct" class="text-3xl font-black text-slate-800 leading-[1.1] tracking-tight"></p>
+                                    <div class="flex flex-wrap gap-4 pt-2">
+                                        <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 text-blue-700 rounded-xl border border-blue-100 italic font-bold text-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <span id="recommendedTimeframe"></span>
                                         </div>
-                                        <p id="confidenceText" class="text-[10px] font-semibold text-slate-500 mt-1 leading-tight italic"></p>
-                                    </div>
-                                    <!-- Diagnósticos Diferenciales (FASE DIFFERENTIALS) -->
-                                    <div id="differentialPanel" class="mt-8 pt-8 border-t border-slate-100 hidden animate-in fade-in slide-in-from-top-4 duration-500">
-                                        <div class="flex items-center gap-2 mb-4">
-                                            <div class="w-1.5 h-4 bg-slate-400 rounded-full"></div>
-                                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic">Diagnósticos Diferenciales Sugeridos</h4>
-                                        </div>
-                                        
-                                        <div id="differentialRankingContainer" class="space-y-4 mb-6">
-                                            <!-- Inyectado por ui.js -->
-                                        </div>
-
-                                        <!-- Disclaimer Clínico Obligatorio -->
-                                        <div class="bg-yellow-50 text-xs text-gray-600 rounded-lg p-3 border border-yellow-100 leading-relaxed italic">
-                                            <span class="font-bold text-yellow-700">⚠️ Aviso:</span> 
-                                            Estos diferenciales son sugerencias semiológicas basadas en reglas heurísticas. 
-                                            No constituyen un diagnóstico médico definitivo y requieren correlación clínica directa.
-                                        </div>
-                                    </div>
-
-
-                                <!-- RAZONAMIENTO DEL SISTEMA (FASE 3 - EXPLICABILIDAD) -->
-                                <div id="systemReasoningPanel" class="pt-8 border-t border-slate-100 space-y-10">
-                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Razonamiento del Sistema</h4>
-                                    
-                                    <!-- A. Alertas de Triage (Heurística) -->
-                                    <div id="triageAlertsSection" class="space-y-3">
-                                        <h5 class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Alertas de Triage & Seguridad</h5>
-                                        <div id="triageAlertsContainer" class="flex flex-col gap-2">
-                                            <!-- Labels se inyectan aquí -->
-                                        </div>
-                                    </div>
-
-                                    <!-- B. Influencia de Hallazgos (Probabilística) -->
-                                    <div id="featureImportanceSection" class="space-y-6">
-                                        <h5 class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Influencia de Hallazgos Clínicos</h5>
-                                        
-                                        <div class="grid grid-cols-1 gap-6">
-                                            <!-- A FAVOR -->
-                                            <div class="space-y-3">
-                                                <span class="text-[9px] font-black text-emerald-500 uppercase tracking-tighter">Factores que favorecen el diagnóstico</span>
-                                                <div id="positiveImportanceContainer" class="space-y-2"></div>
-                                            </div>
-                                            
-                                            <!-- EN CONTRA -->
-                                            <div class="space-y-3">
-                                                <span class="text-[9px] font-black text-rose-500 uppercase tracking-tighter">Factores que disminuyen probabilidad</span>
-                                                <div id="negativeImportanceContainer" class="space-y-2"></div>
-                                            </div>
+                                        <div id="redFlagBadge" class="hidden inline-flex items-center gap-3 px-4 py-2 bg-rose-50 text-rose-700 rounded-xl border border-rose-100 italic font-bold text-sm">
+                                            <span class="animate-pulse">🚩</span> 
+                                            <span>Señales de Alarma Detectadas</span>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Bloque: Red Flags (Si existen) -->
-                                <div id="redFlagsPanel" class="hidden space-y-4">
-                                    <h4 class="text-[10px] font-black text-rose-500 uppercase tracking-[0.2em] italic">Señales de Alarma para Vigilancia</h4>
-                                    <div id="redFlagsContainer" class="flex flex-wrap gap-2"></div>
+                                <div class="lg:col-span-5">
+                                    <div id="activeAdjustmentsPanel" class="hidden p-6 bg-amber-50/40 border border-amber-200/50 rounded-2xl relative overflow-hidden">
+                                        <div class="absolute top-0 right-0 p-2 opacity-10">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                            </svg>
+                                        </div>
+                                        <h4 class="text-[10px] font-black text-amber-600 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                                            <span class="w-1 h-1 bg-amber-400 rounded-full"></span> Modificadores Clínicos
+                                        </h4>
+                                        <div id="adjustmentsContainer" class="text-sm font-bold text-amber-950 leading-relaxed"></div>
+                                        <p class="text-[10px] text-amber-600/70 mt-3 italic font-medium">Estos factores forzaron un ajuste en la prioridad probabilística inicial.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 3. FOOTER TÉCNICO & ACCIONES (FASE 4) -->
-                        <div class="bg-slate-50 px-8 md:px-12 py-6 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
-                            <div class="flex flex-col gap-1">
-                                <span class="text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] flex items-center gap-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                                    Algoritmo CDSS Core v1.1 • Análisis Híbrido
-                                </span>
-                                <span class="text-[9px] font-bold text-slate-300 uppercase tracking-widest">© 2026 Plataforma de Soporte Clínico APS</span>
+                        <!-- 3. ANÁLISIS DIAGNÓSTICO (The "Why") -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
+                            
+                            <!-- COLUMNA IZQUIERDA: Apoyo Semiología y Diferenciales -->
+                            <div class="p-8 md:p-12 space-y-12">
+                                <!-- Diagnósticos Diferenciales -->
+                                <div id="differentialPanel" class="space-y-8 hidden">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-2 h-2 bg-slate-400 rounded-full"></div>
+                                            <h4 class="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Presunción Diagnóstica y Diferenciales</h4>
+                                        </div>
+                                        <span class="text-[10px] font-bold text-slate-300 italic">Heurística Semiológica</span>
+                                    </div>
+                                    
+                                    <div id="differentialRankingContainer" class="space-y-5"></div>
+
+                                    <div class="bg-blue-50/30 text-[11px] text-slate-500 rounded-2xl p-5 border border-blue-100/50 leading-relaxed italic">
+                                        <div class="flex items-center gap-2 mb-2 text-blue-700 not-italic font-bold uppercase tracking-widest text-[9px]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            Nota Orientadora
+                                        </div>
+                                        Estos diferenciales se calculan vinculando hallazgos cardinales con patrones sindrómicos. No sustituyen el examen físico ni la biopsia si está indicada.
+                                    </div>
+                                </div>
+
+                                <!-- Alertas Detalladas -->
+                                <div id="triageAlertsSection" class="space-y-6 pt-4">
+                                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Detalle de Reglas Activadas</h4>
+                                    <div id="triageAlertsContainer" class="space-y-3"></div>
+                                </div>
+                            </div>
+
+                            <!-- COLUMNA DERECHA: Análisis Probabilístico (ML) -->
+                            <div class="p-8 md:p-12 bg-slate-50/30 space-y-12">
+                                <!-- Confianza y Síndrome Top -->
+                                <div class="space-y-8">
+                                    <h4 class="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Apoyo Probabilístico (Pattern Recognition)</h4>
+                                    
+                                    <div class="flex flex-col gap-6">
+                                        <div class="flex items-center justify-between p-6 bg-white border border-slate-100 rounded-3xl shadow-sm">
+                                            <div class="space-y-1">
+                                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Patrón Predominante</span>
+                                                <h5 id="topSyndromeName" class="text-xl font-black text-slate-800 tracking-tight"></h5>
+                                            </div>
+                                            <div class="flex flex-col items-end gap-1">
+                                                <span id="topSyndromeProb" class="text-2xl font-black text-blue-600"></span>
+                                                <span id="confidenceBadge" class="text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter border"></span>
+                                            </div>
+                                        </div>
+
+                                        <div id="confidencePanel" class="p-5 rounded-2xl border transition-all duration-300 hidden">
+                                            <p id="confidenceText" class="text-xs font-bold leading-relaxed italic"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Influencia de Hallazgos -->
+                                <div id="featureImportanceSection" class="space-y-8 pt-6 border-t border-slate-100">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Contribución de Hallazgos</h4>
+                                        <span class="text-[10px] text-slate-300 font-medium italic">Pesos de Importancia</span>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 gap-8">
+                                        <div class="space-y-4">
+                                            <span class="text-[10px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-2">
+                                                <span class="w-1 h-3 bg-emerald-400 rounded-full"></span> Factores que Refuerzan
+                                            </span>
+                                            <div id="positiveImportanceContainer" class="space-y-3 pl-3"></div>
+                                        </div>
+                                        
+                                        <div class="space-y-4">
+                                            <span class="text-[10px] font-black text-rose-500 uppercase tracking-widest flex items-center gap-2">
+                                                <span class="w-1 h-3 bg-rose-400 rounded-full"></span> Factores de Contradetección
+                                            </span>
+                                            <div id="negativeImportanceContainer" class="space-y-3 pl-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Red Flags Compact -->
+                                <div id="redFlagsPanel" class="hidden space-y-4 pt-6 border-t border-slate-100">
+                                    <h4 class="text-[10px] font-black text-rose-500 uppercase tracking-[0.2em] italic">Vigilancia de Banderas Rojas</h4>
+                                    <div id="redFlagsContainer" class="flex flex-wrap gap-3"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. FOOTER TÉCNICO & ACCIONES -->
+                        <div class="bg-slate-50 px-8 md:px-12 py-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-white rounded-2xl border border-slate-200 flex items-center justify-center shadow-sm">
+                                    <span class="text-lg font-black text-blue-600">DT</span>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        CDSS Core Engine v1.1
+                                    </span>
+                                    <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest italic">Análisis Multicapa: Heurística + Probabilística</span>
+                                </div>
                             </div>
                             
-                            <div class="flex items-center gap-3 no-print">
-                                <button id="btnCopyReport" class="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-50 hover:border-blue-300 hover:text-blue-600 transition-all shadow-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div class="flex items-center gap-4 no-print w-full md:w-auto">
+                                <button id="btnCopyReport" class="flex-grow md:flex-grow-0 flex items-center justify-center gap-3 px-6 py-3 bg-white border border-slate-200 rounded-xl text-xs font-black text-slate-600 hover:bg-slate-50 hover:border-blue-300 hover:text-blue-600 transition-all shadow-sm group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                                     </svg>
-                                    Copiar para Ficha Clínica
+                                    Copiar Reporte
                                 </button>
-                                <button id="btnPrintReport" class="flex items-center gap-2 px-5 py-2.5 bg-slate-800 border border-slate-900 rounded-lg text-xs font-bold text-white hover:bg-slate-950 transition-all shadow-lg shadow-slate-200">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <button id="btnPrintReport" class="flex-grow md:flex-grow-0 flex items-center justify-center gap-3 px-8 py-3 bg-slate-800 border border-slate-900 rounded-xl text-xs font-black text-white hover:bg-slate-950 transition-all shadow-xl shadow-slate-200 group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                                     </svg>
-                                    Imprimir Reporte
+                                    Imprimir
                                 </button>
                             </div>
                         </div>
                     </div>
 
                     <!-- 4. DISCLAIMER EXTERNO (DISCRETO) -->
-                    <div class="mt-8 max-w-4xl mx-auto text-center px-10">
+                    <div class="max-w-4xl mx-auto text-center px-10">
                         <p id="disclaimerText" class="text-[11px] leading-relaxed text-slate-400 font-medium italic opacity-70"></p>
                     </div>
                 </div>
