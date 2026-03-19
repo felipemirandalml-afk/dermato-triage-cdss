@@ -30,70 +30,69 @@ export function generateClinicalReport(formData, triageResult) {
         'chronic': 'crónico (> 6 semanas)'
     };
 
-    const now = new Date().toLocaleString();
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('es-CL');
+    const timeStr = now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+    
     const pa = triageResult.probabilistic_analysis;
     const topSynd = syndromeLabels[pa.top_syndrome] || pa.top_syndrome || "Patrón Indeterminado";
 
-    // 1. MOTIVO DE CONSULTA & DATOS BASALES
-    let report = `==================================================\n`;
-    report += `INFORME CLÍNICO DE TRIAGE DERMATOLÓGICO (CDSS)\n`;
-    report += `==================================================\n`;
-    report += `Fecha: ${now}\n`;
-    report += `Paciente: ${formData.age} años | Sexo: ${formData.sexo_female ? 'Femenino' : 'Masculino'}\n`;
-    report += `Fototipo: Fitzpatrick ${formData.fitzpatrick}\n`;
-    report += `--------------------------------------------------\n\n`;
+    const confMap = {
+        'high': 'ALTA CONSISTENCIA',
+        'medium': 'SUGESTIVO (MEDIA)',
+        'low': 'ANÁLISIS AMBIGUO'
+    };
 
-    report += `1. BREVE RESUMEN SEMIOLÓGICO\n`;
-    report += `Cuadro de evolución ${timingMap[formData.timing] || 'no especificada'}.\n`;
-    
-    // Extraer lesiones y topografía activas
+    // --- CONSTRUCCIÓN DEL REPORTE (ESTILO CLÍNICO S.O.A.P.) ---
+    let report = `REPORTE DE SOPORTE A LA DECISIÓN DERMATOLÓGICA (APS)\n`;
+    report += `Emitido: ${dateStr} ${timeStr} | ID: ${Math.floor(1000 + Math.random() * 9000)}\n`;
+    report += `----------------------------------------------------------\n\n`;
+
+    // S: SUBJETIVO / DATOS BASALES
+    report += `[S] DATOS DEL PACIENTE:\n`;
+    report += `- Edad: ${formData.age} años\n`;
+    report += `- Sexo: ${formData.sexo_female ? 'Femenino' : 'Masculino'}\n`;
+    report += `- Fototipo: Fitzpatrick ${formData.fitzpatrick}\n`;
+    report += `- Tiempo de Evolución: ${timingMap[formData.timing] || 'No especificado'}\n\n`;
+
+    // O: OBJETIVO / HALLAZGOS
+    report += `[O] SEMIOLOGÍA CUTÁNEA DETECTADA:\n`;
     const activeFeatures = Object.keys(formData)
         .filter(key => key.startsWith('lesion_') || key.startsWith('topog_') || key.startsWith('patron_'))
         .map(key => FEATURE_MAP_LABELS[key] || key.replace('lesion_','').toUpperCase().replace(/_/g,' '))
         .join(', ');
     
-    if (activeFeatures) {
-        report += `Hallazgos predominantes: ${activeFeatures}.\n`;
+    report += activeFeatures ? `- Hallazgos: ${activeFeatures}\n` : `- Sin hallazgos específicos registrados.\n`;
+    
+    if (triageResult.redFlags && triageResult.redFlags.length > 0) {
+        report += `- RED FLAGS: ${triageResult.redFlags.join(', ')}\n`;
     }
     report += `\n`;
 
-    // 2. HALLAZGOS CRÍTICOS (HEURÍSTICA)
-    report += `2. SEGURIDAD CLÍNICA & RED FLAGS\n`;
+    // A: ANÁLISIS / IMPRESIÓN
+    report += `[A] ANÁLISIS DEL SISTEMA (CDSS):\n`;
+    report += `- Prioridad: P${triageResult.priority} (${triageResult.label.split('-')[1].trim()})\n`;
+    report += `- Sospecha Sindrómica: ${topSynd}\n`;
+    report += `- Consistencia del Patrón: ${confMap[pa.confidence_level] || pa.confidence_level.toUpperCase()}\n`;
+    report += `- Justificación Triage: ${triageResult.justification}\n`;
+    
     if (triageResult.triggered_rules && triageResult.triggered_rules.length > 0) {
+        report += `- Reglas Activadas:\n`;
         triageResult.triggered_rules.forEach(rule => {
-            report += `- ${rule.replace(/🚨|⚠️|ℹ️|✨/g, '').trim()}\n`;
-        });
-    } else {
-        report += `No se detectaron red flags inmediatas por reglas heurísticas.\n`;
-    }
-    report += `\n`;
-
-    // 3. ANÁLISIS SINDRÓMICO (MOTOR PROBABILÍSTICO)
-    report += `3. ANÁLISIS SINDRÓMICO\n`;
-    report += `Presunción: ${topSynd}\n`;
-    report += `Confianza: ${pa.confidence_level.toUpperCase()} (${(pa.top_probability * 100).toFixed(1)}%)\n\n`;
-
-    if (pa.feature_importance) {
-        report += `Factores determinantes presentes:\n`;
-        pa.feature_importance.positive.forEach(f => {
-            const label = FEATURE_MAP_LABELS[f.key] || f.key.toUpperCase().replace(/_/g,' ');
-            report += `  (+) ${label}\n`;
-        });
-        pa.feature_importance.negative.forEach(f => {
-            const label = FEATURE_MAP_LABELS[f.key] || f.key.toUpperCase().replace(/_/g,' ');
-            report += `  (-) Ausencia de: ${label}\n`;
+            report += `  * ${rule.replace(/🚨|⚠️|ℹ️|✨/g, '').trim()}\n`;
         });
     }
     report += `\n`;
 
-    // 4. CONDUCTA SUGERIDA (TRIAGE)
-    report += `4. SUGERENCIA DE CONDUCTA (TRIAGE)\n`;
-    report += `PRIORIDAD: P${triageResult.priority} - ${triageResult.label.split('-')[1].trim()}\n`;
-    report += `Recomendación: ${triageResult.conduct}\n`;
-    report += `Plazo sugerido: ${triageResult.timeframe}\n`;
-    report += `\n--------------------------------------------------\n`;
-    report += `Generado por DermatoTriage CDSS Algorithm v1.1\n`;
-    report += `Aviso: Este reporte es un soporte a la decisión y debe ser validado por un médico.\n`;
+    // P: PLAN / CONDUCTA
+    report += `[P] CONDUCTA SUGERIDA:\n`;
+    report += `- Acción Recomendada: ${triageResult.conduct}\n`;
+    report += `- Plazo de Atención: ${triageResult.timeframe}\n\n`;
+
+    report += `----------------------------------------------------------\n`;
+    report += `Generado por DermatoTriage Engine v1.1.2\n`;
+    report += `NOTA: Este informe es una herramienta de soporte. La decisión final\n`;
+    report += `depende de la evaluación presencial del profesional médico.\n`;
 
     return report;
 }
