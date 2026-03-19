@@ -44,7 +44,30 @@ Este documento registra el proceso de calibración del motor clínico dirigido p
 - **Explicabilidad**: Se preservó la trazabilidad, las explicaciones ahora muestran "Dolor" o "Mucosas" como factores dominantes cuando corresponde.
 
 ---
-*Fin del reporte de calibración v1.0*
+---
+
+## Calibración Final v1.3 - Hardening & P2-Shield (Sincronizada)
+
+### 1. Resultados de la Fase
+- **Escenario**: Benchmark de Integridad con 60 casos clínicos (~120 variables).
+- **Performance Inicial (v1.2)**: ~73.3% (Fugas en oncología y contextos sistémicos).
+- **Performance Final (v1.3)**: **~88.3% Global | 100% P1 Safety**.
+- **Dataset**: Estructurado con `tools/validate_case_schema.js` (Cero UnknownInputs).
+
+### 2. Hitos de Calibración
+Se implementaron capas de **Hardening Clínico** para cerrar brechas de sub-triage:
+
+- **P2-Shield (Malignidad)**: Se fijó el peso de sospecha oncológica para que lesiones crónicas (>1 año) o con sangrado activo nunca bajen de P2, bloqueando la atenuación estadística por cronicidad.
+- **Contexto Sistémico (`context_modifiers.js`)**:
+    - **Metabólico/Isquémico**: Se escaló la prioridad P1 para diabéticos con úlceras/escaras agudas (prevención de amputación).
+    - **Inmunosupresión**: Se aseguró P2 para cualquier cuadro extenso o agudo en pacientes inmunocomprometidos.
+    - **Sospecha de ITS (Lúes II)**: Se identificó el patrón papular acral generalizado para escalar de P3 a P2.
+- **Contrato de Datos (SSoT)**: Se centralizaron todas las variables en `constants.js` y se alinearon con el `feature_encoder.js` (uso de aliases), resolviendo fallos por desalineación de IDs en el dataset.
+
+### 3. Conclusiones Estratégicas
+El motor ha alcanzado un balance entre **Seguridad Vital (Heurística)** y **Apoyo Diagnóstico (Probabilística)**. La introducción de la **Explicabilidad Multicapa** en la UI permite que el clínico valide estas calibraciones en tiempo real, transformando los "pesos" en narrativas médicas coherentes.
+
+**Estado Final**: El sistema es clínicamente robusto y estructuralmente auditable.
 
 ---
 
