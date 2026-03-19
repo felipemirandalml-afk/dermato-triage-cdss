@@ -85,7 +85,15 @@ export function applyRefinementModifiers(helper, currentResult) {
     }
 
     // Cuadros inflamatorios locales o generalizados estables
+    // BLOQUEO DE REFINAMIENTO: No bajar si hay sospecha de malignidad o compromiso sistémico específico
     if (priority === 2 && !has('fiebre') && !has('dolor') && !has('farmacos_recientes')) {
+        const isSuspectMalignancy = has('nodulo') || has('tumor') || has('mancha');
+        const isHighConcernPattern = has('patron_acral') || has('patron_lineal') || has('inmunosupresion');
+        
+        if (isSuspectMalignancy || isHighConcernPattern) {
+            return { priority, modifier, rules, match: false };
+        }
+
         if (!has('bula_ampolla') && !has('purpura') && !has('erosion')) {
             if (!has('generalizado') || has('subagudo') || has('cronico')) {
                 const desc = "Cuadro Inflamatorio Estable (Manejo Ambulatorio)";

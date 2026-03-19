@@ -56,8 +56,13 @@ export function applyBlockModifiers(helper, currentResult) {
     // I. SOSPECHA DE MALIGNIDAD (Shield)
     const isSuspectTime = has('cronico') || has('subagudo');
     const isMalignantLesion = has('nodulo') || has('tumor') || has('ulcera');
-    if (isSuspectTime && isMalignantLesion) {
-        const desc = "Sospecha de Lesión Maligna / Neoplasia (Alta Prioridad)";
+    
+    // Alerta específica: Nódulo centrofacial en paciente geriátrico (Independiente de timing)
+    const isElderly = (helper.get && helper.get('edad') >= 65);
+    const isFaceNodule = has('topog_cabeza') && has('topo_cara_centro') && has('nodulo');
+
+    if ((isSuspectTime && isMalignantLesion) || (isElderly && isFaceNodule)) {
+        const desc = "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)";
         rules.push(`⚠️ Bloqueo: ${desc}`);
         if (priority > 2) {
             priority = 2;

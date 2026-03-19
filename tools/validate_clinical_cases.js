@@ -1,5 +1,7 @@
 import { runTriage } from '../model.js';
+import { encodeFeatures } from '../engine/feature_encoder.js';
 import { CLINICAL_CASES } from '../data/clinical_cases.js';
+import { validateDatasetSchema } from './validate_case_schema.js';
 
 const COLORS = {
     reset: "\x1b[0m",
@@ -14,7 +16,7 @@ const COLORS = {
 };
 
 console.log(`${COLORS.bright}${COLORS.cyan}==================================================${COLORS.reset}`);
-console.log(`${COLORS.bright}${COLORS.cyan}   DERMATOTRIAGE CDSS - BENCHMARK AVANZADO v2.0    ${COLORS.reset}`);
+console.log(`${COLORS.bright}${COLORS.cyan}   DERMATOTRIAGE CDSS - BENCHMARK AVANZADO v2.1    ${COLORS.reset}`);
 console.log(`${COLORS.bright}${COLORS.cyan}==================================================${COLORS.reset}\n`);
 
 const results = {
@@ -25,11 +27,24 @@ const results = {
         P2: { total: 0, passed: 0 },
         P3: { total: 0, passed: 0 }
     },
+    unknownInputs: [],
     underTriage: [],
     syndromeDiscrepancies: []
 };
 
+// 1. Integridad Estructural (Schema)
+if (!validateDatasetSchema()) {
+    console.error(`${COLORS.bright}${COLORS.red}BENCHMARK ABORTADO: Errores estructurales en el dataset.${COLORS.reset}`);
+    process.exit(1);
+}
+
 CLINICAL_CASES.forEach((c) => {
+    // 2. Auditoría de Encoder (Unknown Keys)
+    const { unknownKeys } = encodeFeatures(c.input);
+    if (unknownKeys.length > 0) {
+        results.unknownInputs.push({ id: c.id, keys: unknownKeys });
+    }
+
     const res = runTriage(c.input);
     const predictedPriority = res.priority;
     const predictedSyndrome = res.probabilistic_analysis.top_syndrome;
@@ -69,8 +84,9 @@ CLINICAL_CASES.forEach((c) => {
     // Individual Case Output (Simplified)
     const statusIcon = priorityMatch ? `${COLORS.green}✔${COLORS.reset}` : `${COLORS.red}✘${COLORS.reset}`;
     const pColor = priorityMatch ? COLORS.green : (c.expected_priority === 1 ? COLORS.red : COLORS.yellow);
+    const unknownMark = unknownKeys.length > 0 ? `${COLORS.yellow}[!]${COLORS.reset} ` : "";
     
-    console.log(`${statusIcon} [${c.id}] ${c.title.padEnd(35)} | Exp: P${c.expected_priority} -> Got: ${pColor}P${predictedPriority}${COLORS.reset}`);
+    console.log(`${statusIcon} [${c.id}] ${unknownMark}${c.title.padEnd(35)} | Exp: P${c.expected_priority} -> Got: ${pColor}P${predictedPriority}${COLORS.reset}`);
 });
 
 // --- REPORT GENERATION ---
@@ -90,7 +106,18 @@ Object.keys(results.byPriority).forEach(p => {
     console.log(`${p}: ${color}${acc}%${COLORS.reset} (${stats.passed}/${stats.total})`);
 });
 
-console.log(`\n${COLORS.bright}3. DETECCIÓN DE UNDER-TRIAGE (CRÍTICO)${COLORS.reset}`);
+console.log(`\n${COLORS.bright}3. AUDITORÍA DE INTEGRIDAD (UNKNOWN KEYS)${COLORS.reset}`);
+console.log(`${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
+if (results.unknownInputs.length === 0) {
+    console.log(`${COLORS.green}✅ No se detectaron claves desconocidas.${COLORS.reset}`);
+} else {
+    console.log(`${COLORS.yellow}⚠ Se detectaron ${results.unknownInputs.length} casos con claves no mapeadas:${COLORS.reset}`);
+    results.unknownInputs.forEach(ui => {
+        console.log(` - [${ui.id}]: ${ui.keys.join(", ")}`);
+    });
+}
+
+console.log(`\n${COLORS.bright}4. DETECCIÓN DE UNDER-TRIAGE (CRÍTICO)${COLORS.reset}`);
 console.log(`${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
 if (results.underTriage.length === 0) {
     console.log(`${COLORS.green}✅ No se detectó under-triage en casos P1.${COLORS.reset}`);
@@ -101,7 +128,7 @@ if (results.underTriage.length === 0) {
     });
 }
 
-console.log(`\n${COLORS.bright}4. MATRIZ DE ERRORES SINDRÓMICOS${COLORS.reset}`);
+console.log(`\n${COLORS.bright}5. MATRIZ DE ERRORES SINDRÓMICOS${COLORS.reset}`);
 console.log(`${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
 if (results.syndromeDiscrepancies.length === 0) {
     console.log(`${COLORS.green}✅ Concordancia sindrómica perfecta.${COLORS.reset}`);
@@ -114,10 +141,18 @@ if (results.syndromeDiscrepancies.length === 0) {
 
 console.log(`\n${COLORS.bright}${COLORS.cyan}==================================================${COLORS.reset}`);
 
-if (results.underTriage.length === 0 && results.byPriority.P1.passed === results.byPriority.P1.total) {
-    console.log(`${COLORS.bright}${COLORS.green}BENCHMARK EXITOSO: Seguridad clínica garantizada.${COLORS.reset}`);
+// CRITERIO DE ÉXITO ENDURECIDO: 
+// 1. Sin under-triage en P1 
+// 2. Todas las claves deben ser conocidas/mapeadas
+// 3. Pasar todos los tests de prioridad P1
+const integrityPass = results.unknownInputs.length === 0;
+const safetyPass = results.underTriage.length === 0 && results.byPriority.P1.passed === results.byPriority.P1.total;
+
+if (integrityPass && safetyPass) {
+    console.log(`${COLORS.bright}${COLORS.green}BENCHMARK EXITOSO: Seguridad e Integridad garantizada.${COLORS.reset}`);
     process.exit(0);
 } else {
-    console.log(`${COLORS.bright}${COLORS.red}BENCHMARK FALLIDO: Riesgo clínico detectado en P1.${COLORS.reset}`);
+    if (!integrityPass) console.log(`${COLORS.red}FALLO DE INTEGRIDAD: Claves desconocidas detectadas.${COLORS.reset}`);
+    if (!safetyPass) console.log(`${COLORS.red}FALLO DE SEGURIDAD: Riesgo clínico detectado.${COLORS.reset}`);
     process.exit(1);
 }

@@ -12,7 +12,7 @@ export const CLINICAL_CASES = [
             age: 25,
             lesion_escama: true,
             lesion_liquenificacion: true,
-            patron_flexoras: true,
+            flexural: true,
             timing: "chronic"
         },
         expected_priority: 3,
@@ -79,7 +79,7 @@ export const CLINICAL_CASES = [
             lesion_eritema: true,
             signo_dolor: true,
             topog_tronco: true,
-            patron_dermatomal: true,
+            dermatomal: true,
             timing: "acute"
         },
         expected_priority: 2,
@@ -109,7 +109,7 @@ export const CLINICAL_CASES = [
             farmacos_recientes: true,
             lesion_macula: true,
             lesion_papula: true,
-            patron_generalizado: true,
+            generalizado: true,
             timing: "acute"
         },
         expected_priority: 2,
@@ -122,7 +122,7 @@ export const CLINICAL_CASES = [
         input: {
             age: 70,
             lesion_nodulo: true,
-            lesion_telangiectasia: true,
+            telangiectasias: true,
             topog_cabeza: true,
             topo_cara_centro: true,
             timing: "chronic"
@@ -141,8 +141,7 @@ export const CLINICAL_CASES = [
             lesion_ampolla: true,
             lesion_macula: true,
             signo_mucosas: true,
-            topog_mucosas: true,
-            patron_generalizado: true,
+            generalizado: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -201,7 +200,7 @@ export const CLINICAL_CASES = [
         input: {
             age: 30,
             lesion_habon: true,
-            patron_generalizado: true,
+            generalizado: true,
             timing: "acute"
         },
         expected_priority: 2,
@@ -276,7 +275,7 @@ export const CLINICAL_CASES = [
             farmacos_recientes: true,
             signo_fiebre: true,
             lesion_eritema: true,
-            patron_generalizado: true,
+            generalizado: true,
             topog_cabeza: true,
             timing: "acute"
         },
@@ -322,7 +321,7 @@ export const CLINICAL_CASES = [
             age: 62,
             lesion_eritema: true,
             lesion_escama: true,
-            patron_generalizado: true,
+            generalizado: true,
             signo_fiebre: true,
             timing: "acute"
         },
@@ -434,7 +433,7 @@ export const CLINICAL_CASES = [
             age: 15,
             lesion_papula: true,
             lesion_pustula: true,
-            patron_generalizado: true,
+            generalizado: true,
             timing: "subacute"
         },
         expected_priority: 3,
@@ -462,7 +461,7 @@ export const CLINICAL_CASES = [
             lesion_macula: true,
             lesion_papula: true,
             patron_acral: true,
-            patron_generalizado: true,
+            generalizado: true,
             timing: "subacute"
         },
         expected_priority: 2,
@@ -490,7 +489,7 @@ export const CLINICAL_CASES = [
             age: 85,
             lesion_escama: true,
             lesion_costra: true,
-            patron_generalizado: true,
+            generalizado: true,
             timing: "chronic"
         },
         expected_priority: 2,
@@ -536,7 +535,7 @@ export const CLINICAL_CASES = [
             lesion_eritema: true,
             lesion_pustula: true,
             signo_fiebre: true,
-            patron_generalizado: true,
+            generalizado: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -641,7 +640,7 @@ export const CLINICAL_CASES = [
             age: 45,
             lesion_eritema: true,
             lesion_papula: true,
-            antecedente_farmacos: true,
+            farmacos_recientes: true,
             generalizado: true,
             timing: "acute"
         },
@@ -673,7 +672,6 @@ export const CLINICAL_CASES = [
             age: 32,
             lesion_placa: true,
             lesion_escama: true,
-            patron_anular: true,
             generalizado: true,
             timing: "subacute"
         },
@@ -703,7 +701,7 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Paciente en quimioterapia con placa necrótica incipiente en axila y fiebre.",
         input: {
             age: 48,
-            riesgo_inmunosupresion: true,
+            inmunosupresion: true,
             signo_fiebre: true,
             lesion_ulcera: true,
             topog_tronco: true,
@@ -831,7 +829,7 @@ export const CLINICAL_CASES = [
             signo_dolor: true,
             topog_ext_inf: true,
             topo_pies: true,
-            patron_intertriginoso: true,
+            intertriginoso: true,
             timing: "acute"
         },
         expected_priority: 2,
