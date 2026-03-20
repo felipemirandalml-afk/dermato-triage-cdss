@@ -73,6 +73,7 @@ export const CARDINAL_FEATURE_RULES = [
         priority: "medium",
         conditions: (h) => h.has('placa') && h.has('escama') && h.has('extensor'),
         boost_differentials: ["Psoriasis (plaque)"],
+        boost_syndromes: ["psoriasiform_dermatosis"],
         suppress_differentials: ["Dermatitis seborreica", "Tinea corporis"],
         rationale: "La placa bien definida con escama gruesa en zonas extensoras es el sello de la psoriasis."
     },
@@ -89,18 +90,69 @@ export const CARDINAL_FEATURE_RULES = [
         id: "macula_pigmentada_abcde",
         label: "Lesión pigmentada asimétrica",
         priority: "high",
-        conditions: (h) => (h.has('macula') || h.has('mancha')) && h.has('cronico'),
+        conditions: (h) => (h.has('macula') || h.has('mancha') || h.has('hiperpigmentacion')) && h.has('cronico'),
         boost_differentials: ["Malignant melanoma"],
+        boost_syndromes: ["cutaneous_tumor_suspected"],
         suppress_differentials: ["Lentigo solar simple"],
         rationale: "Toda lesión pigmentada de evolución crónica requiere descartar melanoma bajo regla ABCDE."
+    },
+    {
+        id: "nodulo_perlado_telangiectasias",
+        label: "Nódulo perlado (CBC)",
+        priority: "high",
+        conditions: (h) => h.has('nodulo') && h.has('telangiectasias') && (h.has('topo_cara_centro') || h.has('topog_cabeza')),
+        boost_differentials: ["Basal cell carcinoma"],
+        boost_syndromes: ["cutaneous_tumor_suspected"],
+        suppress_differentials: ["Melanocytic nevus"],
+        rationale: "El aspecto perlado y telangiectasias en zonas fotoexpuestas sugieren carcinoma basocelular."
+    },
+    {
+        id: "lues_acral",
+        label: "Patrón Acral Generalizado (Lúes II)",
+        priority: "high",
+        conditions: (h) => (h.has('patron_acral') || h.has('topo_palmas') || h.has('topo_plantas')) && (h.has('papula') || h.has('escama')) && h.has('generalizado'),
+        boost_differentials: ["Syphilis (Secondary)", "Hand-foot-mouth disease", "Lichen planus"],
+        boost_syndromes: ["inflammatory_dermatosis_other"],
+        rationale: "La afectación palmoplantar en cuadros papuloescamosos generalizados es el signo cardinal de la Sífilis Secundaria."
+    },
+    {
+        id: "melanoma_amelanotic",
+        label: "Nódulo amelanótico sospechoso",
+        priority: "high",
+        conditions: (h) => h.has('nodulo') && h.has('topog_ext_inf') && h.get('edad') > 50 && !h.has('comedon') && !h.has('quiste'),
+        boost_differentials: ["Malignant melanoma (Amelanotic)", "Merkel cell carcinoma", "Pyogenic granuloma"],
+        boost_syndromes: ["cutaneous_tumor_suspected"],
+        rationale: "Nódulos eritematosos de reciente aparición en extremidades de adultos deben descartar variantes amelanóticas de Melanoma."
+    },
+    {
+        id: "eczema_flexural",
+        label: "Patrón Flexural (Dermatitis)",
+        priority: "medium",
+        conditions: (h) => h.has('flexural') && (h.has('escama') || h.has('liquenificacion')),
+        boost_differentials: ["Atopic dermatitis", "Intertrigo"],
+        boost_syndromes: ["eczema_dermatitis"],
+        suppress_syndromes: ["psoriasiform_dermatosis"],
+        suppress_differentials: ["Psoriasis (plaque)"],
+        rationale: "La localización en flexuras es típica de procesos eczematosos y orienta contra la psoriasis clásica."
     },
     {
         id: "costras_melicericas",
         label: "Costras mielicéricas (Impétigo)",
         priority: "medium",
-        conditions: (h) => h.has('costra') && h.has('topo_cara_centro') && h.get('edad') <= AGE_THRESHOLD_PEDIATRIC_IMPETIGO,
+        conditions: (h) => h.has('costra') && (h.has('topo_cara_centro') || h.get('edad') <= AGE_THRESHOLD_PEDIATRIC_IMPETIGO),
         boost_differentials: ["Impetigo"],
+        boost_syndromes: ["bacterial_skin_infection"],
         suppress_differentials: ["Dermatitis atópica"],
         rationale: "Las costras color miel en rostro (especialmente niños) son patognomónicas de impétigo."
+    },
+    {
+        id: "pitiriasis_rosada",
+        label: "Placa Heraldo / Distribución en Árbol (PR)",
+        priority: "medium",
+        conditions: (h) => h.has('placa') && h.has('topog_tronco') && h.has('subagudo'),
+        boost_differentials: ["Pityriasis rosea"],
+        boost_syndromes: ["inflammatory_dermatosis_other"],
+        suppress_syndromes: ["psoriasiform_dermatosis"],
+        rationale: "La placa inicial en tronco seguida de exantema subagudo sugiere Pitiriasis Rosada y obliga a diferenciar de psoriasis."
     }
 ];
