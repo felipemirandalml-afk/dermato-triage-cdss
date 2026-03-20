@@ -290,6 +290,69 @@ document.addEventListener('DOMContentLoaded', () => {
             confText.textContent = config.text;
             confPanel.className = `p-5 rounded-2xl border transition-all duration-300 ${config.color}`;
 
+            // --- ACTIVACIÓN DEL REASONING MAP (DINÁMICO) ---
+            let reasoningPanel = document.getElementById('reasoningInsightPanel');
+            if (!reasoningPanel) {
+                // Inyectar dinámicamente si no existe
+                const panelHtml = `
+                    <div id="reasoningInsightPanel" class="hidden p-6 bg-slate-100/50 border border-slate-200/50 rounded-3xl space-y-5 animate-in fade-in duration-500 mt-6">
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded tracking-widest uppercase">Perspectiva Clínica</span>
+                            </div>
+                            <p id="reasoningSummaryText" class="text-xs text-slate-600 font-medium italic leading-relaxed"></p>
+                        </div>
+                        <div id="syndromeRedFlagsSection" class="space-y-3 pt-3 border-t border-slate-200/50 hidden">
+                            <span class="text-[9px] font-black text-rose-600 uppercase tracking-widest block">Signos Críticos a Descartar (Vigilancia)</span>
+                            <div id="syndromeRedFlagsContainer" class="flex flex-wrap gap-2"></div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/50">
+                            <div class="flex items-start gap-3 p-3 bg-white/60 rounded-xl border border-white">
+                                <span class="text-lg">💡</span>
+                                <div class="flex flex-col">
+                                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Perla Clínica</span>
+                                    <p id="clinicalPearlText" class="text-[11px] font-bold text-slate-700 leading-tight mt-1"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                confPanel.insertAdjacentHTML('afterend', panelHtml);
+                reasoningPanel = document.getElementById('reasoningInsightPanel');
+            }
+
+            if (res.reasoning_insights) {
+                reasoningPanel.classList.remove('hidden');
+                document.getElementById('reasoningSummaryText').textContent = res.reasoning_insights.summary;
+                document.getElementById('clinicalPearlText').textContent = res.reasoning_insights.pearl;
+
+                const srSection = document.getElementById('syndromeRedFlagsSection');
+                const srContainer = document.getElementById('syndromeRedFlagsContainer');
+                
+                if (res.reasoning_insights.expected_red_flags?.length > 0) {
+                    srSection.classList.remove('hidden');
+                    srContainer.innerHTML = res.reasoning_insights.expected_red_flags.map(flag => `
+                        <span class="px-3 py-1 bg-white text-slate-500 border border-slate-200 rounded-lg text-[9px] font-bold uppercase tracking-tight flex items-center gap-2">
+                            <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                            ${flag}
+                        </span>
+                    `).join('');
+                } else {
+                    srSection.classList.add('hidden');
+                }
+
+                // Estilo especial para Mismatch / Alineación Atípica
+                if (res.alignment_note) {
+                    reasoningPanel.className = "p-6 bg-amber-50 border border-amber-200 rounded-3xl space-y-5 animate-in fade-in duration-500 mt-6";
+                    reasoningPanel.querySelector('span.text-blue-600').className = "text-[9px] font-black text-amber-600 bg-amber-100 px-2 py-0.5 rounded tracking-widest uppercase";
+                    reasoningPanel.querySelector('span.text-blue-600').textContent = "Perspectiva Clínica (Atípica)";
+                } else {
+                    reasoningPanel.className = "p-6 bg-slate-100/50 border border-slate-200/50 rounded-3xl space-y-5 animate-in fade-in duration-500 mt-6";
+                }
+            } else {
+                reasoningPanel.classList.add('hidden');
+            }
+
             // Capa de Diagnóstico Diferencial Clínico (Top 3)
             const diffPanel = document.getElementById('differentialPanel');
             const diffContainer = document.getElementById('differentialRankingContainer');

@@ -62,6 +62,7 @@ export function predict(X, helper) {
     
     const finalResult = buildResult(currentPriority, currentModifier, baseline);
     finalResult.triggered_rules = triggered_rules;
+    finalResult.baseline_priority = baseline.priority; // Preservar para Alineación Interpretativa
 
     return finalResult;
 }
@@ -76,15 +77,15 @@ export function runTriage(formData) {
     // 2. Predicción de Prioridad (Híbrida: Baseline + Modificadores)
     const prediction = predict(X, helper);
     
-    // 3. Construcción del Resultado Básico e Interpretación
-    const result = interpretResult(X, prediction);
-    
-    // 4. Inferencia de Síndrome Probabilístico (ML)
+    // 3. Inferencia de Síndrome Probabilístico (ML) - Se adelanta para informar la interpretación
     const probabilisticAnalysis = predictProbabilisticSyndrome(X);
-    result.probabilistic_analysis = probabilisticAnalysis;
-    
-    // 5. Cálculo de Diagnóstico Diferencial Clínico (Top 3)
+
+    // 4. Cálculo de Diagnóstico Diferencial Clínico (Top 3) - Se adelanta para informar la interpretación
     const differentialRanking = rankDifferentials(probabilisticAnalysis.top_syndrome, helper);
+
+    // 5. Construcción del Resultado Básico e Interpretación (Pasando diferenciales para alineación)
+    const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking);
+    result.probabilistic_analysis = probabilisticAnalysis;
     result.differential_ranking = differentialRanking;
     
     return result;

@@ -11,8 +11,9 @@ export const PROBABILISTIC_FEATURES = [
     "farmacos_recientes", "inmunosupresion", "diabetes", "hepatopatia", "atopia", "embarazo",
     "eritema", "hiperpigmentacion", "hipopigmentacion", "costra", "erosion", "excoriacion",
     "liquenificacion", "nodulo", "quiste", "induracion", "telangiectasias", "atrofia", "habon", "comedon", "surco",
-    "ft_I", "ft_II", "ft_III", "ft_IV", "ft_V", "ft_VI",
-    "interaccion_fiebre_purpura", "interaccion_fiebre_ampolla", "interaccion_inmuno_agudo", "interaccion_dolor_agudo"
+    "interaccion_fiebre_purpura", "interaccion_fiebre_ampolla", "interaccion_inmuno_agudo", "interaccion_dolor_agudo",
+    "ft_1", "ft_2", "ft_3", "ft_4", "ft_5", "ft_6",
+    "ft_I", "ft_II", "ft_III", "ft_IV", "ft_V", "ft_VI"
 ];
 
 // 2. Características Adicionales (Lógica Heurística, Anatomía y Detalles UI)
@@ -99,7 +100,8 @@ export const FEATURE_ALIASES = {
     // Parche de Tiempos si vienen prefijados
     'patron_agudo': 'agudo',
     'patron_subagudo': 'subagudo',
-    'patron_cronico': 'cronico'
+    'patron_cronico': 'cronico',
+    'patron_dermatomal': 'dermatomal'
 };
 
 export const FEATURE_MAP_LABELS = {
