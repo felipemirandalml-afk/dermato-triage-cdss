@@ -82,6 +82,19 @@ export function generateClinicalReport(formData, triageResult) {
             report += `  * ${rule.replace(/🚨|⚠️|ℹ️|✨/g, '').trim()}\n`;
         });
     }
+
+    if (triageResult.differential_ranking && triageResult.differential_ranking.length > 0) {
+        report += `- Diagnósticos Diferenciales (Top 3):\n`;
+        triageResult.differential_ranking.forEach((item, idx) => {
+            report += `  ${idx + 1}. ${item.disease_name} (Compatibilidad: ${item.compatibility})\n`;
+            if (item.supporting_features?.length) {
+                report += `     + Apoyado por: ${item.supporting_features.join(', ')}\n`;
+            }
+            if (item.missing_critical_features?.length) {
+                report += `     ! Ausencia de: ${item.missing_critical_features.join(', ')}\n`;
+            }
+        });
+    }
     report += `\n`;
 
     // P: PLAN / CONDUCTA

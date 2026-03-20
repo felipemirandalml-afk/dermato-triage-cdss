@@ -296,20 +296,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (res.differential_ranking && res.differential_ranking.length > 0) {
                 diffPanel.classList.remove('hidden');
+                
+                const compThemes = {
+                    'Alta': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                    'Media': 'bg-blue-50 text-blue-700 border-blue-200',
+                    'Baja': 'bg-amber-50 text-amber-700 border-amber-200',
+                    'No determinada': 'bg-slate-50 text-slate-500 border-slate-200'
+                };
+
                 diffContainer.innerHTML = res.differential_ranking.map((item, idx) => `
-                    <div class="flex flex-col gap-3 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group">
-                        <div class="flex justify-between items-center">
-                            <h6 class="text-sm font-black text-slate-800 uppercase tracking-tight">${item.disease_name}</h6>
-                            <span class="text-[9px] font-black ${idx === 0 ? 'text-blue-600 bg-blue-50' : 'text-slate-400 bg-slate-50'} px-2 py-1 rounded-lg">
-                                PRESUNCIÓN RANK ${idx + 1}
+                    <div class="flex flex-col gap-3 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
+                        <div class="flex justify-between items-start">
+                            <div class="flex flex-col">
+                                <h6 class="text-sm font-black text-slate-800 uppercase tracking-tight">${item.disease_name}</h6>
+                                <span class="text-[9px] font-black uppercase tracking-widest text-slate-400 mt-0.5">Ranking #${idx + 1}</span>
+                            </div>
+                            <span class="text-[10px] font-black px-2.5 py-1 rounded-full border shadow-sm ${compThemes[item.compatibility] || compThemes['No determinada']}">
+                                Compatibilidad ${item.compatibility}
                             </span>
                         </div>
-                        <div class="flex flex-wrap gap-1.5">
-                            ${item.matched_rules.map(rule => `
-                                <span class="text-[9px] font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded-md border border-slate-100/50 italic">
-                                    • ${rule}
-                                </span>
-                            `).join('')}
+                        
+                        <div class="space-y-2.5 mt-1">
+                            ${item.matched_rules && item.matched_rules.length > 0 ? `
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${item.matched_rules.map(rule => `
+                                        <span class="text-[9px] font-bold text-amber-700 bg-amber-50/50 px-2 py-1 rounded-md border border-amber-100 italic">
+                                            ✨ ${rule}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="space-y-1">
+                                    <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest block">Hallazgos de Apoyo</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        ${item.supporting_features && item.supporting_features.length > 0 ? 
+                                            item.supporting_features.map(f => `
+                                                <span class="text-[9px] font-bold text-emerald-600 lowercase bg-emerald-50/30 px-1.5 py-0.5 rounded italic opacity-90">• ${f}</span>
+                                            `).join('') :
+                                            '<span class="text-[9px] text-slate-300 italic">Sin hallazgos típicos</span>'
+                                        }
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest block">Ausencia Crítica (Discordancia)</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        ${item.missing_critical_features && item.missing_critical_features.length > 0 ? 
+                                            item.missing_critical_features.map(f => `
+                                                <span class="text-[9px] font-bold text-rose-500 lowercase bg-rose-50/30 px-1.5 py-0.5 rounded italic opacity-95">! ${f}</span>
+                                            `).join('') :
+                                            '<span class="text-[9px] text-slate-300 italic">—</span>'
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar for Score (Dynamic) -->
+                        <div class="absolute bottom-0 left-0 h-0.5 bg-slate-100 w-full overflow-hidden">
+                             <div class="h-full ${item.score > 10 ? 'bg-emerald-500' : (item.score > 4 ? 'bg-blue-500' : 'bg-amber-500')}" style="width: ${Math.min(100, item.score * 5)}%"></div>
                         </div>
                     </div>
                 `).join('');

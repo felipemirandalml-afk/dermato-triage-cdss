@@ -106,6 +106,8 @@ export function rankDifferentials(syndromeKey, helper) {
 
         if (profile) {
             let semanticScore = 0;
+            const supporting = [];
+            const missing = [];
             
             // Comparar cada hallazgo del perfil con el estado actual del paciente
             for (const [feature, frequency] of Object.entries(profile)) {
@@ -114,14 +116,18 @@ export function rankDifferentials(syndromeKey, helper) {
                 if (patientHasFeature) {
                     // Recompensa por hallazgo presente (proporcional a su frecuencia típica)
                     semanticScore += frequency * 6;
+                    if (frequency > 0.2) supporting.push(feature);
                 } else {
                     // Penalización por "Ausencia Crítica" (hallazgo muy común en la enfermedad pero ausente en el paciente)
                     if (frequency > 0.6) {
                         semanticScore -= frequency * 3;
+                        missing.push(feature);
                     }
                 }
             }
             item.score += semanticScore;
+            item.supporting_features = supporting;
+            item.missing_critical_features = missing;
         }
     });
 
@@ -152,8 +158,16 @@ export function rankDifferentials(syndromeKey, helper) {
     }
 
     // 4. Ordenar por score (descendente) y retornar Top 3
-    // Nota: El score es relativo para ranking, no es una probabilidad absoluta.
     diseaseScores.sort((a, b) => b.score - a.score);
 
-    return diseaseScores.slice(0, 3);
+    // Calcular etiquetas de compatibilidad cualitativa
+    const top3 = diseaseScores.slice(0, 3);
+    top3.forEach(item => {
+        if (item.score > 10) item.compatibility = 'Alta';
+        else if (item.score > 4) item.compatibility = 'Media';
+        else if (item.score > 0) item.compatibility = 'Baja';
+        else item.compatibility = 'No determinada';
+    });
+
+    return top3;
 }
