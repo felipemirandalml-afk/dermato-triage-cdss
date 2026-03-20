@@ -12,6 +12,7 @@ import { interpretResult, explain, buildResult } from './engine/interpreter.js';
 import { predictProbabilisticSyndrome } from './engine/probabilistic_model.js';
 import { getOntologyInfoForSyndrome } from './engine/ontology_service.js';
 import { rankDifferentials } from './engine/differential_ranker.js';
+import { CARDINAL_FEATURE_RULES } from './engine/cardinal_feature_rules.js';
 
 // Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
@@ -68,6 +69,55 @@ export function predict(X, helper) {
 }
 
 /**
+ * Refina las probabilidades del modelo ML usando conocimiento experto cardinal.
+ * Actúa como una capa de "razonamiento clínico" que corrige sesgos del modelo estadístico.
+ */
+function refineSyndromeReasoning(analysis, helper) {
+    if (!analysis.top_candidates) return analysis;
+
+    let hasChanges = false;
+    CARDINAL_FEATURE_RULES.forEach(rule => {
+        if (rule.conditions(helper)) {
+            // Aplicar Boosts
+            if (rule.boost_syndromes) {
+                rule.boost_syndromes.forEach(syndKey => {
+                    const cand = analysis.top_candidates.find(c => c.syndrome === syndKey);
+                    if (cand) {
+                        cand.probability += 0.40; // Nudge dominante para anclas cardinales
+                        hasChanges = true;
+                    }
+                });
+            }
+            // Aplicar Supresiones
+            if (rule.suppress_syndromes) {
+                rule.suppress_syndromes.forEach(syndKey => {
+                    const cand = analysis.top_candidates.find(c => c.syndrome === syndKey);
+                    if (cand) {
+                        cand.probability = Math.max(0, cand.probability - 0.40);
+                        hasChanges = true;
+                    }
+                });
+            }
+        }
+    });
+
+    if (hasChanges) {
+        // Normalizar y reordenar
+        analysis.top_candidates.sort((a, b) => b.probability - a.probability);
+        
+        const top1 = analysis.top_candidates[0];
+        // Mantener síndrome si supera el umbral dinámico (alineado con probabilistic_model.js)
+        analysis.top_syndrome = top1.probability >= 0.15 ? top1.syndrome : null;
+        analysis.top_probability = top1.probability;
+        
+        // Recalibrar nivel de confianza tras el refinamiento
+        analysis.confidence_level = analysis.top_probability > 0.8 ? "high" : (analysis.top_probability > 0.3 ? "medium" : "low");
+    }
+
+    return analysis;
+}
+
+/**
  * API de alto nivel para triage: Punto de entrada principal
  */
 export function runTriage(formData) {
@@ -78,9 +128,12 @@ export function runTriage(formData) {
     const prediction = predict(X, helper);
     
     // 3. Inferencia de Síndrome Probabilístico (ML)
-    const probabilisticAnalysis = predictProbabilisticSyndrome(X);
+    let probabilisticAnalysis = predictProbabilisticSyndrome(X);
 
-    // 4. Selección de Candidatos para Diferencial (Manejo de Ambigüedad)
+    // 4. Capa de Refinamiento Clínico (Remediación de errores estadísticos)
+    probabilisticAnalysis = refineSyndromeReasoning(probabilisticAnalysis, helper);
+
+    // 5. Selección de Candidatos para Diferencial (Manejo de Ambigüedad)
     const topCandidates = probabilisticAnalysis.top_candidates || [];
     let differentialCandidates = [];
 
@@ -88,25 +141,22 @@ export function runTriage(formData) {
         const top1 = topCandidates[0];
         const top2 = topCandidates[1];
 
-        // Regla de Ambigüedad: 
-        // Si la confianza no es alta O la diferencia entre el 1ero y 2do es pequeña (< 0.20)
-        // entonces incluimos ambos en el ranking diferencial.
+        // Regla de Ambigüedad (Post-Refinamiento)
         const isAmbiguous = (probabilisticAnalysis.confidence_level !== 'high') || 
                            (top2 && (top1.probability - top2.probability < 0.20));
 
         if (isAmbiguous && top2 && top2.probability > 0.05) {
             differentialCandidates = [top1, top2];
-            // Flag interno para comunicación a la interpretación
             probabilisticAnalysis.is_multi_syndrome = true;
         } else {
             differentialCandidates = [top1];
         }
     }
 
-    // 5. Cálculo de Diagnóstico Diferencial Clínico (Top 3) - Ahora Multi-Síndrome
+    // 6. Cálculo de Diagnóstico Diferencial Clínico (Top 3) - Ahora Multi-Síndrome
     const differentialRanking = rankDifferentials(differentialCandidates, helper);
 
-    // 6. Construcción del Resultado Básico e Interpretación (Pasando diferenciales para alineación)
+    // 7. Construcción del Resultado Básico e Interpretación (Pasando diferenciales para alineación)
     const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking);
     result.probabilistic_analysis = probabilisticAnalysis;
     result.differential_ranking = differentialRanking;
