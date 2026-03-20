@@ -2,8 +2,9 @@
  * probabilistic_model.js - Inferencia Probabilística de Síndromes Dermatológicos
  * Implementa una Regresión Logística Multinomial entrenada en Python.
  */
+import { FEATURE_INDEX } from './constants.js';
 
-const MODEL_DATA = {
+export const MODEL_DATA = {
   "metadata": {
     "model_type": "LogisticRegression",
     "classes": [
@@ -996,8 +997,18 @@ function calculateFeatureImportance(scaledVector, winningClassIdx) {
  * @param {Array} X - Vector de features unificado (raw)
  */
 export function predictProbabilisticSyndrome(X) {
-  // El modelo espera exactamente las primeras 48 features en el orden definido en constants.js
-  const rawVector = X.slice(0, 48);
+  // 1. EXTRAER SUB-VECTOR SEGÚN CONTRATO DEL MODELO (Alineación Estricta)
+  // El modelo mapea dinámicamente sus features según el orden de su propia metadata.
+  const modelMetadata = MODEL_DATA.metadata;
+  const rawVector = modelMetadata.features.map(fName => {
+      const idx = FEATURE_INDEX[fName];
+      if (idx === undefined) {
+          console.warn(`[ProbModel] Feature contract broken: '${fName}' not in FEATURE_INDEX`);
+          return 0;
+      }
+      return X[idx] || 0;
+  });
+
   const scaledVector = applyScaling(rawVector);
   
   const { intercept, coefficients } = MODEL_DATA.parameters;

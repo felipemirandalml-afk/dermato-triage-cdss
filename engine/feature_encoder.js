@@ -19,12 +19,14 @@ export function encodeFeatures(formData) {
     // Removida asignación a X[fototipo] por no ser canónico en este modelo
     featureMap.fitzpatrick = fitzpatrick;
 
-    // Expansión de Dummies de Fitzpatrick (ft_I...ft_VI)
-    const ftKey = `ft_${romanize(fitzpatrick)}`;
-    if (FEATURE_INDEX[ftKey] !== undefined) {
-        X[FEATURE_INDEX[ftKey]] = 1;
-        featureMap[ftKey] = 1;
-    }
+    // Expansión de Dummies de Fitzpatrick (v1 numérica y v2 romana para alineación con modelo)
+    const fitzKeys = [`ft_${romanize(fitzpatrick)}`, `ft_${fitzpatrick}`];
+    fitzKeys.forEach(k => {
+        if (FEATURE_INDEX[k] !== undefined) {
+            X[FEATURE_INDEX[k]] = 1;
+            featureMap[k] = 1;
+        }
+    });
 
     // Sexo (Unificado)
     if (formData.sex === 'male') {

@@ -74,6 +74,12 @@ export function generateClinicalReport(formData, triageResult) {
     report += `- Prioridad: P${triageResult.priority} (${triageResult.label.split('-')[1].trim()})\n`;
     report += `- Sospecha Sindrómica: ${topSynd}\n`;
     report += `- Consistencia del Patrón: ${confMap[pa.confidence_level] || pa.confidence_level.toUpperCase()}\n`;
+    
+    if (triageResult.reasoning_insights) {
+        report += `- Perspectiva Clínica: ${triageResult.reasoning_insights.summary}\n`;
+        report += `- Perla Clínica: ${triageResult.reasoning_insights.pearl}\n`;
+    }
+
     report += `- Justificación Triage: ${triageResult.justification}\n`;
     
     if (triageResult.triggered_rules && triageResult.triggered_rules.length > 0) {
