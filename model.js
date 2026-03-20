@@ -10,7 +10,6 @@ import { applySafetyModifiers, applyBlockModifiers } from './engine/safety_modif
 import { applyContextModifiers, applyRefinementModifiers } from './engine/context_modifiers.js';
 import { interpretResult, explain, buildResult } from './engine/interpreter.js';
 import { predictProbabilisticSyndrome } from './engine/probabilistic_model.js';
-import { getOntologyInfoForSyndrome } from './engine/ontology_service.js';
 import { rankDifferentials } from './engine/differential_ranker.js';
 import { CARDINAL_FEATURE_RULES } from './engine/cardinal_feature_rules.js';
 
