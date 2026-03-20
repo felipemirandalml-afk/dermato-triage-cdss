@@ -1022,8 +1022,9 @@ export function predictProbabilisticSyndrome(X) {
 
   const probabilities = softmax(logits);
   
-  // Mapear probabilidades a clases
+  // Mapear probabilidades a clases y preparar candidatos ordenados
   const syndrome_probabilities = {};
+  const candidates = [];
   let top_syndrome = classes[0];
   let top_probability = 0;
   let top_class_idx = 0;
@@ -1031,12 +1032,16 @@ export function predictProbabilisticSyndrome(X) {
   probabilities.forEach((prob, i) => {
     const className = classes[i];
     syndrome_probabilities[className] = prob;
+    candidates.push({ syndrome: className, probability: prob });
     if (prob > top_probability) {
       top_probability = prob;
       top_syndrome = className;
       top_class_idx = i;
     }
   });
+
+  // Ordenar candidatos por probabilidad descendente
+  const top_candidates = candidates.sort((a, b) => b.probability - a.probability);
 
   // Calibración de Confianza
   const isConfident = top_probability >= CONFIDENCE_THRESHOLD;
@@ -1048,6 +1053,7 @@ export function predictProbabilisticSyndrome(X) {
   return {
     top_syndrome: isConfident ? top_syndrome : null,
     top_probability,
+    top_candidates,
     confidence_level,
     feature_importance,
     message: isConfident ? null : "Patrón indeterminado o mixto - se sugiere evaluación clínica directa",
