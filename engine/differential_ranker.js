@@ -48,126 +48,129 @@ function normalizeDiseaseName(name) {
 }
 
 /**
- * Realiza el ranking de diagnósticos diferenciales para el síndrome detectado.
- * Combina conocimiento heurístico (Cardinal Rules) con conocimiento estadístico (Derm1M).
+ * Realiza el ranking de diagnósticos diferenciales para el o los síndromes detectados.
+ * Combina conocimiento heurístico (Cardinal Rules) con conocimiento estadístico (Derm1M),
+ * ponderando resultados según la probabilidad del síndrome.
  * 
- * @param {string} syndromeKey - El síndrome ganador (ej: 'bacterial_skin_infection')
+ * @param {string|Array} syndromeInput - El syndromeKey dominante o un array de { syndrome, probability }
  * @param {Object} helper - FeatureHelper con los hallazgos del paciente
- * @returns {Array} Top 3 de diagnósticos diferenciales con scoring y justificación
+ * @returns {Array} Top 3 de diagnósticos diferenciales consolidados
  */
-export function rankDifferentials(syndromeKey, helper) {
-    const ontology = SYNDROME_TO_ONTOLOGY_MAP[syndromeKey];
-    if (!ontology) return [];
-
-    // 1. Inicializar scoring para cada enfermedad del síndrome
-    const diseaseScores = ontology.differentials.map(diseaseName => ({
-        disease_name: diseaseName,
-        score: 0,
-        matched_rules: []
-    }));
-
-    // 2. Aplicar Capa de Compatibilidad Semiológica (Derm1M)
-    diseaseScores.forEach(item => {
-        // Normalización para matching con el dataset
-        let normalizedName = normalizeDiseaseName(item.disease_name);
-        
-        // 1. Intento directo
-        let profile = SEMIOLOGY_PROFILES[normalizedName];
-
-        // 2. Intento con pluralización/singularización (ses <-> sis)
-        if (!profile && normalizedName.endsWith('ses')) {
-            const singular = normalizedName.replace(/ses$/, 'sis');
-            if (SEMIOLOGY_PROFILES[singular]) profile = SEMIOLOGY_PROFILES[singular];
-        }
-        if (!profile && normalizedName.endsWith('sis')) {
-            const plural = normalizedName.replace(/sis$/, 'ses');
-            if (SEMIOLOGY_PROFILES[plural]) profile = SEMIOLOGY_PROFILES[plural];
-        }
-
-        // 3. Intento secundario si el nombre es compuesto (ej: Angioma / Hemangioma)
-        if (!profile && item.disease_name.includes(' / ')) {
-             const parts = item.disease_name.split(' / ');
-             for (const p of parts) {
-                 const pNorm = normalizeDiseaseName(p);
-                 if (SEMIOLOGY_PROFILES[pNorm]) {
-                     profile = SEMIOLOGY_PROFILES[pNorm];
-                     break;
-                 }
-             }
-        }
-        
-        // 4. Intento terciario: Fallback por primer término (ej: "Tinea capitis" -> "tinea")
-        if (!profile) {
-            const firstTerm = normalizedName.split(' ')[0];
-            if (firstTerm && firstTerm.length > 3 && SEMIOLOGY_PROFILES[firstTerm]) {
-                profile = SEMIOLOGY_PROFILES[firstTerm];
-            }
-        }
-
-        if (profile) {
-            let semanticScore = 0;
-            const supporting = [];
-            const missing = [];
-            
-            // Comparar cada hallazgo del perfil con el estado actual del paciente
-            for (const [feature, frequency] of Object.entries(profile)) {
-                const patientHasFeature = helper.has(feature);
-                
-                if (patientHasFeature) {
-                    // Recompensa por hallazgo presente (proporcional a su frecuencia típica)
-                    semanticScore += frequency * 6;
-                    if (frequency > 0.2) supporting.push(feature);
-                } else {
-                    // Penalización por "Ausencia Crítica" (hallazgo muy común en la enfermedad pero ausente en el paciente)
-                    if (frequency > 0.6) {
-                        semanticScore -= frequency * 3;
-                        missing.push(feature);
-                    }
-                }
-            }
-            item.score += semanticScore;
-            item.supporting_features = supporting;
-            item.missing_critical_features = missing;
-        }
-    });
-
-    // 3. Aplicar Capa de Reglas Cardinales (Expert Heuristics)
-    for (const rule of CARDINAL_FEATURE_RULES) {
-        if (rule.conditions(helper)) {
-            diseaseScores.forEach(item => {
-                // Boost: +5 (Puntaje prioritario para hallazgo cardinal positivo)
-                const isBoosted = rule.boost_differentials.some(b => 
-                    item.disease_name.toLowerCase().includes(b.toLowerCase())
-                );
-                
-                if (isBoosted) {
-                    item.score += 5;
-                    item.matched_rules.push(rule.label);
-                }
-
-                // Suppress: -5 (Puntaje prioritario para hallazgo contradictorio)
-                const isSuppressed = rule.suppress_differentials && rule.suppress_differentials.some(s => 
-                    item.disease_name.toLowerCase().includes(s.toLowerCase())
-                );
-
-                if (isSuppressed) {
-                    item.score -= 5;
-                }
-            });
-        }
+export function rankDifferentials(syndromeInput, helper) {
+    // Normalizar entrada para manejar tanto un solo síndrome como múltiples candidatos
+    let candidates = [];
+    if (typeof syndromeInput === 'string') {
+        candidates = [{ syndrome: syndromeInput, probability: 1.0 }];
+    } else if (Array.isArray(syndromeInput)) {
+        candidates = syndromeInput;
+    } else {
+        return [];
     }
 
-    // 4. Ordenar por score (descendente) y retornar Top 3
-    diseaseScores.sort((a, b) => b.score - a.score);
+    const consolidatedScores = new Map();
 
-    // Calcular etiquetas de compatibilidad cualitativa
-    const top3 = diseaseScores.slice(0, 3);
+    // 1. Procesar cada síndrome candidato
+    candidates.forEach(cand => {
+        const { syndrome: syndromeKey, probability: syndromeProb } = cand;
+        const ontology = SYNDROME_TO_ONTOLOGY_MAP[syndromeKey];
+        if (!ontology) return;
+
+        ontology.differentials.forEach(diseaseName => {
+            // El score base es calculado por semiología y reglas
+            let { score, matched_rules, supporting, missing } = calculateBaseClinicalScore(diseaseName, helper);
+            
+            // EL CAMBIO CLAVE: Ponderar el score clínico por la probabilidad del síndrome
+            // Esto asegura que enfermedades en síndromes improbables no queden arriba
+            const weightedScore = score * syndromeProb;
+
+            if (consolidatedScores.has(diseaseName)) {
+                // Si la enfermedad ya existe en otro síndrome (over-lap), sumar ponderación
+                const existing = consolidatedScores.get(diseaseName);
+                existing.score += weightedScore;
+                existing.source_syndromes.push(syndromeKey);
+            } else {
+                consolidatedScores.set(diseaseName, {
+                    disease_name: diseaseName,
+                    score: weightedScore,
+                    matched_rules: matched_rules,
+                    supporting_features: supporting,
+                    missing_critical_features: missing,
+                    source_syndromes: [syndromeKey]
+                });
+            }
+        });
+    });
+
+    // 2. Aplicar Capa de Reglas Cardinales GLOBALES si no se aplicaron antes
+    // (Actualización: cardinal rules ya se aplican dentro de calculateBaseClinicalScore)
+
+    // 3. Convertir Map a Array, ordenar y retornar Top 3
+    const finalRanking = Array.from(consolidatedScores.values());
+    finalRanking.sort((a, b) => b.score - a.score);
+
+    const top3 = finalRanking.slice(0, 3);
     top3.forEach(item => {
-        if (item.score > 10) item.compatibility = 'Alta';
-        else if (item.score > 4) item.compatibility = 'Media';
+        // Normalización de etiquetas de compatibilidad (ajustada para score ponderado)
+        if (item.score > 8) item.compatibility = 'Alta';
+        else if (item.score > 3) item.compatibility = 'Media';
         else if (item.score > 0) item.compatibility = 'Baja';
         else item.compatibility = 'No determinada';
     });
 
     return top3;
+}
+
+/**
+ * Helper interno para calcular el score clínico crudo (semiología + reglas) para una sola enfermedad
+ */
+function calculateBaseClinicalScore(diseaseName, helper) {
+    let score = 0;
+    let matched_rules = [];
+    let supporting = [];
+    let missing = [];
+
+    // A. Compatibilidad Semiológica (Derm1M)
+    let normalizedName = normalizeDiseaseName(diseaseName);
+    let profile = SEMIOLOGY_PROFILES[normalizedName];
+
+    // Fallbacks de normalización
+    if (!profile && normalizedName.endsWith('ses')) profile = SEMIOLOGY_PROFILES[normalizedName.replace(/ses$/, 'sis')];
+    if (!profile && normalizedName.endsWith('sis')) profile = SEMIOLOGY_PROFILES[normalizedName.replace(/sis$/, 'ses')];
+    if (!profile && diseaseName.includes(' / ')) {
+        for (const p of diseaseName.split(' / ')) {
+            const pNorm = normalizeDiseaseName(p);
+            if (SEMIOLOGY_PROFILES[pNorm]) { profile = SEMIOLOGY_PROFILES[pNorm]; break; }
+        }
+    }
+    if (!profile) {
+        const firstTerm = normalizedName.split(' ')[0];
+        if (firstTerm && firstTerm.length > 3 && SEMIOLOGY_PROFILES[firstTerm]) profile = SEMIOLOGY_PROFILES[firstTerm];
+    }
+
+    if (profile) {
+        for (const [feature, frequency] of Object.entries(profile)) {
+            if (helper.has(feature)) {
+                score += frequency * 6;
+                if (frequency > 0.2) supporting.push(feature);
+            } else if (frequency > 0.6) {
+                score -= frequency * 3;
+                missing.push(feature);
+            }
+        }
+    }
+
+    // B. Reglas Cardinales
+    for (const rule of CARDINAL_FEATURE_RULES) {
+        if (rule.conditions(helper)) {
+            const isBoosted = rule.boost_differentials.some(b => diseaseName.toLowerCase().includes(b.toLowerCase()));
+            if (isBoosted) {
+                score += 5;
+                matched_rules.push(rule.label);
+            }
+            const isSuppressed = rule.suppress_differentials && rule.suppress_differentials.some(s => diseaseName.toLowerCase().includes(s.toLowerCase()));
+            if (isSuppressed) score -= 5;
+        }
+    }
+
+    return { score, matched_rules, supporting, missing };
 }

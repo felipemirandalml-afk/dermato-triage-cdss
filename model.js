@@ -77,13 +77,36 @@ export function runTriage(formData) {
     // 2. Predicción de Prioridad (Híbrida: Baseline + Modificadores)
     const prediction = predict(X, helper);
     
-    // 3. Inferencia de Síndrome Probabilístico (ML) - Se adelanta para informar la interpretación
+    // 3. Inferencia de Síndrome Probabilístico (ML)
     const probabilisticAnalysis = predictProbabilisticSyndrome(X);
 
-    // 4. Cálculo de Diagnóstico Diferencial Clínico (Top 3) - Se adelanta para informar la interpretación
-    const differentialRanking = rankDifferentials(probabilisticAnalysis.top_syndrome, helper);
+    // 4. Selección de Candidatos para Diferencial (Manejo de Ambigüedad)
+    const topCandidates = probabilisticAnalysis.top_candidates || [];
+    let differentialCandidates = [];
 
-    // 5. Construcción del Resultado Básico e Interpretación (Pasando diferenciales para alineación)
+    if (topCandidates.length > 0) {
+        const top1 = topCandidates[0];
+        const top2 = topCandidates[1];
+
+        // Regla de Ambigüedad: 
+        // Si la confianza no es alta O la diferencia entre el 1ero y 2do es pequeña (< 0.20)
+        // entonces incluimos ambos en el ranking diferencial.
+        const isAmbiguous = (probabilisticAnalysis.confidence_level !== 'high') || 
+                           (top2 && (top1.probability - top2.probability < 0.20));
+
+        if (isAmbiguous && top2 && top2.probability > 0.05) {
+            differentialCandidates = [top1, top2];
+            // Flag interno para comunicación a la interpretación
+            probabilisticAnalysis.is_multi_syndrome = true;
+        } else {
+            differentialCandidates = [top1];
+        }
+    }
+
+    // 5. Cálculo de Diagnóstico Diferencial Clínico (Top 3) - Ahora Multi-Síndrome
+    const differentialRanking = rankDifferentials(differentialCandidates, helper);
+
+    // 6. Construcción del Resultado Básico e Interpretación (Pasando diferenciales para alineación)
     const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking);
     result.probabilistic_analysis = probabilisticAnalysis;
     result.differential_ranking = differentialRanking;

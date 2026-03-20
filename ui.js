@@ -283,7 +283,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
-            const config = levelMap[pa.confidence_level] || levelMap.low;
+            const config = { ...(levelMap[pa.confidence_level] || levelMap.low) };
+
+            if (pa.is_multi_syndrome && pa.confidence_level !== 'low') {
+                config.text = "El patrón presenta ambigüedad clínica relevante. El ranking diferencial ha sido expandido automáticamente para incluir candidatos de los síndromes más probables.";
+            }
 
             confBadge.textContent = config.label;
             confBadge.className = `text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-tighter leading-none border ${config.color}`;
