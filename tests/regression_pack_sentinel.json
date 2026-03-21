@@ -1,0 +1,85 @@
+{
+  "version": "1.0.0",
+  "name": "Sentinel Clinical Regression Pack",
+  "cases": [
+    {
+      "id": "SENTINEL-01",
+      "disease": "Herpes Zoster",
+      "input": { "age": 60, "lesion_vesicula": true, "signo_dolor": true, "patron_dermatomal": true, "timing": "acute" },
+      "expected_syndrome": "viral_skin_infection",
+      "critical_rules": ["vesiculas_agrupadas_eritema"],
+      "expected_priority": 2
+    },
+    {
+      "id": "SENTINEL-02",
+      "disease": "Molluscum contagiosum",
+      "input": { "age": 5, "lesion_papula": true, "umbilicacion": true },
+      "expected_syndrome": "viral_skin_infection",
+      "critical_rules": ["umbilicacion_central"],
+      "expected_priority": 3
+    },
+    {
+      "id": "SENTINEL-03",
+      "disease": "Tinea corporis",
+      "input": { "age": 30, "lesion_placa": true, "patron_anular": true },
+      "expected_syndrome": "fungal_skin_infection",
+      "critical_rules": ["placa_anular_curacion_central"],
+      "expected_priority": 3
+    },
+    {
+      "id": "SENTINEL-04",
+      "disease": "Urticaria",
+      "input": { "age": 25, "lesion_habon": true, "prurito": true, "timing": "acute" },
+      "expected_syndrome": "urticarial_dermatosis",
+      "critical_rules": ["habon_roncha"],
+      "expected_priority": 3
+    },
+    {
+      "id": "SENTINEL-05",
+      "disease": "Syphilis (Secondary)",
+      "input": { "age": 35, "lesion_papula": true, "patron_acral": true, "generalizado": true },
+      "expected_syndrome": "inflammatory_dermatosis_other",
+      "critical_rules": ["lues_acral"],
+      "expected_priority": 2
+    },
+    {
+      "id": "SENTINEL-06",
+      "disease": "Scabies",
+      "input": { "age": 40, "lesion_surco": true, "prurito": true },
+      "expected_syndrome": "inflammatory_dermatosis_other",
+      "critical_rules": ["surco_acarino"],
+      "expected_priority": 3
+    },
+    {
+      "id": "SENTINEL-07",
+      "disease": "Keratoacanthoma",
+      "input": { "age": 65, "lesion_nodulo": true, "cupuliforme": true },
+      "expected_syndrome": "cutaneous_tumor_suspected",
+      "critical_rules": ["forma_cupuliforme"],
+      "expected_priority": 2
+    },
+    {
+      "id": "SENTINEL-08",
+      "disease": "Pemphigus vulgaris",
+      "input": { "age": 50, "lesion_ampolla": true, "signo_mucosas": true, "signo_dolor": true, "timing": "acute" },
+      "expected_syndrome": "vesiculobullous_disease",
+      "critical_rules": ["ampollas_flacidas_nikolsky"],
+      "expected_priority": 2
+    },
+    {
+      "id": "SENTINEL-09",
+      "disease": "Malignant melanoma",
+      "input": { "age": 60, "lesion_macula": true, "lesion_hiperpigmentacion": true, "timing": "chronic" },
+      "expected_syndrome": "cutaneous_tumor_suspected",
+      "critical_rules": ["macula_pigmentada_abcde"],
+      "expected_priority": 2
+    },
+    {
+      "id": "SENTINEL-10",
+      "disease": "Cellulitis / Erysipelas",
+      "input": { "age": 70, "lesion_eritema": true, "signo_fiebre": true, "signo_dolor": true, "topo_cara_centro": true, "timing": "acute" },
+      "expected_syndrome": "bacterial_skin_infection",
+      "expected_priority": 1
+    }
+  ]
+}

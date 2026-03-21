@@ -5,7 +5,28 @@
 
 import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
 import { SYNDROME_TO_ONTOLOGY_MAP } from './syndrome_to_ontology_map.js';
-import SEMIOLOGY_PROFILES from './semiology_profiles.json' with { type: 'json' };
+import conceptMapper from './concept_mapper.js';
+import SEMIOLOGY_PROFILES_RAW from './semiology_profiles.json' with { type: 'json' };
+
+/**
+ * Fase de Normalización Canónica de Perfiles
+ * Convierte las llaves de Derm1M a IDs canónicos del sistema.
+ */
+const SEMIOLOGY_PROFILES = {};
+for (const [disease, profile] of Object.entries(SEMIOLOGY_PROFILES_RAW)) {
+    const canonicalProfile = {};
+    for (const [feature, prob] of Object.entries(profile)) {
+        const cid = conceptMapper.resolve(feature);
+        if (cid) {
+            // Fusionar si múltiples descriptores mapean al mismo ID canónico
+            canonicalProfile[cid] = Math.max(canonicalProfile[cid] || 0, prob);
+        } else {
+            // Conservar como orphan para trazabilidad y debug
+            canonicalProfile[feature] = prob;
+        }
+    }
+    SEMIOLOGY_PROFILES[disease] = canonicalProfile;
+}
 
 /**
  * Realiza el ranking de diagnósticos diferenciales para el síndrome detectado.

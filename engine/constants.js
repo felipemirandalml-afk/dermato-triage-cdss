@@ -101,7 +101,24 @@ export const FEATURE_ALIASES = {
     'patron_agudo': 'agudo',
     'patron_subagudo': 'subagudo',
     'patron_cronico': 'cronico',
-    'patron_dermatomal': 'dermatomal'
+    'patron_dermatomal': 'dermatomal',
+    
+    // Topografía Canónica (Resolución de prefijos)
+    'cabeza': 'topog_cabeza',
+    'cara_centro': 'topo_cara_centro',
+    'cuello': 'topo_cuello',
+    'tronco': 'topog_tronco',
+    'abdomen': 'topo_abdomen',
+    'espalda': 'topo_espalda',
+    'axilas': 'topo_axilas',
+    'inguinal': 'topo_inguinal',
+    'extremidad_superior': 'topog_ext_sup',
+    'extremidad_inferior': 'topog_ext_inf',
+    'palmas': 'topo_palmas',
+    'plantas': 'topo_plantas',
+    'acral': 'patron_acral',
+    'mucosas': 'signo_mucosas',
+    'zosteriforme': 'dermatomal'
 };
 
 export const FEATURE_MAP_LABELS = {

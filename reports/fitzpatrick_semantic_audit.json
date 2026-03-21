@@ -1,0 +1,143 @@
+{
+  "metadata": {
+    "source_file": "training_cases.csv",
+    "total_samples": 1631
+  },
+  "groups": {
+    "Light": {
+      "count": 607,
+      "prevalence": {
+        "eritema": 0.29983525535420097,
+        "purpura": 0.08237232289950576,
+        "hiperpigmentacion": 0.06919275123558484,
+        "hipopigmentacion": 0.023064250411861616,
+        "costra": 0.06754530477759473,
+        "escama": 0.12026359143327842,
+        "pustula": 0.0214168039538715,
+        "vesicula": 0.019769357495881382,
+        "papula": 0.21911037891268534,
+        "placa": 0.4332784184514003,
+        "nodulo": 0.09225700164744646
+      }
+    },
+    "Medium": {
+      "count": 578,
+      "prevalence": {
+        "eritema": 0.356401384083045,
+        "purpura": 0.0726643598615917,
+        "hiperpigmentacion": 0.07785467128027682,
+        "hipopigmentacion": 0.03633217993079585,
+        "costra": 0.07612456747404844,
+        "escama": 0.14878892733564014,
+        "pustula": 0.01903114186851211,
+        "vesicula": 0.02768166089965398,
+        "papula": 0.2422145328719723,
+        "placa": 0.46539792387543255,
+        "nodulo": 0.07093425605536333
+      }
+    },
+    "Dark": {
+      "count": 446,
+      "prevalence": {
+        "eritema": 0.3991031390134529,
+        "purpura": 0.08744394618834081,
+        "hiperpigmentacion": 0.07174887892376682,
+        "hipopigmentacion": 0.06278026905829596,
+        "costra": 0.07623318385650224,
+        "escama": 0.1726457399103139,
+        "pustula": 0.011210762331838564,
+        "vesicula": 0.017937219730941704,
+        "papula": 0.31614349775784756,
+        "placa": 0.4260089686098655,
+        "nodulo": 0.042600896860986545
+      }
+    }
+  },
+  "semantic_gaps": {
+    "eritema": {
+      "light_prev": 0.3,
+      "dark_prev": 0.399,
+      "delta": 0.099,
+      "ratio": 1.33,
+      "status": "Potentially Unstable"
+    },
+    "purpura": {
+      "light_prev": 0.082,
+      "dark_prev": 0.087,
+      "delta": 0.005,
+      "ratio": 1.06,
+      "status": "Stable"
+    },
+    "hiperpigmentacion": {
+      "light_prev": 0.069,
+      "dark_prev": 0.072,
+      "delta": 0.003,
+      "ratio": 1.04,
+      "status": "Stable"
+    },
+    "hipopigmentacion": {
+      "light_prev": 0.023,
+      "dark_prev": 0.063,
+      "delta": 0.04,
+      "ratio": 2.72,
+      "status": "Stable"
+    },
+    "costra": {
+      "light_prev": 0.068,
+      "dark_prev": 0.076,
+      "delta": 0.009,
+      "ratio": 1.13,
+      "status": "Stable"
+    },
+    "escama": {
+      "light_prev": 0.12,
+      "dark_prev": 0.173,
+      "delta": 0.052,
+      "ratio": 1.44,
+      "status": "Potentially Unstable"
+    },
+    "pustula": {
+      "light_prev": 0.021,
+      "dark_prev": 0.011,
+      "delta": -0.01,
+      "ratio": 0.52,
+      "status": "Stable"
+    },
+    "vesicula": {
+      "light_prev": 0.02,
+      "dark_prev": 0.018,
+      "delta": -0.002,
+      "ratio": 0.91,
+      "status": "Stable"
+    },
+    "papula": {
+      "light_prev": 0.219,
+      "dark_prev": 0.316,
+      "delta": 0.097,
+      "ratio": 1.44,
+      "status": "Potentially Unstable"
+    },
+    "placa": {
+      "light_prev": 0.433,
+      "dark_prev": 0.426,
+      "delta": -0.007,
+      "ratio": 0.98,
+      "status": "Stable"
+    },
+    "nodulo": {
+      "light_prev": 0.092,
+      "dark_prev": 0.043,
+      "delta": -0.05,
+      "ratio": 0.46,
+      "status": "Stable"
+    }
+  },
+  "risk_levels": {
+    "critical_risk": [],
+    "moderate_risk": [
+      "eritema",
+      "escama",
+      "papula"
+    ]
+  }
+}

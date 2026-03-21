@@ -1,0 +1,105 @@
+{
+  "unresolved": [],
+  "resolved": [
+    {
+      "raw": "hiperpigmentacion",
+      "canonical": "hiperpigmentacion"
+    },
+    {
+      "raw": "papula",
+      "canonical": "papula"
+    },
+    {
+      "raw": "placa",
+      "canonical": "placa"
+    },
+    {
+      "raw": "eritema",
+      "canonical": "eritema"
+    },
+    {
+      "raw": "macula",
+      "canonical": "macula"
+    },
+    {
+      "raw": "cicatriz",
+      "canonical": "cicatriz"
+    },
+    {
+      "raw": "pustula",
+      "canonical": "pustula"
+    },
+    {
+      "raw": "quiste",
+      "canonical": "quiste"
+    },
+    {
+      "raw": "nodulo",
+      "canonical": "nodulo"
+    },
+    {
+      "raw": "atrofia",
+      "canonical": "atrofia"
+    },
+    {
+      "raw": "ulcera",
+      "canonical": "ulcera"
+    },
+    {
+      "raw": "tumor",
+      "canonical": "tumor"
+    },
+    {
+      "raw": "escama",
+      "canonical": "escama"
+    },
+    {
+      "raw": "costra",
+      "canonical": "costra"
+    },
+    {
+      "raw": "bula_ampolla",
+      "canonical": "bula_ampolla"
+    },
+    {
+      "raw": "erosion",
+      "canonical": "erosion"
+    },
+    {
+      "raw": "vesicula",
+      "canonical": "vesicula"
+    },
+    {
+      "raw": "esclerosis",
+      "canonical": "esclerosis"
+    },
+    {
+      "raw": "telangiectasias",
+      "canonical": "telangiectasias"
+    },
+    {
+      "raw": "hipopigmentacion",
+      "canonical": "hipopigmentacion"
+    },
+    {
+      "raw": "liquenificacion",
+      "canonical": "liquenificacion"
+    },
+    {
+      "raw": "excoriacion",
+      "canonical": "excoriacion"
+    },
+    {
+      "raw": "surco",
+      "canonical": "surco"
+    },
+    {
+      "raw": "habon",
+      "canonical": "habon"
+    },
+    {
+      "raw": "purpura",
+      "canonical": "purpura"
+    }
+  ]
+}

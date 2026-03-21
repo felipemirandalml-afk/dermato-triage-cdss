@@ -145,6 +145,8 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
       "Pityriasis rosea",
       "Granuloma annulare",
       "Lichen planus",
+      "Scabies",
+      "Syphilis (Secondary)",
       "Sarcoidosis",
       "Pityriasis lichenoides",
       "Hidradenitis suppurativa"

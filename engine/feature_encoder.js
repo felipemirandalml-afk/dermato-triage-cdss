@@ -3,6 +3,7 @@
  * Transforma formData de la UI en representaciones numéricas y semánticas.
  */
 import { FEATURE_INDEX, PROBABILISTIC_FEATURES, FEATURE_ALIASES } from './constants.js';
+import conceptMapper from './concept_mapper.js';
 
 export function encodeFeatures(formData) {
     // 1. Inicializar vector X con el tamaño del diccionario total
@@ -45,32 +46,33 @@ export function encodeFeatures(formData) {
         featureMap[key] = 1;
     }
 
-    // 4. Mapeo de Morfología, Topografía y Contexto (Sin lógica de prefijos implícitos)
+    // 4. Mapeo de Morfología, Topografía y Contexto (Capa Canónica + Legacy)
     for (const [rawKey, value] of Object.entries(formData)) {
-        // Ignorar campos ya procesados de forma especial y valores no activados
         if (['age', 'sex', 'fitzpatrick', 'timing'].includes(rawKey)) continue;
         if (value !== true) continue;
 
-        let targetKey = null;
-
-        // A. Intentar mapeo directo primero (Canonical Search)
-        if (FEATURE_INDEX[rawKey] !== undefined) {
-            targetKey = rawKey;
-        } 
-        // B. Intentar mapeo por alias explícitos (Dictionary Search)
-        else if (FEATURE_ALIASES[rawKey] !== undefined) {
-            targetKey = FEATURE_ALIASES[rawKey];
-        }
-        // C. Si no hay match, registrar como desconocido para auditoría
-        else {
+        const canonicalId = conceptMapper.resolve(rawKey);
+        
+        if (canonicalId) {
+            // Caso A: Existe en la ontología canónica
+            if (FEATURE_INDEX[canonicalId] !== undefined) {
+                // Soportado por el modelo probabilístico (LR)
+                X[FEATURE_INDEX[canonicalId]] = 1;
+            }
+            // Siempre se registra en el mapa semántico para reglas y ranker
+            featureMap[canonicalId] = 1;
+        } else if (FEATURE_INDEX[rawKey] !== undefined) {
+            // Caso B: Direct Match Legacy
+            X[FEATURE_INDEX[rawKey]] = 1;
+            featureMap[rawKey] = 1;
+        } else if (FEATURE_ALIASES[rawKey] !== undefined) {
+            // Caso C: Alias Legacy
+            const target = FEATURE_ALIASES[rawKey];
+            X[FEATURE_INDEX[target]] = 1;
+            featureMap[target] = 1;
+        } else {
+            // Caso D: Desconocido
             unknownKeys.push(rawKey);
-            continue;
-        }
-
-        // Aplicar activación en vector y mapa unificado
-        if (targetKey && FEATURE_INDEX[targetKey] !== undefined) {
-            X[FEATURE_INDEX[targetKey]] = 1;
-            featureMap[targetKey] = 1;
         }
     }
 
@@ -93,7 +95,7 @@ export function encodeFeatures(formData) {
     }
 
     // 6. Creación del Helper y retorno unificado
-    const helper = createFeatureHelper(X);
+    const helper = createFeatureHelper(X, featureMap);
 
     return {
         X: X,
@@ -104,21 +106,32 @@ export function encodeFeatures(formData) {
 }
 
 /**
- * Crea un helper con métodos semánticos para consultar features
+ * Crea un helper con métodos semánticos para consultar features.
+ * Soporta resolución canónica en tiempo de consulta.
  */
-export function createFeatureHelper(X) {
+export function createFeatureHelper(X, featureMap = {}) {
     return {
         has: (key) => {
-            const idx = FEATURE_INDEX[key];
-            if (idx === undefined) return false;
-            return X[idx] === 1;
+            // 1. Intentar resolución canónica
+            const resolvedId = conceptMapper.resolve(key) || key;
+
+            // 2. Verificar en el vector base (Logistic Regression)
+            const idx = FEATURE_INDEX[resolvedId];
+            if (idx !== undefined && X && X[idx] === 1) return true;
+
+            // 3. Verificar en el mapa extendido (Canonical/UI)
+            if (featureMap[resolvedId] === 1 || featureMap[resolvedId] === true) return true;
+
+            return false;
         },
         get: (key) => {
-            const idx = FEATURE_INDEX[key];
-            if (idx === undefined) return undefined;
-            return X[idx];
+            const resolvedId = conceptMapper.resolve(key) || key;
+            const idx = FEATURE_INDEX[resolvedId];
+            if (idx !== undefined && X) return X[idx];
+            return featureMap[resolvedId];
         },
-        X: X
+        X: X,
+        featureMap: featureMap
     };
 }
 
