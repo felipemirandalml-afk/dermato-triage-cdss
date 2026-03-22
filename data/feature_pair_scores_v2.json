@@ -1,0 +1,2096 @@
+[
+  {
+    "pair": "mancha + patron_zosteriforme",
+    "rpr": "221.30",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "110.65"
+  },
+  {
+    "pair": "patron_zosteriforme + vesicula",
+    "rpr": "158.07",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "79.04"
+  },
+  {
+    "pair": "liquenificacion + placa",
+    "rpr": "126.46",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "63.23"
+  },
+  {
+    "pair": "color_violaceo + patron_anular",
+    "rpr": "126.46",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "63.23"
+  },
+  {
+    "pair": "hiperpigmentacion + vesicula",
+    "rpr": "110.65",
+    "top_syndrome": "vasculitic_purpuric_disease",
+    "lc_score": "55.33"
+  },
+  {
+    "pair": "mancha + pustula",
+    "rpr": "100.59",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "lc_score": "50.30"
+  },
+  {
+    "pair": "bula_ampolla + erosion",
+    "rpr": "92.21",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "46.10"
+  },
+  {
+    "pair": "papula + patron_zosteriforme",
+    "rpr": "85.12",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "42.56"
+  },
+  {
+    "pair": "ulcera + vesicula",
+    "rpr": "81.96",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "40.98"
+  },
+  {
+    "pair": "cicatriz + tumor",
+    "rpr": "79.04",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "lc_score": "39.52"
+  },
+  {
+    "pair": "cupuliforme + nodulo",
+    "rpr": "77.65",
+    "top_syndrome": "cutaneous_tumor_suspected",
+    "lc_score": "38.82"
+  },
+  {
+    "pair": "escama + liquenificacion",
+    "rpr": "73.77",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "36.88"
+  },
+  {
+    "pair": "cicatriz + nodulo",
+    "rpr": "65.09",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "lc_score": "32.54"
+  },
+  {
+    "pair": "nodulo + tumor",
+    "rpr": "63.23",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "lc_score": "31.61"
+  },
+  {
+    "pair": "escama + pustula",
+    "rpr": "63.23",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "lc_score": "31.61"
+  },
+  {
+    "pair": "costra + tumor",
+    "rpr": "59.01",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "29.51"
+  },
+  {
+    "pair": "bula_ampolla + costra",
+    "rpr": "58.24",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "29.12"
+  },
+  {
+    "pair": "cupuliforme + papula",
+    "rpr": "54.64",
+    "top_syndrome": "cutaneous_tumor_suspected",
+    "lc_score": "27.32"
+  },
+  {
+    "pair": "bula_ampolla + ulcera",
+    "rpr": "52.69",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "26.35"
+  },
+  {
+    "pair": "mancha + vesicula",
+    "rpr": "52.69",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "26.35"
+  },
+  {
+    "pair": "cupuliforme + eritema",
+    "rpr": "52.69",
+    "top_syndrome": "cutaneous_tumor_suspected",
+    "lc_score": "26.35"
+  },
+  {
+    "pair": "bula_ampolla + papula",
+    "rpr": "50.30",
+    "top_syndrome": "urticarial_dermatosis",
+    "lc_score": "25.15"
+  },
+  {
+    "pair": "liquenificacion + papula",
+    "rpr": "49.18",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "24.59"
+  },
+  {
+    "pair": "bula_ampolla + vesicula",
+    "rpr": "44.26",
+    "top_syndrome": "urticarial_dermatosis",
+    "lc_score": "22.13"
+  },
+  {
+    "pair": "escama + patron_anular",
+    "rpr": "44.26",
+    "top_syndrome": "fungal_skin_infection",
+    "lc_score": "22.13"
+  },
+  {
+    "pair": "eritema + umbilicacion",
+    "rpr": "43.39",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "21.70"
+  },
+  {
+    "pair": "color_violaceo + escama",
+    "rpr": "40.98",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "20.49"
+  },
+  {
+    "pair": "eritema + patron_zosteriforme",
+    "rpr": "38.82",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "19.41"
+  },
+  {
+    "pair": "papula + umbilicacion",
+    "rpr": "38.82",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "19.41"
+  },
+  {
+    "pair": "hiperpigmentacion + patron_anular",
+    "rpr": "38.82",
+    "top_syndrome": "drug_reaction",
+    "lc_score": "19.41"
+  },
+  {
+    "pair": "mancha + patron_anular",
+    "rpr": "32.79",
+    "top_syndrome": "fungal_skin_infection",
+    "lc_score": "16.39"
+  },
+  {
+    "pair": "eritema + liquenificacion",
+    "rpr": "31.61",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "15.81"
+  },
+  {
+    "pair": "nodulo + pustula",
+    "rpr": "30.74",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "15.37"
+  },
+  {
+    "pair": "pustula + ulcera",
+    "rpr": "29.51",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "14.75"
+  },
+  {
+    "pair": "costra + erosion",
+    "rpr": "29.12",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "14.56"
+  },
+  {
+    "pair": "patron_anular + placa",
+    "rpr": "27.66",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "13.83"
+  },
+  {
+    "pair": "papula + ulcera",
+    "rpr": "27.32",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "13.66"
+  },
+  {
+    "pair": "costra + pustula",
+    "rpr": "27.32",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "13.66"
+  },
+  {
+    "pair": "color_violaceo + placa",
+    "rpr": "26.04",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "13.02"
+  },
+  {
+    "pair": "eritema + vesicula",
+    "rpr": "25.88",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "12.94"
+  },
+  {
+    "pair": "papula + patron_anular",
+    "rpr": "25.29",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "12.65"
+  },
+  {
+    "pair": "papula + vesicula",
+    "rpr": "25.15",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "12.57"
+  },
+  {
+    "pair": "color_violaceo + papula",
+    "rpr": "23.54",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "11.77"
+  },
+  {
+    "pair": "papula + tumor",
+    "rpr": "22.70",
+    "top_syndrome": "drug_reaction",
+    "lc_score": "11.35"
+  },
+  {
+    "pair": "costra + vesicula",
+    "rpr": "22.35",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "11.18"
+  },
+  {
+    "pair": "cicatriz + eritema",
+    "rpr": "20.88",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "lc_score": "10.44"
+  },
+  {
+    "pair": "papula + pustula",
+    "rpr": "18.44",
+    "top_syndrome": "drug_reaction",
+    "lc_score": "9.22"
+  },
+  {
+    "pair": "tumor + ulcera",
+    "rpr": "17.56",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "8.78"
+  },
+  {
+    "pair": "color_violaceo + mancha",
+    "rpr": "17.36",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "8.68"
+  },
+  {
+    "pair": "escama + placa",
+    "rpr": "17.16",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "lc_score": "8.58"
+  },
+  {
+    "pair": "bula_ampolla + eritema",
+    "rpr": "16.77",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "8.38"
+  },
+  {
+    "pair": "eritema + pustula",
+    "rpr": "16.04",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "8.02"
+  },
+  {
+    "pair": "escama + papula",
+    "rpr": "15.48",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "lc_score": "7.74"
+  },
+  {
+    "pair": "escama + mancha",
+    "rpr": "15.39",
+    "top_syndrome": "fungal_skin_infection",
+    "lc_score": "7.70"
+  },
+  {
+    "pair": "eritema + tumor",
+    "rpr": "15.16",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "lc_score": "7.58"
+  },
+  {
+    "pair": "eritema + patron_anular",
+    "rpr": "14.39",
+    "top_syndrome": "fungal_skin_infection",
+    "lc_score": "7.20"
+  },
+  {
+    "pair": "hiperpigmentacion + papula",
+    "rpr": "13.49",
+    "top_syndrome": "vasculitic_purpuric_disease",
+    "lc_score": "6.75"
+  },
+  {
+    "pair": "papula + placa",
+    "rpr": "12.94",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "lc_score": "6.47"
+  },
+  {
+    "pair": "costra + ulcera",
+    "rpr": "12.72",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "6.36"
+  },
+  {
+    "pair": "eritema + erosion",
+    "rpr": "11.41",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "5.70"
+  },
+  {
+    "pair": "pustula + tumor",
+    "rpr": "11.35",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "5.67"
+  },
+  {
+    "pair": "eritema + escama",
+    "rpr": "10.51",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "lc_score": "5.26"
+  },
+  {
+    "pair": "eritema + ulcera",
+    "rpr": "10.01",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "5.01"
+  },
+  {
+    "pair": "nodulo + papula",
+    "rpr": "9.58",
+    "top_syndrome": "cutaneous_tumor_suspected",
+    "lc_score": "4.79"
+  },
+  {
+    "pair": "costra + eritema",
+    "rpr": "9.34",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "4.67"
+  },
+  {
+    "pair": "costra + papula",
+    "rpr": "9.11",
+    "top_syndrome": "bacterial_skin_infection",
+    "lc_score": "4.55"
+  },
+  {
+    "pair": "color_violaceo + eritema",
+    "rpr": "8.78",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "4.39"
+  },
+  {
+    "pair": "mancha + placa",
+    "rpr": "8.27",
+    "top_syndrome": "eczema_dermatitis",
+    "lc_score": "4.14"
+  },
+  {
+    "pair": "eritema + nodulo",
+    "rpr": "8.05",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "lc_score": "4.02"
+  },
+  {
+    "pair": "mancha + papula",
+    "rpr": "7.96",
+    "top_syndrome": "vesiculobullous_disease",
+    "lc_score": "3.98"
+  },
+  {
+    "pair": "eritema + hiperpigmentacion",
+    "rpr": "7.30",
+    "top_syndrome": "vasculitic_purpuric_disease",
+    "lc_score": "3.65"
+  },
+  {
+    "pair": "eritema + mancha",
+    "rpr": "6.63",
+    "top_syndrome": "fungal_skin_infection",
+    "lc_score": "3.32"
+  },
+  {
+    "pair": "eritema + placa",
+    "rpr": "6.40",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "lc_score": "3.20"
+  },
+  {
+    "pair": "eritema + papula",
+    "rpr": "6.10",
+    "top_syndrome": "viral_skin_infection",
+    "lc_score": "3.05"
+  },
+  {
+    "pair": "hiperpigmentacion + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + cicatriz",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "placa + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "mancha + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "mancha + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + eritema",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + costra",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + liquenificacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "liquenificacion + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "liquenificacion + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + liquenificacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + liquenificacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + excoriacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + excoriacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + eritema",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + fisura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + color_violaceo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + erosion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + cicatriz",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + eritema",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "placa + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "placa + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "quiste + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + excoriacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + hipopigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hipopigmentacion + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hipopigmentacion + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + escama",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "habon + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "habon + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "habon + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "habon + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "habon + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + habon",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + color_violaceo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + fisura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + costra",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + escama",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + fisura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + color_violaceo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + color_azul",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "mancha + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + liquenificacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "liquenificacion + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "liquenificacion + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + costra",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + costra",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + escama",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + escama",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + hiperpigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + comedon",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + fisura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "placa + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + escama",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + purpura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + erosion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + escama",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "papula + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "purpura + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "necrosis + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + patron_zosteriforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "umbilicacion + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + cupuliforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hipopigmentacion + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hipopigmentacion + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + hipopigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + hipopigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "mancha + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + hipopigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + excoriacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + excoriacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + color_violaceo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "pustula + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "tumor + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + liquenificacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + fisura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + comedon",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_anular + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_anular + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_lineal + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_lineal + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + fisura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "atrofia + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "fisura + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "necrosis + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + necrosis",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + purpura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + purpura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "bula_ampolla + escama",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hipopigmentacion + papula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hipopigmentacion + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "placa + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "ulcera + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "tumor + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "pustula + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "papula + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + hipopigmentacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_anular + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "surco + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + surco",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "papula + surco",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + surco",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + excoriacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + cupuliforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_anular + patron_lineal",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + erosion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + cupuliforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + cupuliforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + purpura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "papula + purpura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hipopigmentacion + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "macula + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "erosion + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + liquenificacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "mancha + purpura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "placa + purpura",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "mancha + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cicatriz + necrosis",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_anular + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "habon + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + mancha",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "purpura + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "excoriacion + macula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_lineal + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_lineal + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "necrosis + placa",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "eritema + necrosis",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "necrosis + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_azul + erosion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "comedon + nodulo",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "color_violaceo + umbilicacion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "nodulo + patron_zosteriforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_zosteriforme + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_lineal + vesicula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_anular + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + erosion",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "hiperpigmentacion + patron_zosteriforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + tumor",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "quiste + ulcera",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + necrosis",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "cupuliforme + patron_anular",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + quiste",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "escama + patron_zosteriforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "necrosis + pustula",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "mancha + necrosis",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "costra + patron_zosteriforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  },
+  {
+    "pair": "patron_anular + patron_zosteriforme",
+    "rpr": "1.01",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "lc_score": "0.50"
+  }
+]

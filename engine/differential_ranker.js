@@ -7,6 +7,7 @@ import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
 import { SYNDROME_TO_ONTOLOGY_MAP } from './syndrome_to_ontology_map.js';
 import conceptMapper from './concept_mapper.js';
 import SEMIOLOGY_PROFILES_RAW from './semiology_profiles.json' with { type: 'json' };
+import { recalibrationEngine } from './recalibration_engine.js';
 
 /**
  * Fase de Normalización Canónica de Perfiles
@@ -169,14 +170,28 @@ function calculateBaseClinicalScore(diseaseName, helper) {
     }
 
     if (profile) {
+        const activeFeatures = [];
         for (const [feature, frequency] of Object.entries(profile)) {
+            const baseWeight = recalibrationEngine.getBaseWeight(feature); // Pesos Basales Estadísticos (ESI)
+            
             if (helper.has(feature)) {
-                score += frequency * 6;
+                // Score = Frecuencia * Peso Basal * Magnificador (Fase 15)
+                score += (frequency * baseWeight * 10); 
                 if (frequency > 0.2) supporting.push(feature);
+                activeFeatures.push(feature);
             } else if (frequency > 0.6) {
-                score -= frequency * 3;
+                // Penalización proporcional a la especificidad basal
+                score -= (frequency * baseWeight * 5);
                 missing.push(feature);
             }
+        }
+
+        // B. Capa de Modulación Contextual (Boosts por Pares y Tríadas - L2/L3)
+        const { boost, matchedTriplets, matchedPairs } = recalibrationEngine.calculateBoosts(activeFeatures);
+        score *= boost;
+        if (matchedTriplets.length > 0 || matchedPairs.length > 0) {
+            matched_rules.push(...matchedTriplets.map(t => `Gestalt: ${t.replace(/___/g, '+')}`));
+            matched_rules.push(...matchedPairs.map(p => `Par: ${p.replace(/___/g, '+')}`));
         }
     }
 

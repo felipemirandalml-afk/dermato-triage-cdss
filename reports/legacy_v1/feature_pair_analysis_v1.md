@@ -1,0 +1,54 @@
+# Análisis de Pares Semiológicos (Phase 13)
+
+| Par de Rasgos | Count | Lift | Div. Sindrómica | LC Score | Categoría |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| comedon + quiste | 10 | 15.24 | 1 | 13.966 | ANCLA_COMBINADA_FUERTE |
+| cupuliforme + umbilicacion | 4 | 8.32 | 1 | 7.626 | SEÑAL_UTIL |
+| bula_ampolla + vesicula | 50 | 8.66 | 4 | 5.770 | SEÑAL_UTIL |
+| excoriacion + liquenificacion | 3 | 6.32 | 2 | 5.269 | SEÑAL_UTIL |
+| pustula + tumor | 130 | 8.14 | 5 | 4.746 | MODERADA |
+| hipopigmentacion + macula | 13 | 5.29 | 2 | 4.405 | MODERADA |
+| color_violaceo + purpura | 8 | 4.61 | 1 | 4.225 | MODERADA |
+| umbilicacion + vesicula | 8 | 4.96 | 2 | 4.130 | MODERADA |
+| color_azul + color_violaceo | 29 | 4.49 | 1 | 4.119 | MODERADA |
+| pustula + umbilicacion | 8 | 4.48 | 1 | 4.106 | MODERADA |
+| costra + umbilicacion | 11 | 5.08 | 3 | 3.813 | MODERADA |
+| nodulo + surco | 4 | 4.76 | 3 | 3.572 | MODERADA |
+| excoriacion + vesicula | 6 | 4.04 | 2 | 3.363 | MODERADA |
+| comedon + pustula | 6 | 3.65 | 1 | 3.344 | MODERADA |
+| surco + ulcera | 3 | 3.98 | 2 | 3.321 | MODERADA |
+| bula_ampolla + erosion | 24 | 4.41 | 3 | 3.310 | MODERADA |
+| erosion + excoriacion | 5 | 3.57 | 1 | 3.275 | MODERADA |
+| habon + vesicula | 3 | 3.36 | 1 | 3.083 | MODERADA |
+| hipopigmentacion + patron_anular | 6 | 3.36 | 1 | 3.077 | MODERADA |
+| patron_zosteriforme + vesicula | 7 | 4.58 | 4 | 3.052 | MODERADA |
+| color_azul + hipopigmentacion | 4 | 3.49 | 2 | 2.907 | MODERADA |
+| tumor + umbilicacion | 9 | 3.08 | 1 | 2.826 | MODERADA |
+| erosion + fisura | 9 | 3.00 | 1 | 2.751 | MODERADA |
+| fisura + liquenificacion | 3 | 2.95 | 1 | 2.705 | MODERADA |
+| atrofia + comedon | 4 | 2.91 | 1 | 2.665 | MODERADA |
+| costra + erosion | 38 | 3.77 | 4 | 2.514 | MODERADA |
+| costra + excoriacion | 6 | 3.01 | 2 | 2.509 | MODERADA |
+| patron_anular + patron_zosteriforme | 5 | 2.72 | 1 | 2.493 | MODERADA |
+| hiperpigmentacion + hipopigmentacion | 23 | 3.32 | 3 | 2.487 | MODERADA |
+| habon + placa | 7 | 2.88 | 2 | 2.397 | MODERADA |
+| cupuliforme + quiste | 3 | 2.86 | 2 | 2.381 | MODERADA |
+| cupuliforme + nodulo | 19 | 2.83 | 2 | 2.357 | MODERADA |
+| macula + purpura | 7 | 2.55 | 1 | 2.342 | MODERADA |
+| costra + vesicula | 33 | 3.08 | 3 | 2.312 | MODERADA |
+| atrofia + cicatriz | 33 | 3.07 | 3 | 2.306 | MODERADA |
+| erosion + vesicula | 23 | 3.06 | 3 | 2.294 | MODERADA |
+| atrofia + fisura | 8 | 2.71 | 2 | 2.261 | MODERADA |
+| erosion + umbilicacion | 4 | 2.63 | 2 | 2.193 | MODERADA |
+| pustula + vesicula | 23 | 2.60 | 2 | 2.169 | MODERADA |
+| cicatriz + quiste | 12 | 2.34 | 1 | 2.149 | MODERADA |
+| color_azul + macula | 26 | 2.55 | 2 | 2.127 | MODERADA |
+| atrofia + excoriacion | 3 | 2.18 | 1 | 1.999 | RUIDO |
+| necrosis + ulcera | 16 | 2.66 | 3 | 1.992 | RUIDO |
+| comedon + hiperpigmentacion | 15 | 2.16 | 1 | 1.983 | RUIDO |
+| erosion + hipopigmentacion | 3 | 2.14 | 1 | 1.965 | RUIDO |
+| cicatriz + excoriacion | 5 | 2.32 | 2 | 1.930 | RUIDO |
+| papula + umbilicacion | 19 | 2.28 | 2 | 1.903 | RUIDO |
+| habon + macula | 3 | 2.03 | 1 | 1.864 | RUIDO |
+| comedon + macula | 5 | 2.03 | 1 | 1.864 | RUIDO |
+| color_violaceo + cupuliforme | 5 | 2.01 | 1 | 1.839 | RUIDO |

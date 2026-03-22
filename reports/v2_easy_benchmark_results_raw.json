@@ -1,0 +1,134 @@
+[
+  {
+    "syndrome": "inflammatory_dermatosis_other",
+    "recall": "54.4%",
+    "precision": "88.3%",
+    "f1": "0.67",
+    "total_cases": 3604,
+    "top_confusion": [
+      "cutaneous_tumor_suspected",
+      974
+    ]
+  },
+  {
+    "syndrome": "drug_reaction",
+    "recall": "66.7%",
+    "precision": "50.0%",
+    "f1": "0.57",
+    "total_cases": 3,
+    "top_confusion": [
+      "bacterial_skin_infection",
+      1
+    ]
+  },
+  {
+    "syndrome": "bacterial_skin_infection",
+    "recall": "93.3%",
+    "precision": "30.4%",
+    "f1": "0.46",
+    "total_cases": 15,
+    "top_confusion": [
+      "inflammatory_dermatosis_other",
+      1
+    ]
+  },
+  {
+    "syndrome": "cutaneous_tumor_suspected",
+    "recall": "57.7%",
+    "precision": "3.9%",
+    "f1": "0.07",
+    "total_cases": 71,
+    "top_confusion": [
+      "inflammatory_dermatosis_other",
+      21
+    ]
+  },
+  {
+    "syndrome": "vesiculobullous_disease",
+    "recall": "50.0%",
+    "precision": "1.5%",
+    "f1": "0.03",
+    "total_cases": 4,
+    "top_confusion": [
+      "bacterial_skin_infection",
+      2
+    ]
+  },
+  {
+    "syndrome": "viral_skin_infection",
+    "recall": "2.4%",
+    "precision": "2.0%",
+    "f1": "0.02",
+    "total_cases": 42,
+    "top_confusion": [
+      "bacterial_skin_infection",
+      28
+    ]
+  },
+  {
+    "syndrome": "eczema_dermatitis",
+    "recall": "0.0%",
+    "precision": "0.0%",
+    "f1": "0.00",
+    "total_cases": 299,
+    "top_confusion": [
+      "inflammatory_dermatosis_other",
+      211
+    ]
+  },
+  {
+    "syndrome": "psoriasiform_dermatosis",
+    "recall": "50.0%",
+    "precision": "0.2%",
+    "f1": "0.00",
+    "total_cases": 2,
+    "top_confusion": [
+      "inflammatory_dermatosis_other",
+      1
+    ]
+  },
+  {
+    "syndrome": "fungal_skin_infection",
+    "recall": "0.0%",
+    "precision": "0.0%",
+    "f1": "0.00",
+    "total_cases": 31,
+    "top_confusion": [
+      "inflammatory_dermatosis_other",
+      23
+    ]
+  },
+  {
+    "syndrome": "urticarial_dermatosis",
+    "recall": "0.0%",
+    "precision": "0.0%",
+    "f1": "0.00",
+    "total_cases": 2,
+    "top_confusion": [
+      "drug_reaction",
+      2
+    ]
+  },
+  {
+    "syndrome": "vasculitic_purpuric_disease",
+    "recall": "0.0%",
+    "precision": "0.0%",
+    "f1": "0.00",
+    "total_cases": 1,
+    "top_confusion": [
+      "bacterial_skin_infection",
+      1
+    ]
+  },
+  {
+    "syndrome": "benign_cutaneous_tumor",
+    "recall": "0.0%",
+    "precision": "0.0%",
+    "f1": "0.00",
+    "total_cases": 0,
+    "top_confusion": [
+      null,
+      0
+    ]
+  }
+]

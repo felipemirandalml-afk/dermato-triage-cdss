@@ -1,0 +1,2868 @@
+[
+  {
+    "id": "SYN-ATOPIC_DERMATITIS-CORE-otvx1",
+    "title": "Atopic dermatitis (core)",
+    "source_disease": "Atopic dermatitis",
+    "variant_type": "core",
+    "input": {
+      "age": 49,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ATOPIC_DERMATITIS-SPARSE-7mbgy",
+    "title": "Atopic dermatitis (sparse)",
+    "source_disease": "Atopic dermatitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 70,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ATOPIC_DERMATITIS-ATYPICAL-vh96l",
+    "title": "Atopic dermatitis (atypical)",
+    "source_disease": "Atopic dermatitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 5,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-CONTACT_DERMATITIS-CORE-8w18o",
+    "title": "Contact dermatitis (core)",
+    "source_disease": "Contact dermatitis",
+    "variant_type": "core",
+    "input": {
+      "age": 77,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-CONTACT_DERMATITIS-SPARSE-nbhvv",
+    "title": "Contact dermatitis (sparse)",
+    "source_disease": "Contact dermatitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 72,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-CONTACT_DERMATITIS-ATYPICAL-zq3w0",
+    "title": "Contact dermatitis (atypical)",
+    "source_disease": "Contact dermatitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 28,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SEBORRHEIC_DERMATITIS-CORE-wep33",
+    "title": "Seborrheic dermatitis (core)",
+    "source_disease": "Seborrheic dermatitis",
+    "variant_type": "core",
+    "input": {
+      "age": 35,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_escama": true,
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SEBORRHEIC_DERMATITIS-SPARSE-9x7go",
+    "title": "Seborrheic dermatitis (sparse)",
+    "source_disease": "Seborrheic dermatitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 55,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SEBORRHEIC_DERMATITIS-ATYPICAL-860b0",
+    "title": "Seborrheic dermatitis (atypical)",
+    "source_disease": "Seborrheic dermatitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 36,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-NUMMULAR_ECZEMA-CORE-ctlan",
+    "title": "Nummular eczema (core)",
+    "source_disease": "Nummular eczema",
+    "variant_type": "core",
+    "input": {
+      "age": 30,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_placa": true,
+      "lesion_escama": true,
+      "lesion_color_violaceo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-NUMMULAR_ECZEMA-SPARSE-rpvan",
+    "title": "Nummular eczema (sparse)",
+    "source_disease": "Nummular eczema",
+    "variant_type": "sparse",
+    "input": {
+      "age": 18,
+      "timing": "subacute",
+      "lesion_placa": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-NUMMULAR_ECZEMA-ATYPICAL-lbn71",
+    "title": "Nummular eczema (atypical)",
+    "source_disease": "Nummular eczema",
+    "variant_type": "atypical",
+    "input": {
+      "age": 68,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-DYSHIDROSIFORM_ECZEMA-CORE-abr90",
+    "title": "Dyshidrosiform eczema (core)",
+    "source_disease": "Dyshidrosiform eczema",
+    "variant_type": "core",
+    "input": {
+      "age": 42,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-DYSHIDROSIFORM_ECZEMA-SPARSE-3f5k3",
+    "title": "Dyshidrosiform eczema (sparse)",
+    "source_disease": "Dyshidrosiform eczema",
+    "variant_type": "sparse",
+    "input": {
+      "age": 73,
+      "timing": "subacute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-DYSHIDROSIFORM_ECZEMA-ATYPICAL-vx9xl",
+    "title": "Dyshidrosiform eczema (atypical)",
+    "source_disease": "Dyshidrosiform eczema",
+    "variant_type": "atypical",
+    "input": {
+      "age": 51,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LICHEN_SIMPLEX_CHRONICUS-CORE-5eol9",
+    "title": "Lichen simplex chronicus (core)",
+    "source_disease": "Lichen simplex chronicus",
+    "variant_type": "core",
+    "input": {
+      "age": 43,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_escama": true,
+      "lesion_placa": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LICHEN_SIMPLEX_CHRONICUS-SPARSE-5esj4",
+    "title": "Lichen simplex chronicus (sparse)",
+    "source_disease": "Lichen simplex chronicus",
+    "variant_type": "sparse",
+    "input": {
+      "age": 31,
+      "timing": "chronic",
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LICHEN_SIMPLEX_CHRONICUS-ATYPICAL-ocmii",
+    "title": "Lichen simplex chronicus (atypical)",
+    "source_disease": "Lichen simplex chronicus",
+    "variant_type": "atypical",
+    "input": {
+      "age": 6,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_placa": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "eczema_dermatitis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PSORIASIS_(PLAQUE)-CORE-xejcl",
+    "title": "Psoriasis (plaque) (core)",
+    "source_disease": "Psoriasis (plaque)",
+    "variant_type": "core",
+    "input": {
+      "age": 26,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PSORIASIS_(PLAQUE)-SPARSE-qk859",
+    "title": "Psoriasis (plaque) (sparse)",
+    "source_disease": "Psoriasis (plaque)",
+    "variant_type": "sparse",
+    "input": {
+      "age": 69,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PSORIASIS_(PLAQUE)-ATYPICAL-srl7r",
+    "title": "Psoriasis (plaque) (atypical)",
+    "source_disease": "Psoriasis (plaque)",
+    "variant_type": "atypical",
+    "input": {
+      "age": 58,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-GUTTATE_PSORIASIS-CORE-hi2c9",
+    "title": "Guttate psoriasis (core)",
+    "source_disease": "Guttate psoriasis",
+    "variant_type": "core",
+    "input": {
+      "age": 55,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-GUTTATE_PSORIASIS-SPARSE-86qqq",
+    "title": "Guttate psoriasis (sparse)",
+    "source_disease": "Guttate psoriasis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 62,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-GUTTATE_PSORIASIS-ATYPICAL-d685u",
+    "title": "Guttate psoriasis (atypical)",
+    "source_disease": "Guttate psoriasis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 19,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-INVERSE_PSORIASIS-CORE-snoq4",
+    "title": "Inverse psoriasis (core)",
+    "source_disease": "Inverse psoriasis",
+    "variant_type": "core",
+    "input": {
+      "age": 15,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-INVERSE_PSORIASIS-SPARSE-65bvd",
+    "title": "Inverse psoriasis (sparse)",
+    "source_disease": "Inverse psoriasis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 17,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-INVERSE_PSORIASIS-ATYPICAL-z971w",
+    "title": "Inverse psoriasis (atypical)",
+    "source_disease": "Inverse psoriasis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 50,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PUSTULAR_PSORIASIS-CORE-6r41h",
+    "title": "Pustular psoriasis (core)",
+    "source_disease": "Pustular psoriasis",
+    "variant_type": "core",
+    "input": {
+      "age": 38,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_pustula": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PUSTULAR_PSORIASIS-SPARSE-amzg8",
+    "title": "Pustular psoriasis (sparse)",
+    "source_disease": "Pustular psoriasis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 49,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PUSTULAR_PSORIASIS-ATYPICAL-snx79",
+    "title": "Pustular psoriasis (atypical)",
+    "source_disease": "Pustular psoriasis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 34,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_pustula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_RUBRA_PILARIS-CORE-3zqv2",
+    "title": "Pityriasis rubra pilaris (core)",
+    "source_disease": "Pityriasis rubra pilaris",
+    "variant_type": "core",
+    "input": {
+      "age": 49,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_escama": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_RUBRA_PILARIS-SPARSE-l4ccy",
+    "title": "Pityriasis rubra pilaris (sparse)",
+    "source_disease": "Pityriasis rubra pilaris",
+    "variant_type": "sparse",
+    "input": {
+      "age": 52,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_RUBRA_PILARIS-ATYPICAL-45fj9",
+    "title": "Pityriasis rubra pilaris (atypical)",
+    "source_disease": "Pityriasis rubra pilaris",
+    "variant_type": "atypical",
+    "input": {
+      "age": 39,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "psoriasiform_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-CELLULITIS-CORE-u81b6",
+    "title": "Cellulitis (core)",
+    "source_disease": "Cellulitis",
+    "variant_type": "core",
+    "input": {
+      "age": 50,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_cara_centro": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-CELLULITIS-SPARSE-i1cc7",
+    "title": "Cellulitis (sparse)",
+    "source_disease": "Cellulitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 8,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_extremidad_inferior": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-CELLULITIS-ATYPICAL-1nqa8",
+    "title": "Cellulitis (atypical)",
+    "source_disease": "Cellulitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 60,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_cara_centro": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-IMPETIGO-CORE-8hf0c",
+    "title": "Impetigo (core)",
+    "source_disease": "Impetigo",
+    "variant_type": "core",
+    "input": {
+      "age": 27,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "lesion_costra": true,
+      "lesion_bula_ampolla": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-IMPETIGO-SPARSE-p47x3",
+    "title": "Impetigo (sparse)",
+    "source_disease": "Impetigo",
+    "variant_type": "sparse",
+    "input": {
+      "age": 52,
+      "timing": "acute",
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-IMPETIGO-ATYPICAL-tsb76",
+    "title": "Impetigo (atypical)",
+    "source_disease": "Impetigo",
+    "variant_type": "atypical",
+    "input": {
+      "age": 46,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_costra": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-ABSCESS-CORE-6vq7n",
+    "title": "Abscess (core)",
+    "source_disease": "Abscess",
+    "variant_type": "core",
+    "input": {
+      "age": 24,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_tumor": true,
+      "lesion_costra": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-ABSCESS-SPARSE-ykuce",
+    "title": "Abscess (sparse)",
+    "source_disease": "Abscess",
+    "variant_type": "sparse",
+    "input": {
+      "age": 42,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_tumor": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-ABSCESS-ATYPICAL-ckv8i",
+    "title": "Abscess (atypical)",
+    "source_disease": "Abscess",
+    "variant_type": "atypical",
+    "input": {
+      "age": 20,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_costra": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-FOLLICULITIS-CORE-o1i2q",
+    "title": "Folliculitis (core)",
+    "source_disease": "Folliculitis",
+    "variant_type": "core",
+    "input": {
+      "age": 69,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_papula": true,
+      "lesion_eritema": true,
+      "lesion_pustula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-FOLLICULITIS-SPARSE-gx64c",
+    "title": "Folliculitis (sparse)",
+    "source_disease": "Folliculitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 64,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-FOLLICULITIS-ATYPICAL-69ls5",
+    "title": "Folliculitis (atypical)",
+    "source_disease": "Folliculitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 30,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-FURUNCLE-CORE-78m7n",
+    "title": "Furuncle (core)",
+    "source_disease": "Furuncle",
+    "variant_type": "core",
+    "input": {
+      "age": 1,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "lesion_tumor": true,
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-FURUNCLE-SPARSE-0pedw",
+    "title": "Furuncle (sparse)",
+    "source_disease": "Furuncle",
+    "variant_type": "sparse",
+    "input": {
+      "age": 43,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-FURUNCLE-ATYPICAL-h5e7g",
+    "title": "Furuncle (atypical)",
+    "source_disease": "Furuncle",
+    "variant_type": "atypical",
+    "input": {
+      "age": 34,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_tumor": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-PYODERMA-CORE-qjopk",
+    "title": "Pyoderma (core)",
+    "source_disease": "Pyoderma",
+    "variant_type": "core",
+    "input": {
+      "age": 86,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "lesion_pustula": true,
+      "lesion_tumor": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-PYODERMA-SPARSE-1kypo",
+    "title": "Pyoderma (sparse)",
+    "source_disease": "Pyoderma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 69,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-PYODERMA-ATYPICAL-rodv2",
+    "title": "Pyoderma (atypical)",
+    "source_disease": "Pyoderma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 89,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_pustula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "bacterial_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HERPES_SIMPLEX_VIRUS-CORE-fq35u",
+    "title": "Herpes simplex virus (core)",
+    "source_disease": "Herpes simplex virus",
+    "variant_type": "core",
+    "input": {
+      "age": 66,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_vesicula": true,
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HERPES_SIMPLEX_VIRUS-SPARSE-wonzp",
+    "title": "Herpes simplex virus (sparse)",
+    "source_disease": "Herpes simplex virus",
+    "variant_type": "sparse",
+    "input": {
+      "age": 52,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_vesicula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HERPES_SIMPLEX_VIRUS-ATYPICAL-1a2z7",
+    "title": "Herpes simplex virus (atypical)",
+    "source_disease": "Herpes simplex virus",
+    "variant_type": "atypical",
+    "input": {
+      "age": 18,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HERPES_ZOSTER-CORE-adj5c",
+    "title": "Herpes zoster (core)",
+    "source_disease": "Herpes zoster",
+    "variant_type": "core",
+    "input": {
+      "age": 24,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_vesicula": true,
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HERPES_ZOSTER-SPARSE-80lu6",
+    "title": "Herpes zoster (sparse)",
+    "source_disease": "Herpes zoster",
+    "variant_type": "sparse",
+    "input": {
+      "age": 38,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_vesicula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HERPES_ZOSTER-ATYPICAL-6nc5z",
+    "title": "Herpes zoster (atypical)",
+    "source_disease": "Herpes zoster",
+    "variant_type": "atypical",
+    "input": {
+      "age": 12,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-MOLLUSCUM_CONTAGIOSUM-CORE-1fu3t",
+    "title": "Molluscum contagiosum (core)",
+    "source_disease": "Molluscum contagiosum",
+    "variant_type": "core",
+    "input": {
+      "age": 15,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_papula": true,
+      "lesion_umbilicacion": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-MOLLUSCUM_CONTAGIOSUM-SPARSE-ykzq5",
+    "title": "Molluscum contagiosum (sparse)",
+    "source_disease": "Molluscum contagiosum",
+    "variant_type": "sparse",
+    "input": {
+      "age": 17,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-MOLLUSCUM_CONTAGIOSUM-ATYPICAL-bgaou",
+    "title": "Molluscum contagiosum (atypical)",
+    "source_disease": "Molluscum contagiosum",
+    "variant_type": "atypical",
+    "input": {
+      "age": 81,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_umbilicacion": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-VARICELLA-CORE-sbpzw",
+    "title": "Varicella (core)",
+    "source_disease": "Varicella",
+    "variant_type": "core",
+    "input": {
+      "age": 56,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_vesicula": true,
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-VARICELLA-SPARSE-yi9w7",
+    "title": "Varicella (sparse)",
+    "source_disease": "Varicella",
+    "variant_type": "sparse",
+    "input": {
+      "age": 13,
+      "timing": "acute",
+      "lesion_vesicula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-VARICELLA-ATYPICAL-eizqv",
+    "title": "Varicella (atypical)",
+    "source_disease": "Varicella",
+    "variant_type": "atypical",
+    "input": {
+      "age": 8,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-VIRAL_EXANTHEM-CORE-9hscf",
+    "title": "Viral exanthem (core)",
+    "source_disease": "Viral exanthem",
+    "variant_type": "core",
+    "input": {
+      "age": 67,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-VIRAL_EXANTHEM-SPARSE-cb1tp",
+    "title": "Viral exanthem (sparse)",
+    "source_disease": "Viral exanthem",
+    "variant_type": "sparse",
+    "input": {
+      "age": 69,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-VIRAL_EXANTHEM-ATYPICAL-mmitz",
+    "title": "Viral exanthem (atypical)",
+    "source_disease": "Viral exanthem",
+    "variant_type": "atypical",
+    "input": {
+      "age": 59,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HAND_FOOT_AND_MOUTH_DISEASE-CORE-2377b",
+    "title": "Hand foot and mouth disease (core)",
+    "source_disease": "Hand foot and mouth disease",
+    "variant_type": "core",
+    "input": {
+      "age": 1,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_vesicula": true,
+      "lesion_ulcera": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HAND_FOOT_AND_MOUTH_DISEASE-SPARSE-c23r7",
+    "title": "Hand foot and mouth disease (sparse)",
+    "source_disease": "Hand foot and mouth disease",
+    "variant_type": "sparse",
+    "input": {
+      "age": 46,
+      "timing": "acute",
+      "signo_fiebre": true,
+      "lesion_vesicula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-HAND_FOOT_AND_MOUTH_DISEASE-ATYPICAL-9g62u",
+    "title": "Hand foot and mouth disease (atypical)",
+    "source_disease": "Hand foot and mouth disease",
+    "variant_type": "atypical",
+    "input": {
+      "age": 16,
+      "timing": "acute",
+      "signo_dolor": true,
+      "signo_fiebre": true,
+      "lesion_ulcera": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "viral_skin_infection",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-TINEA_CORPORIS-CORE-ot389",
+    "title": "Tinea corporis (core)",
+    "source_disease": "Tinea corporis",
+    "variant_type": "core",
+    "input": {
+      "age": 55,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_patron_anular": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CORPORIS-SPARSE-dcp6x",
+    "title": "Tinea corporis (sparse)",
+    "source_disease": "Tinea corporis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 63,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CORPORIS-ATYPICAL-jmo2b",
+    "title": "Tinea corporis (atypical)",
+    "source_disease": "Tinea corporis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 25,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_patron_anular": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_PEDIS-CORE-9yzsb",
+    "title": "Tinea pedis (core)",
+    "source_disease": "Tinea pedis",
+    "variant_type": "core",
+    "input": {
+      "age": 55,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_escama": true,
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_PEDIS-SPARSE-au12j",
+    "title": "Tinea pedis (sparse)",
+    "source_disease": "Tinea pedis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 15,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_PEDIS-ATYPICAL-q35ev",
+    "title": "Tinea pedis (atypical)",
+    "source_disease": "Tinea pedis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 63,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CRURIS-CORE-q8v4w",
+    "title": "Tinea cruris (core)",
+    "source_disease": "Tinea cruris",
+    "variant_type": "core",
+    "input": {
+      "age": 72,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_mancha": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CRURIS-SPARSE-qln81",
+    "title": "Tinea cruris (sparse)",
+    "source_disease": "Tinea cruris",
+    "variant_type": "sparse",
+    "input": {
+      "age": 86,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CRURIS-ATYPICAL-2dwix",
+    "title": "Tinea cruris (atypical)",
+    "source_disease": "Tinea cruris",
+    "variant_type": "atypical",
+    "input": {
+      "age": 51,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_VERSICOLOR-CORE-yqxtl",
+    "title": "Tinea versicolor (core)",
+    "source_disease": "Tinea versicolor",
+    "variant_type": "core",
+    "input": {
+      "age": 15,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_mancha": true,
+      "lesion_eritema": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_VERSICOLOR-SPARSE-xa7sq",
+    "title": "Tinea versicolor (sparse)",
+    "source_disease": "Tinea versicolor",
+    "variant_type": "sparse",
+    "input": {
+      "age": 47,
+      "timing": "subacute",
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_VERSICOLOR-ATYPICAL-7bwar",
+    "title": "Tinea versicolor (atypical)",
+    "source_disease": "Tinea versicolor",
+    "variant_type": "atypical",
+    "input": {
+      "age": 18,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-CANDIDIASIS-CORE-0lkoh",
+    "title": "Candidiasis (core)",
+    "source_disease": "Candidiasis",
+    "variant_type": "core",
+    "input": {
+      "age": 9,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-CANDIDIASIS-SPARSE-96o9y",
+    "title": "Candidiasis (sparse)",
+    "source_disease": "Candidiasis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 52,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-CANDIDIASIS-ATYPICAL-tew5n",
+    "title": "Candidiasis (atypical)",
+    "source_disease": "Candidiasis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 81,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CAPITIS-CORE-mz430",
+    "title": "Tinea capitis (core)",
+    "source_disease": "Tinea capitis",
+    "variant_type": "core",
+    "input": {
+      "age": 11,
+      "timing": "chronic",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CAPITIS-SPARSE-su4dk",
+    "title": "Tinea capitis (sparse)",
+    "source_disease": "Tinea capitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 60,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-TINEA_CAPITIS-ATYPICAL-fpx8l",
+    "title": "Tinea capitis (atypical)",
+    "source_disease": "Tinea capitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 31,
+      "timing": "subacute",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "fungal_skin_infection",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-FIXED_DRUG_ERUPTION-CORE-b1am1",
+    "title": "Fixed drug eruption (core)",
+    "source_disease": "Fixed drug eruption",
+    "variant_type": "core",
+    "input": {
+      "age": 36,
+      "timing": "acute",
+      "signo_prurito": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "lesion_patron_anular": true,
+      "lesion_hiperpigmentacion": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-FIXED_DRUG_ERUPTION-SPARSE-pqdvp",
+    "title": "Fixed drug eruption (sparse)",
+    "source_disease": "Fixed drug eruption",
+    "variant_type": "sparse",
+    "input": {
+      "age": 8,
+      "timing": "acute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-FIXED_DRUG_ERUPTION-ATYPICAL-12g8q",
+    "title": "Fixed drug eruption (atypical)",
+    "source_disease": "Fixed drug eruption",
+    "variant_type": "atypical",
+    "input": {
+      "age": 2,
+      "timing": "acute",
+      "signo_prurito": true,
+      "signo_fiebre": true,
+      "lesion_patron_anular": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-ACUTE_GENERALIZED_EXANTHEMATOUS_PUSTULOSIS-CORE-h9n4h",
+    "title": "Acute generalized exanthematous pustulosis (core)",
+    "source_disease": "Acute generalized exanthematous pustulosis",
+    "variant_type": "core",
+    "input": {
+      "age": 60,
+      "timing": "acute",
+      "signo_prurito": true,
+      "signo_fiebre": true,
+      "lesion_pustula": true,
+      "lesion_eritema": true,
+      "lesion_tumor": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-ACUTE_GENERALIZED_EXANTHEMATOUS_PUSTULOSIS-SPARSE-rqaf9",
+    "title": "Acute generalized exanthematous pustulosis (sparse)",
+    "source_disease": "Acute generalized exanthematous pustulosis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 45,
+      "timing": "acute",
+      "signo_prurito": true,
+      "signo_fiebre": true,
+      "lesion_pustula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-ACUTE_GENERALIZED_EXANTHEMATOUS_PUSTULOSIS-ATYPICAL-w05yq",
+    "title": "Acute generalized exanthematous pustulosis (atypical)",
+    "source_disease": "Acute generalized exanthematous pustulosis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 8,
+      "timing": "acute",
+      "signo_prurito": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-STEVENS-JOHNSON_SYNDROME-CORE-vleiz",
+    "title": "Stevens-Johnson syndrome (core)",
+    "source_disease": "Stevens-Johnson syndrome",
+    "variant_type": "core",
+    "input": {
+      "age": 84,
+      "timing": "acute",
+      "signo_prurito": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-STEVENS-JOHNSON_SYNDROME-SPARSE-xlvxd",
+    "title": "Stevens-Johnson syndrome (sparse)",
+    "source_disease": "Stevens-Johnson syndrome",
+    "variant_type": "sparse",
+    "input": {
+      "age": 74,
+      "timing": "acute",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-STEVENS-JOHNSON_SYNDROME-ATYPICAL-4r0z8",
+    "title": "Stevens-Johnson syndrome (atypical)",
+    "source_disease": "Stevens-Johnson syndrome",
+    "variant_type": "atypical",
+    "input": {
+      "age": 94,
+      "timing": "acute",
+      "signo_prurito": true,
+      "signo_fiebre": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "drug_reaction",
+    "expected_priority": 1
+  },
+  {
+    "id": "SYN-URTICARIA-CORE-20ejn",
+    "title": "Urticaria (core)",
+    "source_disease": "Urticaria",
+    "variant_type": "core",
+    "input": {
+      "age": 24,
+      "timing": "acute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIA-SPARSE-5e1fw",
+    "title": "Urticaria (sparse)",
+    "source_disease": "Urticaria",
+    "variant_type": "sparse",
+    "input": {
+      "age": 14,
+      "timing": "acute",
+      "signo_prurito": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIA-ATYPICAL-yodx0",
+    "title": "Urticaria (atypical)",
+    "source_disease": "Urticaria",
+    "variant_type": "atypical",
+    "input": {
+      "age": 73,
+      "timing": "acute",
+      "signo_prurito": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIAL_VASCULITIS-CORE-r4bza",
+    "title": "Urticarial vasculitis (core)",
+    "source_disease": "Urticarial vasculitis",
+    "variant_type": "core",
+    "input": {
+      "age": 51,
+      "timing": "acute",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIAL_VASCULITIS-SPARSE-1vhob",
+    "title": "Urticarial vasculitis (sparse)",
+    "source_disease": "Urticarial vasculitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 74,
+      "timing": "acute",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIAL_VASCULITIS-ATYPICAL-yfxiv",
+    "title": "Urticarial vasculitis (atypical)",
+    "source_disease": "Urticarial vasculitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 61,
+      "timing": "acute",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-INSECT_BITE-CORE-7ob1u",
+    "title": "Insect bite (core)",
+    "source_disease": "Insect bite",
+    "variant_type": "core",
+    "input": {
+      "age": 65,
+      "timing": "acute",
+      "signo_prurito": true,
+      "lesion_papula": true,
+      "lesion_vesicula": true,
+      "lesion_bula_ampolla": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-INSECT_BITE-SPARSE-e3cps",
+    "title": "Insect bite (sparse)",
+    "source_disease": "Insect bite",
+    "variant_type": "sparse",
+    "input": {
+      "age": 27,
+      "timing": "acute",
+      "signo_prurito": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-INSECT_BITE-ATYPICAL-e9itu",
+    "title": "Insect bite (atypical)",
+    "source_disease": "Insect bite",
+    "variant_type": "atypical",
+    "input": {
+      "age": 59,
+      "timing": "acute",
+      "signo_prurito": true,
+      "lesion_vesicula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PUPPP_(PRURITIC_URTICARIAL_PAPULES_AND_PLAQUES_OF_PREGNANCY)-CORE-ociir",
+    "title": "PUPPP (Pruritic urticarial papules and plaques of pregnancy) (core)",
+    "source_disease": "PUPPP (Pruritic urticarial papules and plaques of pregnancy)",
+    "variant_type": "core",
+    "input": {
+      "age": 29,
+      "timing": "acute",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PUPPP_(PRURITIC_URTICARIAL_PAPULES_AND_PLAQUES_OF_PREGNANCY)-SPARSE-cmxeb",
+    "title": "PUPPP (Pruritic urticarial papules and plaques of pregnancy) (sparse)",
+    "source_disease": "PUPPP (Pruritic urticarial papules and plaques of pregnancy)",
+    "variant_type": "sparse",
+    "input": {
+      "age": 52,
+      "timing": "acute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PUPPP_(PRURITIC_URTICARIAL_PAPULES_AND_PLAQUES_OF_PREGNANCY)-ATYPICAL-x2t7q",
+    "title": "PUPPP (Pruritic urticarial papules and plaques of pregnancy) (atypical)",
+    "source_disease": "PUPPP (Pruritic urticarial papules and plaques of pregnancy)",
+    "variant_type": "atypical",
+    "input": {
+      "age": 56,
+      "timing": "acute",
+      "signo_prurito": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "urticarial_dermatosis",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-BULLOUS_PEMPHIGOID-CORE-za6qf",
+    "title": "Bullous pemphigoid (core)",
+    "source_disease": "Bullous pemphigoid",
+    "variant_type": "core",
+    "input": {
+      "age": 88,
+      "timing": "subacute",
+      "signo_dolor": true,
+      "lesion_bula_ampolla": true,
+      "lesion_eritema": true,
+      "lesion_erosion": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-BULLOUS_PEMPHIGOID-SPARSE-g8fs1",
+    "title": "Bullous pemphigoid (sparse)",
+    "source_disease": "Bullous pemphigoid",
+    "variant_type": "sparse",
+    "input": {
+      "age": 56,
+      "timing": "acute",
+      "lesion_bula_ampolla": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-BULLOUS_PEMPHIGOID-ATYPICAL-a7zqt",
+    "title": "Bullous pemphigoid (atypical)",
+    "source_disease": "Bullous pemphigoid",
+    "variant_type": "atypical",
+    "input": {
+      "age": 84,
+      "timing": "subacute",
+      "signo_dolor": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-PEMPHIGUS_VULGARIS-CORE-atk5e",
+    "title": "Pemphigus vulgaris (core)",
+    "source_disease": "Pemphigus vulgaris",
+    "variant_type": "core",
+    "input": {
+      "age": 68,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_erosion": true,
+      "lesion_costra": true,
+      "lesion_bula_ampolla": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-PEMPHIGUS_VULGARIS-SPARSE-suvak",
+    "title": "Pemphigus vulgaris (sparse)",
+    "source_disease": "Pemphigus vulgaris",
+    "variant_type": "sparse",
+    "input": {
+      "age": 70,
+      "timing": "subacute",
+      "lesion_erosion": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-PEMPHIGUS_VULGARIS-ATYPICAL-fvixc",
+    "title": "Pemphigus vulgaris (atypical)",
+    "source_disease": "Pemphigus vulgaris",
+    "variant_type": "atypical",
+    "input": {
+      "age": 70,
+      "timing": "subacute",
+      "signo_dolor": true,
+      "lesion_costra": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-DERMATITIS_HERPETIFORMIS-CORE-qugg4",
+    "title": "Dermatitis herpetiformis (core)",
+    "source_disease": "Dermatitis herpetiformis",
+    "variant_type": "core",
+    "input": {
+      "age": 51,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_vesicula": true,
+      "lesion_patron_zosteriforme": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-DERMATITIS_HERPETIFORMIS-SPARSE-dwghm",
+    "title": "Dermatitis herpetiformis (sparse)",
+    "source_disease": "Dermatitis herpetiformis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 70,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_vesicula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-DERMATITIS_HERPETIFORMIS-ATYPICAL-y1jcl",
+    "title": "Dermatitis herpetiformis (atypical)",
+    "source_disease": "Dermatitis herpetiformis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 52,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_patron_zosteriforme": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-TRANSIENT_ACANTHOLYTIC_DERMATOSIS-CORE-n8xt7",
+    "title": "Transient acantholytic dermatosis (core)",
+    "source_disease": "Transient acantholytic dermatosis",
+    "variant_type": "core",
+    "input": {
+      "age": 69,
+      "timing": "subacute",
+      "signo_dolor": true,
+      "lesion_papula": true,
+      "lesion_eritema": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-TRANSIENT_ACANTHOLYTIC_DERMATOSIS-SPARSE-5k2r8",
+    "title": "Transient acantholytic dermatosis (sparse)",
+    "source_disease": "Transient acantholytic dermatosis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 70,
+      "timing": "subacute",
+      "signo_dolor": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-TRANSIENT_ACANTHOLYTIC_DERMATOSIS-ATYPICAL-09jqk",
+    "title": "Transient acantholytic dermatosis (atypical)",
+    "source_disease": "Transient acantholytic dermatosis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 50,
+      "timing": "acute",
+      "signo_dolor": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vesiculobullous_disease",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-LEUKOCYTOCLASTIC_VASCULITIS-CORE-nq3sd",
+    "title": "Leukocytoclastic vasculitis (core)",
+    "source_disease": "Leukocytoclastic vasculitis",
+    "variant_type": "core",
+    "input": {
+      "age": 56,
+      "timing": "subacute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LEUKOCYTOCLASTIC_VASCULITIS-SPARSE-njxhi",
+    "title": "Leukocytoclastic vasculitis (sparse)",
+    "source_disease": "Leukocytoclastic vasculitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 26,
+      "timing": "subacute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LEUKOCYTOCLASTIC_VASCULITIS-ATYPICAL-bvtsb",
+    "title": "Leukocytoclastic vasculitis (atypical)",
+    "source_disease": "Leukocytoclastic vasculitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 28,
+      "timing": "subacute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PIGMENTED_PURPURIC_ERUPTION-CORE-ye9rw",
+    "title": "Pigmented purpuric eruption (core)",
+    "source_disease": "Pigmented purpuric eruption",
+    "variant_type": "core",
+    "input": {
+      "age": 73,
+      "timing": "subacute",
+      "lesion_papula": true,
+      "lesion_eritema": true,
+      "lesion_hiperpigmentacion": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PIGMENTED_PURPURIC_ERUPTION-SPARSE-mnx9z",
+    "title": "Pigmented purpuric eruption (sparse)",
+    "source_disease": "Pigmented purpuric eruption",
+    "variant_type": "sparse",
+    "input": {
+      "age": 74,
+      "timing": "chronic",
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PIGMENTED_PURPURIC_ERUPTION-ATYPICAL-qec0s",
+    "title": "Pigmented purpuric eruption (atypical)",
+    "source_disease": "Pigmented purpuric eruption",
+    "variant_type": "atypical",
+    "input": {
+      "age": 11,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIAL_VASCULITIS-CORE-quucn",
+    "title": "Urticarial vasculitis (core)",
+    "source_disease": "Urticarial vasculitis",
+    "variant_type": "core",
+    "input": {
+      "age": 58,
+      "timing": "subacute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIAL_VASCULITIS-SPARSE-hlaye",
+    "title": "Urticarial vasculitis (sparse)",
+    "source_disease": "Urticarial vasculitis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 74,
+      "timing": "subacute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-URTICARIAL_VASCULITIS-ATYPICAL-4fkty",
+    "title": "Urticarial vasculitis (atypical)",
+    "source_disease": "Urticarial vasculitis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 68,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ERYTHEMA_ELEVATUM_DIUTINUM-CORE-4ptnc",
+    "title": "Erythema elevatum diutinum (core)",
+    "source_disease": "Erythema elevatum diutinum",
+    "variant_type": "core",
+    "input": {
+      "age": 14,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ERYTHEMA_ELEVATUM_DIUTINUM-SPARSE-7l7z2",
+    "title": "Erythema elevatum diutinum (sparse)",
+    "source_disease": "Erythema elevatum diutinum",
+    "variant_type": "sparse",
+    "input": {
+      "age": 30,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ERYTHEMA_ELEVATUM_DIUTINUM-ATYPICAL-88cae",
+    "title": "Erythema elevatum diutinum (atypical)",
+    "source_disease": "Erythema elevatum diutinum",
+    "variant_type": "atypical",
+    "input": {
+      "age": 75,
+      "timing": "subacute",
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "vasculitic_purpuric_disease",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-BASAL_CELL_CARCINOMA-CORE-6xaze",
+    "title": "Basal cell carcinoma (core)",
+    "source_disease": "Basal cell carcinoma",
+    "variant_type": "core",
+    "input": {
+      "age": 93,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "lesion_patron_anular": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-BASAL_CELL_CARCINOMA-SPARSE-4jsd8",
+    "title": "Basal cell carcinoma (sparse)",
+    "source_disease": "Basal cell carcinoma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 68,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-BASAL_CELL_CARCINOMA-ATYPICAL-thc1b",
+    "title": "Basal cell carcinoma (atypical)",
+    "source_disease": "Basal cell carcinoma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 79,
+      "timing": "chronic",
+      "lesion_patron_anular": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-SQUAMOUS_CELL_CARCINOMA-CORE-xofvg",
+    "title": "Squamous cell carcinoma (core)",
+    "source_disease": "Squamous cell carcinoma",
+    "variant_type": "core",
+    "input": {
+      "age": 54,
+      "timing": "chronic",
+      "lesion_escama": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-SQUAMOUS_CELL_CARCINOMA-SPARSE-orfwo",
+    "title": "Squamous cell carcinoma (sparse)",
+    "source_disease": "Squamous cell carcinoma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 54,
+      "timing": "chronic",
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-SQUAMOUS_CELL_CARCINOMA-ATYPICAL-32m0v",
+    "title": "Squamous cell carcinoma (atypical)",
+    "source_disease": "Squamous cell carcinoma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 63,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-MALIGNANT_MELANOMA-CORE-es2qr",
+    "title": "Malignant melanoma (core)",
+    "source_disease": "Malignant melanoma",
+    "variant_type": "core",
+    "input": {
+      "age": 75,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-MALIGNANT_MELANOMA-SPARSE-ok406",
+    "title": "Malignant melanoma (sparse)",
+    "source_disease": "Malignant melanoma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 66,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-MALIGNANT_MELANOMA-ATYPICAL-0zouq",
+    "title": "Malignant melanoma (atypical)",
+    "source_disease": "Malignant melanoma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 66,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-BOWEN'S_DISEASE-CORE-kslf9",
+    "title": "Bowen's disease (core)",
+    "source_disease": "Bowen's disease",
+    "variant_type": "core",
+    "input": {
+      "age": 86,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-BOWEN'S_DISEASE-SPARSE-iywq8",
+    "title": "Bowen's disease (sparse)",
+    "source_disease": "Bowen's disease",
+    "variant_type": "sparse",
+    "input": {
+      "age": 72,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-BOWEN'S_DISEASE-ATYPICAL-tnmgj",
+    "title": "Bowen's disease (atypical)",
+    "source_disease": "Bowen's disease",
+    "variant_type": "atypical",
+    "input": {
+      "age": 80,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-KERATOACANTHOMA-CORE-1jd08",
+    "title": "Keratoacanthoma (core)",
+    "source_disease": "Keratoacanthoma",
+    "variant_type": "core",
+    "input": {
+      "age": 92,
+      "timing": "chronic",
+      "lesion_cupuliforme": true,
+      "lesion_eritema": true,
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-KERATOACANTHOMA-SPARSE-5ds5h",
+    "title": "Keratoacanthoma (sparse)",
+    "source_disease": "Keratoacanthoma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 56,
+      "timing": "chronic",
+      "lesion_cupuliforme": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-KERATOACANTHOMA-ATYPICAL-k9imi",
+    "title": "Keratoacanthoma (atypical)",
+    "source_disease": "Keratoacanthoma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 81,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "cutaneous_tumor_suspected",
+    "expected_priority": 2
+  },
+  {
+    "id": "SYN-SEBORRHEIC_KERATOSIS-CORE-dvmja",
+    "title": "Seborrheic keratosis (core)",
+    "source_disease": "Seborrheic keratosis",
+    "variant_type": "core",
+    "input": {
+      "age": 26,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SEBORRHEIC_KERATOSIS-SPARSE-ipmkk",
+    "title": "Seborrheic keratosis (sparse)",
+    "source_disease": "Seborrheic keratosis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 63,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SEBORRHEIC_KERATOSIS-ATYPICAL-11p7y",
+    "title": "Seborrheic keratosis (atypical)",
+    "source_disease": "Seborrheic keratosis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 12,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-DERMATOFIBROMA-CORE-xlcmw",
+    "title": "Dermatofibroma (core)",
+    "source_disease": "Dermatofibroma",
+    "variant_type": "core",
+    "input": {
+      "age": 28,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "lesion_tumor": true,
+      "lesion_cicatriz": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-DERMATOFIBROMA-SPARSE-y399g",
+    "title": "Dermatofibroma (sparse)",
+    "source_disease": "Dermatofibroma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 18,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-DERMATOFIBROMA-ATYPICAL-mi1wg",
+    "title": "Dermatofibroma (atypical)",
+    "source_disease": "Dermatofibroma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 39,
+      "timing": "chronic",
+      "lesion_tumor": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-MELANOCYTIC_NEVUS-CORE-z1789",
+    "title": "Melanocytic nevus (core)",
+    "source_disease": "Melanocytic nevus",
+    "variant_type": "core",
+    "input": {
+      "age": 24,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-MELANOCYTIC_NEVUS-SPARSE-jrale",
+    "title": "Melanocytic nevus (sparse)",
+    "source_disease": "Melanocytic nevus",
+    "variant_type": "sparse",
+    "input": {
+      "age": 85,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-MELANOCYTIC_NEVUS-ATYPICAL-yqzsx",
+    "title": "Melanocytic nevus (atypical)",
+    "source_disease": "Melanocytic nevus",
+    "variant_type": "atypical",
+    "input": {
+      "age": 51,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LIPOMA-CORE-bg4c0",
+    "title": "Lipoma (core)",
+    "source_disease": "Lipoma",
+    "variant_type": "core",
+    "input": {
+      "age": 58,
+      "timing": "chronic",
+      "lesion_tumor": true,
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LIPOMA-SPARSE-l0cap",
+    "title": "Lipoma (sparse)",
+    "source_disease": "Lipoma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 78,
+      "timing": "chronic",
+      "lesion_tumor": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LIPOMA-ATYPICAL-0z8kh",
+    "title": "Lipoma (atypical)",
+    "source_disease": "Lipoma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 94,
+      "timing": "chronic",
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ANGIOMA_/_HEMANGIOMA-CORE-9dj8y",
+    "title": "Angioma / Hemangioma (core)",
+    "source_disease": "Angioma / Hemangioma",
+    "variant_type": "core",
+    "input": {
+      "age": 60,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ANGIOMA_/_HEMANGIOMA-SPARSE-0tapo",
+    "title": "Angioma / Hemangioma (sparse)",
+    "source_disease": "Angioma / Hemangioma",
+    "variant_type": "sparse",
+    "input": {
+      "age": 59,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ANGIOMA_/_HEMANGIOMA-ATYPICAL-4k65d",
+    "title": "Angioma / Hemangioma (atypical)",
+    "source_disease": "Angioma / Hemangioma",
+    "variant_type": "atypical",
+    "input": {
+      "age": 44,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "benign_cutaneous_tumor",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ACNE_VULGARIS-CORE-i29yq",
+    "title": "Acne vulgaris (core)",
+    "source_disease": "Acne vulgaris",
+    "variant_type": "core",
+    "input": {
+      "age": 43,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "lesion_comedon": true,
+      "lesion_pustula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ACNE_VULGARIS-SPARSE-r9ztf",
+    "title": "Acne vulgaris (sparse)",
+    "source_disease": "Acne vulgaris",
+    "variant_type": "sparse",
+    "input": {
+      "age": 19,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ACNE_VULGARIS-ATYPICAL-t13n4",
+    "title": "Acne vulgaris (atypical)",
+    "source_disease": "Acne vulgaris",
+    "variant_type": "atypical",
+    "input": {
+      "age": 15,
+      "timing": "subacute",
+      "lesion_comedon": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ROSACEA-CORE-odryj",
+    "title": "Rosacea (core)",
+    "source_disease": "Rosacea",
+    "variant_type": "core",
+    "input": {
+      "age": 19,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ROSACEA-SPARSE-twhc7",
+    "title": "Rosacea (sparse)",
+    "source_disease": "Rosacea",
+    "variant_type": "sparse",
+    "input": {
+      "age": 28,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-ROSACEA-ATYPICAL-ifljn",
+    "title": "Rosacea (atypical)",
+    "source_disease": "Rosacea",
+    "variant_type": "atypical",
+    "input": {
+      "age": 38,
+      "timing": "chronic",
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_ROSEA-CORE-ex9d6",
+    "title": "Pityriasis rosea (core)",
+    "source_disease": "Pityriasis rosea",
+    "variant_type": "core",
+    "input": {
+      "age": 54,
+      "timing": "chronic",
+      "lesion_mancha": true,
+      "lesion_eritema": true,
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_ROSEA-SPARSE-6d7nc",
+    "title": "Pityriasis rosea (sparse)",
+    "source_disease": "Pityriasis rosea",
+    "variant_type": "sparse",
+    "input": {
+      "age": 62,
+      "timing": "subacute",
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_ROSEA-ATYPICAL-ve18q",
+    "title": "Pityriasis rosea (atypical)",
+    "source_disease": "Pityriasis rosea",
+    "variant_type": "atypical",
+    "input": {
+      "age": 41,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-GRANULOMA_ANNULARE-CORE-2nd38",
+    "title": "Granuloma annulare (core)",
+    "source_disease": "Granuloma annulare",
+    "variant_type": "core",
+    "input": {
+      "age": 69,
+      "timing": "chronic",
+      "lesion_patron_anular": true,
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-GRANULOMA_ANNULARE-SPARSE-cvhv6",
+    "title": "Granuloma annulare (sparse)",
+    "source_disease": "Granuloma annulare",
+    "variant_type": "sparse",
+    "input": {
+      "age": 17,
+      "timing": "chronic",
+      "lesion_patron_anular": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-GRANULOMA_ANNULARE-ATYPICAL-jhavx",
+    "title": "Granuloma annulare (atypical)",
+    "source_disease": "Granuloma annulare",
+    "variant_type": "atypical",
+    "input": {
+      "age": 41,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LICHEN_PLANUS-CORE-h71ra",
+    "title": "Lichen planus (core)",
+    "source_disease": "Lichen planus",
+    "variant_type": "core",
+    "input": {
+      "age": 11,
+      "timing": "subacute",
+      "lesion_mancha": true,
+      "lesion_papula": true,
+      "lesion_color_violaceo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LICHEN_PLANUS-SPARSE-7rfhu",
+    "title": "Lichen planus (sparse)",
+    "source_disease": "Lichen planus",
+    "variant_type": "sparse",
+    "input": {
+      "age": 18,
+      "timing": "subacute",
+      "lesion_mancha": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-LICHEN_PLANUS-ATYPICAL-ye996",
+    "title": "Lichen planus (atypical)",
+    "source_disease": "Lichen planus",
+    "variant_type": "atypical",
+    "input": {
+      "age": 71,
+      "timing": "subacute",
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SCABIES-CORE-klpai",
+    "title": "Scabies (core)",
+    "source_disease": "Scabies",
+    "variant_type": "core",
+    "input": {
+      "age": 14,
+      "timing": "subacute",
+      "lesion_eritema": true,
+      "lesion_papula": true,
+      "lesion_costra": true,
+      "topog_acral": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SCABIES-SPARSE-lu2eh",
+    "title": "Scabies (sparse)",
+    "source_disease": "Scabies",
+    "variant_type": "sparse",
+    "input": {
+      "age": 13,
+      "timing": "chronic",
+      "lesion_eritema": true,
+      "topog_acral": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SCABIES-ATYPICAL-tk6ad",
+    "title": "Scabies (atypical)",
+    "source_disease": "Scabies",
+    "variant_type": "atypical",
+    "input": {
+      "age": 69,
+      "timing": "subacute",
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SYPHILIS_(SECONDARY)-CORE-heouf",
+    "title": "Syphilis (Secondary) (core)",
+    "source_disease": "Syphilis (Secondary)",
+    "variant_type": "core",
+    "input": {
+      "age": 36,
+      "timing": "subacute",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SYPHILIS_(SECONDARY)-SPARSE-j5nhs",
+    "title": "Syphilis (Secondary) (sparse)",
+    "source_disease": "Syphilis (Secondary)",
+    "variant_type": "sparse",
+    "input": {
+      "age": 12,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SYPHILIS_(SECONDARY)-ATYPICAL-jyj7h",
+    "title": "Syphilis (Secondary) (atypical)",
+    "source_disease": "Syphilis (Secondary)",
+    "variant_type": "atypical",
+    "input": {
+      "age": 67,
+      "timing": "chronic",
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SARCOIDOSIS-CORE-gbco2",
+    "title": "Sarcoidosis (core)",
+    "source_disease": "Sarcoidosis",
+    "variant_type": "core",
+    "input": {
+      "age": 62,
+      "timing": "subacute",
+      "lesion_nodulo": true,
+      "lesion_patron_anular": true,
+      "lesion_eritema": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SARCOIDOSIS-SPARSE-eq7f4",
+    "title": "Sarcoidosis (sparse)",
+    "source_disease": "Sarcoidosis",
+    "variant_type": "sparse",
+    "input": {
+      "age": 31,
+      "timing": "chronic",
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-SARCOIDOSIS-ATYPICAL-807dj",
+    "title": "Sarcoidosis (atypical)",
+    "source_disease": "Sarcoidosis",
+    "variant_type": "atypical",
+    "input": {
+      "age": 28,
+      "timing": "chronic",
+      "lesion_patron_anular": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_LICHENOIDES-CORE-ax9xh",
+    "title": "Pityriasis lichenoides (core)",
+    "source_disease": "Pityriasis lichenoides",
+    "variant_type": "core",
+    "input": {
+      "age": 10,
+      "timing": "subacute",
+      "lesion_papula": true,
+      "lesion_escama": true,
+      "lesion_liquenificacion": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_LICHENOIDES-SPARSE-ofnkk",
+    "title": "Pityriasis lichenoides (sparse)",
+    "source_disease": "Pityriasis lichenoides",
+    "variant_type": "sparse",
+    "input": {
+      "age": 75,
+      "timing": "subacute",
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-PITYRIASIS_LICHENOIDES-ATYPICAL-03osq",
+    "title": "Pityriasis lichenoides (atypical)",
+    "source_disease": "Pityriasis lichenoides",
+    "variant_type": "atypical",
+    "input": {
+      "age": 19,
+      "timing": "subacute",
+      "lesion_escama": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-HIDRADENITIS_SUPPURATIVA-CORE-0degm",
+    "title": "Hidradenitis suppurativa (core)",
+    "source_disease": "Hidradenitis suppurativa",
+    "variant_type": "core",
+    "input": {
+      "age": 43,
+      "timing": "subacute",
+      "lesion_papula": true,
+      "lesion_cicatriz": true,
+      "lesion_nodulo": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-HIDRADENITIS_SUPPURATIVA-SPARSE-crqhc",
+    "title": "Hidradenitis suppurativa (sparse)",
+    "source_disease": "Hidradenitis suppurativa",
+    "variant_type": "sparse",
+    "input": {
+      "age": 56,
+      "timing": "chronic",
+      "lesion_papula": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  },
+  {
+    "id": "SYN-HIDRADENITIS_SUPPURATIVA-ATYPICAL-8p2cu",
+    "title": "Hidradenitis suppurativa (atypical)",
+    "source_disease": "Hidradenitis suppurativa",
+    "variant_type": "atypical",
+    "input": {
+      "age": 47,
+      "timing": "subacute",
+      "lesion_cicatriz": true,
+      "topog_tronco": true
+    },
+    "expected_syndrome": "inflammatory_dermatosis_other",
+    "expected_priority": 3
+  }
+]

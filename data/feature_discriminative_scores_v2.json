@@ -1,0 +1,274 @@
+[
+  {
+    "feature": "costra",
+    "rpr_top": "10.54",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "bacterial_skin_infection",
+    "syndrome_diversity": 7
+  },
+  {
+    "feature": "bula_ampolla",
+    "rpr_top": "16.27",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "vesiculobullous_disease",
+    "syndrome_diversity": 7
+  },
+  {
+    "feature": "pustula",
+    "rpr_top": "10.64",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "syndrome_diversity": 6
+  },
+  {
+    "feature": "tumor",
+    "rpr_top": "13.02",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "syndrome_diversity": 6
+  },
+  {
+    "feature": "vesicula",
+    "rpr_top": "15.70",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "viral_skin_infection",
+    "syndrome_diversity": 7
+  },
+  {
+    "feature": "patron_zosteriforme",
+    "rpr_top": "30.74",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "vesiculobullous_disease",
+    "syndrome_diversity": 5
+  },
+  {
+    "feature": "erosion",
+    "rpr_top": "12.50",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "vesiculobullous_disease",
+    "syndrome_diversity": 4
+  },
+  {
+    "feature": "comedon",
+    "rpr_top": "12.49",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "appendage_disorders_acne",
+    "syndrome_diversity": 2
+  },
+  {
+    "feature": "hipopigmentacion",
+    "rpr_top": "10.00",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "cupuliforme",
+    "rpr_top": "26.35",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "cutaneous_tumor_suspected",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "purpura",
+    "rpr_top": "10.00",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "umbilicacion",
+    "rpr_top": "19.41",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "viral_skin_infection",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "surco",
+    "rpr_top": "21.08",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "ectoparasitosis_scabies",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "nodulo",
+    "rpr_top": "8.34",
+    "dp_score": "0.834",
+    "category": "ancla_absoluta",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "syndrome_diversity": 8
+  },
+  {
+    "feature": "cicatriz",
+    "rpr_top": "8.11",
+    "dp_score": "0.811",
+    "category": "ancla_absoluta",
+    "top_syndrome": "benign_cutaneous_tumor",
+    "syndrome_diversity": 5
+  },
+  {
+    "feature": "patron_anular",
+    "rpr_top": "7.83",
+    "dp_score": "0.783",
+    "category": "altamente_especifico",
+    "top_syndrome": "fungal_skin_infection",
+    "syndrome_diversity": 6
+  },
+  {
+    "feature": "escama",
+    "rpr_top": "7.53",
+    "dp_score": "0.753",
+    "category": "altamente_especifico",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "syndrome_diversity": 8
+  },
+  {
+    "feature": "habon",
+    "rpr_top": "7.03",
+    "dp_score": "0.703",
+    "category": "altamente_especifico",
+    "top_syndrome": "ectoparasitosis_scabies",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "quiste",
+    "rpr_top": "5.93",
+    "dp_score": "0.593",
+    "category": "altamente_especifico",
+    "top_syndrome": "appendage_disorders_acne",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "color_violaceo",
+    "rpr_top": "5.62",
+    "dp_score": "0.562",
+    "category": "altamente_especifico",
+    "top_syndrome": "vesiculobullous_disease",
+    "syndrome_diversity": 4
+  },
+  {
+    "feature": "liquenificacion",
+    "rpr_top": "4.70",
+    "dp_score": "0.470",
+    "category": "util_compartido",
+    "top_syndrome": "eczema_dermatitis",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "ulcera",
+    "rpr_top": "4.65",
+    "dp_score": "0.465",
+    "category": "util_compartido",
+    "top_syndrome": "viral_skin_infection",
+    "syndrome_diversity": 6
+  },
+  {
+    "feature": "papula",
+    "rpr_top": "4.57",
+    "dp_score": "0.457",
+    "category": "util_compartido",
+    "top_syndrome": "urticarial_dermatosis",
+    "syndrome_diversity": 12
+  },
+  {
+    "feature": "placa",
+    "rpr_top": "4.31",
+    "dp_score": "0.431",
+    "category": "util_compartido",
+    "top_syndrome": "psoriasiform_dermatosis",
+    "syndrome_diversity": 4
+  },
+  {
+    "feature": "mancha",
+    "rpr_top": "4.00",
+    "dp_score": "0.400",
+    "category": "util_compartido",
+    "top_syndrome": "fungal_skin_infection",
+    "syndrome_diversity": 8
+  },
+  {
+    "feature": "fisura",
+    "rpr_top": "2.57",
+    "dp_score": "0.257",
+    "category": "util_compartido",
+    "top_syndrome": "eczema_dermatitis",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "hiperpigmentacion",
+    "rpr_top": "2.52",
+    "dp_score": "0.252",
+    "category": "util_compartido",
+    "top_syndrome": "vasculitic_purpuric_disease",
+    "syndrome_diversity": 6
+  },
+  {
+    "feature": "excoriacion",
+    "rpr_top": "2.12",
+    "dp_score": "0.212",
+    "category": "util_compartido",
+    "top_syndrome": "eczema_dermatitis",
+    "syndrome_diversity": 2
+  },
+  {
+    "feature": "eritema",
+    "rpr_top": "1.91",
+    "dp_score": "0.191",
+    "category": "ruido",
+    "top_syndrome": "viral_skin_infection",
+    "syndrome_diversity": 14
+  },
+  {
+    "feature": "macula",
+    "rpr_top": "1.10",
+    "dp_score": "0.110",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "color_azul",
+    "rpr_top": "1.10",
+    "dp_score": "0.110",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "syndrome_diversity": 2
+  },
+  {
+    "feature": "patron_lineal",
+    "rpr_top": "1.07",
+    "dp_score": "0.107",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "syndrome_diversity": 2
+  },
+  {
+    "feature": "atrofia",
+    "rpr_top": "1.06",
+    "dp_score": "0.106",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "syndrome_diversity": 3
+  },
+  {
+    "feature": "necrosis",
+    "rpr_top": "1.05",
+    "dp_score": "0.105",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other",
+    "syndrome_diversity": 2
+  }
+]

@@ -1,0 +1,342 @@
+{
+  "mancha___papula___patron_zosteriforme": {
+    "syndrome": "vesiculobullous_disease",
+    "boost": 0.20000000000000004
+  },
+  "escama___liquenificacion___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "cupuliforme___nodulo___papula": {
+    "syndrome": "cutaneous_tumor_suspected",
+    "boost": 0.01
+  },
+  "cicatriz___nodulo___tumor": {
+    "syndrome": "benign_cutaneous_tumor",
+    "boost": 0.01
+  },
+  "eritema___patron_zosteriforme___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "hiperpigmentacion___papula___vesicula": {
+    "syndrome": "vasculitic_purpuric_disease",
+    "boost": 0.01
+  },
+  "bula_ampolla___costra___erosion": {
+    "syndrome": "vesiculobullous_disease",
+    "boost": 0.01
+  },
+  "liquenificacion___papula___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "escama___liquenificacion___papula": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "escama___mancha___pustula": {
+    "syndrome": "psoriasiform_dermatosis",
+    "boost": 0.01
+  },
+  "eritema___hiperpigmentacion___vesicula": {
+    "syndrome": "vasculitic_purpuric_disease",
+    "boost": 0.11000000000000001
+  },
+  "color_violaceo___escama___papula": {
+    "syndrome": "vesiculobullous_disease",
+    "boost": 0.01
+  },
+  "eritema___liquenificacion___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.5
+  },
+  "eritema___escama___liquenificacion": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "papula___ulcera___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "bula_ampolla___papula___ulcera": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.5
+  },
+  "cupuliforme___eritema___nodulo": {
+    "syndrome": "cutaneous_tumor_suspected",
+    "boost": 0.01
+  },
+  "mancha___patron_anular___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "cicatriz___eritema___tumor": {
+    "syndrome": "benign_cutaneous_tumor",
+    "boost": 0.01
+  },
+  "papula___patron_anular___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "mancha___papula___patron_anular": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "eritema___papula___patron_zosteriforme": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___ulcera___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "bula_ampolla___ulcera___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "mancha___papula___vesicula": {
+    "syndrome": "vesiculobullous_disease",
+    "boost": 0.01
+  },
+  "cicatriz___eritema___nodulo": {
+    "syndrome": "benign_cutaneous_tumor",
+    "boost": 0.01
+  },
+  "color_violaceo___escama___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "escama___papula___patron_anular": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "costra___tumor___ulcera": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.20000000000000004
+  },
+  "costra___pustula___ulcera": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___mancha___pustula": {
+    "syndrome": "psoriasiform_dermatosis",
+    "boost": 0.01
+  },
+  "color_violaceo___escama___mancha": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "costra___ulcera___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "bula_ampolla___eritema___ulcera": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "cupuliforme___eritema___papula": {
+    "syndrome": "cutaneous_tumor_suspected",
+    "boost": 0.01
+  },
+  "eritema___hiperpigmentacion___patron_anular": {
+    "syndrome": "drug_reaction",
+    "boost": 0.01
+  },
+  "color_violaceo___mancha___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "bula_ampolla___costra___papula": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.11
+  },
+  "eritema___liquenificacion___papula": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "escama___patron_anular___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "bula_ampolla___eritema___erosion": {
+    "syndrome": "vesiculobullous_disease",
+    "boost": 0.01
+  },
+  "eritema___escama___pustula": {
+    "syndrome": "psoriasiform_dermatosis",
+    "boost": 0.01
+  },
+  "color_violaceo___mancha___papula": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "color_violaceo___papula___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "eritema___papula___umbilicacion": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "escama___mancha___patron_anular": {
+    "syndrome": "fungal_skin_infection",
+    "boost": 0.01
+  },
+  "bula_ampolla___papula___vesicula": {
+    "syndrome": "urticarial_dermatosis",
+    "boost": 0.01
+  },
+  "eritema___nodulo___tumor": {
+    "syndrome": "benign_cutaneous_tumor",
+    "boost": 0.01
+  },
+  "bula_ampolla___costra___eritema": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.11
+  },
+  "eritema___escama___patron_anular": {
+    "syndrome": "fungal_skin_infection",
+    "boost": 0.01
+  },
+  "costra___papula___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "costra___papula___ulcera": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___mancha___patron_anular": {
+    "syndrome": "fungal_skin_infection",
+    "boost": 0.01
+  },
+  "escama___papula___placa": {
+    "syndrome": "psoriasiform_dermatosis",
+    "boost": 0.01
+  },
+  "color_violaceo___eritema___escama": {
+    "syndrome": "vesiculobullous_disease",
+    "boost": 0.01
+  },
+  "nodulo___pustula___tumor": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "costra___eritema___tumor": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___nodulo___pustula": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___papula___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "pustula___tumor___ulcera": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___pustula___ulcera": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___papula___ulcera": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___papula___tumor": {
+    "syndrome": "drug_reaction",
+    "boost": 0.01
+  },
+  "costra___eritema___pustula": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "color_violaceo___eritema___papula": {
+    "syndrome": "vesiculobullous_disease",
+    "boost": 0.01
+  },
+  "costra___pustula___tumor": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "bula_ampolla___eritema___papula": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "bula_ampolla___eritema___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "costra___eritema___vesicula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "papula___pustula___tumor": {
+    "syndrome": "drug_reaction",
+    "boost": 0.01
+  },
+  "eritema___tumor___ulcera": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "escama___mancha___papula": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "eritema___hiperpigmentacion___papula": {
+    "syndrome": "vasculitic_purpuric_disease",
+    "boost": 0.01
+  },
+  "eritema___papula___pustula": {
+    "syndrome": "drug_reaction",
+    "boost": 0.01
+  },
+  "mancha___papula___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "escama___mancha___placa": {
+    "syndrome": "eczema_dermatitis",
+    "boost": 0.01
+  },
+  "eritema___escama___papula": {
+    "syndrome": "psoriasiform_dermatosis",
+    "boost": 0.01
+  },
+  "eritema___escama___placa": {
+    "syndrome": "psoriasiform_dermatosis",
+    "boost": 0.01
+  },
+  "costra___eritema___ulcera": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___escama___mancha": {
+    "syndrome": "fungal_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___pustula___tumor": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___papula___placa": {
+    "syndrome": "psoriasiform_dermatosis",
+    "boost": 0.01
+  },
+  "eritema___nodulo___papula": {
+    "syndrome": "cutaneous_tumor_suspected",
+    "boost": 0.01
+  },
+  "costra___eritema___papula": {
+    "syndrome": "bacterial_skin_infection",
+    "boost": 0.01
+  },
+  "eritema___mancha___papula": {
+    "syndrome": "viral_skin_infection",
+    "boost": 0.01
+  }
+}

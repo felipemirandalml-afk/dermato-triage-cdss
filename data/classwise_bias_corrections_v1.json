@@ -1,0 +1,14 @@
+{
+  "bacterial_skin_infection": 0.6724,
+  "benign_cutaneous_tumor": 0.4682,
+  "cutaneous_tumor_suspected": 4.9259,
+  "drug_reaction": 1.7087,
+  "eczema_dermatitis": 1.2928,
+  "fungal_skin_infection": 0.9911,
+  "inflammatory_dermatosis_other": 0.3672,
+  "psoriasiform_dermatosis": 1.4225,
+  "urticarial_dermatosis": 4.1186,
+  "vasculitic_purpuric_disease": 0.4382,
+  "vesiculobullous_disease": 0.4464,
+  "viral_skin_infection": 0.7
+}

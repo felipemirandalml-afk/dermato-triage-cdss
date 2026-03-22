@@ -1,0 +1,54 @@
+# Análisis de Tríadas y Ganancia Incremental (Phase 14)
+
+| Tríada de Rasgos | Count | Best Pair Score | Incremental Gain | Categoría |
+| :--- | :---: | :---: | :---: | :--- |
+| eritema + mancha + papula | 110 | 0.57 | 191.30 | GESTALT_FUERTE |
+| eritema + hiperpigmentacion + papula | 95 | 0.50 | 190.76 | GESTALT_FUERTE |
+| eritema + escama + papula | 105 | 0.57 | 184.86 | GESTALT_FUERTE |
+| eritema + escama + mancha | 191 | 1.14 | 167.40 | GESTALT_FUERTE |
+| eritema + papula + placa | 126 | 0.76 | 165.57 | GESTALT_FUERTE |
+| eritema + nodulo + papula | 98 | 0.77 | 126.78 | GESTALT_FUERTE |
+| eritema + mancha + placa | 83 | 0.69 | 119.42 | GESTALT_FUERTE |
+| eritema + hiperpigmentacion + mancha | 87 | 0.74 | 117.89 | GESTALT_FUERTE |
+| eritema + escama + hiperpigmentacion | 61 | 0.57 | 107.39 | GESTALT_FUERTE |
+| eritema + escama + placa | 108 | 1.10 | 97.83 | GESTALT_FUERTE |
+| eritema + hiperpigmentacion + placa | 63 | 0.72 | 87.99 | GESTALT_FUERTE |
+| costra + eritema + papula | 63 | 0.73 | 85.83 | GESTALT_FUERTE |
+| eritema + papula + ulcera | 37 | 0.52 | 71.71 | GESTALT_FUERTE |
+| eritema + papula + tumor | 40 | 0.58 | 68.73 | GESTALT_FUERTE |
+| eritema + hiperpigmentacion + ulcera | 38 | 0.56 | 68.22 | GESTALT_FUERTE |
+| eritema + macula + papula | 89 | 1.37 | 64.92 | GESTALT_FUERTE |
+| eritema + mancha + nodulo | 37 | 0.57 | 64.35 | GESTALT_FUERTE |
+| escama + hiperpigmentacion + papula | 32 | 0.50 | 64.26 | GESTALT_FUERTE |
+| eritema + papula + pustula | 64 | 1.02 | 62.44 | GESTALT_FUERTE |
+| eritema + hiperpigmentacion + nodulo | 39 | 0.63 | 61.51 | GESTALT_FUERTE |
+| eritema + placa + ulcera | 43 | 0.74 | 58.34 | GESTALT_FUERTE |
+| eritema + nodulo + placa | 80 | 1.40 | 57.35 | GESTALT_FUERTE |
+| eritema + mancha + ulcera | 32 | 0.57 | 55.65 | GESTALT_FUERTE |
+| cicatriz + eritema + papula | 41 | 0.78 | 52.70 | GESTALT_FUERTE |
+| mancha + papula + placa | 39 | 0.76 | 51.25 | GESTALT_FUERTE |
+| eritema + papula + vesicula | 54 | 1.07 | 50.51 | GESTALT_FUERTE |
+| costra + eritema + mancha | 34 | 0.70 | 48.78 | GESTALT_FUERTE |
+| cicatriz + eritema + mancha | 28 | 0.57 | 48.70 | GESTALT_FUERTE |
+| hiperpigmentacion + mancha + papula | 34 | 0.74 | 46.07 | GESTALT_FUERTE |
+| eritema + hiperpigmentacion + tumor | 21 | 0.47 | 44.68 | GESTALT_FUERTE |
+| eritema + macula + mancha | 45 | 1.02 | 44.20 | GESTALT_FUERTE |
+| eritema + escama + nodulo | 25 | 0.57 | 44.01 | GESTALT_FUERTE |
+| eritema + erosion + papula | 23 | 0.52 | 43.98 | GESTALT_FUERTE |
+| eritema + nodulo + ulcera | 48 | 1.12 | 43.01 | GESTALT_FUERTE |
+| eritema + papula + patron_anular | 25 | 0.60 | 41.32 | GESTALT_FUERTE |
+| eritema + escama + ulcera | 23 | 0.57 | 40.49 | GESTALT_FUERTE |
+| escama + papula + placa | 44 | 1.10 | 39.86 | GESTALT_FUERTE |
+| cicatriz + eritema + hiperpigmentacion | 38 | 0.96 | 39.71 | GESTALT_FUERTE |
+| hiperpigmentacion + papula + placa | 30 | 0.76 | 39.42 | GESTALT_FUERTE |
+| hiperpigmentacion + mancha + placa | 29 | 0.74 | 39.30 | GESTALT_FUERTE |
+| eritema + mancha + patron_anular | 35 | 0.90 | 39.06 | GESTALT_FUERTE |
+| eritema + placa + tumor | 25 | 0.64 | 38.88 | GESTALT_FUERTE |
+| eritema + macula + placa | 31 | 0.81 | 38.32 | GESTALT_FUERTE |
+| costra + eritema + nodulo | 31 | 0.81 | 38.27 | GESTALT_FUERTE |
+| atrofia + eritema + papula | 21 | 0.55 | 38.11 | GESTALT_FUERTE |
+| eritema + escama + macula | 22 | 0.58 | 38.00 | GESTALT_FUERTE |
+| color_violaceo + eritema + papula | 31 | 0.82 | 37.94 | GESTALT_FUERTE |
+| eritema + tumor + ulcera | 29 | 0.77 | 37.86 | GESTALT_FUERTE |
+| eritema + hiperpigmentacion + pustula | 25 | 0.69 | 36.39 | GESTALT_FUERTE |
+| costra + eritema + escama | 44 | 1.22 | 36.21 | GESTALT_FUERTE |

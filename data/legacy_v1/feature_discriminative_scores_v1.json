@@ -1,0 +1,274 @@
+[
+  {
+    "feature": "comedon",
+    "global_freq": "0.79%",
+    "syndrome_diversity": 1,
+    "dp_score": "0.909",
+    "category": "ancla_absoluta",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "habon",
+    "global_freq": "0.47%",
+    "syndrome_diversity": 2,
+    "dp_score": "0.829",
+    "category": "ancla_absoluta",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "excoriacion",
+    "global_freq": "0.79%",
+    "syndrome_diversity": 2,
+    "dp_score": "0.827",
+    "category": "ancla_absoluta",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "liquenificacion",
+    "global_freq": "1.36%",
+    "syndrome_diversity": 2,
+    "dp_score": "0.822",
+    "category": "ancla_absoluta",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "color_azul",
+    "global_freq": "3.28%",
+    "syndrome_diversity": 2,
+    "dp_score": "0.806",
+    "category": "ancla_absoluta",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "hipopigmentacion",
+    "global_freq": "0.79%",
+    "syndrome_diversity": 3,
+    "dp_score": "0.744",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "umbilicacion",
+    "global_freq": "0.86%",
+    "syndrome_diversity": 3,
+    "dp_score": "0.744",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "purpura",
+    "global_freq": "0.88%",
+    "syndrome_diversity": 3,
+    "dp_score": "0.743",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "cupuliforme",
+    "global_freq": "1.27%",
+    "syndrome_diversity": 3,
+    "dp_score": "0.741",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "fisura",
+    "global_freq": "1.69%",
+    "syndrome_diversity": 3,
+    "dp_score": "0.737",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "surco",
+    "global_freq": "0.16%",
+    "syndrome_diversity": 4,
+    "dp_score": "0.666",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "necrosis",
+    "global_freq": "1.27%",
+    "syndrome_diversity": 4,
+    "dp_score": "0.658",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "patron_lineal",
+    "global_freq": "1.81%",
+    "syndrome_diversity": 4,
+    "dp_score": "0.655",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "quiste",
+    "global_freq": "1.88%",
+    "syndrome_diversity": 4,
+    "dp_score": "0.654",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "atrofia",
+    "global_freq": "3.93%",
+    "syndrome_diversity": 4,
+    "dp_score": "0.640",
+    "category": "altamente_especifico",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "patron_zosteriforme",
+    "global_freq": "0.81%",
+    "syndrome_diversity": 5,
+    "dp_score": "0.579",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "color_violaceo",
+    "global_freq": "4.45%",
+    "syndrome_diversity": 5,
+    "dp_score": "0.557",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "patron_anular",
+    "global_freq": "5.11%",
+    "syndrome_diversity": 5,
+    "dp_score": "0.554",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "macula",
+    "global_freq": "7.03%",
+    "syndrome_diversity": 5,
+    "dp_score": "0.542",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "ulcera",
+    "global_freq": "10.75%",
+    "syndrome_diversity": 5,
+    "dp_score": "0.521",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "bula_ampolla",
+    "global_freq": "3.07%",
+    "syndrome_diversity": 6,
+    "dp_score": "0.485",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "erosion",
+    "global_freq": "4.00%",
+    "syndrome_diversity": 6,
+    "dp_score": "0.480",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "vesicula",
+    "global_freq": "4.25%",
+    "syndrome_diversity": 6,
+    "dp_score": "0.479",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "pustula",
+    "global_freq": "4.70%",
+    "syndrome_diversity": 6,
+    "dp_score": "0.477",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "cicatriz",
+    "global_freq": "6.17%",
+    "syndrome_diversity": 6,
+    "dp_score": "0.469",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "placa",
+    "global_freq": "11.59%",
+    "syndrome_diversity": 6,
+    "dp_score": "0.442",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "costra",
+    "global_freq": "5.69%",
+    "syndrome_diversity": 7,
+    "dp_score": "0.393",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "tumor",
+    "global_freq": "7.68%",
+    "syndrome_diversity": 7,
+    "dp_score": "0.385",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "escama",
+    "global_freq": "13.29%",
+    "syndrome_diversity": 7,
+    "dp_score": "0.361",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "hiperpigmentacion",
+    "global_freq": "19.81%",
+    "syndrome_diversity": 7,
+    "dp_score": "0.334",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "mancha",
+    "global_freq": "20.00%",
+    "syndrome_diversity": 7,
+    "dp_score": "0.333",
+    "category": "util_compartido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "nodulo",
+    "global_freq": "12.00%",
+    "syndrome_diversity": 8,
+    "dp_score": "0.293",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "papula",
+    "global_freq": "21.89%",
+    "syndrome_diversity": 11,
+    "dp_score": "0.065",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  },
+  {
+    "feature": "eritema",
+    "global_freq": "52.49%",
+    "syndrome_diversity": 12,
+    "dp_score": "0.000",
+    "category": "ruido",
+    "top_syndrome": "inflammatory_dermatosis_other"
+  }
+]
