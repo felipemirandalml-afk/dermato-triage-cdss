@@ -1,0 +1,770 @@
+Aquí tienes los hallazgos cardinales estructurados para la integración en un motor de triage dermatológico:
+
+ID:
+comedones
+
+LABEL:
+Comedones (abiertos o cerrados)
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Pápulas foliculares con tapón de queratina (punto negro o blanco)
+- Ausencia de eritema difuso generalizado
+
+OPTIONAL_CONTEXT:
+- Edad: Adolescentes y adultos jóvenes
+- Localización: Cara, tórax y dorso (áreas ricas en glándulas sebáceas)
+- Síntomas: Asintomático, posible asociación con pústulas/nódulos
+- Evolución: Crónica
+
+BOOST_DIFFERENTIALS:
+- Acné vulgar
+- Hidradenitis supurativa (si hay doble comedón)
+
+SUPPRESS_DIFFERENTIALS:
+- Rosácea
+- Foliculitis infecciosa pura
+
+TRIAGE_RELEVANCE:
+Diferencia de manera rápida y segura el acné de la rosácea, dirigiendo el algoritmo terapéutico.
+
+RATIONALE:
+El comedón es la lesión patognomónica del acné producto de la obstrucción del infundíbulo piloso. Su ausencia descarta el diagnóstico clásico de acné.
+
+***
+
+ID:
+vesiculas_agrupadas_eritema
+
+LABEL:
+Vesículas agrupadas sobre base eritematosa
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Múltiples vesículas (<1 cm) agrupadas en racimos
+- Base de la lesión netamente eritematosa
+
+OPTIONAL_CONTEXT:
+- Edad: Cualquier grupo
+- Localización: Periorificial, genital, o siguiendo un dermatoma estricto
+- Síntomas: Dolor agudo, ardor, quemazón
+- Evolución: Rápida progresión a erosiones y costras
+
+BOOST_DIFFERENTIALS:
+- Herpes simple
+- Herpes zóster
+- Dermatitis herpetiforme
+
+SUPPRESS_DIFFERENTIALS:
+- Impétigo
+- Dermatitis de contacto
+
+TRIAGE_RELEVANCE:
+Permite identificar rápidamente cuadros virales agudos que se benefician de tratamiento antiviral temprano y requieren manejo del dolor.
+
+RATIONALE:
+La disposición herpetiforme (racimos sobre eritema) refleja la replicación viral en la epidermis inducida por terminaciones nerviosas sensitivas. 
+
+***
+
+ID:
+ampollas_tensas
+
+LABEL:
+Ampollas tensas de techo firme
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Lesiones de contenido líquido >1 cm
+- Techo firme que resiste la fricción (Signo de Nikolsky negativo)
+
+OPTIONAL_CONTEXT:
+- Edad: Adultos mayores (>60 años)
+- Localización: Zonas flexoras, abdomen, cara interna de muslos
+- Síntomas: Prurito intenso previo a la aparición de ampollas
+- Evolución: Semanas a meses
+
+BOOST_DIFFERENTIALS:
+- Penfigoide ampolloso
+- Epidermólisis bulosa
+- Dermatitis de contacto alérgica severa
+
+SUPPRESS_DIFFERENTIALS:
+- Pénfigo vulgar
+- Síndrome de piel escaldada
+
+TRIAGE_RELEVANCE:
+Identifica una patología autoinmune que requiere derivación oportuna, pero con menor riesgo de descompensación inmediata que el pénfigo.
+
+RATIONALE:
+La firmeza del techo de la ampolla se debe a que el clivaje (separación) ocurre a nivel subepidérmico, manteniendo toda la epidermis intacta como cubierta.
+
+***
+
+ID:
+ampollas_flacidas_nikolsky
+
+LABEL:
+Ampollas flácidas con Signo de Nikolsky (+)
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Ampollas muy frágiles que se rompen con facilidad dejando erosiones
+- Signo de Nikolsky positivo (desprendimiento epidérmico al roce)
+
+OPTIONAL_CONTEXT:
+- Edad: Adultos (Pénfigo) o lactantes (Síndrome estafilocócico)
+- Localización: Piel y compromiso frecuente de mucosas
+- Síntomas: Dolor intenso, compromiso del estado general, fiebre
+- Evolución: Aguda y destructiva
+
+BOOST_DIFFERENTIALS:
+- Pénfigo vulgar
+- Síndrome de piel escaldada estafilocócica
+- Necrólisis Epidérmica Tóxica (NET)
+
+SUPPRESS_DIFFERENTIALS:
+- Penfigoide ampolloso
+- Impétigo ampolloso leve
+
+TRIAGE_RELEVANCE:
+Es una urgencia dermatológica por alto riesgo de deshidratación, sepsis y mortalidad; requiere hospitalización o manejo avanzado.
+
+RATIONALE:
+Indica necrosis celular extensa o destrucción de los desmosomas (acantólisis), lo que debilita las uniones intraepidérmicas perdiendo la barrera cutánea.
+
+***
+
+ID:
+placa_anular_curacion_central
+
+LABEL:
+Placa anular con curación central
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Placa anular o circular
+- Borde periférico inflamatorio, activo y descamativo
+- Centro de la lesión aclarado o con piel sana
+
+OPTIONAL_CONTEXT:
+- Edad: Niños y adultos
+- Localización: Tronco, extremidades, ingles
+- Síntomas: Prurito de leve a moderado
+- Evolución: Crecimiento centrífugo subagudo
+
+BOOST_DIFFERENTIALS:
+- Dermatofitosis (Tiña corporis / cruris)
+- Granuloma anular
+
+SUPPRESS_DIFFERENTIALS:
+- Psoriasis en placas
+- Pitiriasis alba
+
+TRIAGE_RELEVANCE:
+Patrón clínico altamente específico para infección micótica, justificando el uso empírico de antifúngicos tópicos o derivación para micológico.
+
+RATIONALE:
+El avance centrífugo del hongo hacia queratina fresca genera inflamación en la periferia, mientras que el sistema inmune despeja la infección en el centro.
+
+***
+
+ID:
+papulas_violaceas_4p
+
+LABEL:
+Pápulas poligonales y violáceas (Las 4P)
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Pápulas planas, poligonales y violáceas (púrpuras)
+- Superficie brillante (estrías de Wickham observables)
+
+OPTIONAL_CONTEXT:
+- Edad: Adultos (30-60 años)
+- Localización: Caras flexoras de muñecas, tobillos, región lumbar
+- Síntomas: Prurito muy intenso
+- Evolución: Crónica
+
+BOOST_DIFFERENTIALS:
+- Liquen plano
+- Reacción liquenoide por fármacos
+
+SUPPRESS_DIFFERENTIALS:
+- Psoriasis guttata
+- Eccema de contacto
+
+TRIAGE_RELEVANCE:
+Clasifica rápidamente un cuadro inflamatorio de difícil manejo primario que requiere descartar origen medicamentoso o derivación para corticoides de alta potencia.
+
+RATIONALE:
+La morfología clásica y el color violáceo brillante son la expresión morfológica de un infiltrado inflamatorio denso en banda en la unión dermoepidérmica.
+
+***
+
+ID:
+placa_heraldica_arbol_navidad
+
+LABEL:
+Placa heráldica y lesiones pápulo-escamosas ovaladas
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Lesión precursora mayor (placa heráldica) ovalada
+- Aparición posterior de lesiones menores con descamación fina periférica en collarete
+
+OPTIONAL_CONTEXT:
+- Edad: Adolescentes y jóvenes (10-35 años)
+- Localización: Tronco y brazos proximales (distribución en "árbol de navidad"); respeta cara y acral
+- Síntomas: Asintomático o prurito leve, pródromo respiratorio ocasional
+- Evolución: Autolimitada en 4 a 8 semanas
+
+BOOST_DIFFERENTIALS:
+- Pitiriasis rosada de Gibert
+- Sífilis secundaria
+
+SUPPRESS_DIFFERENTIALS:
+- Tiña corporis generalizada
+- Psoriasis guttata
+
+TRIAGE_RELEVANCE:
+Permite tranquilizar al paciente frente a un cuadro agudo y extenso, evitando tratamientos innecesarios, pero obliga a tamizaje para sífilis (VDRL).
+
+RATIONALE:
+Erupción papuloescamosa de probable origen viral benigno, que sigue las líneas de tensión de la piel del tórax conformando su patrón clásico.
+
+***
+
+ID:
+surco_acarino_interdigital
+
+LABEL:
+Surco acarino y lesiones papulovesiculares
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Surco lineal/serpiginoso de pocos milímetros
+- Vesícula perlada en un extremo del trayecto
+
+OPTIONAL_CONTEXT:
+- Edad: Cualquier grupo
+- Localización: Espacios interdigitales, muñecas, región periumbilical, genitales (nódulos)
+- Síntomas: Prurito generalizado con exacerbación nocturna marcada, contagio familiar
+- Evolución: Aguda a subaguda
+
+BOOST_DIFFERENTIALS:
+- Escabiosis (Sarna)
+
+SUPPRESS_DIFFERENTIALS:
+- Prurigo por insectos
+- Dermatitis atópica pura
+
+TRIAGE_RELEVANCE:
+Exige intervención inmediata para cortar cadena de transmisión epidemiológica, tratar contactos y sanitizar fomites.
+
+RATIONALE:
+El surco es la representación visual del túnel excavado en la capa córnea por la hembra del ácaro, siendo el hallazgo patognomónico de la enfermedad.
+
+***
+
+ID:
+placa_eritematoescamosa_nacarada
+
+LABEL:
+Placa eritematoescamosa con escama nacarada
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Placa eritematosa elevada, muy bien definida
+- Gruesa escama blanca, plateada o nacarada en la superficie
+- Signo de raspado (Auspitz) positivo
+
+OPTIONAL_CONTEXT:
+- Edad: 20 a 40 años (pico de inicio)
+- Localización: Zonas extensoras (codos, rodillas), zona lumbosacra, cuero cabelludo
+- Síntomas: Prurito variable, compromiso ungueal o articular
+- Evolución: Crónica con periodos de brotes
+
+BOOST_DIFFERENTIALS:
+- Psoriasis vulgar
+
+SUPPRESS_DIFFERENTIALS:
+- Dermatitis seborreica corporal
+- Dermatofitosis
+
+TRIAGE_RELEVANCE:
+Distingue una enfermedad inflamatoria crónica con posibles comorbilidades sistémicas (cardiovasculares, articulares) de enfermedades infecciosas o eccematosas.
+
+RATIONALE:
+El recambio acelerado de los queratinocitos impide la maduración celular normal, generando gruesas placas de paraqueratosis (escama plateada).
+
+***
+
+ID:
+nodulo_pretibial_doloroso
+
+LABEL:
+Nódulo subcutáneo eritematoso doloroso
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Nódulos profundos (hipodérmicos), palpables más que visibles
+- Eritematosos o simulando un hematoma (contusiformes)
+- Extremadamente dolorosos a la palpación
+
+OPTIONAL_CONTEXT:
+- Edad: Adultos jóvenes
+- Localización: Cara anterior de las piernas (pretibial), bilateral
+- Síntomas: Fiebre, malestar general, artralgias
+- Evolución: Aguda
+
+BOOST_DIFFERENTIALS:
+- Eritema nodoso
+- Paniculitis
+
+SUPPRESS_DIFFERENTIALS:
+- Celulitis infecciosa (si es múltiple y bilateral)
+- Trauma local
+
+TRIAGE_RELEVANCE:
+Alerta sobre una reacción inflamatoria sistémica reactiva; requiere estudio etiológico para descartar infecciones, fármacos, sarcoidosis o EII.
+
+RATIONALE:
+Representa una paniculitis septal reactiva, expresándose como nódulos indurados calientes que pasan por colores del espectro de un hematoma sin ulcerarse.
+
+***
+
+ID:
+pustulas_centrofaciales_sin_comedones
+
+LABEL:
+Pápulas y pústulas centrofaciales sin comedones
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Brotes inflamatorios (pápulas y pústulas) faciales
+- Eritema de base y telangiectasias
+- Ausencia total de comedones
+
+OPTIONAL_CONTEXT:
+- Edad: Adultos (30 a 50 años), predominio mujeres
+- Localización: Mejillas, nariz, frente y mentón
+- Síntomas: Episodios de enrojecimiento (flushing), ardor, empeora con calor/alcohol
+- Evolución: Crónica fluctuante
+
+BOOST_DIFFERENTIALS:
+- Rosácea papulopustular
+
+SUPPRESS_DIFFERENTIALS:
+- Acné vulgar
+- Foliculitis bacteriana
+
+TRIAGE_RELEVANCE:
+Previene el uso de tratamientos desecantes/irritantes típicos del acné que agravan el cuadro, y dirige a la evaluación de posible rosácea ocular.
+
+RATIONALE:
+A diferencia del acné, la rosácea tiene una patogenia vascular e inflamatoria inespecífica que no involucra obstrucción folicular hiperqueratósica.
+
+***
+
+ID:
+maculas_descamacion_fina_signo_unada
+
+LABEL:
+Máculas discrómicas con descamación fina
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Máculas hipo o hiperpigmentadas
+- Presencia de escama fina ("caspa") al raspado suave (signo del uñetazo positivo)
+
+OPTIONAL_CONTEXT:
+- Edad: Adolescentes y adultos jóvenes
+- Localización: Pecho, espalda y porción superior del tronco
+- Síntomas: Mayormente asintomáticas
+- Evolución: Agravamiento o mayor visibilidad en verano/humedad
+
+BOOST_DIFFERENTIALS:
+- Pitiriasis versicolor
+
+SUPPRESS_DIFFERENTIALS:
+- Vitíligo
+- Pitiriasis alba
+
+TRIAGE_RELEVANCE:
+Aclara un motivo de consulta estética muy frecuente, permitiendo descartar problemas graves de la pigmentación como el vitíligo.
+
+RATIONALE:
+El hongo lipofílico (Malassezia) prolifera en el estrato córneo produciendo descamación fina y alterando la síntesis y transferencia de melanina.
+
+***
+
+ID:
+nodulo_perlado_telangiectasias
+
+LABEL:
+Nódulo o úlcera de borde perlado y telangiectasias
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Lesión asintomática de aspecto translúcido, brillante o perlado
+- Presencia de telangiectasias arboriformes en la superficie
+- Tendencia a la ulceración central ("úlcera roedora")
+
+OPTIONAL_CONTEXT:
+- Edad: Adultos mayores
+- Localización: Áreas crónicamente fotoexpuestas de cabeza y cuello (nariz, párpado)
+- Síntomas: Sangrado fácil ante mínimos traumatismos, crecimiento lento
+- Evolución: Meses a años
+
+BOOST_DIFFERENTIALS:
+- Carcinoma basocelular nodular
+
+SUPPRESS_DIFFERENTIALS:
+- Queratosis actínica
+- Nevo dérmico benigno
+
+TRIAGE_RELEVANCE:
+Indicador de neoplasia maligna cutánea (la más frecuente), que requiere derivación para escisión quirúrgica oportuna.
+
+RATIONALE:
+La proliferación neoplásica de células basaloides dérmicas con estroma mixoide da el aspecto brillante/translúcido y la neovascularización anómala.
+
+***
+
+ID:
+macula_pigmentada_abcde
+
+LABEL:
+Mácula o nódulo pigmentado asimétrico (Regla ABCDE)
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Lesión pigmentada que cumple signos ABCDE (Asimetría, Bordes irregulares, Color variado, Diámetro >6mm, Evolución demostrable)
+
+OPTIONAL_CONTEXT:
+- Edad: Adultos
+- Localización: Piernas (mujeres), espalda (hombres) o acral
+- Síntomas: "Patito feo" (lesión que destaca como diferente al resto), cambio reciente
+- Evolución: Crecimiento rápido o cambios recientes en forma/color
+
+BOOST_DIFFERENTIALS:
+- Melanoma maligno
+- Nevo displásico severo
+
+SUPPRESS_DIFFERENTIALS:
+- Nevo melanocítico común
+- Lentigo solar simple
+
+TRIAGE_RELEVANCE:
+Principal bandera roja en dermatología oncológica; obliga a una derivación urgente para biopsia excisional por riesgo de metástasis letal.
+
+RATIONALE:
+El crecimiento asimétrico y la variedad de tonos reflejan una invasión anárquica e irregular de melanocitos malignos en la dermis y epidermis.
+
+***
+
+ID:
+placas_eccematosas_flexurales
+
+LABEL:
+Placas eritematosas exudativas/liquenificadas en flexuras
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Erupción mal delimitada eritematosa
+- Exudación/vesículas (fase aguda) o Liquenificación/engrosamiento (fase crónica)
+- Compromiso flexural simétrico
+
+OPTIONAL_CONTEXT:
+- Edad: Lactantes (extensoras/cara), niños/adolescentes (flexuras)
+- Localización: Fosa poplítea, antecubital, cuello
+- Síntomas: Prurito incoercible crónico, antecedentes personales o familiares atópicos
+- Evolución: Crónica recidivante
+
+BOOST_DIFFERENTIALS:
+- Dermatitis atópica
+- Eccema o Dermatitis de contacto
+
+SUPPRESS_DIFFERENTIALS:
+- Psoriasis vulgar
+- Infección por dermatofitos
+
+TRIAGE_RELEVANCE:
+Ayuda a establecer un plan terapéutico crónico de restauración de barrera cutánea y desaconseja biopsias innecesarias para un diagnóstico puramente clínico.
+
+RATIONALE:
+El defecto en la barrera cutánea genera inflamación, la cual induce rascado crónico que culmina en el engrosamiento epidérmico protector (liquenificación).
+
+***
+
+ID:
+nódulos_fistulas_comedon_doble
+
+LABEL:
+Pápulas, fístulas y doble comedón intertriginosos
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Nódulos inflamatorios crónicos o abscesos
+- Formación de trayectos fistulosos o túneles subcutáneos
+- Presencia de "doble comedón" patognomónico
+
+OPTIONAL_CONTEXT:
+- Edad: Pospuberal y adultos jóvenes
+- Localización: Axilas, ingles, zona perianal y submamaria (tejido apocrino)
+- Síntomas: Dolor agudo, supuración crónica, deformidad cicatrizal
+- Evolución: Crónica intermitente, asociada a obesidad/tabaco
+
+BOOST_DIFFERENTIALS:
+- Hidradenitis supurativa
+
+SUPPRESS_DIFFERENTIALS:
+- Forunculosis simple
+- Linfadenitis infecciosa
+
+TRIAGE_RELEVANCE:
+Exige derivación al especialista para aprovechar la "ventana de oportunidad" terapéutica antes de que la enfermedad deje secuelas irreversibles y mutilantes.
+
+RATIONALE:
+La hiperqueratosis folicular ocluye el folículo, generando un absceso que al romperse hacia la dermis provoca inflamación granulomatosa y trayectos cicatrizales crónicos.
+
+***
+
+ID:
+habones_evanescentes
+
+LABEL:
+Habones o ronchas evanescentes
+
+PRIORITY:
+high
+
+REQUIRED_FEATURES:
+- Placas edematosas (habones) rosadas/pálidas bien delimitadas
+- Carácter evanescente: la lesión individual dura <24 a 48 horas sin dejar marca
+
+OPTIONAL_CONTEXT:
+- Edad: Cualquier grupo etario
+- Localización: Generalizada, migratoria o cambiante
+- Síntomas: Prurito muy intenso, posible dermografismo o hinchazón de mucosas (angioedema)
+- Evolución: Aguda eruptiva (días) o crónica recurrente
+
+BOOST_DIFFERENTIALS:
+- Urticaria
+- Fase inicial de reacciones a fármacos
+
+SUPPRESS_DIFFERENTIALS:
+- Vasculitis urticarial (estas no son evanescentes y dejan hiperpigmentación)
+- Eritema multiforme
+
+TRIAGE_RELEVANCE:
+Permite clasificar cuadros de alergia o reactividad inmediata, exigiendo priorizar si existe edema de mucosas/respiratorio que amenace la vida.
+
+RATIONALE:
+El edema dérmico se debe a extravasación de líquido mediada por histamina liberada por mastocitos, la cual se reabsorbe rápidamente en horas.
+
+***
+
+ID:
+ulcera_sacabocado_costra_adherente
+
+LABEL:
+Úlcera profunda en sacabocado con costra adherente
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Úlcera destructiva y necrótica ("en sacabocado")
+- Costra purulenta marrón/oscura muy gruesa y fuertemente adherida
+- Margen indurado e hiperémico circundante
+
+OPTIONAL_CONTEXT:
+- Edad: Niños y adultos con déficit de higiene o mal control metabólico
+- Localización: Piernas y glúteos
+- Síntomas: Dolor local moderado, antecedentes de trauma o picadura previa
+- Evolución: Aguda-subaguda
+
+BOOST_DIFFERENTIALS:
+- Ectima (infección bacteriana profunda)
+
+SUPPRESS_DIFFERENTIALS:
+- Impétigo contagioso (superficial)
+- Úlcera venosa simple
+
+TRIAGE_RELEVANCE:
+Avisa de una piodermia dérmica profunda que obliga al uso de terapia antibiótica sistémica para evitar complicaciones, diseminación o sepsis.
+
+RATIONALE:
+Corresponde a una infección dérmica estafilo/estreptocócica agresiva que penetra toda la epidermis, causando necrosis y un defecto destructivo que sanará con cicatriz.
+
+***
+
+ID:
+maculas_acromicas_asintomaticas
+
+LABEL:
+Máculas o manchas acrómicas asintomáticas
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Máculas o parches con despigmentación absoluta (acrómicos, "blanco tiza")
+- Bordes netos, piel circundante normal
+- Ausencia de inflamación, eritema o descamación
+
+OPTIONAL_CONTEXT:
+- Edad: Frecuente desde la niñez a la adultez joven
+- Localización: Dorso de manos, periorificial (boca, ojos), zonas de fricción, genitales
+- Síntomas: Totalmente asintomáticas
+- Evolución: Lenta progresión y extensión
+
+BOOST_DIFFERENTIALS:
+- Vitíligo
+
+SUPPRESS_DIFFERENTIALS:
+- Pitiriasis versicolor hipocromiante
+- Pitiriasis alba
+
+TRIAGE_RELEVANCE:
+Fácil de reconocer visualmente. Permite el inicio precoz de soporte psicológico, fotoprotección y estudios para descartar comorbilidad tiroidea autoinmune.
+
+RATIONALE:
+Las lesiones corresponden a áreas con destrucción completa e irreversible de los melanocitos por un mecanismo inflamatorio de autoinmunidad celular celular.
+
+***
+
+ID:
+costras_melicericas
+
+LABEL:
+Costras melicéricas sobre erosiones
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Costras húmedas amarillentas o doradas (color "miel")
+- Asentadas sobre erosiones superficiales exudativas
+
+OPTIONAL_CONTEXT:
+- Edad: Principalmente preescolares y escolares
+- Localización: Zonas periorificiales (nariz, boca), rostro, extremidades
+- Síntomas: Asintomático o prurito leve, autoinoculación por rascado
+- Evolución: Rápida aparición, días
+
+BOOST_DIFFERENTIALS:
+- Impétigo vulgar
+
+SUPPRESS_DIFFERENTIALS:
+- Herpes simple puro (fase inicial)
+- Dermatitis atópica pura
+
+TRIAGE_RELEVANCE:
+Identifica la patología pediátrica más contagiosa, promoviendo el tratamiento antibiótico tópico rápido y aislamiento del entorno escolar para frenar brotes.
+
+RATIONALE:
+Es la manifestación exudativa purulenta superficial producida por toxinas de S. aureus o S. pyogenes que escinden solo la capa granulosa.
+
+***
+
+ID:
+papulas_perladas_umbilicadas
+
+LABEL:
+Pápulas perladas con umbilicación central
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Pápulas semiesféricas del color de la piel o perladas, pequeñas (<5mm)
+- Centro deprimido (umbilicación) evidente
+- Consistencia firme
+
+OPTIONAL_CONTEXT:
+- Edad: Niños pequeños o adultos jóvenes
+- Localización: Tronco, pliegues, genitales o cara
+- Síntomas: Asintomáticas, autoinoculables (fenómeno de Koebner al rascado)
+- Evolución: Crónica autolimitada (meses a años)
+
+BOOST_DIFFERENTIALS:
+- Molusco contagioso
+
+SUPPRESS_DIFFERENTIALS:
+- Verrugas planas vulgares
+- Varicela (en la varicela son vesículas, no sólidas)
+
+TRIAGE_RELEVANCE:
+En niños el manejo suele ser observacional o local tópico. En adultos con múltiples lesiones, sobre todo faciales gigantes, obliga a descartar inmunosupresión (VIH).
+
+RATIONALE:
+La infección epidérmica localizada por Poxvirus provoca un crecimiento celular endofítico que acumula grandes cuerpos virales (Henderson-Patterson) en el cráter central.
+
+***
+
+ID:
+eritema_escama_untuosa
+
+LABEL:
+Eritema y descamación untuosa en áreas seborreicas
+
+PRIORITY:
+medium
+
+REQUIRED_FEATURES:
+- Placas de eritema pálido o asalmonado
+- Presencia de escamas finas y amarillentas de aspecto graso o untuoso
+
+OPTIONAL_CONTEXT:
+- Edad: Lactantes <1 año o adultos post-puberales
+- Localización: Cuero cabelludo, pliegues nasolabiales, cejas, tórax y zona retroauricular
+- Síntomas: Prurito ausente o muy escaso, exacerba con estrés y frío
+- Evolución: Crónica fluctuante
+
+BOOST_DIFFERENTIALS:
+- Dermatitis seborreica
+
+SUPPRESS_DIFFERENTIALS:
+- Psoriasis de cuero cabelludo (escama es gruesa/plateada, sobrepasa implantación capilar)
+- Lupus eritematoso facial
+
+TRIAGE_RELEVANCE:
+Dermatosis frecuente y de resolución en atención primaria. Si en un adulto joven es inusualmente grave o refractaria, obliga a descartar portación de VIH.
+
+RATIONALE:
+Respuesta inflamatoria exagerada frente a la presencia normal del hongo comensal Malassezia spp. en piel rica en glándulas sebáceas.

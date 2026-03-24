@@ -1,0 +1,110 @@
+{
+  "eczema_dermatitis": {
+    "eritema": 0.5208,
+    "mancha": 0.17440000000000003,
+    "escama": 0.2464,
+    "patron_anular": 0.0666,
+    "placa": 0.1476,
+    "color_violaceo": 0.1,
+    "papula": 0.146,
+    "liquenificacion": 0.0376
+  },
+  "psoriasiform_dermatosis": {
+    "pustula": 0.287,
+    "eritema": 0.6519999999999999,
+    "mancha": 0.0985,
+    "escama": 0.4135,
+    "papula": 0.201,
+    "placa": 0.1105
+  },
+  "bacterial_skin_infection": {
+    "eritema": 0.4086666666666667,
+    "costra": 0.14833333333333334,
+    "bula_ampolla": 0.029833333333333333,
+    "papula": 0.10166666666666667,
+    "tumor": 0.24016666666666667,
+    "pustula": 0.12449999999999999,
+    "nodulo": 0.047999999999999994,
+    "ulcera": 0.0275
+  },
+  "viral_skin_infection": {
+    "ulcera": 0.11249999999999999,
+    "vesicula": 0.3046666666666667,
+    "eritema": 0.3895,
+    "bula_ampolla": 0.025333333333333333,
+    "papula": 0.2795,
+    "patron_zosteriforme": 0.03183333333333333,
+    "umbilicacion": 0.04133333333333333,
+    "costra": 0.043333333333333335,
+    "mancha": 0.0395
+  },
+  "fungal_skin_infection": {
+    "escama": 0.2822,
+    "eritema": 0.6342000000000001,
+    "mancha": 0.382,
+    "patron_anular": 0.13799999999999998
+  },
+  "drug_reaction": {
+    "eritema": 0.6726666666666666,
+    "patron_anular": 0.078,
+    "hiperpigmentacion": 0.071,
+    "papula": 0.07733333333333334,
+    "pustula": 0.27266666666666667,
+    "tumor": 0.155
+  },
+  "urticarial_dermatosis": {
+    "papula": 0.598,
+    "eritema": 0.264,
+    "vesicula": 0.1105,
+    "bula_ampolla": 0.102
+  },
+  "vesiculobullous_disease": {
+    "eritema": 0.193,
+    "erosion": 0.16225,
+    "bula_ampolla": 0.21150000000000002,
+    "costra": 0.075,
+    "patron_zosteriforme": 0.10875,
+    "vesicula": 0.126,
+    "papula": 0.24925000000000003,
+    "mancha": 0.06525,
+    "escama": 0.125,
+    "color_violaceo": 0.08325
+  },
+  "vasculitic_purpuric_disease": {
+    "papula": 0.2055,
+    "eritema": 0.6615,
+    "vesicula": 0.13,
+    "hiperpigmentacion": 0.178,
+    "nodulo": 0.2
+  },
+  "cutaneous_tumor_suspected": {
+    "patron_anular": 0.08,
+    "eritema": 0.3993333333333333,
+    "escama": 0.12333333333333334,
+    "nodulo": 0.06066666666666667,
+    "papula": 0.06066666666666667,
+    "cupuliforme": 0.14933333333333335
+  },
+  "benign_cutaneous_tumor": {
+    "nodulo": 0.19,
+    "eritema": 0.1155,
+    "cicatriz": 0.084,
+    "tumor": 0.28500000000000003
+  },
+  "inflammatory_dermatosis_other": {
+    "pustula": 0.026777777777777775,
+    "papula": 0.215,
+    "comedon": 0.044111111111111115,
+    "hiperpigmentacion": 0.04766666666666666,
+    "eritema": 0.32022222222222224,
+    "mancha": 0.11677777777777777,
+    "escama": 0.07755555555555554,
+    "nodulo": 0.07977777777777778,
+    "placa": 0.06822222222222223,
+    "patron_anular": 0.08533333333333333,
+    "color_violaceo": 0.020777777777777777,
+    "costra": 0.018222222222222223,
+    "liquenificacion": 0.03133333333333333,
+    "cicatriz": 0.025111111111111112
+  }
+}

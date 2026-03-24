@@ -2,7 +2,7 @@
  * feature_encoder.js - Single Source of Truth para la transformación de features.
  * Transforma formData de la UI en representaciones numéricas y semánticas.
  */
-import { FEATURE_INDEX, PROBABILISTIC_FEATURES, FEATURE_ALIASES } from './constants.js';
+import { FEATURE_INDEX, PROBABILISTIC_FEATURES } from './constants.js';
 import conceptMapper from './concept_mapper.js';
 
 export function encodeFeatures(formData) {
@@ -54,25 +54,16 @@ export function encodeFeatures(formData) {
         const canonicalId = conceptMapper.resolve(rawKey);
         
         if (canonicalId) {
-            // Caso A: Existe en la ontología canónica
+            // Evaluamos si el ID es reconocido por el motor en su INDEX
             if (FEATURE_INDEX[canonicalId] !== undefined) {
-                // Soportado por el modelo probabilístico (LR)
+                // Feature Válida (Probabilística o Registrada como Adicional)
                 X[FEATURE_INDEX[canonicalId]] = 1;
+            } else {
+                // ID desconocido para el vector final, guardamos para logs/debug
+                unknownKeys.push(rawKey);
             }
-            // Siempre se registra en el mapa semántico para reglas y ranker
+            // Siempre se registra en el mapa de hallazgos (Para heurísticas / differential ranker)
             featureMap[canonicalId] = 1;
-        } else if (FEATURE_INDEX[rawKey] !== undefined) {
-            // Caso B: Direct Match Legacy
-            X[FEATURE_INDEX[rawKey]] = 1;
-            featureMap[rawKey] = 1;
-        } else if (FEATURE_ALIASES[rawKey] !== undefined) {
-            // Caso C: Alias Legacy
-            const target = FEATURE_ALIASES[rawKey];
-            X[FEATURE_INDEX[target]] = 1;
-            featureMap[target] = 1;
-        } else {
-            // Caso D: Desconocido
-            unknownKeys.push(rawKey);
         }
     }
 

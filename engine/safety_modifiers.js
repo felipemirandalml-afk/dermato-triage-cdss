@@ -29,15 +29,23 @@ export function applySafetyModifiers(helper, currentResult) {
     }
 
     // C. SOSPECHA AUTOINMUNE / AMPOLLOSA GRAVE
-    if ((has('bula_ampolla') || has('erosion')) && 
-        (has('signo_mucosas') || has('dolor') || has('generalizado') || has('patron_seborreica')) &&
+    if ((has('bula_ampolla') || has('erosion') || has('ampolla_nikolsky')) && 
+        (has('signo_mucosas') || has('dolor') || has('generalizado') || has('patron_seborreica') || has('ampolla_nikolsky')) &&
         !has('cronico')) {
-        const desc = "Sospecha de Dermatosis Ampollosa o Compromiso Sistémico";
+        const desc = "Sospecha de Dermatosis Ampollosa o Compromiso Sistémico (Tóxico/Sustancia)";
         rules.push(`🚨 Alerta: ${desc}`);
         if (priority > 1) {
             priority = 1;
             modifier = desc;
         }
+    }
+
+    // D. NIKOLSKY DIRECTO POSITIVO
+    if (has('ampolla_nikolsky') && has('agudo')) {
+        const desc = "Signo de Nikolsky Positivo Agudo (Posible Síndrome de Piel Escaldada / NET)";
+        rules.push(`🚨 Alerta: ${desc}`);
+        priority = 1;
+        modifier = desc;
     }
 
     return { priority, modifier, rules, match: rules.length > 0 };
@@ -55,13 +63,13 @@ export function applyBlockModifiers(helper, currentResult) {
 
     // I. SOSPECHA DE MALIGNIDAD (Shield)
     const isSuspectTime = has('cronico') || has('subagudo');
-    const isMalignantLesion = has('nodulo') || has('tumor') || has('ulcera');
+    const isMalignantLesion = has('nodulo') || has('tumor') || has('ulcera') || has('signo_abcde');
     
-    // Alerta específica: Nódulo centrofacial en paciente geriátrico (Independiente de timing)
+    // Alerta específica: Nódulo centrofacial en paciente geriátrico o melanoma abcde
     const isElderly = (helper.get && helper.get('edad') >= 65);
     const isFaceNodule = has('topog_cabeza') && has('topo_cara_centro') && has('nodulo');
 
-    if ((isSuspectTime && isMalignantLesion) || (isElderly && isFaceNodule)) {
+    if (has('signo_abcde') || (isSuspectTime && isMalignantLesion) || (isElderly && isFaceNodule)) {
         const desc = "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)";
         rules.push(`⚠️ Bloqueo: ${desc}`);
         if (priority > 2) {
@@ -73,6 +81,16 @@ export function applyBlockModifiers(helper, currentResult) {
     // E. REACCIONES ESPECÍFICAS (Acrales / Farmacodermias Simples)
     if (has('patron_acral') && has('agudo')) {
         const desc = "Reacción Acral Aguda (Estudio de Gatillante)";
+        rules.push(`⚠️ Bloqueo: ${desc}`);
+        if (priority > 2) {
+            priority = 2;
+            modifier = desc;
+        }
+    }
+
+    // F. INFECCIÓN CRÓNICA / SUPURATIVA
+    if (has('fistulas_supuracion')) {
+        const desc = "Inflamación Supurativa / Fístulas Crónicas";
         rules.push(`⚠️ Bloqueo: ${desc}`);
         if (priority > 2) {
             priority = 2;

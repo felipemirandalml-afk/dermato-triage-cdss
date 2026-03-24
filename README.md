@@ -16,7 +16,7 @@ Ensures clinical safety by overriding statistical predictions when critical patt
 - **Cardinal Feature Rules**: Expert-curated rules for high-specificity findings (Umbilication, Acral pattern, Scabies burrow) now fully migrated to the **Canonical Layer**.
 
 ### 2. Probabilistic Syndrome Engine (`probabilistic_model.js`)
-A logistic regression core translates clinical findings into 12 major dermatological syndrome families (Eczema, Viral, Bacterial, Papulosquamous, etc.), providing a robust statistical baseline.
+Un motor central basado en **Random Forest** clasifica los hallazgos clínicos en 12 principales síndromes dermatológicos (Eczema, Viral, Bacterial, Papuloescamoso, etc.), estableciendo un baseline estadístico con una exactitud de validación del ~76.3%.
 
 ### 3. Canonical Concept Layer (`concept_mapper.js`)
 The **"Semantic Backbone"** of the system. It uses a canonical mapping strategy to unify concepts from diverse sources:

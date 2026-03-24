@@ -164,69 +164,77 @@
                                             </div>
                                         </div>
 
-                                        <!-- Grupo C: banderas Rojas Mejoradas -->
+                                        <!-- Grupo C: Síntomas y Banderas Rojas -->
                                         <div class="mt-10 space-y-4">
                                             <h4 class="text-[10px] font-black text-rose-500 uppercase tracking-[0.2em] border-b-2 border-rose-100 pb-2 mb-4 italic">🚩 Señales de Alarma Críticas</h4>
-                                            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                                                <label class="card-selectable-red flex items-start gap-5 p-5 border-2 rounded-2xl group">
-                                                    <input type="checkbox" id="signo_fiebre" class="mt-1.5 w-6 h-6 text-rose-600 rounded">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                                <label class="card-selectable-red flex items-start gap-3 p-4 border-2 rounded-xl group">
+                                                    <input type="checkbox" id="signo_fiebre" class="mt-1 w-5 h-5 text-rose-600 rounded">
                                                     <div>
-                                                        <span class="block text-base font-black text-rose-700 tracking-tight">Fiebre</span>
-                                                        <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest block mt-1">Sistémica</span>
+                                                        <span class="block text-sm font-black text-rose-700">Fiebre</span>
+                                                        <span class="text-[9px] text-rose-400 font-bold uppercase block">Sistémica</span>
                                                     </div>
                                                 </label>
-                                                <label class="card-selectable-red flex items-start gap-5 p-5 border-2 rounded-2xl group">
-                                                    <input type="checkbox" id="signo_dolor" class="mt-1.5 w-6 h-6 text-rose-600 rounded">
+                                                <label class="card-selectable-red flex items-start gap-3 p-4 border-2 rounded-xl group">
+                                                    <input type="checkbox" id="signo_dolor" class="mt-1 w-5 h-5 text-rose-600 rounded">
                                                     <div>
-                                                        <span class="block text-base font-black text-rose-700 tracking-tight">Dolor</span>
-                                                        <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest block mt-1">Intolerable</span>
+                                                        <span class="block text-sm font-black text-rose-700">Dolor</span>
+                                                        <span class="text-[9px] text-rose-400 font-bold uppercase block">Intenso/Eritema</span>
                                                     </div>
                                                 </label>
-                                                <label class="card-selectable-red flex items-start gap-5 p-5 border-2 rounded-2xl group">
-                                                    <input type="checkbox" id="signo_mucosas" class="mt-1.5 w-6 h-6 text-rose-600 rounded">
+                                                <label class="card-selectable-red flex items-start gap-3 p-4 border-2 rounded-xl group">
+                                                    <input type="checkbox" id="signo_mucosas" class="mt-1 w-5 h-5 text-rose-600 rounded">
                                                     <div>
-                                                        <span class="block text-base font-black text-rose-700 tracking-tight">Mucosas</span>
-                                                        <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest block mt-1">Conj/Oral/Gen</span>
+                                                        <span class="block text-sm font-black text-rose-700">Mucosas</span>
+                                                        <span class="text-[9px] text-rose-400 font-bold uppercase block">Conj/Oral/Gen</span>
+                                                    </div>
+                                                </label>
+                                                <label class="card-selectable-red flex items-start gap-3 p-4 border-2 rounded-xl group">
+                                                    <input type="checkbox" id="signo_abcde" class="mt-1 w-5 h-5 text-rose-600 rounded">
+                                                    <div>
+                                                        <span class="block text-sm font-black text-rose-700">ABCDE (+)</span>
+                                                        <span class="text-[9px] text-rose-400 font-bold uppercase block">Nevo Asimétrico</span>
                                                     </div>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Sub-panel de Antecedentes Específicos (Aprovechado horizontalmente) -->
+                                    <!-- Sub-panel de Síntomas Sensitivos y Contexto Epidemiológico -->
                                     <div class="bg-slate-50 px-8 py-5 border-t border-slate-200">
-                                        <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Otros antecedentes relevantes</h4>
-                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
-                                                <input type="checkbox" id="antecedente_viaje" class="w-4 h-4 rounded">
-                                                <span class="text-[11px] font-bold text-slate-600">Viaje Tropical</span>
+                                        <h4 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Síntomas Sensitivos & Epidemiología</h4>
+                                        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group border-blue-100 bg-white">
+                                                <input type="checkbox" id="prurito" class="w-4 h-4 rounded text-blue-600">
+                                                <span class="text-xs font-bold text-slate-700">Prurito (Picor)</span>
                                             </label>
-                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group border-blue-100 bg-white">
+                                                <input type="checkbox" id="prurito_nocturno" class="w-4 h-4 rounded text-blue-600">
+                                                <span class="text-xs font-bold text-slate-700">Prurito Nocturno</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group border-orange-100 bg-white">
+                                                <input type="checkbox" id="ardor_quemazon" class="w-4 h-4 rounded text-orange-600 border-orange-300">
+                                                <span class="text-xs font-bold text-slate-700">Ardor / Quemazón</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group border-emerald-100 bg-white">
+                                                <input type="checkbox" id="asintomatico" class="w-4 h-4 rounded text-emerald-600 border-emerald-300">
+                                                <span class="text-xs font-bold text-slate-700">Asintomático</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group border-purple-100 bg-white">
+                                                <input type="checkbox" id="contagio_familiar" class="w-4 h-4 rounded text-purple-600 border-purple-300">
+                                                <span class="text-xs font-bold text-slate-700">Contagio Familiar</span>
+                                            </label>
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group bg-white">
                                                 <input type="checkbox" id="antecedente_embarazo" class="w-4 h-4 rounded">
-                                                <span class="text-[11px] font-bold text-slate-600">Embarazo</span>
+                                                <span class="text-xs font-bold text-slate-600">Embarazo</span>
                                             </label>
-                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group bg-white">
                                                 <input type="checkbox" id="antecedente_atopia" class="w-4 h-4 rounded">
-                                                <span class="text-[11px] font-bold text-slate-600">Atopia</span>
+                                                <span class="text-xs font-bold text-slate-600">Atopia Previa</span>
                                             </label>
-                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
-                                                <input type="checkbox" id="antecedente_obesidad" class="w-4 h-4 rounded">
-                                                <span class="text-[11px] font-bold text-slate-600">Obesidad</span>
-                                            </label>
-                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
+                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group bg-white">
                                                 <input type="checkbox" id="antecedente_hepatopatia" class="w-4 h-4 rounded">
-                                                <span class="text-[11px] font-bold text-slate-600">Hepatopatía</span>
-                                            </label>
-                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
-                                                <input type="checkbox" id="antecedente_eii" class="w-4 h-4 rounded">
-                                                <span class="text-[11px] font-bold text-slate-600">EII (Crohn/CU)</span>
-                                            </label>
-                                            <label class="card-selectable flex items-center gap-3 p-3 border rounded-lg group">
-                                                <input type="checkbox" id="antecedente_quimico" class="w-4 h-4 rounded">
-                                                <span class="text-[11px] font-bold text-slate-600">Irritantes</span>
-                                            </label>
-                                            <label class="card-selectable flex items-center justify-center gap-2 p-3 border border-dashed border-slate-200 rounded-lg text-slate-300 pointer-events-none">
-                                                <span class="text-[11px] font-bold uppercase tracking-widest italic">N/A</span>
+                                                <span class="text-xs font-bold text-slate-600">Hepatopatía</span>
                                             </label>
                                         </div>
                                     </div>
@@ -276,9 +284,15 @@
                                         <input type="checkbox" id="lesion_comedon" class="w-5 h-5 text-blue-600 rounded"> 
                                         <span class="group-hover:text-blue-700">Comedón</span>
                                     </label>
-                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group border-l-4 border-blue-500 pl-4">
                                         <input type="checkbox" id="lesion_habon" class="w-5 h-5 text-blue-600 rounded"> 
-                                        <span class="group-hover:text-blue-700">Habón (Urticaria)</span>
+                                        <div class="flex flex-col">
+                                            <span class="group-hover:text-blue-700">Habón (Urticaria)</span>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-2 ml-4 rounded-lg hover:bg-blue-50/50 cursor-pointer text-sm font-bold text-slate-600 transition-colors group">
+                                        <input type="checkbox" id="lesion_evanescente" class="w-4 h-4 text-blue-600 rounded"> 
+                                        <span class="group-hover:text-blue-700 text-xs shadow-sm bg-white border border-blue-100 px-2 py-0.5 rounded-md">Es evanescente (&lt;24h)</span>
                                     </label>
                                     <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/30 cursor-pointer text-base font-bold text-rose-700 border-l-4 border-rose-300 pl-4 transition-all group">
                                         <input type="checkbox" id="lesion_purpura" class="w-5 h-5 text-rose-600 rounded"> 
@@ -297,11 +311,17 @@
                                     </label>
                                     <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-rose-500 pl-4 transition-all group">
                                         <input type="checkbox" id="lesion_ampolla" class="w-5 h-5 text-blue-600 rounded"> 
-                                        <span class="group-hover:text-blue-700">Ampolla / Flictena</span>
+                                        <div class="flex flex-col">
+                                            <span class="group-hover:text-blue-700">Ampolla / Flictena</span>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-2 ml-4 rounded-lg hover:bg-rose-50/50 cursor-pointer text-sm font-bold text-rose-600 transition-colors group">
+                                        <input type="checkbox" id="ampolla_nikolsky" class="w-4 h-4 text-rose-600 rounded"> 
+                                        <span class="group-hover:text-rose-700 text-xs shadow-sm bg-white border border-rose-200 px-2 py-0.5 rounded-md">Flácida / Nikolsky (+)</span>
                                     </label>
                                     <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-rose-50/30 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-rose-700 pl-4 transition-all group">
                                         <input type="checkbox" id="lesion_bula" class="w-5 h-5 text-blue-600 rounded"> 
-                                        <span class="group-hover:text-blue-700">Bula (> 2cm)</span>
+                                        <span class="group-hover:text-blue-700">Bula (&gt; 2cm)</span>
                                     </label>
                                     <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
                                         <input type="checkbox" id="lesion_pustula" class="w-5 h-5 text-blue-600 rounded"> 
@@ -309,12 +329,20 @@
                                     </label>
                                     
                                     <div class="h-px bg-slate-100 my-4"></div>
-                                    <h4 class="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-3">Estados Evolutivos</h4>
+                                    <h4 class="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-3">Estados Evolutivos y Textura</h4>
                                     
                                     <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
                                         <input type="checkbox" id="lesion_escama" class="w-5 h-5 text-blue-600 rounded"> 
-                                        <span class="group-hover:text-blue-700">Escama</span>
+                                        <span class="group-hover:text-blue-700">Escama (Genérica)</span>
                                     </label>
+                                    <div class="pl-6 grid grid-cols-1 gap-1">
+                                        <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50/50 cursor-pointer text-sm font-bold text-slate-600 transition-colors group">
+                                            <input type="checkbox" id="escama_nacarada" class="w-4 h-4 text-blue-600 rounded"> <span class="group-hover:text-blue-700">Gruesa / Nacarada (Plateada)</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50/50 cursor-pointer text-sm font-bold text-slate-600 transition-colors group">
+                                            <input type="checkbox" id="escama_untuosa" class="w-4 h-4 text-blue-600 rounded"> <span class="group-hover:text-blue-700">Grasa / Untuosa Amarilla</span>
+                                        </label>
+                                    </div>
                                     <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
                                         <input type="checkbox" id="lesion_costra" class="w-5 h-5 text-blue-600 rounded"> 
                                         <span class="group-hover:text-blue-700">Costra</span>
@@ -349,6 +377,10 @@
                                     <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-medium text-slate-700 transition-colors group">
                                         <input type="checkbox" id="lesion_cicatriz" class="w-5 h-5 text-blue-600 rounded"> 
                                         <span class="group-hover:text-blue-700">Cicatriz</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer text-base font-bold text-slate-800 border-l-4 border-amber-500 pl-4 transition-all group">
+                                        <input type="checkbox" id="fistulas_supuracion" class="w-5 h-5 text-amber-600 rounded"> 
+                                        <span class="group-hover:text-amber-700">Fístulas / Supuración Crónica</span>
                                     </label>
                                 </div>
                             </div>
@@ -414,7 +446,14 @@
                                             <input type="checkbox" id="patron_anular" class="w-6 h-6 text-blue-600 rounded-lg border-slate-200"> 
                                             <div class="flex flex-col">
                                                 <span class="text-sm font-bold text-slate-700 group-hover:text-blue-700">Configuración Anular</span>
-                                                <span class="text-[10px] text-slate-400 font-medium">Forma de anillo (ej. Tiña)</span>
+                                                <span class="text-[10px] text-slate-400 font-medium">Forma de anillo clásico</span>
+                                            </div>
+                                        </label>
+                                        <label class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-xl hover:shadow-blue-500/5 cursor-pointer border border-transparent hover:border-blue-50 transition-all group">
+                                            <input type="checkbox" id="curacion_central" class="w-6 h-6 text-blue-600 rounded-lg border-slate-200"> 
+                                            <div class="flex flex-col">
+                                                <span class="text-sm font-bold text-slate-700 group-hover:text-blue-700">Curación Central</span>
+                                                <span class="text-[10px] text-slate-400 font-medium">Anillo con centro aclarado (Ej. Tiña)</span>
                                             </div>
                                         </label>
                                         <label class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-xl hover:shadow-blue-500/5 cursor-pointer border border-transparent hover:border-blue-50 transition-all group">
@@ -460,104 +499,50 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             
-                            <!-- Columna 1: Anatomía Superior -->
-                            <div class="space-y-6">
-                                <!-- Cabeza -->
+                            <!-- Columna 1 & 2: Anatomía General (Macro) -->
+                            <div class="space-y-6 md:col-span-2">
                                 <div class="clinical-card p-6">
-                                    <label class="flex items-center gap-3 text-xs font-black text-blue-600 uppercase tracking-widest mb-4">
-                                        <input type="checkbox" id="topog_cabeza" class="w-4 h-4 text-blue-600 rounded"> Cabeza & Cuello
-                                    </label>
-                                    <div class="pl-7 space-y-3">
+                                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Topografía General</h3>
+                                    <div class="grid grid-cols-2 gap-4">
                                         <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_cuero_cabelludo" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Cuero Cabelludo</span>
+                                            <input type="checkbox" id="cabeza" class="w-4 h-4 rounded text-blue-600"> <span class="group-hover:text-slate-800">Cabeza y Cuello</span>
                                         </label>
                                         <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_cara_centro" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Cara (Centro)</span>
+                                            <input type="checkbox" id="cara_centro" class="w-4 h-4 rounded text-blue-600 border-l-2 border-blue-200 pl-2"> <span class="group-hover:text-slate-800">Compromiso Centrofacial</span>
                                         </label>
                                         <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_cuello" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Cuello</span>
+                                            <input type="checkbox" id="tronco" class="w-4 h-4 rounded text-blue-600"> <span class="group-hover:text-slate-800">Tronco</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
+                                            <input type="checkbox" id="extremidad_superior" class="w-4 h-4 rounded text-blue-600"> <span class="group-hover:text-slate-800">Extremidades Superiores</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
+                                            <input type="checkbox" id="extremidad_inferior" class="w-4 h-4 rounded text-blue-600"> <span class="group-hover:text-slate-800">Extremidades Inferiores</span>
+                                        </label>
+                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
+                                            <input type="checkbox" id="pies" class="w-4 h-4 rounded text-blue-600 border-l-2 border-blue-200 pl-2"> <span class="group-hover:text-slate-800">Pies / Plantas</span>
                                         </label>
                                     </div>
                                 </div>
-                                <!-- Tronco y Pliegues -->
+                                
                                 <div class="clinical-card p-6">
-                                    <label class="flex items-center gap-3 text-xs font-black text-blue-600 uppercase tracking-widest mb-4">
-                                        <input type="checkbox" id="topog_tronco" class="w-4 h-4 text-blue-600 rounded"> Tronco
-                                    </label>
-                                    <div class="pl-7 space-y-3">
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_pecho" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Pecho / Abdomen</span>
+                                    <h3 class="text-xs font-black text-purple-600 uppercase tracking-[0.2em] mb-4 border-b border-purple-50 pb-2">Meta-Topografías (Funcionales)</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-purple-50/50 cursor-pointer text-sm font-bold text-slate-700 transition-all border-l-4 border-purple-300">
+                                            <input type="checkbox" id="topo_flexural_pliegues" class="w-4 h-4 text-purple-600 rounded"> Áreas Flexoras / Pliegues
                                         </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_espalda" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Espalda</span>
+                                        <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-purple-50/50 cursor-pointer text-sm font-bold text-slate-700 transition-all border-l-4 border-purple-300">
+                                            <input type="checkbox" id="topo_friccion_extensora" class="w-4 h-4 text-purple-600 rounded"> Zonas Extensoras / Fricción
                                         </label>
-                                        <div class="h-px bg-slate-100 my-2"></div>
-                                        <h4 class="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-1">Grandes Pliegues</h4>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_axilas" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Áreas Axilares</span>
+                                        <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-purple-50/50 cursor-pointer text-sm font-bold text-slate-700 transition-all border-l-4 border-purple-300">
+                                            <input type="checkbox" id="fotoexpuesto" class="w-4 h-4 text-purple-600 rounded"> Áreas Fotoexpuestas
                                         </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_submamario" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Submamario</span>
+                                        <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer text-sm font-bold text-slate-700 transition-all">
+                                            <input type="checkbox" id="seborreica" class="w-4 h-4 text-blue-600 rounded"> Áreas Seborreicas
                                         </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_inguinal" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Inguinal / Genital</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Columna 2: Extremidades Superiores -->
-                            <div class="space-y-6">
-                                <div class="clinical-card p-6">
-                                    <label class="flex items-center gap-3 text-xs font-black text-blue-600 uppercase tracking-widest mb-4">
-                                        <input type="checkbox" id="topog_ext_sup" class="w-4 h-4 text-blue-600 rounded"> Miembros Superiores
-                                    </label>
-                                    <div class="pl-7 space-y-3">
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_hombros" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Hombros</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_brazos" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Brazos</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_codos" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Codos</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_antebrazos" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Antebrazos</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-800 border-l-2 border-blue-100 pl-3 group cursor-pointer">
-                                            <input type="checkbox" id="topo_manos" class="w-4 h-4 rounded"> <span class="group-hover:text-blue-700">Manos (Global)</span>
-                                        </label>
-                                        <div class="pl-7 space-y-2">
-                                            <label class="flex items-center gap-3 text-[11px] font-bold text-slate-400 group cursor-pointer">
-                                                <input type="checkbox" id="topo_dorso_manos" class="w-3.5 h-3.5 rounded"> <span class="group-hover:text-slate-600">Dorso</span>
-                                            </label>
-                                            <label class="flex items-center gap-3 text-[11px] font-bold text-slate-400 group cursor-pointer">
-                                                <input type="checkbox" id="topo_palmas" class="w-3.5 h-3.5 rounded"> <span class="group-hover:text-slate-600">Palmas</span>
-                                            </label>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Columna 3: Extremidades Inferiores -->
-                            <div class="space-y-6">
-                                <div class="clinical-card p-6">
-                                    <label class="flex items-center gap-3 text-xs font-black text-blue-600 uppercase tracking-widest mb-4">
-                                        <input type="checkbox" id="topog_ext_inf" class="w-4 h-4 text-blue-600 rounded"> Miembros Inferiores
-                                    </label>
-                                    <div class="pl-7 space-y-3">
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_muslos" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Muslos / Rodillas</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-500 group cursor-pointer">
-                                            <input type="checkbox" id="topo_espinillas" class="w-4 h-4 rounded"> <span class="group-hover:text-slate-800">Piernas / Tobillos</span>
-                                        </label>
-                                        <label class="flex items-center gap-3 text-sm font-bold text-slate-800 border-l-2 border-blue-100 pl-3 group cursor-pointer">
-                                            <input type="checkbox" id="topo_pies" class="w-4 h-4 rounded"> <span class="group-hover:text-blue-700">Pies / Plantas</span>
-                                        </label>
-                                    </div>
-                                </div>
                                 <div class="clinical-card p-6 border-l-4 border-blue-500">
                                     <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Patrones Clave</h3>
                                     <div class="grid grid-cols-1 gap-2">

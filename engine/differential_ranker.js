@@ -101,19 +101,25 @@ export function rankDifferentials(syndromeInput, helper) {
             // El score base es calculado por semiología y reglas
             let { score, matched_rules, supporting, missing } = calculateBaseClinicalScore(diseaseName, helper);
             
-            // EL CAMBIO CLAVE: Ponderar el score clínico por la probabilidad del síndrome
-            // Esto asegura que enfermedades en síndromes improbables no queden arriba
-            const weightedScore = score * syndromeProb;
+            // SEPARAR CAPA DIAGNÓSTICA DE CAPA SINDRÓMICA
+            // En vez de multiplicar (que arruina el diferencial si el modelo probabilístico falla),
+            // tratamos al síndrome como un "contexto favorecedor" sumativo.
+            // Asi evitamos contaminación cruzada incorrecta.
+            const syndromeBoost = syndromeProb * 15;
+            const finalScore = score + syndromeBoost;
 
             if (consolidatedScores.has(diseaseName)) {
                 // Si la enfermedad ya existe en otro síndrome (over-lap), sumar ponderación
                 const existing = consolidatedScores.get(diseaseName);
-                existing.score += weightedScore;
-                existing.source_syndromes.push(syndromeKey);
+                existing.score += syndromeBoost; // Solo se beneficia de estar en múltiples síndromes
+                if (!existing.source_syndromes.includes(syndromeKey)) {
+                    existing.source_syndromes.push(syndromeKey);
+                }
             } else {
                 consolidatedScores.set(diseaseName, {
                     disease_name: diseaseName,
-                    score: weightedScore,
+                    score: finalScore,
+                    raw_clinical_score: score,
                     matched_rules: matched_rules,
                     supporting_features: supporting,
                     missing_critical_features: missing,
@@ -171,17 +177,32 @@ function calculateBaseClinicalScore(diseaseName, helper) {
 
     if (profile) {
         const activeFeatures = [];
-        for (const [feature, frequency] of Object.entries(profile)) {
-            const baseWeight = recalibrationEngine.getBaseWeight(feature); // Pesos Basales Estadísticos (ESI)
+        
+        // 1. Iterar sobre TODO lo que tiene el PACIENTE para premiar o PENALIZAR (Contradicciones)
+        for (const [feat, val] of Object.entries(helper.featureMap)) {
+            if (val !== 1 && val !== true) continue;
             
-            if (helper.has(feature)) {
-                // Score = Frecuencia * Peso Basal * Magnificador (Fase 15)
-                score += (frequency * baseWeight * 10); 
-                if (frequency > 0.2) supporting.push(feature);
-                activeFeatures.push(feature);
-            } else if (frequency > 0.6) {
-                // Penalización proporcional a la especificidad basal
-                score -= (frequency * baseWeight * 5);
+            const baseWeight = recalibrationEngine.getBaseWeight(feat);
+            const frequency = profile[feat] || 0;
+            
+            if (frequency > 0.05) {
+                // El perfil tiene esta feature. Sumar puntuación clínica
+                score += (frequency * baseWeight * 12);
+                if (frequency > 0.2) supporting.push(feat);
+                activeFeatures.push(feat);
+            } else {
+                // PENALIZACIÓN: El paciente tiene algo que esta enfermedad no debería tener
+                // Reduce drásticamente sobre-estimaciones de parecidos
+                score -= (baseWeight * 15);
+            }
+        }
+
+        // 2. Iterar sobre las características que el PERFIL requiere pero el paciente NO tiene
+        for (const [feature, frequency] of Object.entries(profile)) {
+            if (!helper.has(feature) && frequency > 0.6) {
+                const baseWeight = recalibrationEngine.getBaseWeight(feature);
+                // Castigo severo por ausencia de signos pivote
+                score -= (frequency * baseWeight * 10);
                 missing.push(feature);
             }
         }

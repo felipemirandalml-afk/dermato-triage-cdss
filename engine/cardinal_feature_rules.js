@@ -56,14 +56,14 @@ export const CARDINAL_FEATURE_RULES = [
     },
     {
         id: "placa_anular_curacion_central",
-        label: "Configuración anular (Tiña)",
-        priority: "medium",
-        conditions: (h) => (h.has('placa') || h.has('macula')) && h.has('anular'),
+        label: "Configuración anular o Curación Central (Tiña)",
+        priority: "high",
+        conditions: (h) => h.has('curacion_central') || ((h.has('placa') || h.has('macula')) && h.has('anular')),
         boost_differentials: ["Tinea corporis", "Tinea cruris", "Granuloma annulare"],
         boost_syndromes: ["fungal_skin_infection"],
         suppress_syndromes: ["inflammatory_dermatosis_other", "psoriasiform_dermatosis"],
         suppress_differentials: ["Psoriasis (plaque)"],
-        rationale: "La configuración anular (crecimiento centrífugo) es altamente sugestiva de dermatofitosis y desplaza placas sólidas e inflamatorias."
+        rationale: "La configuración anular (crecimiento centrífugo con centro sano) es altamente sugestiva de dermatofitosis y desplaza placas sólidas e inflamatorias."
     },
 
 
@@ -81,12 +81,22 @@ export const CARDINAL_FEATURE_RULES = [
     {
         id: "placa_eritematoescamosa_nacarada",
         label: "Placa con escama nacarada",
-        priority: "medium",
-        conditions: (h) => h.has('placa') && h.has('escama') && h.has('extensor'),
+        priority: "high",
+        conditions: (h) => h.has('escama_nacarada') || (h.has('placa') && h.has('escama') && (h.has('topo_friccion_extensora') || h.has('extensor'))),
         boost_differentials: ["Psoriasis (plaque)"],
         boost_syndromes: ["psoriasiform_dermatosis"],
         suppress_differentials: ["Dermatitis seborreica", "Tinea corporis"],
-        rationale: "La placa bien definida con escama gruesa en zonas extensoras es el sello de la psoriasis."
+        rationale: "La placa bien definida con escama gruesa/plateada en zonas extensoras es el sello patognomónico de la psoriasis."
+    },
+    {
+        id: "escama_untuosa_sebo",
+        label: "Escamas untuosas/amarillas",
+        priority: "high",
+        conditions: (h) => h.has('escama_untuosa') && (h.has('seborreica') || h.has('cara_centro') || h.has('cabeza')),
+        boost_differentials: ["Seborrheic dermatitis"],
+        boost_syndromes: ["eczema_dermatitis"],
+        suppress_differentials: ["Psoriasis (plaque)", "Lupus erythematosus"],
+        rationale: "La escama amarillenta y grasa en áreas ricas en glándulas sebáceas es el sello de la dermatitis seborreica."
     },
     {
         id: "umbilicacion_central",
@@ -159,9 +169,9 @@ export const CARDINAL_FEATURE_RULES = [
 
     {
         id: "eczema_flexural",
-        label: "Patrón Flexural (Dermatitis)",
+        label: "Patrón Flexural (Dermatitis Atópica / Intertrigo)",
         priority: "medium",
-        conditions: (h) => h.has('flexural') && (h.has('escama') || h.has('liquenificacion')),
+        conditions: (h) => h.has('topo_flexural_pliegues') && (h.has('escama') || h.has('liquenificacion')),
         boost_differentials: ["Atopic dermatitis", "Intertrigo"],
         boost_syndromes: ["eczema_dermatitis"],
         suppress_syndromes: ["psoriasiform_dermatosis"],
@@ -193,21 +203,21 @@ export const CARDINAL_FEATURE_RULES = [
     },
     {
         id: "surco_acarino",
-        label: "Surco acarino (Escabiosis)",
+        label: "Surco acarino o Prurito Nocturno severo (Escabiosis)",
         priority: "high",
-        conditions: (h) => h.has('surco') || (h.has('axilas') && h.has('inguinal') && h.has('prurito')),
+        conditions: (h) => h.has('surco') || (h.has('topo_flexural_pliegues') && h.has('extensor') === false && h.has('prurito_nocturno')),
         boost_differentials: ["Scabies"],
         boost_syndromes: ["inflammatory_dermatosis_other"],
-        rationale: "El surco es el signo patognomónico de la escabiosis. La afectación simétrica de pliegues con prurito nocturno es altamente sugestiva."
+        rationale: "El surco es patognomónico. Un prurito de predominio nocturno exaltado en pliegues es la regla de oro para sospecha de escabiosis."
     },
     {
         id: "habon_roncha",
-        label: "Habón / Roncha (Urticaria)",
+        label: "Habón / Lesión Evanescente (Urticaria)",
         priority: "high",
-        conditions: (h) => h.has('habon'),
+        conditions: (h) => h.has('habon') || h.has('lesion_evanescente'),
         boost_differentials: ["Urticaria"],
         boost_syndromes: ["urticarial_dermatosis"],
         suppress_syndromes: ["inflammatory_dermatosis_other", "eczema_dermatitis"],
-        rationale: "El habón es la lesión característica de la urticaria. Su carácter evanescente es definitorio frente a otras pápulas."
+        rationale: "El habón evanescentente e inconstante (<24h) es estricto de urticaria o reacciones urticariformes."
     }
 ];

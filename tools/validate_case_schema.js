@@ -1,5 +1,6 @@
 import { CLINICAL_CASES } from '../data/clinical_cases.js';
-import { FEATURE_INDEX, FEATURE_ALIASES } from '../engine/constants.js';
+import { FEATURE_INDEX } from '../engine/constants.js';
+import conceptMapper from '../engine/concept_mapper.js';
 
 const COLORS = {
     reset: "\x1b[0m",
@@ -30,11 +31,10 @@ export function validateDatasetSchema() {
         if (c.input) {
             Object.keys(c.input).forEach(key => {
                 const isDemo = ALLOWED_DEMO_KEYS.includes(key);
-                const isCanonical = FEATURE_INDEX[key] !== undefined;
-                const isAlias = FEATURE_ALIASES[key] !== undefined;
+                const isCanonicalOrAlias = conceptMapper.resolve(key) !== null;
 
-                if (!isDemo && !isCanonical && !isAlias) {
-                    errors.push(`Key NO reconocida: '${key}'`);
+                if (!isDemo && !isCanonicalOrAlias) {
+                    errors.push(`Key NO reconocida por el Concept Mapper: '${key}'`);
                 }
             });
         }

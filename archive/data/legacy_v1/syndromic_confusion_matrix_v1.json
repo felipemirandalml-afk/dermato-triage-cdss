@@ -1,0 +1,55 @@
+{
+  "eczema_dermatitis": {
+    "inflammatory_dermatosis_other": 225,
+    "psoriasiform_dermatosis": 22,
+    "cutaneous_tumor_suspected": 22,
+    "vesiculobullous_disease": 10,
+    "benign_cutaneous_tumor": 4,
+    "viral_skin_infection": 1
+  },
+  "psoriasiform_dermatosis": {
+    "viral_skin_infection": 1,
+    "inflammatory_dermatosis_other": 1
+  },
+  "bacterial_skin_infection": {},
+  "viral_skin_infection": {
+    "vesiculobullous_disease": 7,
+    "bacterial_skin_infection": 31,
+    "benign_cutaneous_tumor": 2,
+    "vasculitic_purpuric_disease": 1
+  },
+  "fungal_skin_infection": {
+    "inflammatory_dermatosis_other": 28,
+    "viral_skin_infection": 2,
+    "psoriasiform_dermatosis": 1
+  },
+  "drug_reaction": {
+    "bacterial_skin_infection": 3
+  },
+  "urticarial_dermatosis": {
+    "drug_reaction": 2
+  },
+  "vesiculobullous_disease": {
+    "bacterial_skin_infection": 2
+  },
+  "vasculitic_purpuric_disease": {
+    "bacterial_skin_infection": 1
+  },
+  "cutaneous_tumor_suspected": {
+    "inflammatory_dermatosis_other": 36,
+    "benign_cutaneous_tumor": 2,
+    "psoriasiform_dermatosis": 3,
+    "viral_skin_infection": 2
+  },
+  "benign_cutaneous_tumor": {},
+  "inflammatory_dermatosis_other": {
+    "cutaneous_tumor_suspected": 749,
+    "vesiculobullous_disease": 142,
+    "viral_skin_infection": 82,
+    "benign_cutaneous_tumor": 84,
+    "psoriasiform_dermatosis": 241,
+    "vasculitic_purpuric_disease": 23,
+    "eczema_dermatitis": 2,
+    "bacterial_skin_infection": 2
+  }
+}

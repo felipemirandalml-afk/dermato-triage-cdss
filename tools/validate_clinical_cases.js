@@ -139,6 +139,13 @@ console.log(`3. INTELIGENCIA (Síndrome):   [ ${intelligenceVerdict} ] - Accurac
 
 console.log(`\n${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
 
+if (totalUnknownKeys > 0) {
+    console.log(`\n${COLORS.yellow}UNKNOWN KEYS DETECTED:${COLORS.reset}`);
+    baseResults.unknownInputs.forEach(x => console.log(`   [${x.id}] ${x.keys.join(', ')}`));
+    hardeningResults.unknownInputs.forEach(x => console.log(`   [${x.id}] ${x.keys.join(', ')}`));
+    console.log(`\n${COLORS.cyan}--------------------------------------------------${COLORS.reset}`);
+}
+
 const isOverallSuccess = (totalUnderTriage === 0 && p1BasePass && totalUnknownKeys === 0 && globalSynAccuracy >= SYNDROME_ACCURACY_THRESHOLD);
 
 if (isOverallSuccess) {
