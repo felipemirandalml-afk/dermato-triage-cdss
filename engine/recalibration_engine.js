@@ -1,18 +1,18 @@
-import fs from 'fs';
+import baseWeights from '../data/statistical_base_weights_fit_v2.json' with { type: 'json' };
+import pairModulators from '../data/contextual_pair_modulators_v2.json' with { type: 'json' };
+import tripletModulators from '../data/contextual_triplet_modulators_v2.json' with { type: 'json' };
+import syndromeBoosters from '../data/syndrome_boosters_fit_v2.json' with { type: 'json' };
+import biasCorrections from '../data/classwise_bias_corrections_v1.json' with { type: 'json' };
+import discScoresRaw from '../data/feature_discriminative_scores_v2.json' with { type: 'json' };
 
 /**
- * RECALIBRATION ENGINE v1.2 (Phase 15)
+ * RECALIBRATION ENGINE v1.3 (Browser-Compatible)
+ * Migrado de fs.readFileSync a static JSON imports para compatibilidad con el navegador.
  */
 
-const baseWeights = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/data/statistical_base_weights_fit_v2.json', 'utf8'));
-const pairModulators = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/data/contextual_pair_modulators_v2.json', 'utf8'));
-const tripletModulators = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/data/contextual_triplet_modulators_v2.json', 'utf8'));
-const syndromeBoosters = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/data/syndrome_boosters_fit_v2.json', 'utf8'));
-const biasCorrections = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/data/classwise_bias_corrections_v1.json', 'utf8'));
+const discScores = Array.isArray(discScoresRaw) ? discScoresRaw : [];
 
 let activeBaseWeights = baseWeights;
-
-const discScores = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/data/feature_discriminative_scores_v2.json', 'utf8'));
 
 export const recalibrationEngine = {
     setWeights: (newWeights) => { activeBaseWeights = newWeights; },
