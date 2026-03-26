@@ -1,5 +1,18 @@
 # Changelog - DermatoTriage CDSS
 
+## [1.5.0] - 2026-03-26
+### Added
+- **Repository Saneamiento**: Eliminated 70+ legacy files and archived redundant research reports.
+- **Architectural Cleanup**: Formal separation of Runtime Core vs. Training Support.
+- **Documentation Alignment**: Full rewrite of README, MAINTAINING, and VALIDATION to reflect the real clinical accuracy (63.1%) and the Random Forest engine.
+- **Git Hygiene**: Merged cleanup branch into master for stable baseline creation.
+
+## [1.4.0] - 2026-03-25
+### Added
+- **UI Premium Phase**: Clinical Progress Bar and Step Indicators.
+- **Silver Bullets**: High-definition clinical features (Nikolsky, Mieliceric crust, active border) for syndrome differentiation.
+- **Global Inference Fix**: Triage calculation available from search/any tab (Sticky Action Bar).
+
 ## [1.3.0] - 2026-03-18
 
 ### Added

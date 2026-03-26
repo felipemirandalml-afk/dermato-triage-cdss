@@ -1,88 +1,70 @@
-# DermatoTriage CDSS (v1.5.0 - Sentinel)
-**Clinical Decision Support System for Dermatological Triage & Primary Care**
+# DermatoTriage CDSS (v1.5.0 — Saneamiento Estructural 🏥)
+**Sistema de Soporte a la Decisión Clínica para Triage Dermatológico en APS**
 
-DermatoTriage is a state-of-the-art Clinical Decision Support System (CDSS) designed for medical professionals in Primary Care (APS). It provides a high-confidence triage layer by combining expert clinical heuristics with a probabilistic inference engine calibrated against large-scale dermatological datasets.
-
----
-
-## 🏛️ System Architecture: The Multi-Layer Hybrid Engine
-
-The core of DermatoTriage is a **Hybrid Inference Engine** that operates across four distinct levels of analytical depth:
-
-### 1. Safety & Heuristic Layer (The "Shields")
-Ensures clinical safety by overriding statistical predictions when critical patterns are detected:
-- **Immediate Escalation (P1)**: Detection of necrosis, ischemia, or life-threatening systemic signs.
-- **Malignancy Guards**: Prevents down-scaling of suspected neoplastic lesions (BCC, SCC, Melanoma).
-- **Cardinal Feature Rules**: Expert-curated rules for high-specificity findings (Umbilication, Acral pattern, Scabies burrow) now fully migrated to the **Canonical Layer**.
-
-### 2. Probabilistic Syndrome Engine (`probabilistic_model.js`)
-Un motor central basado en **Random Forest** clasifica los hallazgos clínicos en 12 principales síndromes dermatológicos (Eczema, Viral, Bacterial, Papuloescamoso, etc.), estableciendo un baseline estadístico con una exactitud de validación del ~76.3%.
-
-### 3. Canonical Concept Layer (`concept_mapper.js`)
-The **"Semantic Backbone"** of the system. It uses a canonical mapping strategy to unify concepts from diverse sources:
-- **UI Interaction**: Maps user inputs (e.g., *umbilicación*) to internal logic IDs.
-- **Scientific Datasets**: Translates raw labels from **Derm1M** and **SkinCon** into a unified clinical language.
-- **Topography Normalization**: Consolidated IDs for facial, truncal, and acral areas.
-
-### 4. Differential Ranker (`differential_ranker.js`)
-Utilizes enriched semiology profiles to provide the clinician with a Top-3 differential diagnosis. This layer is now powered by **Canonical Profiles (v1.2.0)**, allowing for high-specificity matching using advanced descriptors (Anular, Zosteriform, Dome-shaped).
+DermatoTriage es una aplicación web estática (Vanilla JS) diseñada para profesionales de Atención Primaria de Salud (APS). Proporciona una capa de triage de alta fidelidad mediante un motor híbrido que combina reglas heurísticas de seguridad con un modelo probabilístico de inferencia.
 
 ---
 
-## 🧬 Scientific Foundation & Datasets
+## 🏛️ Arquitectura del Sistema: El Motor Híbrido
 
-DermatoTriage is not a "black box". Its knowledge base is derived from peer-reviewed datasets and clinical guidelines:
+El núcleo de DermatoTriage opera en tres capas concurrentes que garantizan seguridad y precisión clínica:
 
-- **Derm1M Integration**: Used for disease-specific semiological frequencies (~4,400+ clinical profiles).
-- **SkinCon (v2.0) Alignment**: Taxonomy and descriptors for fine morphology and diverse skin tones.
-- **Expert Rules**: Hand-curated heuristic rules for high-impact cardinal findings.
+### 1. Capa de Seguridad (Heuristic Shields)
+Prioriza la vida y la integridad del paciente sobre cualquier cálculo estadístico:
+- **Escalación Inmediata (P1)**: Detección de patrones críticos (Necrosis, Isquemia, Compromiso de mucosas).
+- **Protección Oncológica**: Evita el sub-triage de lesiones sospechosas (Melanoma, CBC, CEC).
+- **Reglas Cardinales**: Lógica determinista para hallazgos patogmonómicos (Surco acarino, Vesículas agrupadas).
 
----
+### 2. Motor Probabilístico (`probabilistic_model.js`)
+Basado en un **Random Forest** entrenado con datasets dermatológicos reales. Clasifica el caso en uno de los 12 síndromes principales. 
+- **Estado Actual**: Exactitud sindrómica del **~63.1%** (Benchmark v2.2). 
+- **Nota**: Este es el "techo de cristal" del modelo actual, limitado por la densidad semiológica del input.
 
-## ✨ Key Features
-
-- **Advanced Clinical Descriptors**: Dedicated section for high-specificity findings (Umbilication, Dome-shaped, Spatial Patterns) for expert-level triage.
-- **Fitzpatrick-Aware Analysis**: Specifically audited to mitigate bias in pigmentary and vascular signals across different skin phenotypes (Audit-v8.0).
-- **Explainable AI (XAI)**: Every decision provides a "Why" (Heuristic justification) and a "Suggest" (Actionable plan).
-- **SOAP Export**: Generates structured medical notes.
-- **Offline First**: Pure Vanilla JS architecture.
-
----
-
-## 🚀 Technical Insights for Developers
-
-### Folder Structure
-- `/engine`: The clinical brain (logic, rules, models).
-- `/data`: Datasets, canonical maps, and semiology profiles.
-- `/tools`: Audit, validation, and group-reporting scripts.
-- `/tests`: Clinical regression packs (Sentinel Suite).
-- `/reports`: Live evidence of system performance and audit logs.
-
-### Validation & Stress Testing
-The system remains hardened through constant benchmarking:
-```bash
-# Run the full clinical validation suite
-npm run validate
-
-# Run structured validation by diagnostic groups (v1.5.0)
-node tools/fase8_validation_reporter.js
-
-# Review the conceptual traceability matrix
-cat reports/concept_traceability_matrix.md
-```
+### 3. Ranker Diferencial & Explicabilidad
+Proporciona el Top-3 de diagnósticos probables dentro del síndrome detectado, justificando cada uno mediante el mapa de razonamiento clínico (`engine/interpreter.js`).
 
 ---
 
-## 📅 Roadmap: Current Status & Future
-- [x] **v1.1.0-1.3.0**: Heuristic layers, Probabilistic core, SOAP Export.
-- [x] **v1.4.0**: Canonical Mapping, SkinCon/Derm1M Integration, Advanced UI findings.
-- [x] **v1.5.0**: Cardinal Rule migration to Canonical Layer, Sentinel Regression Pack, Group Validation.
-- [ ] **v1.6.0 (Upcoming)**: Fairness-aware re-weighting for Fitzpatrick extreme types.
-- [ ] **Long Term**: Prospective clinical validation in real APS settings.
+## 📂 Organización del Repositorio (v1.5.0)
+
+Tras la fase de saneamiento estructural, el repositorio se organiza de forma estricta:
+
+### 📦 Runtime (Núcleo Activo)
+Todo lo necesario para que la app funcione localmente en el navegador:
+- `index.html`, `ui.js`, `model.js`: Orquestación y UI.
+- `engine/`: Motores de inferencia, reglas y pesos del modelo (`rf_model.json`).
+- `data/`: Mapas canónicos y archivos de recalibración estática.
+
+### ⚙️ Pipeline de Entrenamiento
+Herramientas para la evolución del modelo (no requeridas para el uso diario):
+- `tools/train_and_evaluate.py`: Script principal de entrenamiento (Python/Scikit-learn).
+- `data/training_cases_v2.csv`: Dataset maestro de entrenamiento.
+
+### 🧪 Validación y Auditoría
+- `tools/validate_clinical_cases_hd.js`: Benchmark clínico de alta definición.
+- `tools/validate_case_schema.js`: Verificación de integridad del contrato de datos.
+
+### 📜 Research & Legacy (Archivo)
+- `archive/`: Contenedor de reportes históricos, scripts obsoletos y materiales de investigación que ya no forman parte del runtime activo.
 
 ---
 
-## ⚠️ Important Clinical Disclaimer
-DermatoTriage CDSS is an **access-to-decision tool** for medical professionals. It is **NOT** a diagnostic device. The outputs are clinical suggestions based on programmed protocols and statistical probabilities. Final responsibility for diagnosis and management lies solely with the attending physician. 
+## 🚀 Uso Rápido
 
-*Designed with ❤️ by the Google Deepmind Advanced Agentic Coding Team.*
+1.  **Ejecutar la App**: Abra `index.html` en cualquier navegador moderno.
+    - *Nota*: El sistema procesa toda la lógica localmente pero carga Tailwind CSS vía CDN.
+2.  **Validar Estado**:
+    ```bash
+    npm run validate
+    ```
+
+---
+
+## 📈 Estado y Limitaciones (Honestidad Técnica)
+- **Validación Clínica**: El sistema se encuentra en fase de validación técnica interna. **NO** ha sido sometido a ensayos clínicos prospectivos externos.
+- **Sesgo de Datos**: El modelo tiene mayor rendimiento en síndromes inflamatorios frecuentes que en patologías raras.
+- **Uso**: Herramienta de asistencia, la decisión final es siempre responsabilidad del médico tratante.
+
+---
+
+*Desarrollado con ❤️ para el fortalecimiento de la Atención Primaria.*

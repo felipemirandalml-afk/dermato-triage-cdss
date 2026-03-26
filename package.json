@@ -1,9 +1,10 @@
 {
   "name": "dermato-triage-cdss",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "type": "module",
   "scripts": {
     "start": "npx -y serve .",
-    "validate": "node tools/validate_clinical_cases.js"
+    "test": "node tools/test_probabilistic_engine.js",
+    "validate": "node tools/validate_clinical_cases_hd.js"
   }
 }

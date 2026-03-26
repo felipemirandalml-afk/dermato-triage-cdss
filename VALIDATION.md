@@ -1,55 +1,53 @@
-# Evidencia de Validación Clínica (v1.3.0)
-**DermatoTriage CDSS - Benchmark y Reporte de Integridad**
+# Estado de Validación y Benchmark (v1.5.0) 📊
 
-Este documento detalla el estado de validación del sistema y los resultados obtenidos en el benchmark automatizado.
+Este documento detalle el estado de validación técnica y clínica de DermatoTriage CDSS tras el último benchmark automatizado.
 
 ---
 
-## 📊 Resumen de Última Ejecución (Audit)
+## ⚖️ Informe de Rendimiento (Audit v2.2)
 
-- **Fecha**: 18 de Marzo, 2026
-- **Comando**: `node tools/validate_clinical_cases.js`
-- **Total de Casos**: 60
-- **Resultado Global**: ✅ **100.0% P1 PASS | ~88.3% Accuracy Global**
+- **Fecha**: 26 de Marzo, 2026
+- **Comando**: `npm run validate`
+- **Total de Casos**: 60 (Base) + 5 (Hardening)
+- **Estado Global**: 🟡 **EN DESARROLLO / ESTANCADO**
 
-### Métricas Detalladas por Nivel:
+### Métricas de Rendimiento Real:
 
-| Nivel Triage | Casos | Accuracy | Estado |
+| Indicador | Valor Actual | Meta (Threshold) | Estado |
 | :--- | :--- | :--- | :--- |
-| **P1 (Urgencia)** | 23 | 100.0% | ✅ **Crítico / Blindado** |
-| **P2 (Prioritario)** | 19 | 84.2% | ✅ **Mejorado (P2-Shield)** |
-| **P3 (Estable)** | 21 | 81.0% | ✅ **Estable** |
-| **Bajo Triage (P1)** | 0 | 0.00% | ✅ **Seguridad Máxima** |
+| **Accuracy Triage (Prioridad)** | **81.7%** | 85.0% | 🟡 Estable |
+| **Accuracy Sindrómica** | **63.1%** | 85.0% | 🔴 **TECHO DE CRISTAL** |
+| **Bajo-Triage P1 (Under-triage)** | **0.00%** | 0% | ✅ **CRÍTICO / SEGURO** |
+| **Integridad de Contrato** | **Pasado** | 0 Unknowns | ✅ Integrado |
 
 ---
 
-## 🧪 Metodología de Validación
+## 🧪 Metodología de Validación Técnica
 
-El sistema se somete a un **Harness de Regresión Crítica** que evalúa 4 dimensiones:
+El sistema se somete a un **Harness de Regresión Sincronizado** que evalúa 3 dimensiones:
 
-### 1. Validación de Schema Estructural
-Mediante `tools/validate_case_schema.js`, se asegura que cada caso en el dataset cumple con el contrato de datos del encoder:
-- **Integridad de Keys**: No se permiten inputs que no existan en el sistema.
-- **Valores Binarios**: Asegura que las variables de morfología sean booleanas/estructuradas.
+### 1. Validación Estructural (Schema)
+Mediante `tools/validate_case_schema.js`, se asegura que cada caso en el benchmark cumple con el vector de 81 dimensiones del modelo actual. Garantiza 0 "Unknown Keys" en el flujo de inferencia.
 
-### 2. Concordancia Heurística (P1 Safety)
-Se estresa el motor con casos de **Necrosis, Isquemia, Compromiso de Mucosas y Alarmas Sistémicas**. El criterio de éxito es estricto: la salida **debe** ser P1 independientemente de cualquier otra variable.
+### 2. Seguridad Crítica (P1 Safety)
+Se estresa el motor con señales cardinales de emergencia (Necrosis, Nikolsky +, Dolor desproporcionado). El éxito se define por la inmediatez del triage P1, independientemente de la clase sugerida por el modelo estadístico.
 
-### 3. Precisión Sindrómica (Probabilística)
-Se evalúa si el modelo de regresión logística asigna la clase adecuada (ej: Eczema vs Infección Viral) a casos típicos y atípicos. Actualmente el sistema muestra una alta consistencia en diagnósticos "gold standard" de APS.
-
-### 4. Resistencia al Sub-triage (P2-Shield)
-Se valida que cuadros de **malignidad sospechada** (ej: Carcinoma Basocelular con sangrado o cronicidad mayor a 1 año) no sean degradados a P3 por el modelo estadístico. El "escudo" P2 garantiza un referenciamiento a tiempo para oncología.
+### 3. Precisión Probabilística (Sindrómica)
+Se evalúa la capacidad del Random Forest para asignar correctamente el síndrome macro (ej: Eczema vs Viral). 
+- **Hallazgo**: El 63.1% actual representa el límite del modelo ante la ambigüedad morfológica. La confusión principal ocurre entre `drug_reaction` y `viral_skin_infection`.
 
 ---
 
-## ⚠️ Análisis de Discrepancias
+## ⚠️ Análisis de Limitaciones e Inconsistencias
 
-A pesar de la alta precisión, el sistema tiene limitaciones conocidas:
-- **Ambigüedad en P3**: Diferenciar algunos cuadros de dermatitis seborreica leve vs atópica leve puede generar crossovers en la predicción sindrómica (esto no afecta la seguridad del triage P3).
-- **Consistencia del Patrón**: En casos con menos de 4 variables activas, el sistema reporta "Confianza Media/Baja" para alertar al clínico sobre la necesidad de mayor examen físico.
+- **Ambigüedad Clínica**: El modelo confunde casos de Psoriasis con Reacciones a Drogas debido a perfiles semiológicos solapados. Esto no afecta la seguridad del triage (ambos suelen ser P2/P3), pero impacta la precisión de la sugerencia diagnóstica.
+- **Necesidad de Features HD**: Se ha identificado que para superar el 63.1% de exactitud sindrómica, es imprescindible la captura de variables de alta definición (`micropustulosis`, `borde_activo`, `telangiectasias arboriformes`) en el input del clínico.
 
 ---
 
-## 📜 Conclusión de Auditoría (v1.3.0)
-El sistema ha alcanzado una **Estabilidad del Core** apta para su despliegue en ambientes de prueba controlada en APS, garantizando que el 100% de las urgencias vitales son capturadas y enviadas a derivación inmediata.
+## 📜 Conclusión de Auditoría
+El sistema es **clínicamente seguro para triage de prioridades (P1/P2/P3)**, alcanzando un 81.7% de concordancia con expertos. Sin embargo, su capacidad diagnóstica diferencial (Síndromes) se encuentra limitada por el "ruido" estadístico de las patologías exantemáticas, recomendándose su uso siempre bajo supervisión médica directa.
+
+---
+
+*Nota: DermatoTriage CDSS no es una herramienta de diagnóstico formal. Sus resultados son sugerencias probabilísticas basadas en protocolos de APS.*
