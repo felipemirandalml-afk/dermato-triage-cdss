@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNext = document.getElementById('btnNext');
     const btnPrev = document.getElementById('btnPrev');
     const btnCalculate = document.getElementById('btnCalculate');
+    const btnAnalyzeGlobal = document.getElementById('btnAnalyzeGlobal');
+    const validationMessage = document.getElementById('validationMessage');
 
     const tabs = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -55,32 +57,94 @@ document.addEventListener('DOMContentLoaded', () => {
         window.print();
     });
 
-    // 1. UI: MANEJO DE TABS (Workflow Clínico)
+    // 1. UI: MANEJO DE TABS (Workflow Clínico Premium)
     function switchTab(index) {
         currentTabIdx = index;
 
         // Update Buttons
         btnPrev.classList.toggle('hidden', index === 0);
         btnNext.classList.toggle('hidden', index === tabs.length - 1);
-        btnCalculate.classList.toggle('hidden', index !== tabs.length - 1);
 
         // Update Tab UI
         tabs.forEach((t, i) => {
             if (i === index) {
-                t.classList.add('tab-active');
+                t.classList.add('tab-active', 'ring-2', 'ring-blue-100');
                 t.classList.remove('tab-inactive');
             } else {
-                t.classList.remove('tab-active');
+                t.classList.remove('tab-active', 'ring-2', 'ring-blue-100');
                 t.classList.add('tab-inactive');
             }
         });
 
         // Update Content
         tabContents.forEach((c, i) => {
-            c.classList.toggle('hidden', i !== index);
+            if (i === index) {
+                c.classList.remove('hidden');
+                c.classList.add('animate-in', 'fade-in', 'slide-in-from-right-4', 'duration-500');
+            } else {
+                c.classList.add('hidden');
+            }
         });
 
+        updateClinicalProgress(index);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateClinicalProgress(index) {
+        const progress = document.getElementById('clinicalProgress');
+        const dots = [
+            document.getElementById('dot-step-1'),
+            document.getElementById('dot-step-2'),
+            document.getElementById('dot-step-3')
+        ];
+
+        // Update progress bar
+        const width = (index / (tabs.length - 1)) * 100;
+        progress.style.width = `${width}%`;
+
+        // Update dots
+        dots.forEach((dot, i) => {
+            if (i <= index) {
+                dot.classList.add('bg-blue-600', 'scale-110');
+                dot.classList.remove('bg-slate-200');
+            } else {
+                dot.classList.remove('bg-blue-600', 'scale-110');
+                dot.classList.add('bg-slate-200');
+            }
+        });
+    }
+
+    function updateBadges() {
+        const sections = {
+            'core': 'tab-patient',
+            'extended': 'tab-morphology',
+            'silver': 'tab-silver'
+        };
+
+        const badgeMap = {
+            'tab-patient': document.getElementById('badge-core'),
+            'tab-morphology': document.getElementById('badge-extended'),
+            'tab-silver': document.getElementById('badge-silver')
+        };
+
+        Object.entries(sections).forEach(([name, id]) => {
+            const section = document.getElementById(id);
+            if (!section) return;
+            
+            const count = section.querySelectorAll('input[type="checkbox"]:checked').length;
+            const badge = badgeMap[id];
+            
+            if (badge) {
+                badge.textContent = count;
+                if (count > 0) {
+                    badge.classList.remove('bg-slate-300');
+                    badge.classList.add('bg-blue-600', 'animate-in', 'zoom-in-50');
+                } else {
+                    badge.classList.add('bg-slate-300');
+                    badge.classList.remove('bg-blue-600');
+                }
+            }
+        });
     }
 
     tabs.forEach((tab, index) => {
@@ -101,12 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
         loadCase(randomCase);
         switchTab(0); // Volver al inicio
         alert(`Situación Clínica Cargada: ${randomCase.title}`);
+        updateGlobalButtonState();
     });
 
     btnReset?.addEventListener('click', () => {
         form.reset();
-        resultsPanel.classList.add('hidden');
         switchTab(0);
+        resultsPanel.classList.add('hidden');
+        updateGlobalButtonState();
     });
 
     function loadCase(caseData) {
@@ -130,6 +196,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. INFERENCIA Y RENDER
+    // --- VALIDACIÓN CLÍNICA MÍNIMA (P1 FIX + PREMIUM STATUS) ---
+    function updateGlobalButtonState() {
+        const age = document.getElementById('age').value;
+        const timing = form.querySelector('input[name="timing"]:checked')?.value;
+
+        const hasClinicalFeature = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).some(cb => {
+            return cb.id.startsWith('lesion_') || 
+                   cb.id.startsWith('sintoma_') || 
+                   cb.id.startsWith('redflag_') || 
+                   cb.id.startsWith('prodromo_') || 
+                   cb.id.startsWith('despegamiento_') || 
+                   cb.id.startsWith('borde_') || 
+                   cb.id.startsWith('costra_') || 
+                   cb.id.startsWith('purpura_') || 
+                   cb.id.startsWith('engrosamiento_') ||
+                   cb.id.startsWith('topo_') ||
+                   cb.id.startsWith('signo_');
+        });
+
+        const hasSilverBullet = Array.from(form.querySelectorAll('#tab-silver input[type="checkbox"]:checked')).length > 0;
+
+        const isMet = age && timing && hasClinicalFeature;
+
+        // Update Badges
+        updateBadges();
+
+        if (isMet) {
+            btnAnalyzeGlobal.disabled = false;
+            btnAnalyzeGlobal.classList.replace('bg-blue-600/50', 'bg-blue-600');
+            btnAnalyzeGlobal.classList.replace('text-white/50', 'text-white');
+            btnAnalyzeGlobal.classList.remove('cursor-not-allowed');
+            btnAnalyzeGlobal.classList.add('hover:bg-blue-700', 'shadow-blue-500/40', 'scale-100');
+            
+            // Status Message Premium
+            if (hasSilverBullet) {
+                validationMessage.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Alta Especificidad Detectada · Listo para Analizar`;
+                validationMessage.classList.add('bg-emerald-950', 'border-emerald-500/50');
+                validationMessage.classList.remove('bg-slate-800', 'border-slate-700');
+            } else {
+                validationMessage.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Datos Suficientes · Listo para Analizar`;
+                validationMessage.classList.remove('bg-emerald-950', 'border-emerald-500/50');
+                validationMessage.classList.add('bg-slate-800', 'border-slate-700');
+            }
+            
+            validationMessage.classList.remove('opacity-0', 'pointer-events-none');
+            validationMessage.classList.add('opacity-100');
+        } else {
+            btnAnalyzeGlobal.disabled = true;
+            btnAnalyzeGlobal.classList.replace('bg-blue-600', 'bg-blue-600/50');
+            btnAnalyzeGlobal.classList.replace('text-white', 'text-white/50');
+            btnAnalyzeGlobal.classList.add('cursor-not-allowed');
+            
+            let missing = [];
+            if (!age) missing.push("Edad");
+            if (!timing) missing.push("Temporalidad");
+            if (!hasClinicalFeature) missing.push("1 Hallazgo");
+            
+            validationMessage.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Faltante sugerido: ${missing.join(', ')}`;
+            validationMessage.classList.remove('bg-emerald-950', 'border-emerald-500/50');
+            validationMessage.classList.add('bg-slate-800', 'border-slate-700');
+            validationMessage.classList.add('opacity-100');
+        }
+    }
+
+    // Listener para validación en tiempo real
+    form.addEventListener('input', updateGlobalButtonState);
+    form.addEventListener('change', updateGlobalButtonState);
+
+    // Initial check
+    updateGlobalButtonState();
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -154,11 +291,14 @@ document.addEventListener('DOMContentLoaded', () => {
         lastFormData = formData;
 
         renderResults(interpretation, formData);
+        
+        // Scroll suave al panel de resultados
+        resultsPanel.scrollIntoView({ behavior: 'smooth' });
     });
 
     function validateData(data) {
         if (!data.age) {
-            alert('Por favor, ingrese la edad del paciente en el Paso 1.');
+            alert('Por favor, ingrese la edad del paciente en el Paso 1 (Datos Core).');
             switchTab(0);
             document.getElementById('age').focus();
             return false;
@@ -243,8 +383,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const pa = res.probabilistic_analysis;
             const topSyndrome = pa.top_syndrome;
+            const topProb = pa.top_probability * 100;
             document.getElementById('topSyndromeName').textContent = topSyndrome ? (syndromeLabels[topSyndrome] || topSyndrome) : "Patrón Indeterminado";
-            document.getElementById('topSyndromeProb').textContent = `${(pa.top_probability * 100).toFixed(1)}%`;
+            document.getElementById('topSyndromeProb').textContent = `${topProb.toFixed(1)}%`;
+            
+            // Animación barra de progreso premium
+            const progressBar = document.getElementById('topSyndromeProgressBar');
+            if (progressBar) {
+                setTimeout(() => {
+                    progressBar.style.width = `${topProb}%`;
+                    // Color dinámico según probabilidad
+                    if (topProb > 80) progressBar.classList.replace('bg-blue-600', 'bg-emerald-500');
+                    else if (topProb < 40) progressBar.classList.replace('bg-blue-600', 'bg-amber-500');
+                    else progressBar.className = 'absolute top-0 left-0 h-full bg-blue-600 rounded-full transition-all duration-1000';
+                }, 100);
+            }
 
             // Lógica de Confianza Diagnóstica
             const confPanel = document.getElementById('confidencePanel');
@@ -451,7 +604,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'signo_': 'Sistémico',
             'edad': 'Basales',
             'farmacos': 'Antecedentes',
-            'inmuno': 'Antecedentes'
+            'inmuno': 'Antecedentes',
+            'prodromo_': 'Crítico HD',
+            'despegamiento_': 'Crítico HD',
+            'borde_': 'Específico HD',
+            'costra_m': 'Específico HD',
+            'purpura_p': 'Vascular HD',
+            'engrosamiento_': 'Uñas HD'
         };
 
         const formatFeat = (f) => {

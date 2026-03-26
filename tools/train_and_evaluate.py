@@ -21,6 +21,9 @@ def load_data():
     expected_features = list(schema.keys())
     
     df = pd.read_csv(data_path)
+    # Limpieza agresiva de NaNs
+    df = df.dropna(subset=["target"])
+    
     available_cols = [col for col in expected_features if col in df.columns]
     
     X = df[available_cols].copy()
@@ -39,11 +42,13 @@ def load_data():
 
     # Ensure columns match original schema order exactly + fototipo
     final_features = expected_features.copy()
-    final_features.remove('fototipo')
+    if 'fototipo' in final_features:
+        final_features.remove('fototipo')
     feature_names = final_features + ['ft_I', 'ft_II', 'ft_III', 'ft_IV', 'ft_V', 'ft_VI']
     
     # Reindex to ensure explicit feature order, filling missings with 0
     X_encoded = X_encoded.reindex(columns=feature_names, fill_value=0)
+    X_encoded = X_encoded.fillna(0) # Doble seguridad
     
     return X_encoded, y, feature_names
 
@@ -127,7 +132,7 @@ def run_pipeline():
     # ---------------------------------------------------------
     # Modelo 2: Random Forest (Benchmark)
     # ---------------------------------------------------------
-    rf_model = RandomForestClassifier(n_estimators=300, max_depth=None, min_samples_split=2, min_samples_leaf=1, class_weight='balanced_subsample', random_state=42)
+    rf_model = RandomForestClassifier(n_estimators=300, max_depth=20, min_samples_split=5, min_samples_leaf=3, class_weight='balanced_subsample', random_state=42)
     rf_model.fit(X_train, y_train)
     evaluate_model("RANDOM FOREST (Test Set)", rf_model, X_test, y_test)
 
@@ -135,8 +140,31 @@ def run_pipeline():
     # Re-entrenamiento Random Forest (Full Data) y Exportación
     # ---------------------------------------------------------
     print("\nReentrenando RANDOM FOREST sobre dataset completo para exportación...")
-    rf_final = RandomForestClassifier(n_estimators=300, max_depth=None, min_samples_split=2, min_samples_leaf=1, class_weight='balanced_subsample', random_state=42)
+    rf_final = RandomForestClassifier(n_estimators=300, max_depth=20, min_samples_split=5, min_samples_leaf=3, class_weight='balanced_subsample', random_state=42)
     rf_final.fit(X, y)
+
+    # --- ANÁLISIS DE IMPORTANCIA DE FEATURES (FASE 6.2D) ---
+    importances = rf_final.feature_importances_
+    indices = np.argsort(importances)[::-1]
+    
+    print("\n" + "="*50)
+    print("TOP 15 FEATURES (IMPORTANCE)")
+    print("="*50)
+    for f in range(15):
+        print(f"{f+1:2d}. {feature_names[indices[f]]:<25} : {importances[indices[f]]:.4f}")
+
+    NEW_FEATURES = ["prodromo_catarral", "despegamiento_epidermico", "borde_activo", "costra_mielicerica", "purpura_palpable", "engrosamiento_ungueal"]
+    print("\n" + "="*50)
+    print("IMPORTANCIA DE NUEVAS FEATURES HD")
+    print("="*50)
+    for feat in NEW_FEATURES:
+        if feat in feature_names:
+            idx = feature_names.index(feat)
+            rank = np.where(indices == idx)[0][0] + 1
+            print(f"Feature: {feat:<25} | Importancia: {importances[idx]:.4f} | Rank: {rank}")
+        else:
+            print(f"Feature: {feat:<25} | NOT FOUND IN MODEL")
+
     export_rf_to_json(rf_final, feature_names, rf_output_path)
     print(f"✅ Random Forest exportado a {rf_output_path}")
 

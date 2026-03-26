@@ -10,9 +10,12 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Paciente con eccema pruriginoso en flexuras de larga data, sin signos sistémicos.",
         input: {
             age: 25,
-            lesion_escama: true,
-            lesion_liquenificacion: true,
-            flexural: true,
+            escama: true,
+            liquenificacion: true,
+            prurito: true,
+            topo_flexural_pliegues: true,
+            extremidad_superior: true,
+            extremidad_inferior: true,
             timing: "chronic"
         },
         expected_priority: 3,
@@ -27,8 +30,9 @@ export const CLINICAL_CASES = [
             age: 16,
             lesion_papula: true,
             lesion_pustula: true,
-            topog_cabeza: true,
-            topo_cara_centro: true,
+            cabeza: true,
+            cara_centro: true,
+            comedon: true,
             timing: "subacute"
         },
         expected_priority: 3,
@@ -43,10 +47,11 @@ export const CLINICAL_CASES = [
             age: 40,
             lesion_placa: true,
             lesion_escama: true,
-            topog_tronco: true,
-            topog_ext_inf: true,
-            topo_rodillas: true,
-            patron_simetrico: true,
+            escama_nacarada: true,
+            tronco: true,
+            extremidad_inferior: true,
+            topo_friccion_extensora: true,
+            simetrico: true,
             timing: "chronic"
         },
         expected_priority: 3,
@@ -59,14 +64,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Eritema centrofacial persistente con pápulas inflamatorias.",
         input: {
             age: 35,
-            lesion_eritema: true,
-            lesion_papula: true,
-            topog_cabeza: true,
-            topo_cara_centro: true,
-            patron_seborreica: true,
+            eritema: true,
+            papula: true,
+            cabeza: true,
+            cara_centro: true,
+            fotoexpuesto: true,
             timing: "chronic"
         },
         expected_priority: 3,
+        expected_syndrome: "inflammatory_dermatosis_other",
         notes: "Derivación estándar a dermatología."
     },
     {
@@ -75,14 +81,16 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Vesículas sobre base eritematosa en trayecto dermatomal, dolor intenso.",
         input: {
             age: 65,
-            lesion_vesicula: true,
-            lesion_eritema: true,
-            signo_dolor: true,
-            topog_tronco: true,
+            vesicula: true,
+            eritema: true,
+            dolor: true,
+            tronco: true,
             dermatomal: true,
+            zosteriforme: true,
             timing: "acute"
         },
         expected_priority: 2,
+        expected_syndrome: "viral_skin_infection",
         notes: "Requiere tratamiento antiviral precoz por dolor y localización."
     },
     {
@@ -91,13 +99,13 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placa eritematosa, caliente y dolorosa en pierna con aumento progresivo.",
         input: {
             age: 50,
-            lesion_eritema: true,
-            signo_dolor: true,
-            topog_ext_inf: true,
-            topo_espinillas: true,
+            eritema: true,
+            dolor: true,
+            extremidad_inferior: true,
             timing: "acute"
         },
         expected_priority: 2,
+        expected_syndrome: "bacterial_skin_infection",
         notes: "Evolución aguda con dolor, requiere evaluación presencial inmediata."
     },
     {
@@ -107,12 +115,14 @@ export const CLINICAL_CASES = [
         input: {
             age: 28,
             farmacos_recientes: true,
-            lesion_macula: true,
-            lesion_papula: true,
+            eritema: true,
+            papula: true,
             generalizado: true,
+            tronco: true,
             timing: "acute"
         },
         expected_priority: 2,
+        expected_syndrome: "drug_reaction",
         notes: "Reacción adversa a fármacos, requiere suspensión y vigilancia."
     },
     {
@@ -121,13 +131,16 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Nódulo perlado con telangiectasias en ala nasal de meses de evolución.",
         input: {
             age: 70,
-            lesion_nodulo: true,
+            nodulo: true,
             telangiectasias: true,
-            topog_cabeza: true,
-            topo_cara_centro: true,
+            cabeza: true,
+            cara_centro: true,
+            localizado: true,
+            fotoexpuesto: true,
             timing: "chronic"
         },
         expected_priority: 2,
+        expected_syndrome: "cutaneous_tumor_suspected",
         notes: "Neoplasia maligna de crecimiento lento, requiere derivación prioritaria."
     },
     {
@@ -137,14 +150,15 @@ export const CLINICAL_CASES = [
         input: {
             age: 45,
             farmacos_recientes: true,
-            signo_fiebre: true,
-            lesion_ampolla: true,
-            lesion_macula: true,
-            signo_mucosas: true,
+            fiebre: true,
+            bula_ampolla: true,
+            erosion: true,
+            mucosas: true,
             generalizado: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "vesiculobullous_disease",
         notes: "URGENCIA VITAL. Riesgo de muerte por falla multiorgánica."
     },
     {
@@ -153,14 +167,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Púrpura palpable en extremidades inferiores con fiebre y dolor articular.",
         input: {
             age: 55,
-            lesion_purpura: true,
-            signo_fiebre: true,
-            signo_dolor: true,
-            topog_ext_inf: true,
-            topo_tobillos: true,
+            purpura: true,
+            fiebre: true,
+            dolor: true,
+            extremidad_inferior: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "vasculitic_purpuric_disease",
         notes: "Púrpura + Fiebre es una bandera roja crítica."
     },
     {
@@ -169,13 +183,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Ampollas flácidas que dejan erosiones dolorosas, signo de Nikolsky +.",
         input: {
             age: 50,
-            lesion_ampolla: true,
-            lesion_erosion: true,
-            signo_mucosas: true,
-            signo_dolor: true,
+            bula_ampolla: true,
+            erosion: true,
+            mucosas: true,
+            dolor: true,
+            tronco: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "vesiculobullous_disease",
         notes: "Enfermedad ampollosa autoinmune grave."
     },
     {
@@ -184,13 +200,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Dolor desproporcionado a la lesión física, edema tenso y fiebre.",
         input: {
             age: 60,
-            signo_dolor: true,
-            signo_fiebre: true,
-            topog_ext_inf: true,
-            lesion_eritema: true,
+            dolor: true,
+            fiebre: true,
+            extremidad_inferior: true,
+            eritema: true,
+            induracion: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "bacterial_skin_infection",
         notes: "Dolor desproporcionado + Fiebre = Emergencia Quirúrgica."
     },
     {
@@ -199,11 +217,13 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Habones generalizados evanescentes, muy pruriginosos, sin angioedema ni disnea.",
         input: {
             age: 30,
-            lesion_habon: true,
+            habon: true,
+            prurito: true,
             generalizado: true,
             timing: "acute"
         },
         expected_priority: 2,
+        expected_syndrome: "urticarial_dermatosis",
         notes: "Aunque es generalizada, la falta de compromiso sistémico la mantiene en P2."
     },
     {
@@ -212,13 +232,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placa heráldica seguida de exantema en árbol de navidad en tronco.",
         input: {
             age: 22,
-            lesion_placa: true,
-            lesion_escama: true,
-            topog_tronco: true,
-            patron_seborreica: true, // A veces se confunde en topografía
+            placa: true,
+            escama: true,
+            tronco: true,
+            anular: true,
             timing: "subacute"
         },
         expected_priority: 3,
+        expected_syndrome: "inflammatory_dermatosis_other", // Pitiriasis Rosada cae aquí
         notes: "Cuadro autolimitado benigno."
     },
     {
@@ -227,13 +248,17 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Múltiples placas anulares con borde activo descamativo en tronco y extremidades.",
         input: {
             age: 12,
-            lesion_placa: true,
-            lesion_escama: true,
-            topog_tronco: true,
-            topog_ext_inf: true,
+            placa: true,
+            escama: true,
+            curacion_central: true,
+            anular: true,
+            tronco: true,
+            extremidad_inferior: true,
+            prurito: true,
             timing: "chronic"
         },
         expected_priority: 3,
+        expected_syndrome: "fungal_skin_infection",
         notes: "Uso de antifúngicos tópicos/orales, no requiere urgencia."
     },
     {
@@ -242,13 +267,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Costras mielicéricas periorificiales en paciente pediátrico.",
         input: {
             age: 5,
-            lesion_costra: true,
-            lesion_eritema: true,
-            topog_cabeza: true,
-            topo_cara_centro: true,
+            costra: true,
+            eritema: true,
+            cabeza: true,
+            cara_centro: true,
+            localizado: true,
             timing: "acute"
         },
         expected_priority: 3,
+        expected_syndrome: "bacterial_skin_infection",
         notes: "Tratamiento antibiótico local, manejo por pediatría/APS."
     },
     {
@@ -257,13 +284,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Vesículas umbilicadas sobre áreas de dermatitis atópica previa, paciente febril.",
         input: {
             age: 3,
-            lesion_vesicula: true,
-            lesion_erosion: true,
-            signo_fiebre: true,
-            topog_cabeza: true,
+            vesicula: true,
+            erosion: true,
+            fiebre: true,
+            cabeza: true,
+            umbilicacion: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "viral_skin_infection",
         notes: "URGENCIA PEDIÁTRICA. Riesgo de diseminación sistémica."
     },
     {
@@ -273,13 +302,14 @@ export const CLINICAL_CASES = [
         input: {
             age: 40,
             farmacos_recientes: true,
-            signo_fiebre: true,
-            lesion_eritema: true,
+            fiebre: true,
+            eritema: true,
             generalizado: true,
-            topog_cabeza: true,
+            cabeza: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "drug_reaction",
         notes: "Reacción adversa grave con riesgo de compromiso multiorgánico."
     },
     {
@@ -288,15 +318,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Erosiones costrosas en áreas seborreicas (pecho/espalda), sin compromiso mucoso.",
         input: {
             age: 45,
-            lesion_erosion: true,
-            lesion_costra: true,
-            topog_tronco: true,
-            topo_pecho: true,
-            topo_espalda: true,
-            patron_seborreica: true,
+            erosion: true,
+            costra: true,
+            escama: true,
+            tronco: true,
             timing: "subacute"
         },
         expected_priority: 1,
+        expected_syndrome: "vesiculobullous_disease",
         notes: "Enfermedad ampollosa (aunque superficial) requiere manejo experto rápido."
     },
     {
@@ -305,12 +334,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Nódulo eritematoso de crecimiento rápido en pierna, asimétrico.",
         input: {
             age: 55,
-            lesion_nodulo: true,
-            lesion_eritema: true,
-            topog_ext_inf: true,
+            nodulo: true,
+            eritema: true,
+            extremidad_inferior: true,
+            localizado: true,
             timing: "subacute"
         },
         expected_priority: 2,
+        expected_syndrome: "cutaneous_tumor_suspected",
         notes: "Variante agresiva de melanoma, derivación inmediata."
     },
     {
@@ -319,13 +350,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Eritema y descamación en >90% de superficie corporal, escalofríos.",
         input: {
             age: 62,
-            lesion_eritema: true,
-            lesion_escama: true,
+            eritema: true,
+            escama: true,
             generalizado: true,
-            signo_fiebre: true,
+            fiebre: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "psoriasiform_dermatosis",
         notes: "URGENCIA. Riesgo de falla de barrera, hiponatremia e infección."
     },
     {
@@ -334,13 +366,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Edema, eritema y calor en párpados, fiebre, dolor al mover el ojo.",
         input: {
             age: 10,
-            lesion_eritema: true,
-            signo_fiebre: true,
-            signo_dolor: true,
-            topog_cabeza: true,
+            eritema: true,
+            fiebre: true,
+            dolor: true,
+            cabeza: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "bacterial_skin_infection",
         notes: "URGENCIA. Riesgo de celulitis orbitaria y compromiso del SNC."
     },
     {
@@ -349,12 +382,13 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placas purpúricas de patrón ramificado (livedo) con necrosis central.",
         input: {
             age: 58,
-            lesion_purpura: true,
-            lesion_escara: true,
-            lesion_erosion: true,
+            purpura: true,
+            erosion: true,
+            extremidad_inferior: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "vasculitic_purpuric_disease",
         notes: "Signo de oclusión vascular severa (vasculopatía livedoide o trombótica)."
     },
     {
@@ -363,13 +397,16 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Vesículas en frente y punta de la nariz (signo de Hutchinson), dolor ocular.",
         input: {
             age: 72,
-            lesion_vesicula: true,
-            topog_cabeza: true,
-            topo_cara_centro: true,
-            signo_dolor: true,
+            vesicula: true,
+            cabeza: true,
+            cara_centro: true,
+            dolor: true,
+            dermatomal: true,
+            zosteriforme: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "viral_skin_infection",
         notes: "URGENCIA. Riesgo de queratitis y pérdida de visión."
     },
     {
@@ -378,11 +415,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Lesiones en diana (target) en palmas y dorso de manos, sin fiebre.",
         input: {
             age: 19,
-            lesion_papula: true,
-            patron_acral: true,
+            papula: true,
+            eritema: true,
+            acral: true,
+            extremidad_superior: true,
             timing: "acute"
         },
         expected_priority: 2,
+        expected_syndrome: "inflammatory_dermatosis_other",
         notes: "Reacción inmunológica, requiere estudio de gatillante (ej: HSV)."
     },
     {
@@ -391,11 +431,13 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Lactante con fiebre alta que cede al aparecer exantema rosado.",
         input: {
             age: 1,
-            lesion_macula: true,
-            signo_fiebre: true,
+            eritema: true,
+            fiebre: true,
+            generalizado: true,
             timing: "acute"
         },
         expected_priority: 3,
+        expected_syndrome: "viral_skin_infection",
         notes: "Cuadro viral benigno frecuente en lactantes."
     },
     {
@@ -404,11 +446,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placas necróticas extensas en extremidades inferiores tras cuadro agudo.",
         input: {
             age: 38,
-            lesion_escara: true,
-            topog_ext_inf: true,
+            purpura: true,
+            ulcera: true,
+            extremidad_inferior: true,
+            dolor: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "vasculitic_purpuric_disease",
         notes: "Oclusión vascular masiva, emergencia médica."
     },
     {
@@ -417,12 +462,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Tumoración exofítica friable con núcleo ulcerado en dorso de mano.",
         input: {
             age: 75,
-            lesion_tumor: true,
-            lesion_ulcera: true,
-            topog_ext_inf: false, // Digamos que es extremidad
+            nodulo: true,
+            ulcera: true,
+            extremidad_superior: true,
+            fotoexpuesto: true,
+            localizado: true,
             timing: "chronic"
         },
         expected_priority: 2,
+        expected_syndrome: "cutaneous_tumor_suspected",
         notes: "Neoplasia maligna invasora, requiere cirugía prioritaria."
     },
     {
@@ -431,12 +479,16 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Pápulas y surcos generalizados con signos de sobreinfección y pústulas.",
         input: {
             age: 15,
-            lesion_papula: true,
-            lesion_pustula: true,
+            papula: true,
+            pustula: true,
+            surco: true,
+            prurito_nocturno: true,
+            contagio_familiar: true,
             generalizado: true,
             timing: "subacute"
         },
         expected_priority: 3,
+        expected_syndrome: "inflammatory_dermatosis_other",
         notes: "Manejo ambulatorio con tratamiento para ácaro y antibiótico oral."
     },
     {
@@ -445,11 +497,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Eritema, edema y vesiculación intensa tras uso de crema nueva.",
         input: {
             age: 42,
-            lesion_eritema: true,
-            lesion_vesicula: true,
+            eritema: true,
+            vesicula: true,
+            prurito: true,
+            localizado: true,
             timing: "acute"
         },
         expected_priority: 3,
+        expected_syndrome: "eczema_dermatitis",
         notes: "Reacción local inflamatoria, no compromete la vida."
     },
     {
@@ -458,13 +513,16 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Exantema morbiliforme en tronco con afectación de palmas y plantas.",
         input: {
             age: 29,
-            lesion_macula: true,
-            lesion_papula: true,
-            patron_acral: true,
+            eritema: true,
+            papula: true,
+            acral: true,
+            pies: true,
+            tronco: true,
             generalizado: true,
             timing: "subacute"
         },
         expected_priority: 2,
+        expected_syndrome: "inflammatory_dermatosis_other",
         notes: "MIMICKER. El patrón acral en cuadro generalizado debe escalar por sospecha de lúes."
     },
     {
@@ -474,11 +532,14 @@ export const CLINICAL_CASES = [
         input: {
             age: 34,
             inmunosupresion: true,
-            lesion_papula: true,
-            topog_cabeza: true,
+            papula: true,
+            cabeza: true,
+            cara_centro: true,
+            umbilicacion: true,
             timing: "chronic"
         },
         expected_priority: 2,
+        expected_syndrome: "viral_skin_infection",
         notes: "La inmunosupresión transforma un cuadro P3 en P2 por riesgo de infecciones oportunistas."
     },
     {
@@ -487,12 +548,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Costras y escamas masivas en todo el cuerpo, paciente postrado, poco prurito.",
         input: {
             age: 85,
-            lesion_escama: true,
-            lesion_costra: true,
+            escama: true,
+            costra: true,
             generalizado: true,
+            contagio_familiar: true,
             timing: "chronic"
         },
         expected_priority: 2,
+        expected_syndrome: "inflammatory_dermatosis_other",
         notes: "Altamente contagioso y riesgo de sepsis. Requiere derivación para aislamiento."
     },
     {
@@ -501,13 +564,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Úlcera profunda en talón, piel fría, cianótica, sin fiebre.",
         input: {
             age: 68,
-            riesgo_metabolico: true,
-            lesion_ulcera: true,
-            topog_ext_inf: true,
-            topo_pies: true,
+            diabetes: true,
+            ulcera: true,
+            extremidad_inferior: true,
+            pies: true,
             timing: "subacute"
         },
         expected_priority: 1,
+        expected_syndrome: "bacterial_skin_infection",
         notes: "Isquemia crítica en diabético es una urgencia de salvamento de extremidad."
     },
     {
@@ -516,14 +580,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Absceso doloroso y fístulas en axila, múltiples recurrencias.",
         input: {
             age: 26,
-            lesion_nodulo: true,
-            lesion_pustula: true,
-            signo_dolor: true,
-            topog_tronco: true,
-            topo_axilas: true,
+            nodulo: true,
+            pustula: true,
+            fistulas_supuracion: true,
+            dolor: true,
+            topo_flexural_pliegues: true,
             timing: "acute"
         },
         expected_priority: 2,
+        expected_syndrome: "bacterial_skin_infection",
         notes: "Cuadro muy doloroso que requiere drenaje o ajuste de tratamiento urgente."
     },
     {
@@ -532,13 +597,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Lagos de pus estériles sobre base eritematosa extensa, paciente febril.",
         input: {
             age: 52,
-            lesion_eritema: true,
-            lesion_pustula: true,
-            signo_fiebre: true,
+            eritema: true,
+            pustula: true,
+            fiebre: true,
             generalizado: true,
             timing: "acute"
         },
         expected_priority: 1,
+        expected_syndrome: "psoriasiform_dermatosis",
         notes: "URGENCIA. Variante grave de psoriasis con riesgo de falla sistémica."
     },
     {
@@ -547,11 +613,13 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Banda pigmentada ancha en uña de pulgar, distorsión de lámina.",
         input: {
             age: 50,
-            lesion_mancha: true,
-            patron_acral: true,
+            hiperpigmentacion: true,
+            acral: true,
+            localizado: true,
             timing: "chronic"
         },
         expected_priority: 2,
+        expected_syndrome: "cutaneous_tumor_suspected",
         notes: "Sospecha de malignidad en localización crítica."
     },
     {
@@ -560,13 +628,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Escamas amarillentas extensas en cara y pecho, paciente joven.",
         input: {
             age: 24,
-            lesion_escama: true,
-            lesion_eritema: true,
-            topog_cabeza: true,
-            patron_seborreica: true,
+            escama: true,
+            eritema: true,
+            cabeza: true,
+            cara_centro: true,
+            tronco: true,
             timing: "subacute"
         },
         expected_priority: 3,
+        expected_syndrome: "inflammatory_dermatosis_other",
         notes: "Presentación severa, pero estable. Podría motivar estudio de VIH pero es P3."
     },
     {
@@ -575,12 +645,15 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placa roja poco definida en cara tras uso crónico de corticoides tópicos.",
         input: {
             age: 45,
-            lesion_eritema: true,
-            lesion_placa: true,
-            topog_cabeza: true,
+            eritema: true,
+            placa: true,
+            escama: true,
+            cabeza: true,
+            cara_centro: true,
             timing: "chronic"
         },
         expected_priority: 3,
+        expected_syndrome: "fungal_skin_infection",
         notes: "Error diagnóstico común, manejo ambulatorio."
     },
     {
@@ -589,12 +662,14 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Red vascular cianótica persistente en piernas, dolor sordo.",
         input: {
             age: 33,
-            lesion_eritema: true,
-            signo_dolor: true,
-            topog_ext_inf: true,
+            eritema: true,
+            dolor: true,
+            purpura: true,
+            extremidad_inferior: true,
             timing: "acute"
         },
         expected_priority: 2,
+        expected_syndrome: "vasculitic_purpuric_disease",
         notes: "Signo de compromiso vascular, requiere estudio prioritario."
     },
     // --- NUEVOS CASOS DE FASE 2: BENCHMARK AVANZADO ---
@@ -604,11 +679,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Eritema unilateral en pierna, caliente, con fiebre de 38.5C y dolor intenso.",
         input: {
             age: 62,
-            lesion_eritema: true,
-            signo_dolor: true,
-            signo_fiebre: true,
-            topog_ext_inf: true,
-            topo_pantorrillas: true,
+            eritema: true,
+            dolor: true,
+            fiebre: true,
+            extremidad_inferior: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -621,11 +695,11 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Eritema en ambas piernas de meses de evolución, sin fiebre, prurito leve.",
         input: {
             age: 68,
-            lesion_eritema: true,
-            lesion_escama: true,
-            topog_ext_inf: true,
-            topo_tobillos: true,
-            patron_simetrico: true,
+            eritema: true,
+            escama: true,
+            prurito: true,
+            extremidad_inferior: true,
+            cronico: true,
             timing: "chronic"
         },
         expected_priority: 3,
@@ -638,10 +712,12 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Exantema morbiliforme súbito tras inicio de antibiótico, prurito intenso.",
         input: {
             age: 45,
-            lesion_eritema: true,
-            lesion_papula: true,
+            eritema: true,
+            papula: true,
             farmacos_recientes: true,
+            prurito: true,
             generalizado: true,
+            tronco: true,
             timing: "acute"
         },
         expected_priority: 2,
@@ -654,9 +730,9 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Erupción generalizada tras cuadro prodrómico de tos y rinorrea, febrícula.",
         input: {
             age: 8,
-            lesion_eritema: true,
-            lesion_papula: true,
-            signo_fiebre: true,
+            eritema: true,
+            papula: true,
+            fiebre: true,
             generalizado: true,
             timing: "acute"
         },
@@ -670,9 +746,12 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placas anulares con borde activo descamativo en tronco y extremidades.",
         input: {
             age: 32,
-            lesion_placa: true,
-            lesion_escama: true,
-            generalizado: true,
+            placa: true,
+            escama: true,
+            anular: true,
+            curacion_central: true,
+            tronco: true,
+            prurito: true,
             timing: "subacute"
         },
         expected_priority: 3,
@@ -685,10 +764,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Eritema universal (>90% SC), escalofríos y malestar general.",
         input: {
             age: 55,
-            lesion_eritema: true,
-            lesion_escama: true,
+            eritema: true,
+            escama: true,
             generalizado: true,
-            signo_fiebre: true,
+            fiebre: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -702,10 +781,9 @@ export const CLINICAL_CASES = [
         input: {
             age: 48,
             inmunosupresion: true,
-            signo_fiebre: true,
-            lesion_ulcera: true,
-            topog_tronco: true,
-            topo_axilas: true,
+            fiebre: true,
+            ulcera: true,
+            topo_flexural_pliegues: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -718,10 +796,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Púrpura palpable en piernas, dolor intenso y fiebre.",
         input: {
             age: 30,
-            lesion_purpura: true,
-            signo_dolor: true,
-            signo_fiebre: true,
-            topog_ext_inf: true,
+            purpura: true,
+            dolor: true,
+            fiebre: true,
+            extremidad_inferior: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -734,10 +812,12 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Desprendimiento cutáneo, signo de Nikolsky positivo y fiebre alta.",
         input: {
             age: 40,
-            lesion_bula: true,
-            lesion_erosion: true,
-            signo_mucosas: true,
-            signo_fiebre: true,
+            bula_ampolla: true,
+            erosion: true,
+            mucosas: true,
+            fiebre: true,
+            farmacos_recientes: true,
+            generalizado: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -750,9 +830,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Vesículas en párpado superior con edema y dolor.",
         input: {
             age: 28,
-            lesion_vesicula: true,
-            signo_dolor: true,
-            topog_cabeza: true,
+            vesicula: true,
+            dolor: true,
+            cabeza: true,
+            localizado: true,
             timing: "acute"
         },
         expected_priority: 2,
@@ -765,8 +846,8 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Pústulas foliculares tronco tras uso de tina caliente.",
         input: {
             age: 25,
-            lesion_pustula: true,
-            topog_tronco: true,
+            pustula: true,
+            tronco: true,
             timing: "acute"
         },
         expected_priority: 3,
@@ -779,10 +860,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Eritema malar en alas de mariposa, artralgias y fotosensibilidad.",
         input: {
             age: 22,
-            lesion_eritema: true,
-            patron_fotoexpuesto: true,
-            topog_cabeza: true,
-            topo_cara_centro: true,
+            eritema: true,
+            fotoexpuesto: true,
+            cabeza: true,
+            cara_centro: true,
             timing: "subacute"
         },
         expected_priority: 2,
@@ -795,9 +876,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Nódulo rosado de crecimiento rápido en pierna.",
         input: {
             age: 50,
-            lesion_nodulo: true,
-            lesion_eritema: true,
-            topog_ext_inf: true,
+            nodulo: true,
+            eritema: true,
+            extremidad_inferior: true,
+            localizado: true,
             timing: "subacute"
         },
         expected_priority: 2,
@@ -810,9 +892,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Lesión escamosa rasposa en cuero cabelludo calvo.",
         input: {
             age: 80,
-            lesion_escama: true,
-            topog_cabeza: true,
-            topo_cuero_cabelludo: true,
+            escama: true,
+            cabeza: true,
+            fotoexpuesto: true,
+            localizado: true,
             timing: "chronic"
         },
         expected_priority: 3,
@@ -825,11 +908,11 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Maceración interdigital crónica con eritema ascendente agudo y dolor.",
         input: {
             age: 45,
-            lesion_erosion: true,
-            signo_dolor: true,
-            topog_ext_inf: true,
-            topo_pies: true,
-            intertriginoso: true,
+            erosion: true,
+            dolor: true,
+            extremidad_inferior: true,
+            pies: true,
+            topo_flexural_pliegues: true,
             timing: "acute"
         },
         expected_priority: 2,
@@ -842,7 +925,7 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Habones pruriginosos diseminados, < 24h de evolución.",
         input: {
             age: 19,
-            lesion_habon: true,
+            habon: true,
             prurito: true,
             generalizado: true,
             timing: "acute"
@@ -857,9 +940,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Pápulas y nódulos extremadamente pruriginosos en genitales.",
         input: {
             age: 26,
-            lesion_nodulo: true,
-            lesion_papula: true,
+            nodulo: true,
+            papula: true,
             prurito: true,
+            prurito_nocturno: true,
             timing: "chronic"
         },
         expected_priority: 3,
@@ -872,9 +956,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placa eritematosa brillante en mejilla con borde elevado y fiebre.",
         input: {
             age: 72,
-            lesion_eritema: true,
-            signo_fiebre: true,
-            topog_cabeza: true,
+            eritema: true,
+            fiebre: true,
+            dolor: true,
+            cabeza: true,
             timing: "acute"
         },
         expected_priority: 1,
@@ -887,9 +972,10 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Placa única heraldica seguida de brote en árbol de navidad.",
         input: {
             age: 24,
-            lesion_placa: true,
-            lesion_escama: true,
-            topog_tronco: true,
+            placa: true,
+            escama: true,
+            tronco: true,
+            anular: true,
             timing: "subacute"
         },
         expected_priority: 3,
@@ -902,10 +988,12 @@ export const CLINICAL_CASES = [
         short_clinical_summary: "Lesión aperlada con úlcera central en nariz, años de evolución.",
         input: {
             age: 65,
-            lesion_nodulo: true,
-            lesion_ulcera: true,
-            topog_cabeza: true,
-            topo_cara_centro: true,
+            nodulo: true,
+            ulcera: true,
+            cabeza: true,
+            cara_centro: true,
+            fotoexpuesto: true,
+            localizado: true,
             timing: "chronic"
         },
         expected_priority: 3,

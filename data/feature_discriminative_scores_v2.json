@@ -84,7 +84,55 @@
     "rpr_top": "10.00",
     "dp_score": "1.000",
     "category": "ancla_absoluta",
-    "top_syndrome": "inflammatory_dermatosis_other",
+    "top_syndrome": "vasculitic_purpuric_disease",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "purpura_palpable",
+    "rpr_top": "15.00",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "vasculitic_purpuric_disease",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "borde_activo",
+    "rpr_top": "15.00",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "fungal_skin_infection",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "despegamiento_epidermico",
+    "rpr_top": "15.00",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "vesiculobullous_disease",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "costra_mielicerica",
+    "rpr_top": "15.00",
+    "dp_score": "1.000",
+    "category": "ancla_absoluta",
+    "top_syndrome": "bacterial_skin_infection",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "prodromo_catarral",
+    "rpr_top": "12.00",
+    "dp_score": "0.800",
+    "category": "altamente_especifico",
+    "top_syndrome": "viral_skin_infection",
+    "syndrome_diversity": 1
+  },
+  {
+    "feature": "engrosamiento_ungueal",
+    "rpr_top": "12.00",
+    "dp_score": "0.800",
+    "category": "altamente_especifico",
+    "top_syndrome": "psoriasiform_dermatosis",
     "syndrome_diversity": 1
   },
   {
