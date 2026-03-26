@@ -11,7 +11,7 @@ Cualquier cambio en la lógica clínica o los datos debe seguir este orden estri
 ### 1. Validación de Contrato (Schema)
 Antes de cualquier otra prueba, asegúrese de que el cambio no rompa el mapeo de variables:
 ```bash
-node tools/validate_case_schema.js
+node validation/scripts/validate_case_schema.js
 ```
 El éxito se define por `Total Unknown Inputs: 0`.
 
@@ -33,7 +33,7 @@ npm run validate
 
 ### B. Ajustar Pesos del Modelo
 - **No intente editar `engine/rf_model.json` manualmente**. Es un objeto serializado de Scikit-learn.
-- **Acción**: Si necesita cambios de fondo, debe re-entrenar usando `tools/train_and_evaluate.py` ajustando los hiperparámetros o el dataset en `data/training_cases_v2.csv`.
+- **Acción**: Si necesita cambios de fondo, debe re-entrenar usando `training/scripts/train_and_evaluate.py` ajustando los hiperparámetros o el dataset en `training/datasets/training_cases_v2.csv`.
 - **Excepción**: Los ajustes finos de recalibración se realizan en `data/classwise_bias_corrections_v1.json`.
 
 ### C. Reglas Heurísticas (Seguridad)

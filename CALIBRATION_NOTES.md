@@ -52,7 +52,7 @@ Este documento registra el proceso de calibración del motor clínico dirigido p
 - **Escenario**: Benchmark de Integridad con 60 casos clínicos (~120 variables).
 - **Performance Inicial (v1.2)**: ~73.3% (Fugas en oncología y contextos sistémicos).
 - **Performance Final (v1.3)**: **~88.3% Global | 100% P1 Safety**.
-- **Dataset**: Estructurado con `tools/validate_case_schema.js` (Cero UnknownInputs).
+- **Dataset**: Estructurado con `validation/scripts/validate_case_schema.js` (Cero UnknownInputs).
 
 ### 2. Hitos de Calibración
 Se implementaron capas de **Hardening Clínico** para cerrar brechas de sub-triage:

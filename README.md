@@ -37,12 +37,12 @@ Todo lo necesario para que la app funcione localmente en el navegador:
 
 ### ⚙️ Pipeline de Entrenamiento
 Herramientas para la evolución del modelo (no requeridas para el uso diario):
-- `tools/train_and_evaluate.py`: Script principal de entrenamiento (Python/Scikit-learn).
-- `data/training_cases_v2.csv`: Dataset maestro de entrenamiento.
+- `training/scripts/train_and_evaluate.py`: Script principal de entrenamiento (Python/Scikit-learn).
+- `training/datasets/training_cases_v2.csv`: Dataset maestro de entrenamiento.
 
 ### 🧪 Validación y Auditoría
-- `tools/validate_clinical_cases_hd.js`: Benchmark clínico de alta definición.
-- `tools/validate_case_schema.js`: Verificación de integridad del contrato de datos.
+- `validation/scripts/validate_clinical_cases_hd.js`: Benchmark clínico de alta definición.
+- `validation/scripts/validate_case_schema.js`: Verificación de integridad del contrato de datos.
 
 ### 📜 Research & Legacy (Archivo)
 - `archive/`: Contenedor de reportes históricos, scripts obsoletos y materiales de investigación que ya no forman parte del runtime activo.

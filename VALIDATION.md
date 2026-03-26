@@ -27,7 +27,7 @@ Este documento detalle el estado de validación técnica y clínica de DermatoTr
 El sistema se somete a un **Harness de Regresión Sincronizado** que evalúa 3 dimensiones:
 
 ### 1. Validación Estructural (Schema)
-Mediante `tools/validate_case_schema.js`, se asegura que cada caso en el benchmark cumple con el vector de 81 dimensiones del modelo actual. Garantiza 0 "Unknown Keys" en el flujo de inferencia.
+Mediante `validation/scripts/validate_case_schema.js`, se asegura que cada caso en el benchmark cumple con el vector de 81 dimensiones del modelo actual. Garantiza 0 "Unknown Keys" en el flujo de inferencia.
 
 ### 2. Seguridad Crítica (P1 Safety)
 Se estresa el motor con señales cardinales de emergencia (Necrosis, Nikolsky +, Dolor desproporcionado). El éxito se define por la inmediatez del triage P1, independientemente de la clase sugerida por el modelo estadístico.
