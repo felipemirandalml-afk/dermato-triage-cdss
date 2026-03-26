@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { runTriage } from '../model.js';
+import { runTriage } from '../../runtime/engine/model.js';
 
 // 1. Cargar Datos
 const easyCases = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/tests/generated_easy_cases.json', 'utf8'));

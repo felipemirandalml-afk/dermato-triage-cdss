@@ -3,8 +3,8 @@
  * Verifica que el contrato de entrada del modelo probabilístico esté sincronizado
  * con las constantes de la aplicación y el encoder.
  */
-import { MODEL_DATA } from '../engine/probabilistic_model.js';
-import { FEATURE_INDEX, PROBABILISTIC_FEATURES } from '../engine/constants.js';
+import { MODEL_DATA } from '../../runtime/engine/probabilistic_model.js';
+import { FEATURE_INDEX, PROBABILISTIC_FEATURES } from '../../runtime/engine/constants.js';
 
 console.log("--- AUDITORÍA DE CONTRATO PROBABILÍSTICO ---");
 

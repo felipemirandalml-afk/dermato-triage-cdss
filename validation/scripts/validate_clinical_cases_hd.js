@@ -4,9 +4,9 @@
  * Este script ejecuta el dataset clinical_cases_hd.js contra el modelo de 81 dimensiones.
  */
 
-import { CLINICAL_CASES_HD } from '../data/clinical_cases_hd.js';
-import { runTriage } from '../model.js';
-import { PROBABILISTIC_FEATURES } from '../engine/constants.js';
+import { CLINICAL_CASES_HD } from '../datasets/clinical_cases_hd.js';
+import { runTriage } from '../../runtime/engine/model.js';
+import { PROBABILISTIC_FEATURES } from '../../runtime/engine/constants.js';
 
 console.log("==================================================");
 console.log("       DERMATOTRIAGE HD BENCHMARK v3.0         ");

@@ -1,6 +1,6 @@
-import { encodeFeatures, predict, explain, interpretResult, runTriage, FEATURE_INDEX, FEATURE_MAP_LABELS } from './model.js';
-import { CLINICAL_CASES } from './data/clinical_cases.js';
-import { generateClinicalReport } from './engine/export_service.js';
+import { encodeFeatures, predict, explain, interpretResult, runTriage, FEATURE_INDEX, FEATURE_MAP_LABELS } from '../engine/model.js';
+import { CLINICAL_CASES } from '../../validation/datasets/clinical_cases.js';
+import { generateClinicalReport } from '../engine/export_service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('triageForm');

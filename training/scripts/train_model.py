@@ -10,16 +10,16 @@ def train_dermato_triage_model():
     y exporta los coeficientes para su uso en el motor JavaScript.
     """
     # Rutas de archivos
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    data_path = os.path.join(base_dir, "data", "training_cases.csv")
-    output_path = os.path.join(base_dir, "engine", "model_coefficients.json")
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    data_path = os.path.join(base_dir, "training", "datasets", "training_cases.csv")
+    output_path = os.path.join(base_dir, "runtime", "engine", "model_coefficients.json")
     
     # 1. Cargar datos y esquema
     if not os.path.exists(data_path):
         print(f"Error: No se encontró el archivo {data_path}")
         return
 
-    schema_path = os.path.join(base_dir, "engine", "feature_schema.json")
+    schema_path = os.path.join(base_dir, "runtime", "engine", "feature_schema.json")
     with open(schema_path, "r", encoding="utf-8") as f:
         schema = json.load(f)
     

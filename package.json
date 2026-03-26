@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "npx -y serve .",
-    "test": "node tools/test_probabilistic_engine.js",
-    "validate": "node tools/validate_clinical_cases_hd.js"
+    "test": "node research/experimental/test_probabilistic_engine.js",
+    "validate": "node validation/scripts/validate_clinical_cases_hd.js"
   }
 }

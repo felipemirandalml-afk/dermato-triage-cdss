@@ -1,7 +1,7 @@
-import { runTriage } from '../model.js';
-import { CLINICAL_CASES } from '../data/clinical_cases.js';
-import { HARDENING_CASES } from '../data/hardening_cases_v2.js';
-import { SYNDROME_TO_ONTOLOGY_MAP } from '../engine/syndrome_to_ontology_map.js';
+import { runTriage } from '../../runtime/engine/model.js';
+import { CLINICAL_CASES } from '../datasets/clinical_cases.js';
+import { HARDENING_CASES } from '../datasets/hardening_cases_v2.js';
+import { SYNDROME_TO_ONTOLOGY_MAP } from '../../runtime/engine/syndrome_to_ontology_map.js';
 import fs from 'fs';
 
 const ALL_CASES = [...CLINICAL_CASES, ...HARDENING_CASES];

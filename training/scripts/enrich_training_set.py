@@ -4,9 +4,9 @@ import os
 import json
 
 def enrich_training_set():
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    data_path = os.path.join(base_dir, "data", "training_cases.csv")
-    schema_path = os.path.join(base_dir, "engine", "feature_schema.json")
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    data_path = os.path.join(base_dir, "training", "datasets", "training_cases.csv")
+    schema_path = os.path.join(base_dir, "runtime", "engine", "feature_schema.json")
 
     # 1. Cargar esquema para asegurar consistencia
     with open(schema_path, "r", encoding="utf-8") as f:

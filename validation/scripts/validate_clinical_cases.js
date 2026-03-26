@@ -1,7 +1,7 @@
-import { runTriage } from '../model.js';
-import { encodeFeatures } from '../engine/feature_encoder.js';
-import { CLINICAL_CASES } from '../data/clinical_cases.js';
-import { HARDENING_CASES } from '../data/hardening_cases_v2.js';
+import { runTriage } from '../../runtime/engine/model.js';
+import { encodeFeatures } from '../../runtime/engine/feature_encoder.js';
+import { CLINICAL_CASES } from '../datasets/clinical_cases.js';
+import { HARDENING_CASES } from '../datasets/hardening_cases_v2.js';
 import { validateDatasetSchema } from './validate_case_schema.js';
 
 const COLORS = {

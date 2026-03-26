@@ -5,13 +5,13 @@ import random
 import os
 
 def run():
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    map_path = os.path.join(base_dir, "engine", "syndrome_to_ontology_map.js")
-    semiology_path = os.path.join(base_dir, "engine", "semiology_profiles.json")
-    schema_path = os.path.join(base_dir, "engine", "feature_schema.json")
-    train_csv_path = os.path.join(base_dir, "data", "training_cases.csv")
-    aug_csv_path = os.path.join(base_dir, "data", "training_cases_v2.csv")
-    explainability_path = os.path.join(base_dir, "data", "feature_weights_explainability.json")
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    map_path = os.path.join(base_dir, "runtime", "engine", "syndrome_to_ontology_map.js")
+    semiology_path = os.path.join(base_dir, "runtime", "engine", "semiology_profiles.json")
+    schema_path = os.path.join(base_dir, "runtime", "engine", "feature_schema.json")
+    train_csv_path = os.path.join(base_dir, "training", "datasets", "training_cases.csv")
+    aug_csv_path = os.path.join(base_dir, "training", "datasets", "training_cases_v2.csv")
+    explainability_path = os.path.join(base_dir, "training", "datasets", "feature_weights_explainability.json")
 
     # 1. Cargar el mapa y perfiles
     with open(map_path, 'r', encoding='utf-8') as f:

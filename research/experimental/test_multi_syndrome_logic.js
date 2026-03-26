@@ -1,7 +1,7 @@
 /**
  * tools/test_multi_syndrome_logic.js - Suite de pruebas para el motor de ambigüedad
  */
-import { runTriage } from '../model.js';
+import { runTriage } from '../../runtime/engine/model.js';
 
 const COLORS = {
     reset: "\x1b[0m",

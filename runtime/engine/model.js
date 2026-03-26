@@ -3,16 +3,16 @@
  * Arquitectura modular recalibrada v1.0 (Phase 15)
  */
 
-import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI } from './engine/constants.js';
-import { encodeFeatures, createFeatureHelper } from './engine/feature_encoder.js';
-import { predictBaseline } from './engine/baseline_model.js';
-import { applySafetyModifiers, applyBlockModifiers } from './engine/safety_modifiers.js';
-import { applyContextModifiers, applyRefinementModifiers } from './engine/context_modifiers.js';
-import { interpretResult, explain, buildResult } from './engine/interpreter.js';
-import { predictProbabilisticSyndrome } from './engine/probabilistic_model.js';
-import { rankDifferentials } from './engine/differential_ranker.js';
-import { CARDINAL_FEATURE_RULES } from './engine/cardinal_feature_rules.js';
-import { recalibrationEngine } from './engine/recalibration_engine.js';
+import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI } from './constants.js';
+import { encodeFeatures, createFeatureHelper } from './feature_encoder.js';
+import { predictBaseline } from './baseline_model.js';
+import { applySafetyModifiers, applyBlockModifiers } from './safety_modifiers.js';
+import { applyContextModifiers, applyRefinementModifiers } from './context_modifiers.js';
+import { interpretResult, explain, buildResult } from './interpreter.js';
+import { predictProbabilisticSyndrome } from './probabilistic_model.js';
+import { rankDifferentials } from './differential_ranker.js';
+import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
+import { recalibrationEngine } from './recalibration_engine.js';
 
 // Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };

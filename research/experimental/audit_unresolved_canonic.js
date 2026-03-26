@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import conceptMapper from '../engine/concept_mapper.js';
-import { FEATURE_INDEX } from '../engine/constants.js';
+import conceptMapper from '../../runtime/engine/concept_mapper.js';
+import { FEATURE_INDEX } from '../../runtime/engine/constants.js';
 
 const BASE_DIR = 'd:/dermato-triage-cdss';
 const UI_PATH = path.join(BASE_DIR, 'index.html');

@@ -40,8 +40,8 @@ const CONCEPT_MAPPING = {
     'burrow': 'surco'
 };
 
-const CSV_PATH = path.join(__dirname, '../data/derm1m/concept.csv');
-const OUTPUT_PATH = path.join(__dirname, '../engine/semiology_profiles.json');
+const CSV_PATH = path.join(__dirname, '../../runtime/data/derm1m/concept.csv');
+const OUTPUT_PATH = path.join(__dirname, '../../runtime/engine/semiology_profiles.json');
 
 // Un parser de línea CSV simple pero que maneja comas dentro de comillas
 function parseCSVLine(line) {

@@ -1,4 +1,4 @@
-import { runTriage } from '../model.js';
+import { runTriage } from '../../runtime/engine/model.js';
 import fs from 'fs';
 
 const cases = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/tests/generated_synthetic_cases.json', 'utf8'));

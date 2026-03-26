@@ -1,4 +1,4 @@
-import { runTriage } from '../model.js';
+import { runTriage } from '../../runtime/engine/model.js';
 
 const testCases = [
     {

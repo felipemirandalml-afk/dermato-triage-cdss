@@ -9,11 +9,11 @@ from sklearn.metrics import classification_report, accuracy_score, confusion_mat
 from sklearn.preprocessing import StandardScaler
 
 # Rutas
-base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-data_path = os.path.join(base_dir, "data", "training_cases_v2.csv")
-schema_path = os.path.join(base_dir, "engine", "feature_schema.json")
-output_path = os.path.join(base_dir, "engine", "model_coefficients.json")
-rf_output_path = os.path.join(base_dir, "engine", "rf_model.json")
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+data_path = os.path.join(base_dir, "training", "datasets", "training_cases_v2.csv")
+schema_path = os.path.join(base_dir, "runtime", "engine", "feature_schema.json")
+output_path = os.path.join(base_dir, "runtime", "engine", "model_coefficients.json")
+rf_output_path = os.path.join(base_dir, "runtime", "engine", "rf_model.json")
 
 def load_data():
     with open(schema_path, "r", encoding="utf-8") as f:

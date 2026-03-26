@@ -3,7 +3,7 @@
  * Sistema de validación automatizada para el motor probabilístico de DermatoTriage.
  */
 
-import { runTriage } from '../model.js';
+import { runTriage } from '../../runtime/engine/model.js';
 
 const scenarios = [
     {

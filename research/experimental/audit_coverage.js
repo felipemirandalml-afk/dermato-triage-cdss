@@ -1,5 +1,5 @@
-import { SYNDROME_TO_ONTOLOGY_MAP } from '../engine/syndrome_to_ontology_map.js';
-import SEMIOLOGY_PROFILES from '../engine/semiology_profiles.json' with { type: 'json' };
+import { SYNDROME_TO_ONTOLOGY_MAP } from '../../runtime/engine/syndrome_to_ontology_map.js';
+import SEMIOLOGY_PROFILES from '../../runtime/engine/semiology_profiles.json' with { type: 'json' };
 
 function normalizeDiseaseName(name) {
     let normalized = name.toLowerCase().trim();

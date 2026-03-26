@@ -1,6 +1,6 @@
-import { CLINICAL_CASES } from '../data/clinical_cases.js';
-import { FEATURE_INDEX } from '../engine/constants.js';
-import conceptMapper from '../engine/concept_mapper.js';
+import { CLINICAL_CASES } from '../datasets/clinical_cases.js';
+import { FEATURE_INDEX } from '../../runtime/engine/constants.js';
+import { conceptMapper } from '../../runtime/engine/concept_mapper.js';
 
 const COLORS = {
     reset: "\x1b[0m",

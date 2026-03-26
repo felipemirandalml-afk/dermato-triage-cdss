@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import conceptMapper from '../engine/concept_mapper.js';
+import conceptMapper from '../../runtime/engine/concept_mapper.js';
 
 const PROFILES_PATH = 'd:/dermato-triage-cdss/engine/semiology_profiles.json';
 

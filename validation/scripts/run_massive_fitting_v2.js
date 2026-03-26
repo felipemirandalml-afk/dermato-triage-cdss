@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { runTriage } from '../model.js';
-import { recalibrationEngine } from '../engine/recalibration_engine.js';
+import { runTriage } from '../../runtime/engine/model.js';
+import { recalibrationEngine } from '../../runtime/engine/recalibration_engine.js';
 
 // 1. Cargar Dataset 80k (Fit Set)
 const fitSet = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/data/f20v2_fitting/fit_set_80k.json', 'utf8'));
