@@ -4,7 +4,7 @@
  * Implementación basada en Clinical Schema SSoT v1.0.
  */
 
-import SCHEMA_DATA from './clinical_schema.json' with { type: 'json' };
+import SCHEMA_DATA from '../data/concept_canonical_map.json' with { type: 'json' };
 
 /**
  * Provee resolución explícita de conceptos basada en el schema canónico.
@@ -17,13 +17,13 @@ class ConceptMapper {
     }
 
     _initialize() {
-        if (!SCHEMA_DATA || !SCHEMA_DATA.features) {
+        if (!SCHEMA_DATA || !SCHEMA_DATA.concepts) {
             console.error("ConceptMapper: Schema data invalid or missing.");
             return;
         }
 
-        SCHEMA_DATA.features.forEach(feature => {
-            const canonical = feature.canonical;
+        SCHEMA_DATA.concepts.forEach(feature => {
+            const canonical = feature.canonical_id;
             this.metadata.set(canonical, feature);
 
             // 1. Registro del ID Canónico

@@ -6,11 +6,26 @@
       "canonical_label": "Mácula",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["macule", "patch"],
+      "aliases": [
+        "macule",
+        "patch"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "macule", "confidence": "exact"},
-        {"source": "skincon", "label": "Macule", "confidence": "exact"},
-        {"source": "skincon", "label": "Patch", "confidence": "approximate"}
+        {
+          "source": "derm1m",
+          "label": "macule",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Macule",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Patch",
+          "confidence": "approximate"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -20,9 +35,15 @@
       "canonical_label": "Mancha",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["patch_large"],
+      "aliases": [
+        "patch_large"
+      ],
       "source_mappings": [
-         {"source": "skincon", "label": "Patch", "confidence": "approximate"}
+        {
+          "source": "skincon",
+          "label": "Patch",
+          "confidence": "approximate"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -32,10 +53,24 @@
       "canonical_label": "Pápula",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["papule", "maculopapule", "papulopustule", "papulovesicle", "papulonodule"],
+      "aliases": [
+        "papule",
+        "maculopapule",
+        "papulopustule",
+        "papulovesicle",
+        "papulonodule"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "papule", "confidence": "exact"},
-        {"source": "skincon", "label": "Papule", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "papule",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Papule",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -45,10 +80,20 @@
       "canonical_label": "Placa",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["plaque"],
+      "aliases": [
+        "plaque"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "plaque", "confidence": "exact"},
-        {"source": "skincon", "label": "Plaque", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "plaque",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Plaque",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -58,10 +103,21 @@
       "canonical_label": "Vesícula",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["vesicle", "papulovesicle"],
+      "aliases": [
+        "vesicle",
+        "papulovesicle"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "vesicle", "confidence": "exact"},
-        {"source": "skincon", "label": "Vesicle", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "vesicle",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Vesicle",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -71,10 +127,21 @@
       "canonical_label": "Pústula",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["pustule", "papulopustule"],
+      "aliases": [
+        "pustule",
+        "papulopustule"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "pustule", "confidence": "exact"},
-        {"source": "skincon", "label": "Pustule", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "pustule",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Pustule",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -84,10 +151,21 @@
       "canonical_label": "Ampolla / Bula",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["bulla", "blister"],
+      "aliases": [
+        "bulla",
+        "blister"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "bulla", "confidence": "exact"},
-        {"source": "skincon", "label": "Bulla", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "bulla",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Bulla",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -97,10 +175,21 @@
       "canonical_label": "Nódulo",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["nodule", "papulonodule"],
+      "aliases": [
+        "nodule",
+        "papulonodule"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "nodule", "confidence": "exact"},
-        {"source": "skincon", "label": "Nodule", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "nodule",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Nodule",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -110,9 +199,15 @@
       "canonical_label": "Tumor",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["tumor_mass"],
+      "aliases": [
+        "tumor_mass"
+      ],
       "source_mappings": [
-        {"source": "skincon", "label": "Abscess", "confidence": "partial"}
+        {
+          "source": "skincon",
+          "label": "Abscess",
+          "confidence": "partial"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -122,10 +217,20 @@
       "canonical_label": "Quiste",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["cyst"],
+      "aliases": [
+        "cyst"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "cyst", "confidence": "exact"},
-        {"source": "skincon", "label": "Cyst", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "cyst",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Cyst",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -135,10 +240,24 @@
       "canonical_label": "Vegetación",
       "semantic_group": "lesion_primaria_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["fungating", "exophytic", "vegetating", "warty/papillomatous", "verrucous"],
+      "aliases": [
+        "fungating",
+        "exophytic",
+        "vegetating",
+        "warty/papillomatous",
+        "verrucous"
+      ],
       "source_mappings": [
-        {"source": "skincon", "label": "Exophytic/Fungating", "confidence": "exact"},
-        {"source": "skincon", "label": "Warty/Papillomatous", "confidence": "exact"}
+        {
+          "source": "skincon",
+          "label": "Exophytic/Fungating",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Warty/Papillomatous",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -148,10 +267,22 @@
       "canonical_label": "Eritema",
       "semantic_group": "color_vascular",
       "granularity_level": "canonical",
-      "aliases": ["erythema", "red", "pink"],
+      "aliases": [
+        "erythema",
+        "red",
+        "pink"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "erythema", "confidence": "exact"},
-        {"source": "skincon", "label": "Erythema", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "erythema",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Erythema",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -161,10 +292,23 @@
       "canonical_label": "Púrpura / Petequias",
       "semantic_group": "color_vascular",
       "granularity_level": "canonical",
-      "aliases": ["purpura", "petechiae", "ecchymotic", "hemorrhage"],
+      "aliases": [
+        "purpura",
+        "petechiae",
+        "ecchymotic",
+        "hemorrhage"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "purpura", "confidence": "exact"},
-        {"source": "skincon", "label": "Purpura/Petechiae", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "purpura",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Purpura/Petechiae",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -174,7 +318,10 @@
       "canonical_label": "Color Violáceo",
       "semantic_group": "color_vascular",
       "granularity_level": "canonical",
-      "aliases": ["violaceous", "purple"],
+      "aliases": [
+        "violaceous",
+        "purple"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true,
@@ -185,11 +332,29 @@
       "canonical_label": "Hiperpigmentación",
       "semantic_group": "color_pigmentario",
       "granularity_level": "canonical",
-      "aliases": ["hyperpigmentation", "brown", "black", "pigmentation", "melanotic"],
+      "aliases": [
+        "hyperpigmentation",
+        "brown",
+        "black",
+        "pigmentation",
+        "melanotic"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "brown(hyperpigmentation)", "confidence": "exact"},
-        {"source": "skincon", "label": "Brown(Hyperpigmentation)", "confidence": "exact"},
-        {"source": "skincon", "label": "Black", "confidence": "approximate"}
+        {
+          "source": "derm1m",
+          "label": "brown(hyperpigmentation)",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Brown(Hyperpigmentation)",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Black",
+          "confidence": "approximate"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -199,10 +364,21 @@
       "canonical_label": "Hipopigmentación",
       "semantic_group": "color_pigmentario",
       "granularity_level": "canonical",
-      "aliases": ["hypopigmentation", "white"],
+      "aliases": [
+        "hypopigmentation",
+        "white"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "white(hypopigmentation)", "confidence": "exact"},
-        {"source": "skincon", "label": "White(Hypopigmentation)", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "white(hypopigmentation)",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "White(Hypopigmentation)",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -212,10 +388,23 @@
       "canonical_label": "Escama",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["scale", "scaly", "desquamation", "hyperkeratotic"],
+      "aliases": [
+        "scale",
+        "scaly",
+        "desquamation",
+        "hyperkeratotic"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "scale", "confidence": "exact"},
-        {"source": "skincon", "label": "Scale", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "scale",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Scale",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -225,10 +414,21 @@
       "canonical_label": "Costra",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["crust", "crusted"],
+      "aliases": [
+        "crust",
+        "crusted"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "crust", "confidence": "exact"},
-        {"source": "skincon", "label": "Crust", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "crust",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Crust",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -238,10 +438,21 @@
       "canonical_label": "Úlcera",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["ulcer", "ulcerated"],
+      "aliases": [
+        "ulcer",
+        "ulcerated"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "ulcer", "confidence": "exact"},
-        {"source": "skincon", "label": "Ulcer", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "ulcer",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Ulcer",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -251,10 +462,21 @@
       "canonical_label": "Erosión",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["erosion", "eroded"],
+      "aliases": [
+        "erosion",
+        "eroded"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "erosion", "confidence": "exact"},
-        {"source": "skincon", "label": "Erosion", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "erosion",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Erosion",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -264,10 +486,20 @@
       "canonical_label": "Excoriación",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["excoriation"],
+      "aliases": [
+        "excoriation"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "excoriation", "confidence": "exact"},
-        {"source": "skincon", "label": "Excoriation", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "excoriation",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Excoriation",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -277,10 +509,20 @@
       "canonical_label": "Atrofia",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["atrophy"],
+      "aliases": [
+        "atrophy"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "atrophy", "confidence": "exact"},
-        {"source": "skincon", "label": "Atrophy", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "atrophy",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Atrophy",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -290,7 +532,10 @@
       "canonical_label": "Necrosis",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["necrosis", "eschar"],
+      "aliases": [
+        "necrosis",
+        "eschar"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true,
@@ -301,9 +546,16 @@
       "canonical_label": "Cicatriz",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["scar", "keloid"],
+      "aliases": [
+        "scar",
+        "keloid"
+      ],
       "source_mappings": [
-        {"source": "skincon", "label": "Scar", "confidence": "exact"}
+        {
+          "source": "skincon",
+          "label": "Scar",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -313,9 +565,16 @@
       "canonical_label": "Fisura",
       "semantic_group": "lesion_secundaria",
       "granularity_level": "canonical",
-      "aliases": ["fissure", "fissured"],
+      "aliases": [
+        "fissure",
+        "fissured"
+      ],
       "source_mappings": [
-        {"source": "skincon", "label": "Fissure", "confidence": "exact"}
+        {
+          "source": "skincon",
+          "label": "Fissure",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -325,10 +584,20 @@
       "canonical_label": "Habón / Roncha",
       "semantic_group": "lesion_primaria",
       "granularity_level": "canonical",
-      "aliases": ["wheal"],
+      "aliases": [
+        "wheal"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "wheal", "confidence": "exact"},
-        {"source": "skincon", "label": "Wheal", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "wheal",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Wheal",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -338,10 +607,20 @@
       "canonical_label": "Comedón",
       "semantic_group": "superficie_poros",
       "granularity_level": "canonical",
-      "aliases": ["comedo"],
+      "aliases": [
+        "comedo"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "comedo", "confidence": "exact"},
-        {"source": "skincon", "label": "Comedo", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "comedo",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Comedo",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -351,10 +630,20 @@
       "canonical_label": "Surco",
       "semantic_group": "superficie_poros",
       "granularity_level": "canonical",
-      "aliases": ["burrow"],
+      "aliases": [
+        "burrow"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "burrow", "confidence": "exact"},
-        {"source": "skincon", "label": "Burrow", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "burrow",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Burrow",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -364,10 +653,20 @@
       "canonical_label": "Telangiectasias",
       "semantic_group": "vascular",
       "granularity_level": "canonical",
-      "aliases": ["telangiectasia"],
+      "aliases": [
+        "telangiectasia"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "telangiectasia", "confidence": "exact"},
-        {"source": "skincon", "label": "Telangiectasia", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "telangiectasia",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Telangiectasia",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -377,10 +676,21 @@
       "canonical_label": "Liquenificación",
       "semantic_group": "superficie_poros",
       "granularity_level": "canonical",
-      "aliases": ["lichenification", "lichenoid"],
+      "aliases": [
+        "lichenification",
+        "lichenoid"
+      ],
       "source_mappings": [
-        {"source": "derm1m", "label": "lichenification", "confidence": "exact"},
-        {"source": "skincon", "label": "Lichenification", "confidence": "exact"}
+        {
+          "source": "derm1m",
+          "label": "lichenification",
+          "confidence": "exact"
+        },
+        {
+          "source": "skincon",
+          "label": "Lichenification",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -390,7 +700,12 @@
       "canonical_label": "Configuración Anular",
       "semantic_group": "geometria_forma",
       "granularity_level": "modifier",
-      "aliases": ["annular", "arcuate", "round", "oval"],
+      "aliases": [
+        "annular",
+        "arcuate",
+        "round",
+        "oval"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -400,7 +715,11 @@
       "canonical_label": "Configuración Lineal",
       "semantic_group": "geometria_forma",
       "granularity_level": "modifier",
-      "aliases": ["linear", "linear arrangement", "serpiginous"],
+      "aliases": [
+        "linear",
+        "linear arrangement",
+        "serpiginous"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -410,7 +729,13 @@
       "canonical_label": "Configuración Zosteriforme",
       "semantic_group": "geometria_forma",
       "granularity_level": "modifier",
-      "aliases": ["zosteriform", "dermatomal", "herpetiform", "clustered", "grouped"],
+      "aliases": [
+        "zosteriform",
+        "dermatomal",
+        "herpetiform",
+        "clustered",
+        "grouped"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -420,9 +745,16 @@
       "canonical_label": "Umbilicación",
       "semantic_group": "geometria_forma",
       "granularity_level": "modifier",
-      "aliases": ["umbilicated", "molluscoid"],
+      "aliases": [
+        "umbilicated",
+        "molluscoid"
+      ],
       "source_mappings": [
-        {"source": "skincon", "label": "Umbilicated", "confidence": "exact"}
+        {
+          "source": "skincon",
+          "label": "Umbilicated",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -432,9 +764,15 @@
       "canonical_label": "Forma Cupuliforme",
       "semantic_group": "geometria_forma",
       "granularity_level": "modifier",
-      "aliases": ["dome-shaped"],
+      "aliases": [
+        "dome-shaped"
+      ],
       "source_mappings": [
-        {"source": "skincon", "label": "Dome-shaped", "confidence": "exact"}
+        {
+          "source": "skincon",
+          "label": "Dome-shaped",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -444,9 +782,16 @@
       "canonical_label": "Color Azul",
       "semantic_group": "color_pigmentario",
       "granularity_level": "modifier",
-      "aliases": ["blue", "blue whitish veil"],
+      "aliases": [
+        "blue",
+        "blue whitish veil"
+      ],
       "source_mappings": [
-        {"source": "skincon", "label": "Blue", "confidence": "exact"}
+        {
+          "source": "skincon",
+          "label": "Blue",
+          "confidence": "exact"
+        }
       ],
       "usable_in_ui": false,
       "usable_in_rules": true
@@ -456,7 +801,12 @@
       "canonical_label": "Tronco (Pecho/Espalda)",
       "semantic_group": "anatomia_topografia",
       "granularity_level": "canonical",
-      "aliases": ["topog_tronco", "chest", "back", "torso"],
+      "aliases": [
+        "topog_tronco",
+        "chest",
+        "back",
+        "torso"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -466,7 +816,11 @@
       "canonical_label": "Cabeza y Cuello",
       "semantic_group": "anatomia_topografia",
       "granularity_level": "canonical",
-      "aliases": ["topog_cabeza", "head", "neck"],
+      "aliases": [
+        "topog_cabeza",
+        "head",
+        "neck"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -476,7 +830,11 @@
       "canonical_label": "Cara (Región Central)",
       "semantic_group": "anatomia_topografia",
       "granularity_level": "canonical",
-      "aliases": ["topo_cara_centro", "centrofacial", "face"],
+      "aliases": [
+        "topo_cara_centro",
+        "centrofacial",
+        "face"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -486,7 +844,12 @@
       "canonical_label": "Extremidad Inferior",
       "semantic_group": "anatomia_topografia",
       "granularity_level": "canonical",
-      "aliases": ["topog_ext_inf", "legs", "thigh", "shin"],
+      "aliases": [
+        "topog_ext_inf",
+        "legs",
+        "thigh",
+        "shin"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -496,7 +859,10 @@
       "canonical_label": "Palmas",
       "semantic_group": "anatomia_topografia",
       "granularity_level": "canonical",
-      "aliases": ["topo_palmas", "palmar"],
+      "aliases": [
+        "topo_palmas",
+        "palmar"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -506,7 +872,10 @@
       "canonical_label": "Plantas",
       "semantic_group": "anatomia_topografia",
       "granularity_level": "canonical",
-      "aliases": ["topo_plantas", "plantar"],
+      "aliases": [
+        "topo_plantas",
+        "plantar"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -516,7 +885,500 @@
       "canonical_label": "Patrón Acral",
       "semantic_group": "geometria_forma",
       "granularity_level": "modifier",
-      "aliases": ["patron_acral", "peripheral"],
+      "aliases": [
+        "patron_acral",
+        "peripheral"
+      ],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "edad",
+      "canonical_label": "Edad",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "dermatomal",
+      "canonical_label": "Dermatomal",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "generalizado",
+      "canonical_label": "Generalizado",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "localizado",
+      "canonical_label": "Localizado",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "fotoexpuesto",
+      "canonical_label": "Fotoexpuesto",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "topo_flexural_pliegues",
+      "canonical_label": "Topo Flexural Pliegues",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "topo_friccion_extensora",
+      "canonical_label": "Topo Friccion Extensora",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "agudo",
+      "canonical_label": "Agudo",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "subagudo",
+      "canonical_label": "Subagudo",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "cronico",
+      "canonical_label": "Cronico",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "prurito",
+      "canonical_label": "Prurito",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "prurito_nocturno",
+      "canonical_label": "Prurito Nocturno",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "ardor_quemazon",
+      "canonical_label": "Ardor Quemazon",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "dolor",
+      "canonical_label": "Dolor",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "asintomatico",
+      "canonical_label": "Asintomatico",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "fiebre",
+      "canonical_label": "Fiebre",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "farmacos_recientes",
+      "canonical_label": "Farmacos Recientes",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "inmunosupresion",
+      "canonical_label": "Inmunosupresion",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "diabetes",
+      "canonical_label": "Diabetes",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "hepatopatia",
+      "canonical_label": "Hepatopatia",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "atopia",
+      "canonical_label": "Atopia",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "embarazo",
+      "canonical_label": "Embarazo",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "contagio_familiar",
+      "canonical_label": "Contagio Familiar",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "induracion",
+      "canonical_label": "Induracion",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "fistulas_supuracion",
+      "canonical_label": "Fistulas Supuracion",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "interaccion_fiebre_purpura",
+      "canonical_label": "Interaccion Fiebre Purpura",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "interaccion_fiebre_ampolla",
+      "canonical_label": "Interaccion Fiebre Ampolla",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "interaccion_inmuno_agudo",
+      "canonical_label": "Interaccion Inmuno Agudo",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "interaccion_dolor_agudo",
+      "canonical_label": "Interaccion Dolor Agudo",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "extremidad_superior",
+      "canonical_label": "Extremidad Superior",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "pies",
+      "canonical_label": "Pies",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "escama_nacarada",
+      "canonical_label": "Escama Nacarada",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "escama_untuosa",
+      "canonical_label": "Escama Untuosa",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "curacion_central",
+      "canonical_label": "Curacion Central",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "simetrico",
+      "canonical_label": "Simetrico",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "seborreica",
+      "canonical_label": "Seborreica",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "prodromo_catarral",
+      "canonical_label": "Prodromo Catarral",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "despegamiento_epidermico",
+      "canonical_label": "Despegamiento Epidermico",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "borde_activo",
+      "canonical_label": "Borde Activo",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "costra_mielicerica",
+      "canonical_label": "Costra Mielicerica",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "purpura_palpable",
+      "canonical_label": "Purpura Palpable",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "engrosamiento_ungueal",
+      "canonical_label": "Engrosamiento Ungueal",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "mucosas",
+      "canonical_label": "Mucosas",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "ft_I",
+      "canonical_label": "Ft I",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "ft_II",
+      "canonical_label": "Ft II",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "ft_III",
+      "canonical_label": "Ft III",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "ft_IV",
+      "canonical_label": "Ft IV",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "ft_V",
+      "canonical_label": "Ft V",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "ft_VI",
+      "canonical_label": "Ft VI",
+      "semantic_group": "auto_migrated",
+      "granularity_level": "canonical",
+      "aliases": [],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
