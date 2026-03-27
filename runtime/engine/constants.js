@@ -14,9 +14,8 @@ export const PROBABILISTIC_FEATURES = [
     "fistulas_supuracion", "interaccion_fiebre_purpura", "interaccion_fiebre_ampolla", "interaccion_inmuno_agudo",
     "interaccion_dolor_agudo", "cabeza", "cara_centro", "tronco", "extremidad_superior", "extremidad_inferior",
     "pies", "escama_nacarada", "escama_untuosa", "anular", "curacion_central", "zosteriforme", "umbilicacion",
-    "cupuliforme", "mucosas",
-    "simetrico", "seborreica", "macula",
-    "prodromo_catarral", "despegamiento_epidermico", "borde_activo", "costra_mielicerica", "purpura_palpable", "engrosamiento_ungueal",
+    "cupuliforme", "simetrico", "seborreica", "macula", "prodromo_catarral", "despegamiento_epidermico",
+    "borde_activo", "costra_mielicerica", "purpura_palpable", "engrosamiento_ungueal", "mucosas",
     "ft_I", "ft_II", "ft_III", "ft_IV", "ft_V", "ft_VI"
 ];
 

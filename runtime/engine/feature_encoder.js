@@ -1,26 +1,24 @@
-/**
- * feature_encoder.js - Single Source of Truth para la transformación de features.
- * Transforma formData de la UI en representaciones numéricas y semánticas.
- */
-import { FEATURE_INDEX, PROBABILISTIC_FEATURES } from './constants.js';
+import { FEATURE_INDEX, PROBABILISTIC_FEATURES, EXTRA_FEATURE_INDEX } from './constants.js';
 import conceptMapper from './concept_mapper.js';
 
 export function encodeFeatures(formData) {
-    // 1. Inicializar vector X con el tamaño del diccionario total
+    // 1. Inicializar vector X con el tamaño del diccionario total definido en constants.js
     const X = new Array(Object.keys(FEATURE_INDEX).length).fill(0);
     const featureMap = {};
     const unknownKeys = [];
 
-    // 2. Mapeos de Datos Básicos y Demografía (Mapeo Explícito)
+    // 2. Mapeos de Datos Básicos (Mapeo Explícito Numérico/Categoría)
+    
+    // Edad
     const age = parseFloat(formData.age) || 0;
-    X[FEATURE_INDEX.edad] = age;
-    featureMap.edad = age;
+    if (FEATURE_INDEX.edad !== undefined) {
+        X[FEATURE_INDEX.edad] = age;
+        featureMap.edad = age;
+    }
 
+    // Fototipo
     const fitzpatrick = parseInt(formData.fitzpatrick) || 1;
-    // Removida asignación a X[fototipo] por no ser canónico en este modelo
     featureMap.fitzpatrick = fitzpatrick;
-
-    // Expansión de Dummies de Fitzpatrick (v1 numérica y v2 romana para alineación con modelo)
     const fitzKeys = [`ft_${romanize(fitzpatrick)}`, `ft_${fitzpatrick}`];
     fitzKeys.forEach(k => {
         if (FEATURE_INDEX[k] !== undefined) {
@@ -29,71 +27,60 @@ export function encodeFeatures(formData) {
         }
     });
 
-    // Sexo (Unificado)
-    if (formData.sex === 'male') {
-        X[FEATURE_INDEX.sexo_male] = 1;
-        featureMap.sexo_male = 1;
-    } else if (formData.sex === 'female') {
-        X[FEATURE_INDEX.sexo_female] = 1;
-        featureMap.sexo_female = 1;
+    // Sexo (Unificado via Index)
+    const sexId = formData.sex === 'male' ? 'sexo_male' : (formData.sex === 'female' ? 'sexo_female' : null);
+    if (sexId && FEATURE_INDEX[sexId] !== undefined) {
+        X[FEATURE_INDEX[sexId]] = 1;
+        featureMap[sexId] = 1;
     }
 
-    // 3. Mapeo de Timing
-    const timingMap = { 'acute': 'agudo', 'subacute': 'subagudo', 'chronic': 'cronico' };
-    if (formData.timing && timingMap[formData.timing]) {
-        const key = timingMap[formData.timing];
-        X[FEATURE_INDEX[key]] = 1;
-        featureMap[key] = 1;
-    }
-
-    // 4. Mapeo de Morfología, Topografía y Contexto (Capa Canónica + Legacy)
+    // 3. Mapeo de Hallazgos y Temporalidad (Resolución vía Schema)
+    // El mapper ahora es el SSoT para equivalencias
     for (const [rawKey, value] of Object.entries(formData)) {
-        if (['age', 'sex', 'fitzpatrick', 'timing'].includes(rawKey)) continue;
-        if (value !== true) continue;
+        // Saltamos demografía ya procesada
+        if (['age', 'sex', 'fitzpatrick'].includes(rawKey)) continue;
 
-        const canonicalId = conceptMapper.resolve(rawKey);
+        // Caso A: Checkbox (boolean true)
+        // Caso B: Radio Button (value es el ID del hallazgo, ej: timing='acute')
+        let lookupKey = rawKey;
+        if (typeof value === 'string' && value !== 'on') {
+            lookupKey = value; // Para temporalidad y otros radios
+        } else if (value !== true) {
+            continue;
+        }
+
+        const canonicalId = conceptMapper.resolve(lookupKey);
         
         if (canonicalId) {
-            // Evaluamos si el ID es reconocido por el motor en su INDEX
             if (FEATURE_INDEX[canonicalId] !== undefined) {
-                // Feature Válida (Probabilística o Registrada como Adicional)
                 X[FEATURE_INDEX[canonicalId]] = 1;
-            } else {
-                // ID desconocido para el vector final, guardamos para logs/debug
-                unknownKeys.push(rawKey);
+            } else if (EXTRA_FEATURE_INDEX[canonicalId] === undefined) {
+                unknownKeys.push(lookupKey);
             }
-            // Siempre se registra en el mapa de hallazgos (Para heurísticas / differential ranker)
             featureMap[canonicalId] = 1;
         }
     }
 
-    // 5. Features Compuestas (Interacciones Clínicas Críticas)
-    if (featureMap.fiebre === 1 && featureMap.purpura === 1) {
-        X[FEATURE_INDEX.interaccion_fiebre_purpura] = 1;
-        featureMap.interaccion_fiebre_purpura = 1;
-    }
-    if (featureMap.fiebre === 1 && featureMap.bula_ampolla === 1) {
-        X[FEATURE_INDEX.interaccion_fiebre_ampolla] = 1;
-        featureMap.interaccion_fiebre_ampolla = 1;
-    }
-    if (featureMap.inmunosupresion === 1 && featureMap.agudo === 1) {
-        X[FEATURE_INDEX.interaccion_inmuno_agudo] = 1;
-        featureMap.interaccion_inmuno_agudo = 1;
-    }
-    if (featureMap.dolor === 1 && featureMap.agudo === 1) {
-        X[FEATURE_INDEX.interaccion_dolor_agudo] = 1;
-        featureMap.interaccion_dolor_agudo = 1;
-    }
+    // 4. Features Compuestas (Interacciones Clínicas Críticas)
+    // Se mantienen explícitas por seguridad diagnóstica
+    const interactions = [
+        { condition: featureMap.fiebre && featureMap.purpura, id: 'interaccion_fiebre_purpura' },
+        { condition: featureMap.fiebre && featureMap.bula_ampolla, id: 'interaccion_fiebre_ampolla' },
+        { condition: featureMap.inmunosupresion && featureMap.agudo, id: 'interaccion_inmuno_agudo' },
+        { condition: featureMap.dolor && featureMap.agudo, id: 'interaccion_dolor_agudo' }
+    ];
 
-    // 6. Creación del Helper y retorno unificado
+    interactions.forEach(inter => {
+        if (inter.condition && FEATURE_INDEX[inter.id] !== undefined) {
+            X[FEATURE_INDEX[inter.id]] = 1;
+            featureMap[inter.id] = 1;
+        }
+    });
+
+    // 5. Creación del Helper y retorno unificado
     const helper = createFeatureHelper(X, featureMap);
 
-    return {
-        X: X,
-        featureMap: featureMap,
-        helper: helper,
-        unknownKeys: unknownKeys
-    };
+    return { X, featureMap, helper, unknownKeys };
 }
 
 /**

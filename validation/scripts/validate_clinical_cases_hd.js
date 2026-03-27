@@ -22,14 +22,10 @@ let stats = {
 CLINICAL_CASES_HD.forEach(testCase => {
     stats.total++;
     
-    // Normalizar input (asegurar todas las features)
-    const fullInput = {};
-    PROBABILISTIC_FEATURES.forEach(feat => {
-        fullInput[feat] = testCase.input[feat] || 0;
-    });
-    // Age y timing son especiales
-    fullInput.age = testCase.input.age || 40;
-    fullInput.timing = testCase.input.timing || "acute";
+    // Usar el input completo del caso (Permite que el mapper resuelva aliases)
+    const fullInput = { ...testCase.input };
+    if (!fullInput.age) fullInput.age = 40;
+    if (!fullInput.timing) fullInput.timing = "acute";
 
     const result = runTriage(fullInput);
     
