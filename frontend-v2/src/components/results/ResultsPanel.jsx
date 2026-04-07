@@ -64,10 +64,10 @@ export const ResultsPanel = () => {
                   {differential_ranking.slice(0, 3).map((diff, index) => (
                     <div key={index} className="flex justify-between items-center p-2 hover:bg-white rounded-lg transition-colors">
                       <span className="text-sm font-semibold text-slate-700 capitalize">
-                        {index + 1}. {diff.syndrome.replace(/_/g, ' ')}
+                        {index + 1}. {diff.disease_name ? diff.disease_name.replace(/_/g, ' ') : 'Agrupación Desconocida'}
                       </span>
                       <span className="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-slate-500 font-bold">
-                        {Math.round(diff.probability * 100)}%
+                        {diff.compatibility || 'Media'}
                       </span>
                     </div>
                   ))}

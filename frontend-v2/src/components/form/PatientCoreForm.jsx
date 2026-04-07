@@ -82,12 +82,36 @@ export const PatientCoreForm = () => {
         <FieldGroup title="Opciones Frecuentes">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <ClinicalFeatureCheckbox id="lesion_macula" label="Mácula / Mancha" category="Plana sin relieve" />
-            <ClinicalFeatureCheckbox id="lesion_papula" label="Pápula / Placa" category="Sólida elevada" />
-            <ClinicalFeatureCheckbox id="lesion_nodulo" label="Nódulo" category="Profunda >1cm" />
-            <ClinicalFeatureCheckbox id="lesion_vesicula" label="Vesícula / Ampolla" category="Contenido líquido" />
-            <ClinicalFeatureCheckbox id="lesion_pustula" label="Pústula" category="Contenido purulento" />
-            <ClinicalFeatureCheckbox id="lesion_escama" label="Escama superficial" category="Capa córnea" />
-            <ClinicalFeatureCheckbox id="lesion_costra" label="Costra Mielicérica" category="Desecación" />
+            <ClinicalFeatureCheckbox 
+              id="lesion_papula" 
+              label="Pápula / Placa" 
+              category="Elevación sólida <1cm" 
+            />
+            <ClinicalFeatureCheckbox 
+              id="lesion_vesicula" 
+              label="Vesícula" 
+              category="Burbuja de líquido <1cm" 
+            />
+            <ClinicalFeatureCheckbox 
+              id="lesion_ampolla" 
+              label="Ampolla (Bula)" 
+              category="Burbuja de líquido >1cm" 
+            />
+            <ClinicalFeatureCheckbox 
+              id="lesion_pustula" 
+              label="Pústula" 
+              category="Elevación con pus" 
+            />
+            <ClinicalFeatureCheckbox 
+              id="lesion_comedon" 
+              label="Comedón" 
+              category="Espinillas / Puntos Negros" 
+            />
+            <ClinicalFeatureCheckbox 
+              id="lesion_escama" 
+              label="Escama / Costra" 
+              category="Desprendimiento corneo" 
+            /><ClinicalFeatureCheckbox id="lesion_costra" label="Costra Mielicérica" category="Desecación" />
             <ClinicalFeatureCheckbox id="lesion_ulcera" label="Úlcera" category="Pérdida de sustancia" />
           </div>
         </FieldGroup>
