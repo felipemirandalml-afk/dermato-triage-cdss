@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PatientCoreForm } from './components/form/PatientCoreForm';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -49,28 +50,28 @@ function App() {
           </div>
         </div>
 
-        {/* 🚧 Main Content Area (To be modularized) */}
-        <div className="clinical-card p-6 min-h-[400px] flex items-center justify-center bg-white">
-          <div className="text-center space-y-4">
-            <div className="text-4xl">🏗️</div>
-            <h2 className="text-xl font-bold text-slate-700">Terreno Preparado</h2>
-            <p className="text-slate-500 max-w-md mx-auto">
-              El esqueleto principal de la aplicación está montado. A continuación, inyectaremos el <strong>TabManager</strong> y el <strong>State Store</strong>.
-            </p>
-            <div className="pt-4 flex justify-center gap-4">
-              <button 
-                onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
-                className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:bg-slate-50"
-              >
-                ← Anterior
-              </button>
-              <button 
-                onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
-                className="px-4 py-2 bg-clinical-blue text-white rounded-lg text-sm font-bold hover:bg-blue-700"
-              >
-                Siguiente →
-              </button>
-            </div>
+        {/* 📋 Módulos de Formulario Reactivos */}
+        <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 min-h-[400px]">
+          {currentStep === 0 && <PatientCoreForm />}
+          {currentStep === 1 && <div className="text-center p-20 text-slate-400 font-bold">Módulo Topográfico (Pronto)</div>}
+          {currentStep === 2 && <div className="text-center p-20 text-slate-400 font-bold">Módulo Signos Críticos (Pronto)</div>}
+          {currentStep === 3 && <div className="text-center p-20 text-slate-400 font-bold">Panel de Resultados IA (Pronto)</div>}
+
+          {/* Navegación Modular (Barra Inferior) */}
+          <div className="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
+            <button 
+              onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+              disabled={currentStep === 0}
+              className={`px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all ${currentStep === 0 ? 'opacity-0 cursor-default' : 'text-slate-500 hover:bg-slate-50 border border-slate-200'}`}
+            >
+              Volver
+            </button>
+            <button 
+              onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
+              className="px-8 py-3 bg-clinical-blue text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20 transition-all flex items-center gap-2"
+            >
+              {currentStep === steps.length - 1 ? 'Finalizar' : 'Continuar →'}
+            </button>
           </div>
         </div>
 
