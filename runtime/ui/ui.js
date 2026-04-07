@@ -1,6 +1,7 @@
 import { encodeFeatures, predict, explain, interpretResult, runTriage, FEATURE_INDEX, FEATURE_MAP_LABELS } from '../engine/model.js';
 import { CLINICAL_CASES } from '../../validation/datasets/clinical_cases.js';
 import { generateClinicalReport } from '../engine/export_service.js';
+import { conceptMapper } from '../engine/concept_mapper.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('triageForm');
@@ -202,17 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const timing = form.querySelector('input[name="timing"]:checked')?.value;
 
         const hasClinicalFeature = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).some(cb => {
-            return cb.id.startsWith('lesion_') || 
-                   cb.id.startsWith('sintoma_') || 
-                   cb.id.startsWith('redflag_') || 
-                   cb.id.startsWith('prodromo_') || 
-                   cb.id.startsWith('despegamiento_') || 
-                   cb.id.startsWith('borde_') || 
-                   cb.id.startsWith('costra_') || 
-                   cb.id.startsWith('purpura_') || 
-                   cb.id.startsWith('engrosamiento_') ||
-                   cb.id.startsWith('topo_') ||
-                   cb.id.startsWith('signo_');
+            // Resolución Dinámica via Schema (SSoT) 
+            // Si el ID del checkbox existe en el mapper, es un hallazgo clínico válido.
+            return conceptMapper.resolve(cb.id) !== null;
         });
 
         const hasSilverBullet = Array.from(form.querySelectorAll('#tab-silver input[type="checkbox"]:checked')).length > 0;
