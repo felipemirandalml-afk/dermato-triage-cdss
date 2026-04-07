@@ -13,6 +13,7 @@ import { predictProbabilisticSyndrome } from './probabilistic_model.js';
 import { rankDifferentials } from './differential_ranker.js';
 import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
 import { recalibrationEngine } from './recalibration_engine.js';
+import { auditLogger } from './audit_logger.js';
 
 // Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
@@ -135,29 +136,44 @@ function refineSyndromeReasoning(analysis, helper) {
  * Punto de entrada principal para Triage/Diagnóstico
  */
 export function runTriage(formData) {
-    const { X, featureMap, helper } = encodeFeatures(formData);
-    const prediction = predict(X, helper);
-    let probabilisticAnalysis = predictProbabilisticSyndrome(X);
-    
-    // Refinamiento Híbrido
-    probabilisticAnalysis = refineSyndromeReasoning(probabilisticAnalysis, helper);
+    try {
+        const { X, featureMap, helper } = encodeFeatures(formData);
+        const prediction = predict(X, helper);
+        let probabilisticAnalysis = predictProbabilisticSyndrome(X);
+        
+        // Refinamiento Híbrido
+        probabilisticAnalysis = refineSyndromeReasoning(probabilisticAnalysis, helper);
 
-    // Selección de Diferenciales
-    const topCandidates = probabilisticAnalysis.top_candidates || [];
-    let diffCandidates = [];
-    if (topCandidates.length > 0) {
-        const t1 = topCandidates[0];
-        const t2 = topCandidates[1];
-        const isAmbiguous = (probabilisticAnalysis.confidence_level !== 'high') || (t2 && (t1.probability - t2.probability < 0.20));
-        diffCandidates = (isAmbiguous && t2 && t2.probability > 0.05) ? [t1, t2] : [t1];
+        // Selección de Diferenciales
+        const topCandidates = probabilisticAnalysis.top_candidates || [];
+        let diffCandidates = [];
+        if (topCandidates.length > 0) {
+            const t1 = topCandidates[0];
+            const t2 = topCandidates[1];
+            const isAmbiguous = (probabilisticAnalysis.confidence_level !== 'high') || (t2 && (t1.probability - t2.probability < 0.20));
+            diffCandidates = (isAmbiguous && t2 && t2.probability > 0.05) ? [t1, t2] : [t1];
+        }
+
+        const differentialRanking = rankDifferentials(diffCandidates, helper);
+        const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking);
+        result.probabilistic_analysis = probabilisticAnalysis;
+        result.differential_ranking = differentialRanking;
+        
+        // Registro de Auditoría Médica (Prioridad 1)
+        auditLogger.logTriage(formData, result);
+        
+        return result;
+    } catch (error) {
+        console.error("CRITICAL_ENGINE_ERROR:", error);
+        // Retornar objeto de error seguro para evitar rupturas de UI
+        return {
+            priority: 'P3',
+            label: 'Error en Procesamiento',
+            conduct: 'Falla técnica. Por favor, reinicie el flujo o consulte soporte.',
+            status: 'error',
+            error: error.message
+        };
     }
-
-    const differentialRanking = rankDifferentials(diffCandidates, helper);
-    const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking);
-    result.probabilistic_analysis = probabilisticAnalysis;
-    result.differential_ranking = differentialRanking;
-    
-    return result;
 }
 
 export function applyClinicalModifiers(X, result) {

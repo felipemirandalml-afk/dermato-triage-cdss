@@ -3,6 +3,7 @@ import { ClinicalSummaryCard } from './ClinicalSummaryCard';
 
 export const ResultsPanel = () => {
   const result = useClinicalStore(state => state.triageResult);
+  const formData = useClinicalStore(state => state.formData);
 
   if (!result) {
     return (

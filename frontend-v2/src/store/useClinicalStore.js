@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { conceptMapper } from '../engine/concept_mapper.js';
+import { clinicalValidation } from '../engine/validation.js';
 
 export const useClinicalStore = create((set, get) => ({
   // 1. EL ALMACÉN DE DATOS MÉDICOS (Memoria Global)
@@ -60,24 +60,9 @@ export const useClinicalStore = create((set, get) => ({
 
   setTriageResult: (result) => set({ triageResult: result }),
 
-  // 3. COMPUTACIÓN / INTELIGENCIA DERIVADA
+  // 3. COMPUTACIÓN / INTELIGENCIA DERIVADA (Vía Engine Service)
   getValidationStatus: () => {
     const { formData } = get();
-    
-    const hasAge = !!formData.age;
-    const hasTiming = !!formData.timing;
-    
-    // Ahora validamos solo contra el objeto de features
-    const clinicalKeys = Object.keys(formData.features).filter(k => formData.features[k] === true);
-    const hasValidFeature = clinicalKeys.some(key => conceptMapper.resolve(key) !== null);
-
-    return {
-      isValid: hasAge && hasTiming && hasValidFeature,
-      missing: {
-        age: !hasAge,
-        timing: !hasTiming,
-        features: !hasValidFeature
-      }
-    };
+    return clinicalValidation.validateFormData(formData);
   }
 }));
