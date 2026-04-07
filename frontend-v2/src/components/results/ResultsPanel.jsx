@@ -18,9 +18,9 @@ export const ResultsPanel = () => {
 
   // Configuración Mappable UI basada en Prioridad
   const TriageConfig = {
-    'P1': { title: 'P1 - DERIVACIÓN INMEDIATA', color: 'bg-triage-p1 text-white border-triage-p1', bg: 'bg-triage-p1-bg', icon: '🚨' },
-    'P2': { title: 'P2 - PRIORIDAD ALTA', color: 'bg-triage-p2 text-white border-triage-p2', bg: 'bg-triage-p2-bg', icon: '⚠️' },
-    'P3': { title: 'P3 - AMBULATORIO', color: 'bg-triage-p3 text-white border-triage-p3', bg: 'bg-triage-p3-bg', icon: '🏥' }
+    'P1': { title: 'P1 - DERIVACIÓN INMEDIATA', color: 'bg-triage-p1 text-white border-triage-p1', bg: 'bg-triage-p1-bg', icon: '🚨', action: 'Evaluación presencial urgente por especialista / Derivación a urgencias.' },
+    'P2': { title: 'P2 - PRIORIDAD ALTA', color: 'bg-triage-p2 text-white border-triage-p2', bg: 'bg-triage-p2-bg', icon: '⚠️', action: 'Evaluación prioritaria en atención primaria / Derivación en menos de 7-15 días.' },
+    'P3': { title: 'P3 - AMBULATORIO', color: 'bg-triage-p3 text-white border-triage-p3', bg: 'bg-triage-p3-bg', icon: '🏥', action: 'Manejo ambulatorio estándar y reevaluación según evolución clínica.' }
   };
   
   const config = TriageConfig[priority] || TriageConfig['P3'];
@@ -34,12 +34,17 @@ export const ResultsPanel = () => {
         <div className="flex items-center gap-4">
           <span className="text-4xl">{config.icon}</span>
           <div>
-            <span className="text-xs font-black uppercase tracking-widest opacity-80 block">Resolución de Triage</span>
-            <h2 className="text-2xl font-black">{config.title}</h2>
+            <div className="flex gap-2 text-xs font-bold opacity-90 mb-1">
+              <span className="bg-white/20 px-2 py-0.5 rounded-md">{formData.age || '?'} Años</span>
+              <span className="bg-white/20 px-2 py-0.5 rounded-md capitalize">
+                {formData.sex === 'male' ? '♂ Masc' : formData.sex === 'female' ? '♀ Fem' : '⚥ Indet.'}
+              </span>
+            </div>
+            <h2 className="text-xl font-bold">{config.title}</h2>
           </div>
         </div>
         <div className="hidden sm:block text-right">
-          <span className="text-xs uppercase bg-white/20 px-3 py-1 rounded-full font-bold uppercase tracking-widest">Motor Neuro-Simbólico v2.0</span>
+          <span className="text-xs uppercase bg-white/20 px-3 py-1 rounded-full font-bold tracking-widest">Motor v2.1</span>
         </div>
       </div>
 
@@ -55,7 +60,7 @@ export const ResultsPanel = () => {
             <div className="flex items-end gap-3 mb-4">
               <h3 className="text-2xl font-black text-slate-800 capitalize">{primary_syndrome ? primary_syndrome.replace(/_/g, ' ') : 'Agrupación Indeterminada'}</h3>
               <span className={`text-sm font-bold px-2 py-1 rounded-md mb-1 ${prob > 70 ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                {prob}% Confianza
+                {prob}% Estimación
               </span>
             </div>
             
@@ -108,19 +113,13 @@ export const ResultsPanel = () => {
               </div>
             )}
 
-            {/* Hint de Explicabilidad Clínica */}
-            {probabilistic_analysis?.feature_importance?.positive?.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-slate-100">
-                <span className="text-xs font-semibold text-slate-400 block mb-2">Señal Clave (RF Layer):</span>
-                <div className="flex flex-wrap gap-2">
-                  {probabilistic_analysis.feature_importance.positive.slice(0,2).map((feat, idx) => (
-                    <span key={idx} className="text-[10px] uppercase tracking-wider font-bold bg-blue-50 text-clinical-blue px-2 py-1 rounded-md">
-                      {feat.key.replace(/_/g, ' ')}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
+            {/* Conducta Sugerida Clínicamente */}
+            <div className="mt-4 pt-4 border-t border-slate-100">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">Conducta Sugerida</span>
+              <p className="text-sm font-bold text-slate-800 leading-snug">
+                {config.action}
+              </p>
+            </div>
           </div>
         </div>
 
