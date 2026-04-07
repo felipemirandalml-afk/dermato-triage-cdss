@@ -35,20 +35,33 @@ export function encodeFeatures(formData) {
     }
 
     // 3. Mapeo de Hallazgos y Temporalidad (Resolución vía Schema)
-    // El mapper ahora es el SSoT para equivalencias
-    for (const [rawKey, value] of Object.entries(formData)) {
-        // Saltamos demografía ya procesada
-        if (['age', 'sex', 'fitzpatrick'].includes(rawKey)) continue;
-
-        // Caso A: Checkbox (boolean true)
-        // Caso B: Radio Button (value es el ID del hallazgo, ej: timing='acute')
-        let lookupKey = rawKey;
-        if (typeof value === 'string' && value !== 'on') {
-            lookupKey = value; // Para temporalidad y otros radios
-        } else if (value !== true) {
-            continue;
+    // Extraemos las claves activas del nuevo contrato { metadata, features }
+    const activeKeys = [];
+    
+    // A. Añadir timing si existe
+    if (formData.timing) {
+        activeKeys.push(formData.timing);
+    }
+    
+    // B. Añadir features si vienen en la estructura oficial v2.1 (Segmentada)
+    if (formData.features) {
+        for (const [rawKey, value] of Object.entries(formData.features)) {
+            if (value === true) activeKeys.push(rawKey);
         }
+    } else {
+        // Fallback por si llega un objeto plano (V1 Legacy Support)
+        for (const [rawKey, value] of Object.entries(formData)) {
+            if (['age', 'sex', 'fitzpatrick', 'timing'].includes(rawKey)) continue;
+            if (typeof value === 'string' && value !== 'on') {
+                activeKeys.push(value); 
+            } else if (value === true) {
+                activeKeys.push(rawKey);
+            }
+        }
+    }
 
+    // Resolviendo cada clave activa usando el Mapper SSoT
+    activeKeys.forEach(lookupKey => {
         const canonicalId = conceptMapper.resolve(lookupKey);
         
         if (canonicalId) {
@@ -59,7 +72,7 @@ export function encodeFeatures(formData) {
             }
             featureMap[canonicalId] = 1;
         }
-    }
+    });
 
     // 4. Features Compuestas (Interacciones Clínicas Críticas)
     // Se mantienen explícitas por seguridad diagnóstica

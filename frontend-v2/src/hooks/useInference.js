@@ -7,15 +7,12 @@ export const useInference = () => {
   const setTriageResult = useClinicalStore(state => state.setTriageResult);
 
   const processPatient = useCallback(() => {
-    // 🛡️ Fusionamos metadatos y features para compatibilidad con el motor legado
-    const { features, ...metadata } = formData;
-    const dataToProcess = { ...metadata, ...features };
-
-    console.log("🔍 [Clínica Virtual] Enviando paciente al motor de inferencia:", dataToProcess);
+    // 🛡️ El motor ahora comprende la arquitectura segmentada (v2.1)
+    console.log("🔍 [Clínica Virtual] Enviando paciente al motor de inferencia:", formData);
 
     try {
       // 2. Encendido del Motor Clínico que importamos de Vainilla
-      const result = runTriage(dataToProcess);
+      const result = runTriage(formData);
       
       console.log("✅ [Orquestador] Predicción matemática completada:", result);
 
