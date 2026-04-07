@@ -1,121 +1,82 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentStep, setCurrentStep] = useState(0);
+  const steps = ["Datos Core", "Exploración", "Signos Críticos", "Resultados"];
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="min-h-screen pb-20 bg-slate-50 font-sans">
+      {/* 🏥 Premium Clinical Header */}
+      <nav className="bg-clinical-blue text-white shadow-lg border-b border-blue-800">
+        <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">⚕️</span>
+              <div>
+                <h1 className="text-xl font-black tracking-tight leading-none">DermatoTriage <span className="font-light opacity-90">CDSS</span></h1>
+                <p className="text-[10px] font-bold text-blue-200 tracking-widest uppercase">Support System v2.0</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="text-right hidden sm:block">
+                <span className="text-xs font-semibold text-blue-200 block">SESIÓN MÉDICA</span>
+                <span className="text-sm font-bold block leading-none">Dr. Administrador</span>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-white/20 border-2 border-white/30 flex items-center justify-center font-bold shadow-inner">
+                DR
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </nav>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      <main className="max-w-[1300px] mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        
+        {/* 🧭 Clinical Progress Tracker */}
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-2 px-1">
+            {steps.map((label, idx) => (
+              <span key={idx} className={`text-xs font-black uppercase tracking-wider ${idx <= currentStep ? 'text-clinical-blue' : 'text-slate-400'}`}>
+                {label}
+              </span>
+            ))}
+          </div>
+          <div className="h-2 bg-slate-200 rounded-full w-full overflow-hidden flex">
+            <div 
+              className="h-full bg-clinical-blue transition-all duration-500 ease-out" 
+              style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
+            ></div>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {/* 🚧 Main Content Area (To be modularized) */}
+        <div className="clinical-card p-6 min-h-[400px] flex items-center justify-center bg-white">
+          <div className="text-center space-y-4">
+            <div className="text-4xl">🏗️</div>
+            <h2 className="text-xl font-bold text-slate-700">Terreno Preparado</h2>
+            <p className="text-slate-500 max-w-md mx-auto">
+              El esqueleto principal de la aplicación está montado. A continuación, inyectaremos el <strong>TabManager</strong> y el <strong>State Store</strong>.
+            </p>
+            <div className="pt-4 flex justify-center gap-4">
+              <button 
+                onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+                className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:bg-slate-50"
+              >
+                ← Anterior
+              </button>
+              <button 
+                onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
+                className="px-4 py-2 bg-clinical-blue text-white rounded-lg text-sm font-bold hover:bg-blue-700"
+              >
+                Siguiente →
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
