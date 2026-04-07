@@ -4,71 +4,71 @@ import { conceptMapper } from '../engine/concept_mapper.js';
 export const useClinicalStore = create((set, get) => ({
   // 1. EL ALMACÉN DE DATOS MÉDICOS (Memoria Global)
   formData: {
+    // Metadatos del Paciente (Shape Fijo)
     age: '',
     sex: '',
     timing: '',
-    // Las variables dinámicas (lesion_papula, etc) vivirán también aquí.
+    // Hallazgos Clínicos (Frontera Semántica Limpia)
+    features: {} 
   },
   
   // Memoria del resultado del Triaje
   triageResult: null,
 
-  // 2. LAS ACCIONES (Los músculos que cambian los datos)
+  // 2. LAS ACCIONES
   
-  // Acción para actualizar inputs básicos
+  // Actualizar metadatos
   setField: (field, value) => 
     set((state) => ({ 
       formData: { ...state.formData, [field]: value } 
     })),
 
-  // Acción tipo 'Switch' elegante para checkboxes clínicos
+  // Switch para hallazgos clínicos dento del sub-objeto features
   toggleFeature: (featureId) => 
     set((state) => {
-      const currentData = { ...state.formData };
-      if (currentData[featureId]) {
-        delete currentData[featureId]; // Si existe, lo borramos (Desactivar)
+      const newFeatures = { ...state.formData.features };
+      if (newFeatures[featureId]) {
+        delete newFeatures[featureId];
       } else {
-        currentData[featureId] = true; // Si no, lo agregamos (Activar)
+        newFeatures[featureId] = true;
       }
-      return { formData: currentData };
+      return { 
+        formData: { ...state.formData, features: newFeatures } 
+      };
     }),
 
-  // Acción de reseteo para limpiar el paciente actual
+  // Reseteo limpio
   resetForm: () => 
     set({
-      formData: { age: '', sex: '', timing: '' },
+      formData: { age: '', sex: '', timing: '', features: {} },
       triageResult: null
     }),
     
-  // Capacidad de cargar pacientes de prueba
-  loadDemoCase: (caseInput) => 
+  // Carga de casos demo con soporte para la nueva estructura
+  loadDemoCase: (caseInput) => {
+    const { age, sex, timing, ...clinicalFeatures } = caseInput;
     set({
       formData: {
-        age: caseInput.age || '',
-        sex: caseInput.sex || '',
-        timing: caseInput.timing || '',
-        ...caseInput // Despliega todos los checkboxes de la demo (fiebre: true, etc)
+        age: age || '',
+        sex: sex || '',
+        timing: timing || '',
+        features: clinicalFeatures || {}
       },
       triageResult: null
-    }),
+    });
+  },
 
-  // Almacenar el análisis probabilístico / heurístico final
   setTriageResult: (result) => set({ triageResult: result }),
 
   // 3. COMPUTACIÓN / INTELIGENCIA DERIVADA
-  
-  // Validador Médico Inteligente: Nos avisa en tiempo real si el médico 
-  // ya ingresó suficientes datos técnicos como para poder diagnosticar.
   getValidationStatus: () => {
     const { formData } = get();
     
-    // Reglas Basales Hardcodeables
     const hasAge = !!formData.age;
     const hasTiming = !!formData.timing;
     
-    // Regla de Resolución de SSoT: Verificamos si al menos una key en el form
-    // existe como concepto clínico real en nuestro concept_canonical_map
-    const clinicalKeys = Object.keys(formData).filter(k => k !== 'age' && k !== 'sex' && k !== 'timing' && formData[k] === true);
+    // Ahora validamos solo contra el objeto de features
+    const clinicalKeys = Object.keys(formData.features).filter(k => formData.features[k] === true);
     const hasValidFeature = clinicalKeys.some(key => conceptMapper.resolve(key) !== null);
 
     return {

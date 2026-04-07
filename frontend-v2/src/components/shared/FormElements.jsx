@@ -14,7 +14,7 @@ export const FieldGroup = ({ title, children }) => (
 
 export const ClinicalFeatureCheckbox = ({ id, label, category = "", variant = "default" }) => {
   const toggleFeature = useClinicalStore((state) => state.toggleFeature);
-  const isChecked = useClinicalStore((state) => state.formData[id] || false);
+  const isChecked = useClinicalStore((state) => state.formData.features[id] || false);
 
   const containerClass = variant === "red" ? "card-selectable-red" : "card-selectable";
   const inputColorClass = variant === "red" ? "text-triage-p1 focus:ring-triage-p1 border-red-200" : "text-clinical-blue focus:ring-clinical-blue border-slate-300";
