@@ -1,44 +1,39 @@
-# DermatoTriage CDSS v2.0.0
-**Sistema de Soporte a la Decisión Clínica para Triage Dermatológico en APS**
+# DermatoTriage CDSS v2.1.0
+**Sistema Modular de Soporte a la Decisión Clínica para APS**
 
 > [!IMPORTANT]
 > **ADVERTENCIA DE USO**: Este sistema es una herramienta de **asistencia técnica** y no posee autonomía diagnóstica ni terapéutica. La decisión clínica final, el diagnóstico definitivo y la conducta médica son responsabilidad exclusiva del profesional de salud tratante. **NO SUSTITUYE EL JUICIO MÉDICO.**
 
 ---
 
-## ⚕️ Gobernanza Clínica y Uso Previsto
+## ⚕️ Gobernanza Clínica y SSoT (Single Source of Truth)
 
-### 1. Uso Previsto (Intended Use)
-DermatoTriage está diseñado para asistir en la **priorización (triage) y orientación sindrómica** de lesiones cutáneas frecuentes en el contexto de la Atención Primaria de Salud (APS). Su objetivo principal es:
-- Identificar hallazgos de alta sospecha (Red Flags) que requieran derivación urgente (P1/P2).
-- Proporcionar un ranking diferencial basado en semiología probabilística para orientar el estudio inicial.
+DermatoTriage v2.1.0 utiliza una arquitectura **Data-Driven (Basada en Datos)** donde la Interfaz de Usuario se autoconstruye dinámicamente a partir de la ontología clínica oficial.
 
-### 2. Población Objetivo (Target Population)
-- **Pacientes**: Adultos y niños con lesiones cutáneas de novo o exacerbaciones de patologías conocidas.
-- **Contexto**: Consultas de morbilidad no programada en APS o servicios de urgencia de baja complejidad.
+### 1. Ontología Dinámica (SSoT)
+- **Fuente de Verdad**: `runtime/data/concept_canonical_map.json`.
+- **Mecanismo**: El sistema utiliza un `ConceptMapper` para descubrir y renderizar automáticamente hallazgos clínicos (`lesion_primaria`, `topografia`, `red_flags`) a partir del esquema maestro, garantizando sincronización total entre la UI y el motor de inferencia.
 
-### 3. Uso No Previsto (Contraindicaciones)
-- Diagnóstico autónomo sin supervisión médica.
-- Evaluación de lesiones en mucosas genitofemoral o interna (requiere examen físico presencial directo).
-- Uso en pacientes con compromiso sistémico agudo no dermatológico (ej. shock, sepsis de otro origen).
+### 2. Transparencia y Explicabilidad (XAI)
+- **Input Summary Card**: Se ha implementado una tarjeta de resumen clínico que muestra los datos procesados (Edad, Sexo, Evolución, Hallazgos) antes de leer el resultado, permitiendo al médico validar la entrada de datos.
+- **Heuristic Shield**: Capa determinista de Red Flags que asegura la detección inmediata de emergencias (P1/P2) independientemente del modelo probabilístico.
 
-### 4. Limitaciones Clínicas Explícitas
-- **Densidad Semiológica**: La precisión del modelo depende estrictamente de la calidad y exhaustividad del examen físico ingresado por el usuario.
-- **Sesgo de Dataset**: El modelo tiene un rendimiento optimizado para fototipos de Fitzpatrick I-IV. Su precisión en fototipos oscuros (V-VI) está en fase de calibración.
-- **Patología Rara**: El sistema prioriza diagnósticos frecuentes; patologías dermatológicas raras pueden no ser representadas correctamente en el ranking diferencial.
+### 3. Escudo de Validación Clínica
+- El motor de análisis está bloqueado hasta que se cumplan criterios mínimos de densidad semiológica (Edad + Tiempo + Al menos 1 hallazgo clínico reconocido), evitando inferencias basadas en "input basura".
 
 ---
 
-## 🏛️ Arquitectura y Fuente de Verdad
-1.  **Aplicación Oficial (`/frontend-v2`)**: SPA moderna en React 19 + Vite. Único punto de entrada operativo.
-2.  **Tooling y Validación (Raíz)**: Suite de benchmarks (`/validation`) y scripts de integridad.
-3.  **Legacy Archivado (`/archive`)**: Código v1.x depreciado. Solo para trazabilidad histórica.
+## 🏛️ Arquitectura Técnica v2.1.0
+1.  **Frontend Modular (`/frontend-v2`)**: SPA en **React 19 + Vite + Zustand**.
+2.  **Estado Segmentado**: Separación estricta entre Metadatos del Paciente y Features Clínicas para auditoría y trazabilidad.
+3.  **Componentes Puros (Dumb Components)**: La navegación y formularios están desacoplados del store, comunicándose mediante eventos (onNext, onReset).
+4.  **Motor Legacy Adaptado**: Hook de inferencia (`useInference.js`) que funciona como puente entre la modernidad de React y la potencia estadística del motor Random Forest original.
 
 ---
 
 ## 🚀 Ejecución Operativa
 - **Desarrollo**: `npm run dev` desde la raíz.
-- **Validación Clínica**: `npm run validate:all` para ejecutar benchmarks de precisión.
+- **Validación Clínica**: `npm run validate:all` para benchmarks de precisión.
 
 ---
 
