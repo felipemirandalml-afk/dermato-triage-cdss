@@ -3,7 +3,8 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
+# package-lock.json (Always commit lockfiles in professional projects)
+# package-lock.json
 
 # Tool results/temp
 /tmp/

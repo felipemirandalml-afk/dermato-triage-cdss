@@ -174,25 +174,47 @@ Este repositorio utiliza una arquitectura por capas para separar interfaz, estad
 
 ---
 
-## 11. Ejecución
+## 11. Ejecución y Desarrollo
 
-### Desarrollo
+### Local (Native)
 Desde la raíz del proyecto:
 
 ```bash
+# Instalar dependencias
+cd frontend-v2 && npm install
+
+# Iniciar desarrollo
 npm run dev
 ```
-Esto lanza la aplicación oficial ubicada en `frontend-v2`.
 
-### Build
+### Docker (Producción / Simulación)
+El proyecto está configurado para despliegue via Docker:
+
 ```bash
-npm run build
+# Construir y levantar servicios
+docker-compose up --build
 ```
+La aplicación estará disponible en `http://localhost:8080`.
 
-### Validación técnica
+### QA y Testing
 ```bash
+# Ejecutar suite de pruebas unitarias
+npm test
+
+# Validaciones técnicas generales
 npm run validate:all
 ```
+
+---
+
+## 12. Infraestructura y CI/CD
+
+El repositorio utiliza **GitHub Actions** para validación automatizada:
+- **Lint**: Chequeo de consistencia de sintaxis.
+- **Tests**: Ejecución de pruebas unitarias (Vitest).
+- **Build**: Verificación de compilación de producción.
+
+Ver configuración en `.github/workflows/verify.yml`.
 
 ---
 
