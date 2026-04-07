@@ -15,5 +15,12 @@ export const UI_LABELS = {
     CONTINUE: "Continuar →",
     ANALYZE: "Analizar Paciente 🧠",
     NEW_PATIENT: "Nuevo Paciente ↻"
+  },
+  VALIDATION: {
+    TITLE: "Información Clínica Incompleta",
+    MISSING_AGE: "Falta la edad del paciente.",
+    MISSING_TIMING: "Falta el tiempo de evolución.",
+    MISSING_FEATURES: "Debes marcar al menos un hallazgo clínico (Pápula, Necrosis, etc.) para realizar la inferencia.",
+    ERROR_FOOTER: "Por favor, completa los datos requeridos para continuar."
   }
 };

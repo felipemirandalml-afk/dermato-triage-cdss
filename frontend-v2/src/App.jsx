@@ -12,11 +12,19 @@ import { UI_LABELS } from './constants/labels';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [error, setError] = useState(null);
   const { processPatient } = useInference();
   const steps = UI_LABELS.STEPS;
 
   const handleNext = () => {
+    setError(null);
     if (currentStep === 2) {
+      // 🛡️ Validación Clínica Pre-Inferencia
+      const status = useClinicalStore.getState().getValidationStatus();
+      if (!status.isValid) {
+        setError(status.missing);
+        return; // Detener flujo
+      }
       processPatient();
       setCurrentStep(3);
     } else {
@@ -24,8 +32,15 @@ function App() {
     }
   };
 
-  const handleBack = () => setCurrentStep(prev => Math.max(0, prev - 1));
-  const handleReset = () => setCurrentStep(0);
+  const handleBack = () => { 
+    setError(null);
+    setCurrentStep(prev => Math.max(0, prev - 1));
+  };
+  
+  const handleReset = () => {
+    setError(null);
+    setCurrentStep(0);
+  };
 
   return (
     <div className="min-h-screen pb-20 bg-slate-50 font-sans">
@@ -40,6 +55,24 @@ function App() {
           {currentStep === 1 && <TopographyForm />}
           {currentStep === 2 && <RedFlagsForm />}
           {currentStep === 3 && <ResultsPanel />}
+
+          {/* 🛡️ Alerta de Validación Clínica */}
+          {error && (
+            <div className="mt-8 p-4 bg-red-50 border-2 border-red-100 rounded-2xl animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className="flex items-center gap-3 mb-2 text-red-800">
+                <span className="text-xl">⚠️</span>
+                <h3 className="font-black uppercase tracking-tight text-sm">{UI_LABELS.VALIDATION.TITLE}</h3>
+              </div>
+              <ul className="space-y-1 ml-9">
+                {error.age && <li className="text-red-700 text-xs font-semibold">• {UI_LABELS.VALIDATION.MISSING_AGE}</li>}
+                {error.timing && <li className="text-red-700 text-xs font-semibold">• {UI_LABELS.VALIDATION.MISSING_TIMING}</li>}
+                {error.features && <li className="text-red-700 text-xs font-semibold">• {UI_LABELS.VALIDATION.MISSING_FEATURES}</li>}
+              </ul>
+              <p className="mt-3 ml-9 text-[10px] text-red-500 font-bold uppercase tracking-widest leading-none">
+                {UI_LABELS.VALIDATION.ERROR_FOOTER}
+              </p>
+            </div>
+          )}
 
           <StepNavigation 
             currentStep={currentStep} 
