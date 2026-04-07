@@ -3,6 +3,7 @@ import { PatientCoreForm } from './components/form/PatientCoreForm';
 import { TopographyForm } from './components/form/TopographyForm';
 import { RedFlagsForm } from './components/form/RedFlagsForm';
 import { ResultsPanel } from './components/results/ResultsPanel';
+import { useClinicalStore } from './store/useClinicalStore';
 import { useInference } from './hooks/useInference';
 
 function App() {
