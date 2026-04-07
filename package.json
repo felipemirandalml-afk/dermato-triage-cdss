@@ -1,20 +1,22 @@
 {
   "name": "dermato-triage-cdss",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "type": "module",
   "description": "Clinical Decision Support System for Dermatological Triage",
   "scripts": {
     "start": "npm --prefix frontend-v2 run dev",
     "dev": "npm --prefix frontend-v2 run dev",
     "build": "npm --prefix frontend-v2 run build",
-    "test": "node tools/debug_case.js",
+    "test:unit": "node tools/debug_case.js",
     "test:clinical": "node validation/scripts/validate_clinical_cases_hd.js",
     "test:massive": "node validation/scripts/run_synthetic_case_benchmark_v2.js",
     "validate:integrity": "node tools/check_integrity.js",
     "validate:all": "npm run validate:integrity && npm run test:clinical",
     "repair:mapper": "node tools/repair_mapper.js",
-    "format": "prettier --write 'runtime/**/*.js' 'tools/**/*.js' '*.css'",
-    "lint": "eslint 'runtime/**/*.js' 'tools/**/*.js'"
+    "format": "prettier --write 'runtime/**/*.js' 'tools/**/*.js' 'frontend-v2/src/**/*.{js,jsx}'",
+    "lint:root": "eslint 'runtime/**/*.js' 'tools/**/*.js' --fix",
+    "lint:frontend": "npm --prefix frontend-v2 run lint",
+    "lint": "npm run lint:root && npm run lint:frontend"
   },
   "devDependencies": {
     "eslint": "^9.0.0",
