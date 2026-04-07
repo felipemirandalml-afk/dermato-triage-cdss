@@ -35,7 +35,7 @@ export function explain(X, winningClassIdx) {
 /**
  * Enriquece el resultado con insights del Reasoning Map.
  */
-function enrichWithReasoning(syndromeKey, X) {
+function enrichWithReasoning(syndromeKey) {
     const mapEntry = REASONING_MAP[syndromeKey];
     if (!mapEntry) return null;
 
@@ -83,7 +83,6 @@ export function interpretResult(X, prediction, syndromeKey = null, differentialR
 
     // --- ALINEACIÓN INTERPRETATIVA (Interpretation Alignment Hardening) ---
     const topDifferential = differentialRanking?.[0]?.disease_name || "";
-    const topDiffCompatibility = differentialRanking?.[0]?.compatibility || "Baja";
     
     // Auditoría de Tensión (Discordancia)
     const isShielded = prediction.modifier && prediction.priority < (prediction.baseline_priority || 3);
@@ -122,7 +121,7 @@ export function interpretResult(X, prediction, syndromeKey = null, differentialR
     }
 
     // Activación del Reasoning Map
-    let reasoningInsights = syndromeKey ? enrichWithReasoning(syndromeKey, X) : null;
+    let reasoningInsights = syndromeKey ? enrichWithReasoning(syndromeKey) : null;
 
     // --- AJUSTE DE NARRATIVA DE REASONING SI HAY MISMATCH ---
     if (reasoningInsights) {

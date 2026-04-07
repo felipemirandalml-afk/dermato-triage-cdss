@@ -30,7 +30,7 @@ class ConceptMapper {
             .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "") // Eliminar acentos
-            .replace(/[ \-]/g, "_")         // Espacios y guiones a snake_case
+            .replace(/[ -]/g, "_")         // Espacios y guiones a snake_case
             .replace(/s$/g, "")             // Eliminar plural simple
             .trim();
     }

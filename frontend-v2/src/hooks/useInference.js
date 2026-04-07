@@ -26,7 +26,7 @@ export const useInference = () => {
       console.error("🔥 Error crítico en el motor de triaje:", error);
       return null;
     }
-  }, [formData, setTriageResult]);
+  }, [formData, setTriageResult, i18n.language]);
 
   return { processPatient };
 };

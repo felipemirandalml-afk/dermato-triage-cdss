@@ -137,7 +137,7 @@ function refineSyndromeReasoning(analysis, helper) {
  */
 export function runTriage(formData, lang = 'es') {
     try {
-        const { X, featureMap, helper } = encodeFeatures(formData);
+        const { X, helper } = encodeFeatures(formData);
         const prediction = predict(X, helper);
         let probabilisticAnalysis = predictProbabilisticSyndrome(X);
         
@@ -176,7 +176,7 @@ export function runTriage(formData, lang = 'es') {
     }
 }
 
-export function applyClinicalModifiers(X, result) {
+export function applyClinicalModifiers(X) {
     const helper = createFeatureHelper(X);
     return predict(X, helper);
 }
