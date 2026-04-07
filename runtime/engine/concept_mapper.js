@@ -1,19 +1,38 @@
 /**
  * concept_mapper.js - Motor de Resolución de Conceptos Canónicos
  * Centraliza la relación entre UI, Datasets y el Motor de DermatoTriage.
- * Implementación basada en Clinical Schema SSoT v1.0.
+ * Implementación basada en Clinical Schema SSoT v2.0 (Fuzzy Matching added).
  */
 
 import SCHEMA_DATA from '../data/concept_canonical_map.json' with { type: 'json' };
 
 /**
- * Provee resolución explícita de conceptos basada en el schema canónico.
+ * Provee resolución de conceptos basada en el schema canónico con soporte para variaciones.
  */
 class ConceptMapper {
     constructor() {
         this.lookup = new Map();
+        this.fuzzyLookup = new Map(); // Para coincidencias normalizadas
         this.metadata = new Map();
         this._initialize();
+    }
+
+    /**
+     * Normaliza un string para comparaciones robustas:
+     * - Elimina acentos
+     * - Convierte a minúsculas
+     * - Elimina plurales básicos ('s' final)
+     * - Normaliza separadores a guiones bajos
+     */
+    static normalize(text) {
+        if (!text) return "";
+        return text.toString()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") // Eliminar acentos
+            .replace(/[ \-]/g, "_")         // Espacios y guiones a snake_case
+            .replace(/s$/g, "")             // Eliminar plural simple
+            .trim();
     }
 
     _initialize() {
@@ -26,36 +45,49 @@ class ConceptMapper {
             const canonical = feature.canonical_id;
             this.metadata.set(canonical, feature);
 
-            // 1. Registro del ID Canónico
-            this.lookup.set(canonical.toLowerCase(), canonical);
+            // Registro de IDs, Alisases y Training Aliases
+            const allKeys = [
+                canonical,
+                ...(feature.aliases || []),
+                ...(feature.training_aliases || [])
+            ];
 
-            // 2. Registro de Aliases de Sistema y Dataset (Equivalencia Semántica)
-            if (feature.aliases) {
-                feature.aliases.forEach(alias => {
-                    this.lookup.set(alias.toLowerCase(), canonical);
-                });
-            }
+            allKeys.forEach(rawKey => {
+                const k = rawKey.toLowerCase().trim();
+                
+                // 1. Registro exacto (Prioritario)
+                if (!this.lookup.has(k)) {
+                    this.lookup.set(k, canonical);
+                }
 
-            // 3. Registro de Aliases de Entrenamiento (Retrocompatibilidad Datasets)
-            if (feature.training_aliases) {
-                feature.training_aliases.forEach(alias => {
-                    this.lookup.set(alias.toLowerCase(), canonical);
-                });
-            }
+                // 2. Registro Fuzzy (Normalizado)
+                const fuzzyK = ConceptMapper.normalize(k);
+                if (!this.fuzzyLookup.has(fuzzyK)) {
+                    this.fuzzyLookup.set(fuzzyK, canonical);
+                }
+            });
         });
     }
 
     /**
      * Resuelve un ID de entrada a su representación canónica interna.
-     * Cero heurísticas: Solo se resuelve lo que está explícitamente en el schema.
      * 
      * @param {string} inputId - ID proveniente de UI o datasets.
      * @returns {string|null} ID canónico si existe, null en caso contrario.
      */
     resolve(inputId) {
         if (!inputId) return null;
-        const normalized = inputId.toLowerCase().trim();
-        return this.lookup.get(normalized) || null;
+        
+        const raw = inputId.toLowerCase().trim();
+        
+        // 1. Camino rápido: Coincidencia exacta/alias
+        if (this.lookup.has(raw)) return this.lookup.get(raw);
+        
+        // 2. Camino fuzzy: Normalización avanzada
+        const fuzzy = ConceptMapper.normalize(raw);
+        if (this.fuzzyLookup.has(fuzzy)) return this.fuzzyLookup.get(fuzzy);
+
+        return null;
     }
 
     /**
