@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { PROBABILISTIC_FEATURES } from './runtime/engine/constants.js';
-const SCHEMA_PATH = './runtime/data/concept_canonical_map.json';
+import { PROBABILISTIC_FEATURES } from '../runtime/engine/constants.js';
+const SCHEMA_PATH = '../runtime/data/concept_canonical_map.json';
 const schema = JSON.parse(fs.readFileSync(SCHEMA_PATH, 'utf8'));
 
 const existingIds = new Set(schema.concepts.map(c => c.canonical_id));

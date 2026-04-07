@@ -1,4 +1,4 @@
-import { runTriage } from './runtime/engine/model.js';
+import { runTriage } from '../runtime/engine/model.js';
 
 // Caso de prueba con variaciones:
 // - 'pápulas' (plural + acento) -> debe resolver a 'papula'
