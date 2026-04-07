@@ -2,6 +2,7 @@
  * interpreter.js - Traducción de resultados técnicos a lenguaje clínico
  */
 import { FEATURE_MAP_LABELS, CLINICAL_GUI, PRIORITY_LABELS, FEATURE_INDEX } from './constants.js';
+import { t } from './i18n_utils.js';
 import { getWeight } from './baseline_model.js';
 
 import REASONING_MAP from './dermatology_reasoning_map.json' with { type: 'json' };
@@ -57,20 +58,20 @@ function getClinicalPearl(group) {
     return pearls[group] || "Evalúe siempre la estabilidad hemodinámica en cuadros extensos.";
 }
 
-export function interpretResult(X, prediction, syndromeKey = null, differentialRanking = []) {
+export function interpretResult(X, prediction, syndromeKey = null, differentialRanking = [], lang = 'es') {
     const priority = prediction.priority;
     const rec = CLINICAL_GUI.recommendations[priority];
     
     // Detección de Red Flags para UI
     const redFlags = [];
     const rfMap = {
-        signo_mucosas: "Compromiso de Mucosas (Riesgo SJS/NET)",
-        signo_fiebre: "Fiebre / Respuesta Inflamatoria Sistémica",
-        signo_dolor: "Dolor Intenso (Sospecha de Infección Profunda/Necrosis)",
-        lesion_bula_ampolla: "Dermatosis Ampollosa / Bulas",
-        lesion_purpura: "Púrpura Palpable (Sospecha Vasculitis)",
-        inmuno: "Paciente Inmunocompromedido",
-        farmacos_recientes: "Antecedente de Fármacos Sistémicos Críticos"
+        signo_mucosas: t('rf.mucosa', lang),
+        signo_fiebre: t('rf.fever', lang),
+        signo_dolor: t('rf.pain', lang),
+        lesion_bula_ampolla: t('rf.blister', lang),
+        lesion_purpura: t('rf.purpura', lang),
+        inmuno: t('rf.immuno', lang),
+        farmacos_recientes: t('rf.drugs', lang)
     };
 
     Object.keys(rfMap).forEach(key => {
@@ -108,16 +109,16 @@ export function interpretResult(X, prediction, syndromeKey = null, differentialR
     let justification = "";
     
     if (prediction.modifier) {
-        justification = `[Alerta de Seguridad] ${prediction.modifier}. `;
+        justification = `${t('ui.alert_security', lang)} ${prediction.modifier}. `;
     } else if (malignancyMismatch) {
-        justification = `[Alerta de Discordancia] Riesgo de neoplasia invasiva detectado por criterios de seguridad, pese a patrón probabilístico inespecífico. `;
+        justification = `${t('ui.alert_mismatch', lang)} Riesgo de neoplasia invasiva detectado por criterios de seguridad, pese a patrón probabilístico inespecífico. `;
     } else {
-        justification = "Priorización basada en ";
+        justification = `${t('ui.priority_based_on', lang)} `;
     }
 
     if (topSignals.length > 0) {
         const signalText = topSignals.map(s => s.name.toLowerCase()).join(", ");
-        justification += (prediction.modifier || malignancyMismatch ? "Frente a hallazgos de " : "") + signalText + ".";
+        justification += (prediction.modifier || malignancyMismatch ? `${t('ui.front_findings', lang)} ` : "") + signalText + ".";
     }
 
     // Activación del Reasoning Map

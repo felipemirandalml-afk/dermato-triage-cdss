@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useClinicalStore } from '../store/useClinicalStore';
 import { runTriage } from '../engine/model.js';
 
 export const useInference = () => {
+  const { i18n } = useTranslation();
   const formData = useClinicalStore(state => state.formData);
   const setTriageResult = useClinicalStore(state => state.setTriageResult);
 
@@ -12,7 +14,7 @@ export const useInference = () => {
 
     try {
       // 2. Encendido del Motor Clínico que importamos de Vainilla
-      const result = runTriage(formData);
+      const result = runTriage(formData, i18n.language);
       
       console.log("✅ [Orquestador] Predicción matemática completada:", result);
 

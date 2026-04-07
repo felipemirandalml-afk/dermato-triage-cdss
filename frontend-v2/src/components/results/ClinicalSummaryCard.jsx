@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useClinicalStore } from '../../store/useClinicalStore';
 
 export const ClinicalSummaryCard = () => {
+  const { t } = useTranslation();
   const formData = useClinicalStore((state) => state.formData);
   
   // Extraemos las features activas para listarlas
@@ -13,7 +15,7 @@ export const ClinicalSummaryCard = () => {
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm mb-6">
       <div className="flex items-center gap-3 mb-4">
         <span className="text-xl">📋</span>
-        <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight">Resumen del Paciente (Input)</h3>
+        <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight">{t('ui.patient_summary')}</h3>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">

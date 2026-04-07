@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useClinicalStore } from '../../store/useClinicalStore';
 import { ClinicalSummaryCard } from './ClinicalSummaryCard';
 
 export const ResultsPanel = () => {
+  const { t } = useTranslation();
   const result = useClinicalStore(state => state.triageResult);
   const formData = useClinicalStore(state => state.formData);
 
@@ -9,7 +11,7 @@ export const ResultsPanel = () => {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-slate-400 animate-pulse">
         <span className="text-4xl mb-4">⚙️</span>
-        <p className="font-bold">Analizando patrón sindrómico...</p>
+        <p className="font-bold">{t('ui.analyzing')}</p>
       </div>
     );
   }
@@ -19,9 +21,9 @@ export const ResultsPanel = () => {
 
   // Configuración Mappable UI basada en Prioridad
   const TriageConfig = {
-    'P1': { title: 'P1 - DERIVACIÓN INMEDIATA', color: 'bg-triage-p1 text-white border-triage-p1', bg: 'bg-triage-p1-bg', icon: '🚨', action: 'Evaluación presencial urgente por especialista / Derivación a urgencias.' },
-    'P2': { title: 'P2 - PRIORIDAD ALTA', color: 'bg-triage-p2 text-white border-triage-p2', bg: 'bg-triage-p2-bg', icon: '⚠️', action: 'Evaluación prioritaria en atención primaria / Derivación en menos de 7-15 días.' },
-    'P3': { title: 'P3 - AMBULATORIO', color: 'bg-triage-p3 text-white border-triage-p3', bg: 'bg-triage-p3-bg', icon: '🏥', action: 'Manejo ambulatorio estándar y reevaluación según evolución clínica.' }
+    'P1': { title: t('engine.priority.P1'), color: 'bg-triage-p1 text-white border-triage-p1', bg: 'bg-triage-p1-bg', icon: '🚨', action: t('engine.conduct.urgent') },
+    'P2': { title: t('engine.priority.P2'), color: 'bg-triage-p2 text-white border-triage-p2', bg: 'bg-triage-p2-bg', icon: '⚠️', action: t('engine.conduct.priority') },
+    'P3': { title: t('engine.priority.P3'), color: 'bg-triage-p3 text-white border-triage-p3', bg: 'bg-triage-p3-bg', icon: '🏥', action: t('engine.conduct.standard') }
   };
   
   const config = TriageConfig[priority] || TriageConfig['P3'];
@@ -57,9 +59,9 @@ export const ResultsPanel = () => {
         {/* 🧠 Panel Izquierdo: Machine Learning y Diferenciales */}
         <div className="space-y-4">
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 shadow-sm">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1 block">1° Sospecha Sindrómica</span>
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1 block">{t('ui.first_suspicion', { defaultValue: '1° Sospecha Sindrómica' })}</span>
             <div className="flex items-end gap-3 mb-4">
-              <h3 className="text-2xl font-black text-slate-800 capitalize">{primary_syndrome ? primary_syndrome.replace(/_/g, ' ') : 'Agrupación Indeterminada'}</h3>
+              <h3 className="text-2xl font-black text-slate-800 capitalize">{primary_syndrome ? primary_syndrome.replace(/_/g, ' ') : t('ui.indet_group', { defaultValue: 'Agrupación Indeterminada' })}</h3>
               <span className={`text-sm font-bold px-2 py-1 rounded-md mb-1 ${prob > 70 ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
                 {prob}% Estimación
               </span>
@@ -91,7 +93,7 @@ export const ResultsPanel = () => {
           <div className="bg-white border text-slate-800 border-slate-200 rounded-2xl p-5 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full -z-10"></div>
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 block flex justify-between">
-              <span>Mecanismo de Decisión (ExAI)</span>
+              <span>{t('ui.decision_mechanism')}</span>
               <span>🔍</span>
             </span>
 
@@ -110,13 +112,13 @@ export const ResultsPanel = () => {
               </div>
             ) : (
               <div className="p-4 bg-slate-50 rounded-xl text-sm text-slate-500 italic text-center">
-                Ninguna regla de emergencia vital disparada. El triaje procede estrictamente según estadística basal.
+                {t('ui.no_emergency_rules', { defaultValue: 'Ninguna regla de emergencia vital disparada. El triaje procede estrictamente según estadística basal.' })}
               </div>
             )}
 
             {/* Conducta Sugerida Clínicamente */}
             <div className="mt-4 pt-4 border-t border-slate-100">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">Conducta Sugerida</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">{t('ui.suggested_conduct')}</span>
               <p className="text-sm font-bold text-slate-800 leading-snug">
                 {config.action}
               </p>

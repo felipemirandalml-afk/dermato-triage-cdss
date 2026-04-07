@@ -1,6 +1,7 @@
 /**
  * safety_modifiers.js - Reglas de seguridad basadas en morfología y señales críticas
  */
+import { t } from './i18n_utils.js';
 
 export function applySafetyModifiers(helper, currentResult) {
     const { has } = helper;
@@ -10,7 +11,7 @@ export function applySafetyModifiers(helper, currentResult) {
 
     // A. RIESGO OCULAR / PERIOCULAR
     if (has('topog_cabeza') && has('topo_cara_centro') && (has('vesicula') || has('dolor'))) {
-        const desc = "Riesgo Ocular / Compromiso de Cara Centrofacial";
+        const desc = t('safety.ocular_risk');
         rules.push(`🚨 Alerta: ${desc}`);
         if (priority > 1) {
             priority = 1;
@@ -20,7 +21,7 @@ export function applySafetyModifiers(helper, currentResult) {
 
     // B. ISQUEMIA O NECROSIS TISULAR
     if ((has('escara') || has('ulcera') || has('purpura')) && has('agudo')) {
-        const desc = "Signos de Isquemia o Necrosis Tisular Aguda";
+        const desc = t('safety.ischemia');
         rules.push(`🚨 Alerta: ${desc}`);
         if (priority > 1) {
             priority = 1;
@@ -32,7 +33,7 @@ export function applySafetyModifiers(helper, currentResult) {
     if ((has('bula_ampolla') || has('erosion') || has('ampolla_nikolsky')) && 
         (has('signo_mucosas') || has('dolor') || has('generalizado') || has('patron_seborreica') || has('ampolla_nikolsky')) &&
         !has('cronico')) {
-        const desc = "Sospecha de Dermatosis Ampollosa o Compromiso Sistémico (Tóxico/Sustancia)";
+        const desc = t('safety.blister_autoimmune');
         rules.push(`🚨 Alerta: ${desc}`);
         if (priority > 1) {
             priority = 1;
@@ -42,7 +43,7 @@ export function applySafetyModifiers(helper, currentResult) {
 
     // D. NIKOLSKY DIRECTO POSITIVO
     if (has('ampolla_nikolsky') && has('agudo')) {
-        const desc = "Signo de Nikolsky Positivo Agudo (Posible Síndrome de Piel Escaldada / NET)";
+        const desc = t('safety.nikolsky');
         rules.push(`🚨 Alerta: ${desc}`);
         priority = 1;
         modifier = desc;
@@ -70,7 +71,7 @@ export function applyBlockModifiers(helper, currentResult) {
     const isFaceNodule = has('topog_cabeza') && has('topo_cara_centro') && has('nodulo');
 
     if (has('signo_abcde') || (isSuspectTime && isMalignantLesion) || (isElderly && isFaceNodule)) {
-        const desc = "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)";
+        const desc = t('safety.malignancy');
         rules.push(`⚠️ Bloqueo: ${desc}`);
         if (priority > 2) {
             priority = 2;
@@ -80,7 +81,7 @@ export function applyBlockModifiers(helper, currentResult) {
 
     // E. REACCIONES ESPECÍFICAS (Acrales / Farmacodermias Simples)
     if (has('patron_acral') && has('agudo')) {
-        const desc = "Reacción Acral Aguda (Estudio de Gatillante)";
+        const desc = t('safety.acral');
         rules.push(`⚠️ Bloqueo: ${desc}`);
         if (priority > 2) {
             priority = 2;
@@ -90,7 +91,7 @@ export function applyBlockModifiers(helper, currentResult) {
 
     // F. INFECCIÓN CRÓNICA / SUPURATIVA
     if (has('fistulas_supuracion')) {
-        const desc = "Inflamación Supurativa / Fístulas Crónicas";
+        const desc = t('safety.suppurative');
         rules.push(`⚠️ Bloqueo: ${desc}`);
         if (priority > 2) {
             priority = 2;
@@ -99,7 +100,7 @@ export function applyBlockModifiers(helper, currentResult) {
     }
 
     if (priority === 1 && has('farmacos_recientes') && !has('fiebre') && !has('dolor') && !has('signo_mucosas') && !has('bula_ampolla')) {
-        const desc = "Exantema Medicamentoso Simple (Vigilancia Estándar)";
+        const desc = t('safety.drug_rash');
         rules.push(`ℹ️ Ajuste: ${desc}`);
         priority = 2;
         modifier = desc;

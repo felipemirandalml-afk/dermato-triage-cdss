@@ -135,7 +135,7 @@ function refineSyndromeReasoning(analysis, helper) {
 /**
  * Punto de entrada principal para Triage/Diagnóstico
  */
-export function runTriage(formData) {
+export function runTriage(formData, lang = 'es') {
     try {
         const { X, featureMap, helper } = encodeFeatures(formData);
         const prediction = predict(X, helper);
@@ -155,7 +155,7 @@ export function runTriage(formData) {
         }
 
         const differentialRanking = rankDifferentials(diffCandidates, helper);
-        const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking);
+        const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking, lang);
         result.probabilistic_analysis = probabilisticAnalysis;
         result.differential_ranking = differentialRanking;
         
