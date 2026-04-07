@@ -1,68 +1,70 @@
-# DermatoTriage CDSS (v1.5.0 — Saneamiento Estructural 🏥)
-**Sistema de Soporte a la Decisión Clínica para Triage Dermatológico en APS**
+# DermatoTriage CDSS (v2.0.0 — Modernización Modular 🚀)
+**Sistema de Soporte a la Decisión Clínica para Triage Dermatológico en APS (React Edition)**
 
-DermatoTriage es una aplicación web estática (Vanilla JS) diseñada para profesionales de Atención Primaria de Salud (APS). Proporciona una capa de triage de alta fidelidad mediante un motor híbrido que combina reglas heurísticas de seguridad con un modelo probabilístico de inferencia.
-
----
-
-## 🏛️ Arquitectura del Sistema: El Motor Híbrido
-
-El núcleo de DermatoTriage opera en tres capas concurrentes que garantizan seguridad y precisión clínica:
-
-### 1. Capa de Seguridad (Heuristic Shields)
-Prioriza la vida y la integridad del paciente sobre cualquier cálculo estadístico:
-- **Escalación Inmediata (P1)**: Detección de patrones críticos (Necrosis, Isquemia, Compromiso de mucosas).
-- **Protección Oncológica**: Evita el sub-triage de lesiones sospechosas (Melanoma, CBC, CEC).
-- **Reglas Cardinales**: Lógica determinista para hallazgos patogmonómicos (Surco acarino, Vesículas agrupadas).
-
-### 2. Motor Probabilístico (`probabilistic_model.js`)
-Basado en un **Random Forest** entrenado con datasets dermatológicos reales. Clasifica el caso en uno de los 12 síndromes principales. 
-- **Estado Actual**: Exactitud sindrómica del **~63.1%** (Benchmark v2.2). 
-- **Nota**: Este es el "techo de cristal" del modelo actual, limitado por la densidad semiológica del input.
-
-### 3. Ranker Diferencial & Explicabilidad
-Proporciona el Top-3 de diagnósticos probables dentro del síndrome detectado, justificando cada uno mediante el mapa de razonamiento clínico (`engine/interpreter.js`).
+DermatoTriage es una aplicación de grado clínico diseñada para profesionales de Atención Primaria de Salud (APS). Proporciona una capa de triage de alta fidelidad mediante un motor neuro-simbólico que combina reglas heurísticas de seguridad con un modelo probabilístico de Random Forest.
 
 ---
 
-## 📂 Organización del Repositorio (v1.5.0)
+## 🏛️ Arquitectura del Sistema: v2.0 Modular
 
-Tras la fase de saneamiento estructural, el repositorio se organiza de forma estricta:
+Tras el refactor de la Fase 15, el sistema ha migrado de un monolito estático a una arquitectura moderna basada en componentes, separando la lógica médica de la interfaz de usuario.
 
-### 📦 Runtime (Núcleo Activo)
-Todo lo necesario para que la app funcione localmente en el navegador:
-- `index.html`, `ui.js`, `model.js`: Orquestación y UI.
-- `engine/`: Motores de inferencia, reglas y pesos del modelo (`rf_model.json`).
-- `data/`: Mapas canónicos y archivos de recalibración estática.
+### 1. Capa de UI (Frontend Moderno)
+- **Tecnología**: React 19 + Vite + Tailwind CSS.
+- **Estado**: Gestionado con **Zustand** para persistencia reactiva durante la sesión clínica.
+- **Ubicación**: `/frontend-v2`.
 
-### ⚙️ Pipeline de Entrenamiento
-Herramientas para la evolución del modelo (no requeridas para el uso diario):
-- `tools/train_and_evaluate.py`: Script principal de entrenamiento (Python/Scikit-learn).
-- `data/training_cases_v2.csv`: Dataset maestro de entrenamiento.
-
-### 🧪 Validación y Auditoría
-- `tools/validate_clinical_cases_hd.js`: Benchmark clínico de alta definición.
-- `tools/validate_case_schema.js`: Verificación de integridad del contrato de datos.
-
-### 📜 Research & Legacy (Archivo)
-- `archive/`: Contenedor de reportes históricos, scripts obsoletos y materiales de investigación que ya no forman parte del runtime activo.
+### 2. Motor Clínico (Hybrid Engine)
+- **Inferencia Probabilística**: Random Forest (RF) cargado dinámicamente (`rf_model.json`) para clasificación sindrómica (12 categorías).
+- **Escudos Heurísticos (ExAI)**: Capa de seguridad que detecta "Red Flags" (Emergencias vitales y sospecha de malignidad) con prioridad P1/P2 garantizada.
+- **Diferenciación Cardinal**: Ranker diferencial basado en semiología de alta resolución.
 
 ---
 
-1.  **Ejecutar la App**: Abra `index.html` en el navegador.
-    - *Nota*: Aplicación 100% autónoma y offline-ready (v1.5.1+). Todos los recursos críticos se sirven localmente.
-2.  **Validar Estado**:
+## 📂 Organización del Repositorio
+
+Para garantizar la trazabilidad clínica y el orden técnico, el repositorio se organiza de la siguiente manera:
+
+### 🏥 Core de Aplicación (Runtime Activo)
+*   **`/frontend-v2`**: El corazón del sistema. Contiene los componentes React, el store de estado y el **Engine** clínico consolidado en `src/engine/`.
+*   **`/runtime`**: Archivo maestro de descriptores, pesos y constantes clínicas compartidas.
+
+### 🧪 Validación y Debugging
+*   **`/validation`**: Suite de benchmarks clínicos. Incluye scripts para correr pruebas masivas de precisión diagnóstica.
+*   **`/tools`**: Herramientas de diagnóstico de integridad, reparadores de mapeo y simuladores de casos clínicos.
+
+### 📜 Legacy & Archive
+*   **`/archive/monolithic_ui`**: Contiene la versión v1.5 (Vanilla JS) para fines de auditoría histórica. **No apta para uso en producción.**
+
+---
+
+## 🚀 Guía de Inicio Rápido
+
+### Requisitos
+- Node.js (v18 o superior)
+
+### Instalación y Ejecución
+1.  **Instalar dependencias** (si es la primera vez):
     ```bash
-    npm run validate
+    npm install && cd frontend-v2 && npm install
+    ```
+2.  **Iniciar la App**:
+    ```bash
+    npm run dev
+    ```
+    *Nota: El script en la raíz redirigirá automáticamente el tráfico a la instancia de Vite.*
+
+3.  **Correr Pruebas de Integridad**:
+    ```bash
+    npm run validate:all
     ```
 
 ---
 
-## 📈 Estado y Limitaciones (Honestidad Técnica)
-- **Validación Clínica**: El sistema se encuentra en fase de validación técnica interna. **NO** ha sido sometido a ensayos clínicos prospectivos externos.
-- **Sesgo de Datos**: El modelo tiene mayor rendimiento en síndromes inflamatorios frecuentes que en patologías raras.
-- **Uso**: Herramienta de asistencia, la decisión final es siempre responsabilidad del médico tratante.
+## 📈 Seguridad y Limitaciones
+- **P1 Directo**: Cualquier hallazgo de necrosis, isquemia o compromiso de mucosas gatilla derivación inmediata automática.
+- **Uso Crítico**: Esta herramienta es de **asistencia**. La decisión clínica final y la responsabilidad legal recaen exclusivamente en el médico tratante.
 
 ---
+*Desarrollado para el fortalecimiento de la Atención Primaria mediante Inteligencia Explicable.*
 
-*Desarrollado con ❤️ para el fortalecimiento de la Atención Primaria.*
