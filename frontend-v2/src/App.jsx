@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PatientCoreForm } from './components/form/PatientCoreForm';
 import { TopographyForm } from './components/form/TopographyForm';
 import { RedFlagsForm } from './components/form/RedFlagsForm';
+import { ResultsPanel } from './components/results/ResultsPanel';
 import { useInference } from './hooks/useInference';
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
           {currentStep === 0 && <PatientCoreForm />}
           {currentStep === 1 && <TopographyForm />}
           {currentStep === 2 && <RedFlagsForm />}
-          {currentStep === 3 && <div className="text-center p-20 text-slate-400 font-bold">La neurona terminó de calcular. ¡Falta pintar los resultados visuales!</div>}
+          {currentStep === 3 && <ResultsPanel />}
 
           {/* Navegación Modular (Barra Inferior) */}
           <div className="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
