@@ -6,5 +6,8 @@
     "start": "npx -y serve .",
     "test": "node research/experimental/test_probabilistic_engine.js",
     "validate": "node validation/scripts/validate_clinical_cases_hd.js"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.2.2"
   }
 }

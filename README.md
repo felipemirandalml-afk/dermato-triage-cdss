@@ -49,10 +49,8 @@ Herramientas para la evolución del modelo (no requeridas para el uso diario):
 
 ---
 
-## 🚀 Uso Rápido
-
-1.  **Ejecutar la App**: Abra `index.html` en cualquier navegador moderno.
-    - *Nota*: El sistema procesa toda la lógica localmente pero carga Tailwind CSS vía CDN.
+1.  **Ejecutar la App**: Abra `index.html` en el navegador.
+    - *Nota*: Aplicación 100% autónoma y offline-ready (v1.5.1+). Todos los recursos críticos se sirven localmente.
 2.  **Validar Estado**:
     ```bash
     npm run validate
