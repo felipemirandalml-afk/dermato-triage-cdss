@@ -1,4 +1,3 @@
-import { useClinicalStore } from '../../store/useClinicalStore';
 import { UI_LABELS } from '../../constants/labels';
 
 export const StepNavigation = ({ currentStep, onNext, onBack, onReset }) => {
@@ -23,10 +22,7 @@ export const StepNavigation = ({ currentStep, onNext, onBack, onReset }) => {
       
       {currentStep === 3 && (
          <button 
-          onClick={() => {
-            useClinicalStore.getState().resetForm();
-            onReset();
-          }}
+          onClick={onReset}
           className="px-8 py-3 bg-slate-800 text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-slate-900 transition-all"
          >
            {UI_LABELS.BUTTONS.NEW_PATIENT}

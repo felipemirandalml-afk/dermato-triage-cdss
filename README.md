@@ -1,35 +1,47 @@
 # DermatoTriage CDSS v2.0.0
+**Sistema de Soporte a la Decisión Clínica para Triage Dermatológico en APS**
+
+> [!IMPORTANT]
+> **ADVERTENCIA DE USO**: Este sistema es una herramienta de **asistencia técnica** y no posee autonomía diagnóstica ni terapéutica. La decisión clínica final, el diagnóstico definitivo y la conducta médica son responsabilidad exclusiva del profesional de salud tratante. **NO SUSTITUYE EL JUICIO MÉDICO.**
+
+---
+
+## ⚕️ Gobernanza Clínica y Uso Previsto
+
+### 1. Uso Previsto (Intended Use)
+DermatoTriage está diseñado para asistir en la **priorización (triage) y orientación sindrómica** de lesiones cutáneas frecuentes en el contexto de la Atención Primaria de Salud (APS). Su objetivo principal es:
+- Identificar hallazgos de alta sospecha (Red Flags) que requieran derivación urgente (P1/P2).
+- Proporcionar un ranking diferencial basado en semiología probabilística para orientar el estudio inicial.
+
+### 2. Población Objetivo (Target Population)
+- **Pacientes**: Adultos y niños con lesiones cutáneas de novo o exacerbaciones de patologías conocidas.
+- **Contexto**: Consultas de morbilidad no programada en APS o servicios de urgencia de baja complejidad.
+
+### 3. Uso No Previsto (Contraindicaciones)
+- Diagnóstico autónomo sin supervisión médica.
+- Evaluación de lesiones en mucosas genitofemoral o interna (requiere examen físico presencial directo).
+- Uso en pacientes con compromiso sistémico agudo no dermatológico (ej. shock, sepsis de otro origen).
+
+### 4. Limitaciones Clínicas Explícitas
+- **Densidad Semiológica**: La precisión del modelo depende estrictamente de la calidad y exhaustividad del examen físico ingresado por el usuario.
+- **Sesgo de Dataset**: El modelo tiene un rendimiento optimizado para fototipos de Fitzpatrick I-IV. Su precisión en fototipos oscuros (V-VI) está en fase de calibración.
+- **Patología Rara**: El sistema prioriza diagnósticos frecuentes; patologías dermatológicas raras pueden no ser representadas correctamente en el ranking diferencial.
+
+---
 
 ## 🏛️ Arquitectura y Fuente de Verdad
-Este repositorio utiliza una arquitectura de capas separadas para garantizar la integridad del motor de inferencia y la modernidad de la interfaz.
+1.  **Aplicación Oficial (`/frontend-v2`)**: SPA moderna en React 19 + Vite. Único punto de entrada operativo.
+2.  **Tooling y Validación (Raíz)**: Suite de benchmarks (`/validation`) y scripts de integridad.
+3.  **Legacy Archivado (`/archive`)**: Código v1.x depreciado. Solo para trazabilidad histórica.
 
-1.  **Aplicación Oficial (`/frontend-v2`)**: SPA moderna en React 19 + Vite. Es el único punto de entrada para uso clínico. Gestiona el UI y encapsula el motor de inferencia (`src/engine`).
-2.  **Tooling y Validación (Raíz)**: Entorno de orquestación. Contiene la suite de benchmarks (`/validation`), scripts de debugging (`/tools`) y pesos de entrenamiento (`/runtime`).
-3.  **Legacy Archivado (`/archive`)**: Código monolítico (Vanilla JS/HTML) depreciado. Mantenido únicamente para auditoría y trazabilidad histórica. No funcional para el entorno actual.
-
-## 📂 Estructura de Directorios
-- `frontend-v2/`: Código fuente de la aplicación oficial.
-- `runtime/`: Constantes y modelos compartidos (SSoT - Single Source of Truth).
-- `validation/`: Suite de validación y benchmarks de precisión clínica.
-- `tools/`: Scripts de mantenimiento e integridad del sistema.
-- `archive/monolithic_ui/`: UI v1.x depreciada.
+---
 
 ## 🚀 Ejecución Operativa
-### Desarrollo e Interfaz
-Desde la raíz del proyecto:
-```bash
-npm run dev
-```
-*(Lanza automáticamente la instancia de Vite en frontend-v2)*.
+- **Desarrollo**: `npm run dev` desde la raíz.
+- **Validación Clínica**: `npm run validate:all` para ejecutar benchmarks de precisión.
 
-### Validación de Precisión Clínica
-```bash
-npm run validate:all
-```
+---
 
-## 📈 Seguridad Crítica
-- **P1 Automático**: Detección determinista de necrosis, isquemia o compromiso de mucosas.
-- **Diferenciales**: Top-3 basado en semiología probabilística (RF) + Reglas Cardinales.
-- **Responsabilidad**: Herramienta de asistencia. La decisión final es responsabilidad exclusiva del médico tratante.
+*DermatoTriage: Inteligencia Explicable al servicio de la salud pública.*
 
 

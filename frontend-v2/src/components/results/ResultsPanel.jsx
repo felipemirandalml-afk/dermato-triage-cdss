@@ -1,5 +1,5 @@
-import React from 'react';
 import { useClinicalStore } from '../../store/useClinicalStore';
+import { ClinicalSummaryCard } from './ClinicalSummaryCard';
 
 export const ResultsPanel = () => {
   const result = useClinicalStore(state => state.triageResult);
@@ -39,9 +39,12 @@ export const ResultsPanel = () => {
           </div>
         </div>
         <div className="hidden sm:block text-right">
-          <span className="text-xs uppercase bg-white/20 px-3 py-1 rounded-full font-bold">Motor Neuro-Simbólico v1.5</span>
+          <span className="text-xs uppercase bg-white/20 px-3 py-1 rounded-full font-bold uppercase tracking-widest">Motor Neuro-Simbólico v2.0</span>
         </div>
       </div>
+
+      {/* 📋 Resumen Clínico del Input (XAI Pattern) */}
+      <ClinicalSummaryCard />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         

@@ -2,9 +2,14 @@ import React from 'react';
 import { useClinicalStore } from '../../store/useClinicalStore';
 import { FieldGroup, ClinicalFeatureCheckbox } from '../shared/FormElements';
 
+import { conceptMapper } from '../../engine/concept_mapper';
+
 export const PatientCoreForm = () => {
   const formData = useClinicalStore((state) => state.formData);
   const setField = useClinicalStore((state) => state.setField);
+  
+  // 🔍 Descubrimiento Dinámico de Features (SSoT)
+  const primaryFeatures = conceptMapper.getFeaturesByGroup('lesion_primaria').filter(f => f.usable_in_ui);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 animate-in slide-in-from-right-4 duration-500">
@@ -72,47 +77,23 @@ export const PatientCoreForm = () => {
         </FieldGroup>
       </div>
 
-      {/* Columna Derecha: Core Features */}
+      {/* Columna Derecha: Core Features Dinámicas */}
       <div className="space-y-8 bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
         <div>
           <h3 className="text-xl font-bold text-slate-800 mb-1">Hallazgos Primarios</h3>
-          <p className="text-sm text-slate-500">Morfología de la lesión base (Seleccion múltiple).</p>
+          <p className="text-sm text-slate-500">Morfología de la lesión según ontología oficial.</p>
         </div>
         
-        <FieldGroup title="Opciones Frecuentes">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <ClinicalFeatureCheckbox id="lesion_macula" label="Mácula / Mancha" category="Plana sin relieve" />
-            <ClinicalFeatureCheckbox 
-              id="lesion_papula" 
-              label="Pápula / Placa" 
-              category="Elevación sólida <1cm" 
-            />
-            <ClinicalFeatureCheckbox 
-              id="lesion_vesicula" 
-              label="Vesícula" 
-              category="Burbuja de líquido <1cm" 
-            />
-            <ClinicalFeatureCheckbox 
-              id="lesion_ampolla" 
-              label="Ampolla (Bula)" 
-              category="Burbuja de líquido >1cm" 
-            />
-            <ClinicalFeatureCheckbox 
-              id="lesion_pustula" 
-              label="Pústula" 
-              category="Elevación con pus" 
-            />
-            <ClinicalFeatureCheckbox 
-              id="lesion_comedon" 
-              label="Comedón" 
-              category="Espinillas / Puntos Negros" 
-            />
-            <ClinicalFeatureCheckbox 
-              id="lesion_escama" 
-              label="Escama / Costra" 
-              category="Desprendimiento corneo" 
-            /><ClinicalFeatureCheckbox id="lesion_costra" label="Costra Mielicérica" category="Desecación" />
-            <ClinicalFeatureCheckbox id="lesion_ulcera" label="Úlcera" category="Pérdida de sustancia" />
+        <FieldGroup title="Opciones Detectadas">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+            {primaryFeatures.map(feat => (
+              <ClinicalFeatureCheckbox 
+                key={feat.canonical_id}
+                id={feat.canonical_id} 
+                label={feat.canonical_label} 
+                category={feat.definition || feat.semantic_group.replace(/_/g, ' ')} 
+              />
+            ))}
           </div>
         </FieldGroup>
       </div>

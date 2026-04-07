@@ -103,6 +103,20 @@ class ConceptMapper {
     getAllCanonicalIds() {
         return Array.from(this.metadata.keys());
     }
+
+    /**
+     * Filtra conceptos por grupo semántico (ej: 'lesion_primaria', 'topografia').
+     */
+    getFeaturesByGroup(group) {
+        return Array.from(this.metadata.values()).filter(f => f.semantic_group === group);
+    }
+
+    /**
+     * Filtra conceptos que son aptos para mostrarse en la Interfaz de Usuario.
+     */
+    getFeaturesByUsability(ui_only = true) {
+        return Array.from(this.metadata.values()).filter(f => f.usable_in_ui === ui_only);
+    }
 }
 
 // Singleton para el sistema

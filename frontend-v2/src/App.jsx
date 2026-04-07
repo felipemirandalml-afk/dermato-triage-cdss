@@ -8,6 +8,7 @@ import { TopographyForm } from './components/form/TopographyForm';
 import { RedFlagsForm } from './components/form/RedFlagsForm';
 import { ResultsPanel } from './components/results/ResultsPanel';
 import { useInference } from './hooks/useInference';
+import { useClinicalStore } from './store/useClinicalStore';
 import { UI_LABELS } from './constants/labels';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
   };
   
   const handleReset = () => {
+    useClinicalStore.getState().resetForm();
     setError(null);
     setCurrentStep(0);
   };
