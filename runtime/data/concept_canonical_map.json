@@ -898,7 +898,10 @@
       "canonical_label": "Edad",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "age",
+        "años"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -908,7 +911,10 @@
       "canonical_label": "Dermatomal",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "zosteriform",
+        "dermatome"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -918,7 +924,11 @@
       "canonical_label": "Generalizado",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "generalized",
+        "widespread",
+        "disseminated"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -968,7 +978,10 @@
       "canonical_label": "Agudo",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "acute",
+        "sudden"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -978,7 +991,9 @@
       "canonical_label": "Subagudo",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "subacute"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -988,7 +1003,10 @@
       "canonical_label": "Cronico",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "chronic",
+        "long-term"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -998,7 +1016,11 @@
       "canonical_label": "Prurito",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "itch",
+        "itching",
+        "pruritic"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1008,7 +1030,10 @@
       "canonical_label": "Prurito Nocturno",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "nocturnal itch",
+        "night itch"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1018,7 +1043,10 @@
       "canonical_label": "Ardor Quemazon",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "burning",
+        "stinging"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1028,7 +1056,11 @@
       "canonical_label": "Dolor",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "pain",
+        "painful",
+        "ache"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1038,7 +1070,11 @@
       "canonical_label": "Asintomatico",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "asymptomatic",
+        "no symptoms",
+        "painless"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1048,7 +1084,10 @@
       "canonical_label": "Fiebre",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "fever",
+        "febrile"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1058,7 +1097,11 @@
       "canonical_label": "Farmacos Recientes",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "recent drugs",
+        "medication",
+        "new medicine"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1068,7 +1111,11 @@
       "canonical_label": "Inmunosupresion",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "immunosuppression",
+        "immunocompromised",
+        "low immunity"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1078,7 +1125,10 @@
       "canonical_label": "Diabetes",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "diabetic",
+        "metabolic"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1088,7 +1138,10 @@
       "canonical_label": "Hepatopatia",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "liver disease",
+        "hepatopathy"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1098,7 +1151,10 @@
       "canonical_label": "Atopia",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "atopy",
+        "allergic history"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1108,7 +1164,10 @@
       "canonical_label": "Embarazo",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "pregnancy",
+        "pregnant"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1118,7 +1177,10 @@
       "canonical_label": "Contagio Familiar",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "family contact",
+        "household contact"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1138,7 +1200,11 @@
       "canonical_label": "Fistulas Supuracion",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "fistula",
+        "suppuration",
+        "draining"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1188,7 +1254,12 @@
       "canonical_label": "Extremidad Superior",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "upper limb",
+        "arm",
+        "elbow",
+        "hand"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1198,7 +1269,11 @@
       "canonical_label": "Pies",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "feet",
+        "foot",
+        "toes"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1228,7 +1303,10 @@
       "canonical_label": "Curacion Central",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "central clearing",
+        "annular pattern"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1238,7 +1316,10 @@
       "canonical_label": "Simetrico",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "symmetric",
+        "bilateral"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1268,7 +1349,11 @@
       "canonical_label": "Despegamiento Epidermico",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "nikolsky",
+        "epidermal detachment",
+        "skin peeling"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1278,7 +1363,10 @@
       "canonical_label": "Borde Activo",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "active border",
+        "leading edge"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1288,7 +1376,10 @@
       "canonical_label": "Costra Mielicerica",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "honey-colored crust",
+        "meliceric"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
@@ -1318,7 +1409,12 @@
       "canonical_label": "Mucosas",
       "semantic_group": "auto_migrated",
       "granularity_level": "canonical",
-      "aliases": [],
+      "aliases": [
+        "mucosa",
+        "mouth",
+        "lips",
+        "oral"
+      ],
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
