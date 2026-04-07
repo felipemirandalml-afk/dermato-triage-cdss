@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PatientCoreForm } from './components/form/PatientCoreForm';
+import { TopographyForm } from './components/form/TopographyForm';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -53,7 +54,7 @@ function App() {
         {/* 📋 Módulos de Formulario Reactivos */}
         <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 min-h-[400px]">
           {currentStep === 0 && <PatientCoreForm />}
-          {currentStep === 1 && <div className="text-center p-20 text-slate-400 font-bold">Módulo Topográfico (Pronto)</div>}
+          {currentStep === 1 && <TopographyForm />}
           {currentStep === 2 && <div className="text-center p-20 text-slate-400 font-bold">Módulo Signos Críticos (Pronto)</div>}
           {currentStep === 3 && <div className="text-center p-20 text-slate-400 font-bold">Panel de Resultados IA (Pronto)</div>}
 
