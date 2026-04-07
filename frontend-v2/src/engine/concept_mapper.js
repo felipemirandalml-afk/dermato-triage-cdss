@@ -87,6 +87,40 @@ class ConceptMapper {
         const fuzzy = ConceptMapper.normalize(raw);
         if (this.fuzzyLookup.has(fuzzy)) return this.fuzzyLookup.get(fuzzy);
 
+        // 3. Inferencia de Prefijos (Compatibilidad con Datasets Legacy/Derm1M)
+        // Algunos datasets prefijan con lesion_, topog_, patron_
+        const stripped = raw.replace(/^(lesion_|topog_|patron_|topo_)/, '');
+        if (this.lookup.has(stripped)) return this.lookup.get(stripped);
+        
+        const fuzzyStripped = ConceptMapper.normalize(stripped);
+        if (this.fuzzyLookup.has(fuzzyStripped)) return this.fuzzyLookup.get(fuzzyStripped);
+
+        // 4. Mapeos de Traducción Core (Soporte Multi-Dataset)
+        const coreAliases = {
+            'acute': 'agudo',
+            'subacute': 'subagudo',
+            'chronic': 'cronico',
+            'male': 'sexo_male',
+            'female': 'sexo_female',
+            'erythema': 'eritema',
+            'scale': 'escama',
+            'crust': 'costra',
+            'ulcer': 'ulcera',
+            'blister': 'bula_ampolla',
+            'vesicle': 'vesicula',
+            'pustule': 'pustula',
+            'papule': 'papula',
+            'plaque': 'placa',
+            'nodule': 'nodulo',
+            'spot': 'macula',
+            'itch': 'prurito',
+            'pain': 'dolor',
+            'fever': 'fiebre'
+        };
+
+        const aliasId = coreAliases[stripped] || coreAliases[fuzzyStripped];
+        if (aliasId) return this.resolve(aliasId);
+
         return null;
     }
 

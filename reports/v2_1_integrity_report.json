@@ -1,0 +1,1261 @@
+{
+  "timestamp": "2026-04-07T21:22:16.883Z",
+  "stats": {
+    "total": 18397,
+    "priorityOk": 14879,
+    "syndromeOk": 2716,
+    "safetyShieldsTriggered": 2442,
+    "failures": [
+      {
+        "id": "V2-CORE-pigmented progressive purpuric dermatosis-ky9w",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-SPARSE-pigmented progressive purpuric dermatosis-vqll",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-pigmented progressive purpuric dermatosis-j1i5",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-STRESS-pigmented progressive purpuric dermatosis-8fkd",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-CORE-melasma-sn0z",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-SPARSE-melasma-eo64",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "benign_cutaneous_tumor"
+        }
+      },
+      {
+        "id": "V2-NOISY-melasma-28ea",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-STRESS-melasma-frd4",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-SPARSE-acne, scar-m91n",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-CORE-no definitive diagnosis-xbmi",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-SPARSE-no definitive diagnosis-i7jw",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-no definitive diagnosis-zvas",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "benign_cutaneous_tumor"
+        }
+      },
+      {
+        "id": "V2-NOISY-no definitive diagnosis-kilm",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-STRESS-no definitive diagnosis-3lky",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-CORE-cutaneous t cell lymphoma-afd5",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-SPARSE-cutaneous t cell lymphoma-ln69",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-cutaneous t cell lymphoma-w5xc",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": null
+      },
+      {
+        "id": "V2-NOISY-cutaneous t cell lymphoma-dif7",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-cutaneous t cell lymphoma-2j98",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-CORE-brownish-black papules-59hp",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-SPARSE-brownish-black papules-f6o7",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-brownish-black papules-pza8",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-brownish-black papules-2d2i",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-CORE-cushing's syndrome cutaneous manifestation-h0aa",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-SPARSE-cushing's syndrome cutaneous manifestation-43n6",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-cushing's syndrome cutaneous manifestation-599h",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-cushing's syndrome cutaneous manifestation-60vy",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-SPARSE-impetigo-c400",
+        "variant": "sparse",
+        "expected": {
+          "p": 1,
+          "s": "bacterial_skin_infection"
+        },
+        "got": {
+          "p": 3,
+          "s": "urticarial_dermatosis"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-impetigo-puir",
+        "variant": "atypical",
+        "expected": {
+          "p": 1,
+          "s": "bacterial_skin_infection"
+        },
+        "got": {
+          "p": 1,
+          "s": "urticarial_dermatosis"
+        }
+      },
+      {
+        "id": "V2-SPARSE-scleroderma-9bi6",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-scleroderma-55er",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-lichen sclerosis et atrophicus-ssm5",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-lichen sclerosis et atrophicus-arwa",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-CORE-irritated seborrheic keratosis (from \"sk/isk\")-1q30",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "benign_cutaneous_tumor"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-SPARSE-irritated seborrheic keratosis (from \"sk/isk\")-mb6b",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "benign_cutaneous_tumor"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-irritated seborrheic keratosis (from \"sk/isk\")-7ok3",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "benign_cutaneous_tumor"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-STRESS-irritated seborrheic keratosis (from \"sk/isk\")-h6zu",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "benign_cutaneous_tumor"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-CORE-palmoplantar pustulosis-x2op",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-SPARSE-palmoplantar pustulosis-8okd",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-NOISY-palmoplantar pustulosis-ih0g",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-STRESS-palmoplantar pustulosis-nkjq",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-CORE-benign cephalic pustulosis-8d0c",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-SPARSE-benign cephalic pustulosis-lzc3",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-NOISY-benign cephalic pustulosis-0gqf",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-STRESS-benign cephalic pustulosis-5ufd",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-CORE-angioma-a6c5",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-SPARSE-angioma-nirl",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-angioma-0afj",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-NOISY-angioma-rt2n",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-angioma-0nnx",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-CORE-hyperpigmentation, post-inflammatory hyperpigmentation-o2pt",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-SPARSE-hyperpigmentation, post-inflammatory hyperpigmentation-my9h",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-hyperpigmentation, post-inflammatory hyperpigmentation-5c8b",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-STRESS-hyperpigmentation, post-inflammatory hyperpigmentation-5cdt",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-CORE-herpes zoster-e2a7",
+        "variant": "core",
+        "expected": {
+          "p": 2,
+          "s": "viral_skin_infection"
+        },
+        "got": {
+          "p": 3,
+          "s": "viral_skin_infection"
+        },
+        "modifier": "Cuadro Inflamatorio Estable (Manejo Ambulatorio)"
+      },
+      {
+        "id": "V2-SPARSE-herpes zoster-pp6y",
+        "variant": "sparse",
+        "expected": {
+          "p": 2,
+          "s": "viral_skin_infection"
+        },
+        "got": {
+          "p": 3,
+          "s": "viral_skin_infection"
+        },
+        "modifier": "Cuadro Inflamatorio Estable (Manejo Ambulatorio)"
+      },
+      {
+        "id": "V2-ATYPICAL-herpes zoster-xm4x",
+        "variant": "atypical",
+        "expected": {
+          "p": 2,
+          "s": "viral_skin_infection"
+        },
+        "got": {
+          "p": 3,
+          "s": "urticarial_dermatosis"
+        }
+      },
+      {
+        "id": "V2-NOISY-herpes zoster-xd7r",
+        "variant": "borderline",
+        "expected": {
+          "p": 2,
+          "s": "viral_skin_infection"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Cuadro Inflamatorio Estable (Manejo Ambulatorio)"
+      },
+      {
+        "id": "V2-STRESS-herpes zoster-l2o0",
+        "variant": "stress",
+        "expected": {
+          "p": 2,
+          "s": "viral_skin_infection"
+        },
+        "got": {
+          "p": 3,
+          "s": "viral_skin_infection"
+        },
+        "modifier": "Cuadro Inflamatorio Estable (Manejo Ambulatorio)"
+      },
+      {
+        "id": "V2-CORE-cutaneous netherton syndrome manifestation-y62w",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-SPARSE-cutaneous netherton syndrome manifestation-ql2x",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-cutaneous netherton syndrome manifestation-48i7",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-cutaneous netherton syndrome manifestation-bti5",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-STRESS-cutaneous netherton syndrome manifestation-0vma",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-CORE-verruca vulgaris-icji",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-SPARSE-verruca vulgaris-v760",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-ATYPICAL-verruca vulgaris-zru1",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-NOISY-verruca vulgaris-08yx",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-verruca vulgaris-8fhh",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-CORE-squamous cell carcinoma-2gwo",
+        "variant": "core",
+        "expected": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-SPARSE-squamous cell carcinoma-xknf",
+        "variant": "sparse",
+        "expected": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-NOISY-squamous cell carcinoma-f4rw",
+        "variant": "borderline",
+        "expected": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-squamous cell carcinoma-9jw8",
+        "variant": "stress",
+        "expected": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-CORE-psoriasis-0pwq",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-SPARSE-psoriasis-00ub",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-psoriasis-wc9n",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-STRESS-psoriasis-19s9",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-CORE-hemorrhagic bullous dermatosis-vz6v",
+        "variant": "core",
+        "expected": {
+          "p": 2,
+          "s": "vesiculobullous_disease"
+        },
+        "got": {
+          "p": 1,
+          "s": "urticarial_dermatosis"
+        }
+      },
+      {
+        "id": "V2-SPARSE-hemorrhagic bullous dermatosis-yjal",
+        "variant": "sparse",
+        "expected": {
+          "p": 2,
+          "s": "vesiculobullous_disease"
+        },
+        "got": {
+          "p": 1,
+          "s": "urticarial_dermatosis"
+        }
+      },
+      {
+        "id": "V2-NOISY-hemorrhagic bullous dermatosis-jo0i",
+        "variant": "borderline",
+        "expected": {
+          "p": 2,
+          "s": "vesiculobullous_disease"
+        },
+        "got": {
+          "p": 1,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-hemorrhagic bullous dermatosis-4z5w",
+        "variant": "stress",
+        "expected": {
+          "p": 2,
+          "s": "vesiculobullous_disease"
+        },
+        "got": {
+          "p": 1,
+          "s": "urticarial_dermatosis"
+        }
+      },
+      {
+        "id": "V2-CORE-pigmented purpuric eruption-pmt0",
+        "variant": "core",
+        "expected": {
+          "p": 1,
+          "s": "vasculitic_purpuric_disease"
+        },
+        "got": {
+          "p": 3,
+          "s": "vasculitic_purpuric_disease"
+        }
+      },
+      {
+        "id": "V2-SPARSE-pigmented purpuric eruption-l9gq",
+        "variant": "sparse",
+        "expected": {
+          "p": 1,
+          "s": "vasculitic_purpuric_disease"
+        },
+        "got": {
+          "p": 3,
+          "s": "urticarial_dermatosis"
+        }
+      },
+      {
+        "id": "V2-NOISY-pigmented purpuric eruption-eoak",
+        "variant": "borderline",
+        "expected": {
+          "p": 1,
+          "s": "vasculitic_purpuric_disease"
+        },
+        "got": {
+          "p": 3,
+          "s": "psoriasiform_dermatosis"
+        }
+      },
+      {
+        "id": "V2-STRESS-pigmented purpuric eruption-xiu9",
+        "variant": "stress",
+        "expected": {
+          "p": 1,
+          "s": "vasculitic_purpuric_disease"
+        },
+        "got": {
+          "p": 3,
+          "s": "vasculitic_purpuric_disease"
+        }
+      },
+      {
+        "id": "V2-CORE-neurofibroma-oncb",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-SPARSE-neurofibroma-rqsa",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-ATYPICAL-neurofibroma-7pqp",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        }
+      },
+      {
+        "id": "V2-NOISY-neurofibroma-rzjp",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-STRESS-neurofibroma-1cb9",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-CORE-papulonecrotic tuberculid-3atr",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "fungal_skin_infection"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-SPARSE-papulonecrotic tuberculid-su20",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "fungal_skin_infection"
+        }
+      },
+      {
+        "id": "V2-NOISY-papulonecrotic tuberculid-9btw",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "psoriasiform_dermatosis"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-STRESS-papulonecrotic tuberculid-uo8u",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "fungal_skin_infection"
+        },
+        "modifier": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)"
+      },
+      {
+        "id": "V2-CORE-cutaneous gout manifestation-zlo6",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": null
+      },
+      {
+        "id": "V2-SPARSE-cutaneous gout manifestation-926k",
+        "variant": "sparse",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": null
+      },
+      {
+        "id": "V2-ATYPICAL-cutaneous gout manifestation-81f3",
+        "variant": "atypical",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": "Cuadro Inflamatorio Estable (Manejo Ambulatorio)"
+      },
+      {
+        "id": "V2-NOISY-cutaneous gout manifestation-w247",
+        "variant": "borderline",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "fungal_skin_infection"
+        },
+        "modifier": null
+      },
+      {
+        "id": "V2-STRESS-cutaneous gout manifestation-s9un",
+        "variant": "stress",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 2,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": null
+      },
+      {
+        "id": "V2-CORE-ulcer-9t35",
+        "variant": "core",
+        "expected": {
+          "p": 3,
+          "s": "inflammatory_dermatosis_other"
+        },
+        "got": {
+          "p": 3,
+          "s": "cutaneous_tumor_suspected"
+        },
+        "modifier": "Cuadro Inflamatorio Estable (Manejo Ambulatorio)"
+      }
+    ],
+    "variants": {
+      "core": {
+        "ok": 660,
+        "total": 4426
+      },
+      "sparse": {
+        "ok": 359,
+        "total": 4426
+      },
+      "atypical": {
+        "ok": 65,
+        "total": 693
+      },
+      "borderline": {
+        "ok": 516,
+        "total": 4426
+      },
+      "stress": {
+        "ok": 660,
+        "total": 4426
+      }
+    }
+  },
+  "accuracy": {
+    "priority": "80.88",
+    "syndrome": "14.76"
+  }
+}

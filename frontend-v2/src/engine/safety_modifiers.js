@@ -41,8 +41,16 @@ export function applySafetyModifiers(helper, currentResult) {
         }
     }
 
-    // D. NIKOLSKY DIRECTO POSITIVO
-    if (has('ampolla_nikolsky') && has('agudo')) {
+    // D. ERITRODERMIA (Riesgo metabólico/hemodinámico)
+    if (has('eritema') && (has('escama') || has('costra')) && has('generalizado')) {
+        const desc = t('safety.erythroderma');
+        rules.push(`🚨 Alerta: ${desc}`);
+        priority = 1;
+        modifier = desc;
+    }
+
+    // E. NIKOLSKY DIRECTO POSITIVO (Falla cutánea aguda)
+    if ((has('ampolla_nikolsky') || has('despegamiento_epidermico')) && has('agudo')) {
         const desc = t('safety.nikolsky');
         rules.push(`🚨 Alerta: ${desc}`);
         priority = 1;

@@ -2,9 +2,10 @@
   "eczema_dermatitis": {
     "clinical_group": "inflammatory_dermatoses",
     "subgroup": "eczematous_disorders",
-    "reasoning_summary": "Pruritic inflammatory dermatosis often associated with scale, excoriation, lichenification or chronic relapsing course.",
+    "reasoning_summary": "Pruritic inflammatory dermatosis often associated with scale, excoriation, or lichenification. Note: Symmetry often indicates endogenous/systemic processes, while asymmetry suggests external triggers (contact/tinea).",
     "red_flags": [
       "extensive erythrodermic involvement",
+      "metabolic/hemodynamic instability (fluid/protein loss)",
       "secondary infection (eczema herpeticum)"
     ],
     "possible_differentials": [
@@ -17,16 +18,18 @@
       "eczematous eruptive disease",
       "flagellate mushroom dermatitis",
       "infantile atopic dermatitis",
-      "psoriasiform dermatitis-microcephaly-developmental delay"
+      "psoriasiform dermatitis-microcephaly-developmental delay",
+      "pityriasis rubra pilaris (PRP)"
     ]
   },
   "psoriasiform_dermatosis": {
     "clinical_group": "inflammatory_dermatoses",
     "subgroup": "papulosquamous_disorders",
-    "reasoning_summary": "Chronic inflammatory condition characterized by well-demarcated erythematous plaques with silvery scales, often in extensor distributions.",
+    "reasoning_summary": "Inflammatory condition with rapid keratinocyte turnover (3 days vs 30). Presentation: well-demarcated erythematous plaques with silvery scales (Auspitz sign).",
     "red_flags": [
       "psoriatic erythroderma",
       "generalized pustular psoriasis",
+      "PRP-associated ectropion (eye eversion)",
       "joint pain (psoriatic arthritis)"
     ],
     "possible_differentials": [
@@ -37,8 +40,8 @@
       "linear lichen planus",
       "parapsoriasis en plaques",
       "pityriasis rosea",
-      "psoriasiform dermatitis-microcephaly-developmental delay",
-      "psoriasis",
+      "pityriasis rubra pilaris (PRP)",
+      "secondary syphilis (The Great Mimicker)",
       "small plaque parapsoriasis"
     ]
   },
@@ -113,11 +116,11 @@
     "subgroup": "cutaneous_drug_reactions",
     "reasoning_summary": "Cutaneous manifestations triggered by medication use, ranging from simple rashes to life-threatening conditions.",
     "red_flags": [
-      "mucosal involvement",
-      "skin pain",
+      "mucosal involvement (eyes, mouth, genitalia)",
+      "skin pain (SJS/TEN warning)",
       "positive Nikolsky sign",
-      "fever",
-      "eosinophilia"
+      "fever and general adenopathy (DRESS suspicion)",
+      "neurological/consciousness changes (systemic toxicity)"
     ],
     "possible_differentials": [
       "bullous drug eruptions",
@@ -132,9 +135,9 @@
     "subgroup": "urticarial_and_vascular_disorders",
     "reasoning_summary": "Transient edematous papules and plaques (wheals) caused by mast cell degranulation, often severely pruritic.",
     "red_flags": [
-      "airway involvement (angioedema)",
-      "anaphylaxis symptoms",
-      "lesions lasting >24h (vasculitis suspicion)"
+      "airway involvement (angioedema/dyspnea)",
+      "anaphylaxis symptoms (hypotension/shock)",
+      "lesions lasting >24h (Vasculitis 24h-Rule)"
     ],
     "possible_differentials": [
       "contact urticaria",

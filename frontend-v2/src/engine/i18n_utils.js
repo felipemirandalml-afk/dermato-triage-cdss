@@ -12,7 +12,10 @@ const DICTIONARY = {
         'safety.malignancy': "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)",
         'safety.acral': "Reacción Acral Aguda (Estudio de Gatillante)",
         'safety.suppurative': "Inflamación Supurativa / Fístulas Crónicas",
-        'safety.drug_rash': "Exantema Medicamentoso Simple (Vigilancia Estándar)",
+        'safety.erythroderma': "Eritrodermia Grave (Riesgo Hemodinámico/Metabólico)",
+        'safety.lpp_nail': "LPP/Compromiso Ungueal (Urgencia para evitar secuelas permanentes)",
+        'safety.respiratory': "Compromiso Respiratorio / Angioedema (Riesgo Vital)",
+        'safety.systemic_shock': "Signos Sistémicos de Shock / Inestabilidad",
         'ui.alert_security': "[Alerta de Seguridad]",
         'ui.alert_mismatch': "[Alerta de Discordancia]",
         'ui.priority_based_on': "Priorización basada en",
@@ -23,7 +26,9 @@ const DICTIONARY = {
         'rf.blister': "Dermatosis Ampollosa / Bulas",
         'rf.purpura': "Púrpura Palpable (Sospecha Vasculitis)",
         'rf.immuno': "Paciente Inmunocompromedido",
-        'rf.drugs': "Antecedente de Fármacos Sistémicos Críticos"
+        'rf.drugs': "Antecedente de Fármacos Sistémicos Críticos",
+        'rf.angioedema': "Angioedema / Dificultad Respiratoria",
+        'rf.consciousness': "Alteración del Nivel de Conciencia"
     }
 };
 

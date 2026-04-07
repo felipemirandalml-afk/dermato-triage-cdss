@@ -60,7 +60,7 @@
     "rpr_top": "12.49",
     "dp_score": "1.000",
     "category": "ancla_absoluta",
-    "top_syndrome": "appendage_disorders_acne",
+    "top_syndrome": "inflammatory_dermatosis_other",
     "syndrome_diversity": 2
   },
   {
@@ -148,7 +148,7 @@
     "rpr_top": "21.08",
     "dp_score": "1.000",
     "category": "ancla_absoluta",
-    "top_syndrome": "ectoparasitosis_scabies",
+    "top_syndrome": "inflammatory_dermatosis_other",
     "syndrome_diversity": 3
   },
   {
@@ -196,7 +196,7 @@
     "rpr_top": "5.93",
     "dp_score": "0.593",
     "category": "altamente_especifico",
-    "top_syndrome": "appendage_disorders_acne",
+    "top_syndrome": "inflammatory_dermatosis_other",
     "syndrome_diversity": 3
   },
   {

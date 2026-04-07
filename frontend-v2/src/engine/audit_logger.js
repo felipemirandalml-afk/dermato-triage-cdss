@@ -32,11 +32,13 @@ export const auditLogger = {
     };
 
     // En producción esto se enviaría a un endpoint de telemetría segura
+    /*
     console.group(`🩺 Audit Event: [${eventId}]`);
     console.log("Timestamp:", timestamp);
     console.log("Input Profile:", auditEvent.patientProfile);
     console.log("Result:", auditEvent.inference);
     console.groupEnd();
+    */
 
     return auditEvent;
   }
