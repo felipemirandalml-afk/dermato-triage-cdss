@@ -4,16 +4,16 @@
   "type": "module",
   "description": "Clinical Decision Support System for Dermatological Triage",
   "scripts": {
-    "start": "serve .",
-    "dev": "serve .",
-    "build:css": "tailwindcss -i ./index.css -o ./runtime/ui/tailwind-bundle.css --content './index.html' --minify",
+    "start": "npm --prefix frontend-v2 run dev",
+    "dev": "npm --prefix frontend-v2 run dev",
+    "build": "npm --prefix frontend-v2 run build",
     "test": "node tools/debug_case.js",
     "test:clinical": "node validation/scripts/validate_clinical_cases_hd.js",
     "test:massive": "node validation/scripts/run_synthetic_case_benchmark_v2.js",
     "validate:integrity": "node tools/check_integrity.js",
     "validate:all": "npm run validate:integrity && npm run test:clinical",
     "repair:mapper": "node tools/repair_mapper.js",
-    "format": "prettier --write 'runtime/**/*.js' 'tools/**/*.js' '*.css' 'index.html'",
+    "format": "prettier --write 'runtime/**/*.js' 'tools/**/*.js' '*.css'",
     "lint": "eslint 'runtime/**/*.js' 'tools/**/*.js'"
   },
   "devDependencies": {
