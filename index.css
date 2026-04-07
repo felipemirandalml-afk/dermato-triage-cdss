@@ -1,52 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+/* -------------------------------------------------------------------------- */
+/* 🎨 1. SISTEMA DE DISEÑO (VARIABLES & TOKENS)                                */
+/* -------------------------------------------------------------------------- */
 :root {
+    /* Colores Core */
     --clinical-blue: #2563eb;
+    --clinical-blue-dark: #1d4ed8;
     --clinical-bg: #f8fafc;
+    --clinical-card-bg: #ffffff;
+    
+    /* Colores de Triage */
+    --triage-p1: #e11d48;
+    --triage-p1-bg: #fff1f2;
+    --triage-p2: #d97706;
+    --triage-p2-bg: #fffbeb;
+    --triage-p3: #059669;
+    --triage-p3-bg: #ecfdf5;
+
+    /* Semántica de Texto */
     --text-primary: #0f172a;
     --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --text-placeholder: #cbd5e1;
+
+    /* Bordes y Sombras Premium */
+    --clinical-border: #e2e8f0;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 10px 10px -5px rgb(0 0 0 / 0.04);
 }
 
+/* -------------------------------------------------------------------------- */
+/* 🧱 2. RESET & BASE                                                         */
+/* -------------------------------------------------------------------------- */
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--clinical-bg);
+    color: var(--text-primary);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* Scrollbar Médico Estilizado */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-.animate-in {
-    animation: fadeIn 0.4s ease-out forwards;
-}
-
-/* Custom Scrollbar for Clinical Feel */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
-
-/* Transitions for Tabs */
-.tab-content {
-    transition: opacity 0.3s ease-in-out;
-}
-
-/* Ensure inputs are clean */
+/* Limpieza de inputs nativos */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -57,55 +56,76 @@ input[type="checkbox"], input[type="radio"] {
     accent-color: var(--clinical-blue);
 }
 
-/* Selectable Cards */
-.card-selectable {
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    border: 1px solid #f1f5f9; /* border-slate-100 */
+/* -------------------------------------------------------------------------- */
+/* ✨ 3. ANIMACIONES CORE                                                     */
+/* -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.card-selectable:hover {
-    border-color: #bfdbfe; /* hover:border-blue-200 */
-    background-color: rgba(239, 246, 255, 0.3); /* hover:bg-blue-50/30 */
+@keyframes slideInBottom {
+    from { opacity: 0; transform: translateY(2rem); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.card-selectable:has(input:checked) {
-    border-color: #60a5fa; /* border-blue-400 */
-    background-color: rgba(239, 246, 255, 0.5); /* bg-blue-50/50 */
-    box-shadow: 0 0 0 1px #60a5fa; /* ring-1 ring-blue-400 */
+@keyframes badgePulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
 }
 
-/* Red Flag State */
-.card-selectable-red {
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    border: 1px solid rgba(255, 228, 230, 0.5); /* border-rose-100/50 */
+.animate-in { animation: fadeIn 0.4s ease-out forwards; }
+.badge-pulse { animation: badgePulse 2s infinite; }
+.duration-1000 { animation-duration: 1200ms; }
+.slide-in-from-bottom-12 { animation: slideInBottom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* -------------------------------------------------------------------------- */
+/* 📂 4. COMPONENTES: NAVEGACIÓN Y ESTRUCTURA                                 */
+/* -------------------------------------------------------------------------- */
+.tab-content {
+    transition: opacity 0.3s ease-in-out;
 }
 
-.card-selectable-red:hover {
-    border-color: #fecdd3; /* hover:border-rose-200 */
-    background-color: rgba(255, 241, 242, 0.3); /* hover:bg-rose-50/30 */
+.tab-btn {
+    transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.card-selectable-red:has(input:checked) {
-    border-color: #fb7185; /* border-rose-400 */
-    background-color: rgba(255, 241, 242, 0.5); /* bg-rose-50/50 */
-    box-shadow: 0 0 0 1px #fb7185; /* ring-1 ring-rose-400 */
+.tab-active {
+    background-color: var(--clinical-card-bg) !important;
+    color: var(--clinical-blue) !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 10px 15px -3px rgba(37, 99, 235, 0.1) !important;
 }
 
-/* Clinical Design System Classes */
-.clinical-border {
-    border: 1px solid #e2e8f0;
+.tab-inactive {
+    color: var(--text-muted);
+    background: transparent;
 }
 
+.tab-inactive:hover {
+    color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 🃏 5. COMPONENTES: CARDS & SELECCIONABLES                                  */
+/* -------------------------------------------------------------------------- */
 .clinical-card {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    background-color: var(--clinical-card-bg);
+    border: 1px solid var(--clinical-border);
+    border-radius: 1.5rem;
+    box-shadow: var(--card-shadow-hover);
+    transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Selectable Cards & Interactions */
 .card-selectable {
     transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
@@ -124,44 +144,27 @@ input[type="checkbox"], input[type="radio"] {
     box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
 }
 
-/* Premium Navigation Tabs */
-.tab-btn {
-    transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
+/* Red Flag (Enfoque Crítico) */
+.card-selectable-red {
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid rgba(255, 228, 230, 0.5);
 }
 
-.tab-active {
-    background-color: #ffffff !important;
-    color: #2563eb !important;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 10px 15px -3px rgba(37, 99, 235, 0.1) !important;
+.card-selectable-red:hover {
+    border-color: #fecdd3;
+    background-color: rgba(255, 241, 242, 0.3);
 }
 
-.tab-inactive {
-    color: #94a3b8;
-    background: transparent;
+.card-selectable-red:has(input:checked) {
+    border-color: var(--triage-p1);
+    background-color: rgba(255, 241, 242, 0.5);
+    box-shadow: 0 0 0 1px var(--triage-p1);
 }
 
-.tab-inactive:hover {
-    color: #64748b;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Clinical Badges */
-.tab-badge {
-    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.badge-pulse {
-    animation: badgePulse 2s infinite;
-}
-
-@keyframes badgePulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-    70% { box-shadow: 0 0 0 6px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-}
-
+/* -------------------------------------------------------------------------- */
+/* 🔘 6. BOTONES                                                               */
+/* -------------------------------------------------------------------------- */
 .btn-clinical {
     padding: 0.75rem 2rem;
     background-color: var(--clinical-blue);
@@ -173,90 +176,54 @@ input[type="checkbox"], input[type="radio"] {
     cursor: pointer;
 }
 
-.btn-clinical:hover {
-    background-color: #1d4ed8;
-}
-
-.btn-clinical:active {
-    transform: scale(0.95);
-}
-
-.btn-clinical:disabled {
-    background-color: #cbd5e1;
-    cursor: not-allowed;
-}
+.btn-clinical:hover { background-color: var(--clinical-blue-dark); }
+.btn-clinical:active { transform: scale(0.95); }
+.btn-clinical:disabled { background-color: var(--text-placeholder); cursor: not-allowed; }
 
 .btn-outline {
     padding: 0.75rem 2rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--clinical-border);
     background-color: transparent;
-    color: #64748b;
+    color: var(--text-secondary);
     font-weight: 600;
     border-radius: 0.75rem;
     transition: all 0.2s ease;
     cursor: pointer;
 }
 
-.btn-outline:hover {
-    background-color: #f1f5f9;
-}
+.btn-outline:hover { background-color: #f1f5f9; }
 
-/* Specialized Clinical Styling for Results */
-.clinical-card {
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
-    border-radius: 1.5rem;
-}
+/* -------------------------------------------------------------------------- */
+/* 🏷️ 7. UTILIDADES VISUALES & ESCALAS                                        */
+/* -------------------------------------------------------------------------- */
+.clinical-border { border: 1px solid var(--clinical-border); }
 
-.text-rose-600 { color: #e11d48; }
-.text-amber-600 { color: #d97706; }
-.text-emerald-600 { color: #059669; }
+.text-rose-600 { color: var(--triage-p1); }
+.text-amber-600 { color: var(--triage-p2); }
+.text-emerald-600 { color: var(--triage-p3); }
 
-.bg-rose-50 { background-color: #fff1f2; }
-.bg-amber-50 { background-color: #fffbeb; }
-.bg-emerald-50 { background-color: #ecfdf5; }
+.bg-rose-50 { background-color: var(--triage-p1-bg); }
+.bg-amber-50 { background-color: var(--triage-p2-bg); }
+.bg-emerald-50 { background-color: var(--triage-p3-bg); }
 .bg-blue-50 { background-color: #eff6ff; }
 
-/* Clinical Note Labels */
 .clinical-report-label {
     font-size: 0.65rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin-bottom: 0.25rem;
     display: block;
 }
 
-/* Glassmorphism for analytical badges */
-.glass-panel {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-/* Custom Animation Durations */
-.duration-1000 {
-    animation-duration: 1200ms;
-}
-
-.slide-in-from-bottom-12 {
-    animation: slideInBottom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes slideInBottom {
-    from {
-        opacity: 0; transform: translateY(2rem);
-    }
-    to {
-        opacity: 1; transform: translateY(0);
-    }
-}
-
+/* -------------------------------------------------------------------------- */
+/* 🖨️ 8. IMPRESIÓN & REPORTES                                                 */
+/* -------------------------------------------------------------------------- */
 @media print {
     .no-print { display: none !important; }
     body { background: white; padding: 0; }
-    .clinical-card { box-shadow: none; border: 1px solid #e2e8f0; border-radius: 0; }
+    .clinical-card { box-shadow: none; border: 1px solid var(--clinical-border); border-radius: 0; }
     .max-w-\[1300px\] { max-width: 100% !important; margin: 0; }
     #resultsPanel { margin-top: 0; }
 }
-
