@@ -8,11 +8,12 @@ import { TopographyForm } from './components/form/TopographyForm';
 import { RedFlagsForm } from './components/form/RedFlagsForm';
 import { ResultsPanel } from './components/results/ResultsPanel';
 import { useInference } from './hooks/useInference';
+import { UI_LABELS } from './constants/labels';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const { processPatient } = useInference();
-  const steps = ["Datos Core", "Exploración", "Signos Críticos", "Resultados"];
+  const steps = UI_LABELS.STEPS;
 
   const handleNext = () => {
     if (currentStep === 2) {
