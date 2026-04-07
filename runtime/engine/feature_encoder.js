@@ -27,10 +27,10 @@ export function encodeFeatures(formData) {
         }
     });
 
-    // Sexo (Unificado via Index)
+    // Sexo (Unificado via Index para Motor Heurístico/Seguridad)
     const sexId = formData.sex === 'male' ? 'sexo_male' : (formData.sex === 'female' ? 'sexo_female' : null);
-    if (sexId && FEATURE_INDEX[sexId] !== undefined) {
-        X[FEATURE_INDEX[sexId]] = 1;
+    if (sexId) {
+        if (FEATURE_INDEX[sexId] !== undefined) X[FEATURE_INDEX[sexId]] = 1;
         featureMap[sexId] = 1;
     }
 

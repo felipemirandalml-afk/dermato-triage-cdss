@@ -1478,6 +1478,34 @@
       "source_mappings": [],
       "usable_in_ui": true,
       "usable_in_rules": true
+    },
+    {
+      "canonical_id": "sexo_male",
+      "canonical_label": "Sexo Masculino",
+      "semantic_group": "demografia",
+      "granularity_level": "canonical",
+      "aliases": [
+        "hombre",
+        "male",
+        "masculino"
+      ],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
+    },
+    {
+      "canonical_id": "sexo_female",
+      "canonical_label": "Sexo Femenino",
+      "semantic_group": "demografia",
+      "granularity_level": "canonical",
+      "aliases": [
+        "mujer",
+        "female",
+        "femenino"
+      ],
+      "source_mappings": [],
+      "usable_in_ui": true,
+      "usable_in_rules": true
     }
   ]
 }
