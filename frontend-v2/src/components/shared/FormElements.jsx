@@ -12,17 +12,20 @@ export const FieldGroup = ({ title, children }) => (
   </div>
 );
 
-export const ClinicalFeatureCheckbox = ({ id, label, category = "" }) => {
+export const ClinicalFeatureCheckbox = ({ id, label, category = "", variant = "default" }) => {
   const toggleFeature = useClinicalStore((state) => state.toggleFeature);
   const isChecked = useClinicalStore((state) => state.formData[id] || false);
 
+  const containerClass = variant === "red" ? "card-selectable-red" : "card-selectable";
+  const inputColorClass = variant === "red" ? "text-triage-p1 focus:ring-triage-p1 border-red-200" : "text-clinical-blue focus:ring-clinical-blue border-slate-300";
+
   return (
-    <label className="card-selectable p-4 rounded-xl flex items-start gap-4">
+    <label className={`${containerClass} p-4 rounded-xl flex items-start gap-4`}>
       <div className="mt-0.5">
         <input 
           type="checkbox" 
           id={id}
-          className="w-5 h-5 rounded border-slate-300 text-clinical-blue focus:ring-clinical-blue transition-all cursor-pointer"
+          className={`w-5 h-5 rounded transition-all cursor-pointer ${inputColorClass}`}
           checked={isChecked}
           onChange={() => toggleFeature(id)}
         />

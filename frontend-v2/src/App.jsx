@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { PatientCoreForm } from './components/form/PatientCoreForm';
 import { TopographyForm } from './components/form/TopographyForm';
+import { RedFlagsForm } from './components/form/RedFlagsForm';
+import { useInference } from './hooks/useInference';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
+  const { processPatient } = useInference();
   const steps = ["Datos Core", "Exploración", "Signos Críticos", "Resultados"];
+
+  const handleNext = () => {
+    if (currentStep === 2) {
+      // Estamos en la antesala de los resultados. ¡Enciende la IA!
+      processPatient();
+      setCurrentStep(3);
+    } else {
+      setCurrentStep(Math.min(steps.length - 1, currentStep + 1));
+    }
+  };
 
   return (
     <div className="min-h-screen pb-20 bg-slate-50 font-sans">
@@ -52,27 +65,41 @@ function App() {
         </div>
 
         {/* 📋 Módulos de Formulario Reactivos */}
-        <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 min-h-[400px]">
+        <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 min-h-[400px] relative">
           {currentStep === 0 && <PatientCoreForm />}
           {currentStep === 1 && <TopographyForm />}
-          {currentStep === 2 && <div className="text-center p-20 text-slate-400 font-bold">Módulo Signos Críticos (Pronto)</div>}
-          {currentStep === 3 && <div className="text-center p-20 text-slate-400 font-bold">Panel de Resultados IA (Pronto)</div>}
+          {currentStep === 2 && <RedFlagsForm />}
+          {currentStep === 3 && <div className="text-center p-20 text-slate-400 font-bold">La neurona terminó de calcular. ¡Falta pintar los resultados visuales!</div>}
 
           {/* Navegación Modular (Barra Inferior) */}
           <div className="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
             <button 
               onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
-              disabled={currentStep === 0}
-              className={`px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all ${currentStep === 0 ? 'opacity-0 cursor-default' : 'text-slate-500 hover:bg-slate-50 border border-slate-200'}`}
+              disabled={currentStep === 0 || currentStep === 3}
+              className={`px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all ${(currentStep === 0 || currentStep === 3) ? 'opacity-0 cursor-default' : 'text-slate-500 hover:bg-slate-50 border border-slate-200'}`}
             >
               Volver
             </button>
-            <button 
-              onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
-              className="px-8 py-3 bg-clinical-blue text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20 transition-all flex items-center gap-2"
-            >
-              {currentStep === steps.length - 1 ? 'Finalizar' : 'Continuar →'}
-            </button>
+            
+            {currentStep < 3 && (
+              <button 
+                onClick={handleNext}
+                className={`px-8 py-3 text-white rounded-xl font-black uppercase tracking-widest text-xs transition-all flex items-center gap-2 ${currentStep === 2 ? 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/30' : 'bg-clinical-blue hover:bg-blue-700 hover:shadow-blue-500/20'} hover:shadow-lg`}
+              >
+                {currentStep === 2 ? 'Analizar Paciente 🧠' : 'Continuar →'}
+              </button>
+            )}
+            {currentStep === 3 && (
+               <button 
+                onClick={() => {
+                  useClinicalStore.getState().resetForm();
+                  setCurrentStep(0);
+                }}
+                className="px-8 py-3 bg-slate-800 text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-slate-900 transition-all"
+               >
+                 Nuevo Paciente ↻
+               </button>
+            )}
           </div>
         </div>
 
