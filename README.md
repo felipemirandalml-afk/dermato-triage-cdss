@@ -1,42 +1,233 @@
 # DermatoTriage CDSS v2.1.0
-**Sistema Modular de Soporte a la Decisión Clínica para APS**
 
-> [!IMPORTANT]
-> **ADVERTENCIA DE USO**: Este sistema es una herramienta de **asistencia técnica** y no posee autonomía diagnóstica ni terapéutica. La decisión clínica final, el diagnóstico definitivo y la conducta médica son responsabilidad exclusiva del profesional de salud tratante. **NO SUSTITUYE EL JUICIO MÉDICO.**
+Sistema de soporte a la decisión clínica (CDSS) para triage dermatológico en atención ambulatoria, con interfaz moderna en React/Vite y un motor híbrido de inferencia clínica.
 
 ---
 
-## ⚕️ Gobernanza Clínica y SSoT (Single Source of Truth)
+## 1. Propósito del sistema
 
-DermatoTriage v2.1.0 utiliza una arquitectura **Data-Driven (Basada en Datos)** donde la Interfaz de Usuario se autoconstruye dinámicamente a partir de la ontología clínica oficial.
+DermatoTriage CDSS es una herramienta de apoyo para priorización clínica de pacientes con motivos de consulta dermatológicos, diseñada para asistir la evaluación inicial mediante:
 
-### 1. Ontología Dinámica (SSoT)
-- **Fuente de Verdad**: `runtime/data/concept_canonical_map.json`.
-- **Mecanismo**: El sistema utiliza un `ConceptMapper` para descubrir y renderizar automáticamente hallazgos clínicos (`lesion_primaria`, `topografia`, `red_flags`) a partir del esquema maestro, garantizando sincronización total entre la UI y el motor de inferencia.
+- estructuración de hallazgos semiológicos relevantes,
+- detección de signos críticos o red flags,
+- estimación sindrómica orientativa,
+- priorización operacional en niveles P1, P2 o P3,
+- presentación de razonamiento clínico explicable basado en reglas heurísticas y capa probabilística.
 
-### 2. Transparencia y Explicabilidad (XAI)
-- **Input Summary Card**: Se ha implementado una tarjeta de resumen clínico que muestra los datos procesados (Edad, Sexo, Evolución, Hallazgos) antes de leer el resultado, permitiendo al médico validar la entrada de datos.
-- **Heuristic Shield**: Capa determinista de Red Flags que asegura la detección inmediata de emergencias (P1/P2) independientemente del modelo probabilístico.
-
-### 3. Escudo de Validación Clínica
-- El motor de análisis está bloqueado hasta que se cumplan criterios mínimos de densidad semiológica (Edad + Tiempo + Al menos 1 hallazgo clínico reconocido), evitando inferencias basadas en "input basura".
+El sistema **no reemplaza** la evaluación clínica presencial ni la toma de decisiones del profesional tratante.
 
 ---
 
-## 🏛️ Arquitectura Técnica v2.1.0
-1.  **Frontend Modular (`/frontend-v2`)**: SPA en **React 19 + Vite + Zustand**.
-2.  **Estado Segmentado**: Separación estricta entre Metadatos del Paciente y Features Clínicas para auditoría y trazabilidad.
-3.  **Componentes Puros (Dumb Components)**: La navegación y formularios están desacoplados del store, comunicándose mediante eventos (onNext, onReset).
-4.  **Motor Legacy Adaptado**: Hook de inferencia (`useInference.js`) que funciona como puente entre la modernidad de React y la potencia estadística del motor Random Forest original.
+## 2. Intended use
+
+DermatoTriage está diseñado para:
+
+- apoyar a profesionales de salud en contextos ambulatorios o de atención inicial,
+- organizar y resumir hallazgos clínicos cutáneos relevantes,
+- sugerir una prioridad de triage operacional,
+- aportar diferenciales sindrómicos orientativos,
+- aumentar la sensibilidad frente a cuadros dermatológicos potencialmente graves mediante reglas de seguridad.
+
+### Usuario previsto
+- médicos generales,
+- médicos en formación,
+- profesionales clínicos con capacidad de integrar el resultado al contexto del paciente.
+
+### Contexto previsto
+- atención ambulatoria,
+- APS,
+- evaluación clínica inicial,
+- escenarios de apoyo docente o de validación técnica interna.
 
 ---
 
-## 🚀 Ejecución Operativa
-- **Desarrollo**: `npm run dev` desde la raíz.
-- **Validación Clínica**: `npm run validate:all` para benchmarks de precisión.
+## 3. Not intended use
+
+DermatoTriage **no está diseñado para**:
+
+- establecer diagnósticos definitivos,
+- reemplazar dermatología, urgencia, biopsia, dermatoscopía o evaluación presencial,
+- descartar cáncer cutáneo,
+- tomar decisiones autónomas sin supervisión clínica,
+- priorizar pacientes inestables sin evaluación ABC inicial,
+- ser utilizado directamente por pacientes como sistema de autodiagnóstico,
+- guiar tratamiento farmacológico definitivo,
+- sustituir protocolos institucionales vigentes.
+
+Si existe compromiso sistémico, deterioro hemodinámico, dolor desproporcionado, compromiso mucoso, necrosis, despegamiento epidérmico u otra señal de gravedad, debe prevalecer la evaluación clínica urgente por sobre cualquier salida del sistema.
 
 ---
 
-*DermatoTriage: Inteligencia Explicable al servicio de la salud pública.*
+## 4. Población diana
 
+La herramienta está pensada para pacientes con consulta dermatológica o dermatosis en evaluación clínica inicial.
 
+### Consideraciones
+- Puede ser utilizada como apoyo estructural en pacientes adultos.
+- Su uso en población pediátrica, inmunosuprimidos, pacientes oncológicos complejos o embarazadas debe considerarse con especial cautela.
+- El sistema no ha sido validado como herramienta específica para subgrupos clínicos de alta complejidad.
+
+---
+
+## 5. Significado operacional del triage
+
+DermatoTriage entrega una prioridad operacional resumida en tres niveles:
+
+### P1 — Derivación inmediata
+Sugiere necesidad de evaluación urgente o derivación inmediata por alta sospecha de compromiso grave, red flags mayores o riesgo vital/funcional.
+
+Ejemplos de escenarios de activación:
+- necrosis o isquemia,
+- compromiso de mucosas,
+- despegamiento epidérmico,
+- signos sistémicos de inestabilidad,
+- sospecha de cuadro dermatológico grave que no debe diferirse.
+
+### P2 — Prioridad alta
+Sugiere evaluación médica prioritaria o resolución acelerada, idealmente en corto plazo, por riesgo clínico relevante sin criterios evidentes de emergencia vital inmediata.
+
+Ejemplos:
+- sospecha oncológica cutánea,
+- dermatosis con carga inflamatoria importante,
+- cuadros de progresión subaguda con hallazgos de preocupación,
+- necesidad de evaluación especializada o presencial priorizada.
+
+### P3 — Manejo ambulatorio
+Sugiere manejo ambulatorio o evaluación no urgente, siempre que el contexto clínico global sea concordante y no existan red flags no capturados por el sistema.
+
+**Importante:** P3 **no equivale** a “cuadro benigno asegurado” ni descarta evolución desfavorable.
+
+---
+
+## 6. Estado actual de validación
+
+DermatoTriage se encuentra en fase de:
+
+- validación técnica interna,
+- revisión estructural del flujo de datos,
+- benchmark clínico sintético / semiestructurado,
+- saneamiento progresivo de arquitectura y trazabilidad.
+
+### Estado actual
+- Existe validación técnica interna del motor y de casos clínicos de prueba.
+- No existen, hasta la fecha, ensayos clínicos prospectivos externos.
+- No existe validación multicéntrica publicada.
+- No debe interpretarse como dispositivo clínico validado para uso autónomo.
+
+---
+
+## 7. Limitaciones conocidas
+
+### Limitaciones del sistema
+- El rendimiento depende de la calidad del input clínico ingresado.
+- La salida es orientativa y puede degradarse con descripciones incompletas o sesgadas.
+- La capa probabilística no reemplaza correlación clínica, examen físico ni juicio experto.
+- La interpretación sindrómica puede ser menos robusta en patologías raras, superpuestas o atípicas.
+- El sistema aún conserva compatibilidad con componentes legacy del motor, por lo que su evolución sigue en transición arquitectónica controlada.
+
+### Limitaciones del benchmark
+- Los resultados de benchmark reflejan validación interna, no desempeño clínico real en terreno.
+- Los porcentajes de desempeño no deben interpretarse como garantía diagnóstica individual.
+- Las métricas dependen de la composición del set de validación, del balance entre síndromes y de la granularidad semiológica disponible.
+
+---
+
+## 8. Advertencia clínica
+
+DermatoTriage es una **herramienta de apoyo**.
+
+- No sustituye la evaluación médica presencial.
+- No sustituye el juicio clínico.
+- No sustituye protocolos institucionales.
+- No sustituye derivación o manejo urgente cuando el contexto clínico lo amerita.
+
+La decisión final es siempre responsabilidad exclusiva del profesional tratante.
+
+---
+
+## 9. Arquitectura y fuente de verdad
+
+Este repositorio utiliza una arquitectura por capas para separar interfaz, estado clínico, lógica de inferencia y tooling de validación.
+
+### Estructura principal
+1. **Aplicación oficial (`/frontend-v2`)**  
+   SPA en React 19 + Vite. Es la interfaz operativa principal del sistema.
+
+2. **Tooling y validación (raíz)**  
+   Scripts de debugging, benchmarks clínicos, validación e integridad.
+
+3. **Legacy archivado (`/archive`)**  
+   Código histórico depreciado, mantenido solo para trazabilidad técnica y auditoría evolutiva.
+
+---
+
+## 10. Estructura de directorios
+
+- `frontend-v2/` → aplicación principal
+- `frontend-v2/src/store/` → estado clínico global
+- `frontend-v2/src/hooks/` → orquestación de inferencia
+- `frontend-v2/src/components/` → interfaz modular
+- `frontend-v2/src/engine/` → motor clínico de inferencia
+- `validation/` → validación técnica y benchmarks
+- `tools/` → scripts de mantenimiento
+- `archive/` → legado archivado
+
+---
+
+## 11. Ejecución
+
+### Desarrollo
+Desde la raíz del proyecto:
+
+```bash
+npm run dev
+```
+Esto lanza la aplicación oficial ubicada en `frontend-v2`.
+
+### Build
+```bash
+npm run build
+```
+
+### Validación técnica
+```bash
+npm run validate:all
+```
+
+---
+
+## 12. Resumen funcional del sistema
+
+DermatoTriage combina:
+
+- captura estructurada de datos clínicos,
+- features semiológicas organizadas,
+- reglas de seguridad heurística,
+- clasificación sindrómica probabilística,
+- ranking diferencial,
+- resumen del input clínico,
+- explicación parcial del razonamiento activado.
+
+---
+
+## 13. Estado del proyecto
+
+Este proyecto se encuentra en evolución activa, con foco actual en:
+
+- limpieza estructural,
+- gobernanza clínica,
+- trazabilidad del razonamiento,
+- reducción de deuda legacy,
+- mejora de documentación,
+- endurecimiento del contrato entre frontend y motor.
+
+---
+
+## 14. Licencia
+MIT
+
+---
+
+## 15. Recordatorio final
+Si el paciente se ve mal, el paciente manda.  
+No el benchmark, no el score, no el dashboard bonito, y ciertamente no el porcentaje de “confianza” con cara de importantito.
