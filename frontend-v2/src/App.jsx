@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ClinicalHeader } from './components/layout/ClinicalHeader';
 import { ProgressTracker } from './components/navigation/ProgressTracker';
 import { StepNavigation } from './components/navigation/StepNavigation';
@@ -7,42 +7,18 @@ import { PatientCoreForm } from './components/form/PatientCoreForm';
 import { TopographyForm } from './components/form/TopographyForm';
 import { RedFlagsForm } from './components/form/RedFlagsForm';
 import { ResultsPanel } from './components/results/ResultsPanel';
-import { useInference } from './hooks/useInference';
-import { useClinicalStore } from './store/useClinicalStore';
+import { useTriageFlow } from './hooks/useTriageFlow';
 import { UI_LABELS } from './constants/labels';
 
 function App() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [error, setError] = useState(null);
-  const { processPatient } = useInference();
-  const steps = UI_LABELS.STEPS;
-
-  const handleNext = () => {
-    setError(null);
-    if (currentStep === 2) {
-      // 🛡️ Validación Clínica Pre-Inferencia
-      const status = useClinicalStore.getState().getValidationStatus();
-      if (!status.isValid) {
-        setError(status.missing);
-        return; // Detener flujo
-      }
-      processPatient();
-      setCurrentStep(3);
-    } else {
-      setCurrentStep(prev => Math.min(steps.length - 1, prev + 1));
-    }
-  };
-
-  const handleBack = () => { 
-    setError(null);
-    setCurrentStep(prev => Math.max(0, prev - 1));
-  };
-  
-  const handleReset = () => {
-    useClinicalStore.getState().resetForm();
-    setError(null);
-    setCurrentStep(0);
-  };
+  const { 
+    currentStep, 
+    steps, 
+    error, 
+    handleNext, 
+    handleBack, 
+    handleReset 
+  } = useTriageFlow();
 
   return (
     <div className="min-h-screen pb-20 bg-slate-50 font-sans">
