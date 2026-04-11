@@ -3,7 +3,7 @@
  * Arquitectura modular recalibrada v1.0 (Phase 15)
  */
 
-import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI } from './constants.js';
+import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, PRIORITY_LABELS } from './constants.js';
 import { encodeFeatures, createFeatureHelper } from './feature_encoder.js';
 import { predictBaseline } from './baseline_model.js';
 import { applySafetyModifiers, applyBlockModifiers } from './safety_modifiers.js';
@@ -17,6 +17,63 @@ import { auditLogger } from './audit_logger.js';
 
 // Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
+
+function normalizePriority(priority) {
+    if (typeof priority === 'number' && priority >= 1 && priority <= 3) return priority;
+    if (typeof priority === 'string') {
+        const match = priority.match(/P?([1-3])/i);
+        if (match) return Number(match[1]);
+    }
+    return 3;
+}
+
+function createEmptyProbabilisticAnalysis(topSyndrome = null) {
+    return {
+        top_syndrome: topSyndrome,
+        top_probability: 0,
+        top_candidates: [],
+        confidence_level: 'low',
+        feature_importance: {
+            positive: [],
+            negative: []
+        },
+        message: null,
+        syndrome_probabilities: {}
+    };
+}
+
+export function normalizeTriageResult(rawResult = {}, { status = 'ok' } = {}) {
+    const priority = normalizePriority(rawResult.priority);
+    const recommendation = CLINICAL_GUI.recommendations[priority] || CLINICAL_GUI.recommendations[3];
+    const primarySyndrome = rawResult.primary_syndrome ?? rawResult.probabilistic_analysis?.top_syndrome ?? null;
+    const probabilisticAnalysis = rawResult.probabilistic_analysis || createEmptyProbabilisticAnalysis(primarySyndrome);
+
+    return {
+        ...rawResult,
+        status: rawResult.status || status,
+        priority,
+        priority_code: rawResult.priority_code || `P${priority}`,
+        label: rawResult.label || `Prioridad ${priority} - ${PRIORITY_LABELS[priority] || 'DESCONOCIDO'}`,
+        conduct: rawResult.conduct || recommendation.conduct,
+        timeframe: rawResult.timeframe || recommendation.timeframe,
+        modifier: rawResult.modifier || null,
+        primary_syndrome: primarySyndrome,
+        probabilistic_analysis: {
+            ...createEmptyProbabilisticAnalysis(primarySyndrome),
+            ...probabilisticAnalysis,
+            top_syndrome: probabilisticAnalysis.top_syndrome ?? primarySyndrome
+        },
+        differential_ranking: Array.isArray(rawResult.differential_ranking) ? rawResult.differential_ranking : [],
+        triggered_rules: Array.isArray(rawResult.triggered_rules) ? rawResult.triggered_rules : [],
+        redFlags: Array.isArray(rawResult.redFlags) ? rawResult.redFlags : [],
+        justification: rawResult.justification || '',
+        alignment_note: rawResult.alignment_note || null,
+        reasoning_insights: rawResult.reasoning_insights || null,
+        ui: rawResult.ui || { color: recommendation.color, bg: recommendation.bg },
+        disclaimer: rawResult.disclaimer || CLINICAL_GUI.warnings,
+        error: rawResult.error || null
+    };
+}
 
 /**
  * Función principal de inferencia (Orquestación del Pipeline)
@@ -155,11 +212,12 @@ export function runTriage(formData, lang = 'es') {
         }
 
         const differentialRanking = rankDifferentials(diffCandidates, helper);
-        const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking, lang);
-        result.primary_syndrome = probabilisticAnalysis.top_syndrome;
-        result.priority_code = `P${result.priority}`;
-        result.probabilistic_analysis = probabilisticAnalysis;
-        result.differential_ranking = differentialRanking;
+        const result = normalizeTriageResult({
+            ...interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking, lang),
+            primary_syndrome: probabilisticAnalysis.top_syndrome,
+            probabilistic_analysis: probabilisticAnalysis,
+            differential_ranking: differentialRanking
+        });
         
         // Registro de Auditoría Médica (Prioridad 1)
         auditLogger.logTriage(formData, result);
@@ -168,13 +226,13 @@ export function runTriage(formData, lang = 'es') {
     } catch (error) {
         console.error("CRITICAL_ENGINE_ERROR:", error);
         // Retornar objeto de error seguro para evitar rupturas de UI
-        return {
+        return normalizeTriageResult({
             priority: 'P3',
             label: 'Error en Procesamiento',
             conduct: 'Falla técnica. Por favor, reinicie el flujo o consulte soporte.',
             status: 'error',
             error: error.message
-        };
+        }, { status: 'error' });
     }
 }
 

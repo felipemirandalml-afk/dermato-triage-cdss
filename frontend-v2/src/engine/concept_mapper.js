@@ -5,6 +5,7 @@
  */
 
 import SCHEMA_DATA from '../data/concept_canonical_map.json' with { type: 'json' };
+import { EXTRA_FEATURE_INDEX, FEATURE_MAP_LABELS } from './constants.js';
 
 /**
  * Provee resolución de conceptos basada en el schema canónico con soporte para variaciones.
@@ -82,18 +83,22 @@ class ConceptMapper {
         
         // 1. Camino rápido: Coincidencia exacta/alias
         if (this.lookup.has(raw)) return this.lookup.get(raw);
+        if (EXTRA_FEATURE_INDEX[raw]) return raw;
         
         // 2. Camino fuzzy: Normalización avanzada
         const fuzzy = ConceptMapper.normalize(raw);
         if (this.fuzzyLookup.has(fuzzy)) return this.fuzzyLookup.get(fuzzy);
+        if (EXTRA_FEATURE_INDEX[fuzzy]) return fuzzy;
 
         // 3. Inferencia de Prefijos (Compatibilidad con Datasets Legacy/Derm1M)
         // Algunos datasets prefijan con lesion_, topog_, patron_
         const stripped = raw.replace(/^(lesion_|topog_|patron_|topo_)/, '');
         if (this.lookup.has(stripped)) return this.lookup.get(stripped);
+        if (EXTRA_FEATURE_INDEX[stripped]) return stripped;
         
         const fuzzyStripped = ConceptMapper.normalize(stripped);
         if (this.fuzzyLookup.has(fuzzyStripped)) return this.fuzzyLookup.get(fuzzyStripped);
+        if (EXTRA_FEATURE_INDEX[fuzzyStripped]) return fuzzyStripped;
 
         // 4. Mapeos de Traducción Core (Soporte Multi-Dataset)
         const coreAliases = {
@@ -128,7 +133,14 @@ class ConceptMapper {
         };
 
         const aliasId = coreAliases[stripped] || coreAliases[fuzzyStripped];
-        if (aliasId) return this.resolve(aliasId);
+        if (aliasId) {
+            if (this.lookup.has(aliasId) || this.fuzzyLookup.has(ConceptMapper.normalize(aliasId)) || EXTRA_FEATURE_INDEX[aliasId]) {
+                return aliasId;
+            }
+            if (aliasId !== raw && aliasId !== stripped && aliasId !== fuzzyStripped) {
+                return this.resolve(aliasId);
+            }
+        }
 
         return null;
     }
@@ -137,7 +149,18 @@ class ConceptMapper {
      * Obtiene la metadata completa de un concepto canónico.
      */
     getFeature(canonicalId) {
-        return this.metadata.get(canonicalId) || null;
+        if (this.metadata.has(canonicalId)) {
+            return this.metadata.get(canonicalId);
+        }
+        if (FEATURE_MAP_LABELS[canonicalId]) {
+            return {
+                canonical_id: canonicalId,
+                canonical_label: FEATURE_MAP_LABELS[canonicalId],
+                aliases: [],
+                usable_in_ui: true
+            };
+        }
+        return null;
     }
 
     /**

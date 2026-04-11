@@ -38,6 +38,9 @@ export function generateClinicalReport(formData, triageResult) {
         top_syndrome: null,
         confidence_level: 'low'
     };
+    const prioritySummary = triageResult.label?.includes(' - ')
+        ? triageResult.label.split(' - ').slice(1).join(' - ').trim()
+        : (triageResult.label || 'No especificado');
     const topSynd = syndromeLabels[pa.top_syndrome] || pa.top_syndrome || "Patrón Indeterminado";
 
     const confMap = {
@@ -74,7 +77,7 @@ export function generateClinicalReport(formData, triageResult) {
 
     // A: ANÁLISIS / IMPRESIÓN
     report += `[A] ANÁLISIS DEL SISTEMA (CDSS):\n`;
-    report += `- Prioridad: ${triageResult.priority_code || `P${triageResult.priority}`} (${triageResult.label.split('-')[1].trim()})\n`;
+    report += `- Prioridad: ${triageResult.priority_code || `P${triageResult.priority}`} (${prioritySummary})\n`;
     report += `- Sospecha Sindrómica: ${topSynd}\n`;
     report += `- Consistencia del Patrón: ${confMap[pa.confidence_level] || pa.confidence_level.toUpperCase()}\n`;
     
