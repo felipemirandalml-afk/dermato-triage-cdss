@@ -65,12 +65,12 @@ export function interpretResult(X, prediction, syndromeKey = null, differentialR
     // Detección de Red Flags para UI
     const redFlags = [];
     const rfMap = {
-        signo_mucosas: t('rf.mucosa', lang),
-        signo_fiebre: t('rf.fever', lang),
-        signo_dolor: t('rf.pain', lang),
-        lesion_bula_ampolla: t('rf.blister', lang),
-        lesion_purpura: t('rf.purpura', lang),
-        inmuno: t('rf.immuno', lang),
+        mucosas: t('rf.mucosa', lang),
+        fiebre: t('rf.fever', lang),
+        dolor: t('rf.pain', lang),
+        bula_ampolla: t('rf.blister', lang),
+        purpura_palpable: t('rf.purpura', lang),
+        inmunosupresion: t('rf.immuno', lang),
         farmacos_recientes: t('rf.drugs', lang)
     };
 

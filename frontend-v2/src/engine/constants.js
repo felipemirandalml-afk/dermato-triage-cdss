@@ -32,6 +32,7 @@ const EXTRA_CLINICAL_FEATURES = [
     'mancha', 'tumor', 'vegetacion',
     'escara', 'fisura', 'esclerosis', 'cicatriz',
     'lineal',
+    'necrosis_isquemia', 'signo_hipotension', 'compromiso_conciencia',
     'ampolla_nikolsky', 'signo_abcde',
     'lesion_evanescente', 'color_violaceo'
 ];
@@ -53,6 +54,7 @@ export const FEATURE_MAP_LABELS = {
     cronico: "Crónico",
     escama: "Descamación",
     dolor: "Dolor Intenso",
+    mucosas: "Mucosas",
     signo_mucosas: "Mucosas",
     nodulo: "Nódulo",
     tumor: "Tumor",
@@ -93,6 +95,9 @@ export const FEATURE_MAP_LABELS = {
     escama_nacarada: "Escama Nacarada",
     escama_untuosa: "Escama Untuosa",
     ampolla_nikolsky: "Nikolsky Positivo",
+    necrosis_isquemia: "Necrosis / Isquemia",
+    signo_hipotension: "Hipotensión",
+    compromiso_conciencia: "Compromiso de Conciencia",
     signo_abcde: "Señal ABCDE",
     lesion_evanescente: "Habón Evanescente",
     curacion_central: "Curación Central",

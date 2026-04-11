@@ -31,7 +31,7 @@ export function applySafetyModifiers(helper, currentResult) {
 
     // C. SOSPECHA AUTOINMUNE / AMPOLLOSA GRAVE
     if ((has('bula_ampolla') || has('erosion') || has('ampolla_nikolsky')) && 
-        (has('signo_mucosas') || has('dolor') || has('generalizado') || has('patron_seborreica') || has('ampolla_nikolsky')) &&
+        (has('mucosas') || has('dolor') || has('generalizado') || has('patron_seborreica') || has('ampolla_nikolsky')) &&
         !has('cronico')) {
         const desc = t('safety.blister_autoimmune');
         rules.push(`🚨 Alerta: ${desc}`);
@@ -53,6 +53,20 @@ export function applySafetyModifiers(helper, currentResult) {
     if ((has('ampolla_nikolsky') || has('despegamiento_epidermico')) && has('agudo')) {
         const desc = t('safety.nikolsky');
         rules.push(`🚨 Alerta: ${desc}`);
+        priority = 1;
+        modifier = desc;
+    }
+
+    if (has('signo_hipotension') || has('compromiso_conciencia')) {
+        const desc = t('safety.systemic_shock');
+        rules.push(`ðŸš¨ Alerta: ${desc}`);
+        priority = 1;
+        modifier = desc;
+    }
+
+    if (has('necrosis_isquemia')) {
+        const desc = t('safety.ischemia');
+        rules.push(`ðŸš¨ Alerta: ${desc}`);
         priority = 1;
         modifier = desc;
     }
@@ -107,7 +121,7 @@ export function applyBlockModifiers(helper, currentResult) {
         }
     }
 
-    if (priority === 1 && has('farmacos_recientes') && !has('fiebre') && !has('dolor') && !has('signo_mucosas') && !has('bula_ampolla')) {
+    if (priority === 1 && has('farmacos_recientes') && !has('fiebre') && !has('dolor') && !has('mucosas') && !has('bula_ampolla')) {
         const desc = t('safety.drug_rash');
         rules.push(`ℹ️ Ajuste: ${desc}`);
         priority = 2;

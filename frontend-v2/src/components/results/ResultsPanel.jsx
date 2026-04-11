@@ -17,7 +17,7 @@ export const ResultsPanel = () => {
   }
 
   // Desempaquetado de datos del motor
-  const { priority, primary_syndrome, differential_ranking, probabilistic_analysis, triggered_rules } = result;
+  const { priority, priority_code, primary_syndrome, differential_ranking, probabilistic_analysis, triggered_rules } = result;
 
   // Configuración Mappable UI basada en Prioridad
   const TriageConfig = {
@@ -26,7 +26,8 @@ export const ResultsPanel = () => {
     'P3': { title: t('engine.priority.P3'), color: 'bg-triage-p3 text-white border-triage-p3', bg: 'bg-triage-p3-bg', icon: '🏥', action: t('engine.conduct.standard') }
   };
   
-  const config = TriageConfig[priority] || TriageConfig['P3'];
+  const resolvedPriorityCode = priority_code || (typeof priority === 'number' ? `P${priority}` : priority);
+  const config = TriageConfig[resolvedPriorityCode] || TriageConfig['P3'];
   const prob = probabilistic_analysis?.top_probability ? Math.round(probabilistic_analysis.top_probability * 100) : 0;
 
   return (

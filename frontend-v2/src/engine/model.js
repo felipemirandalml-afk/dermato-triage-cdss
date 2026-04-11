@@ -156,6 +156,8 @@ export function runTriage(formData, lang = 'es') {
 
         const differentialRanking = rankDifferentials(diffCandidates, helper);
         const result = interpretResult(X, prediction, probabilisticAnalysis.top_syndrome, differentialRanking, lang);
+        result.primary_syndrome = probabilisticAnalysis.top_syndrome;
+        result.priority_code = `P${result.priority}`;
         result.probabilistic_analysis = probabilisticAnalysis;
         result.differential_ranking = differentialRanking;
         

@@ -25,16 +25,19 @@ export function generateClinicalReport(formData, triageResult) {
     };
 
     const timingMap = {
-        'acute': 'agudo (< 2 semanas)',
-        'subacute': 'subagudo (2-6 semanas)',
-        'chronic': 'crónico (> 6 semanas)'
+        'agudo': 'agudo (< 2 semanas)',
+        'subagudo': 'subagudo (2-6 semanas)',
+        'cronico': 'crónico (> 6 semanas)'
     };
 
     const now = new Date();
     const dateStr = now.toLocaleDateString('es-CL');
     const timeStr = now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
     
-    const pa = triageResult.probabilistic_analysis;
+    const pa = triageResult.probabilistic_analysis || {
+        top_syndrome: null,
+        confidence_level: 'low'
+    };
     const topSynd = syndromeLabels[pa.top_syndrome] || pa.top_syndrome || "Patrón Indeterminado";
 
     const confMap = {
@@ -51,15 +54,15 @@ export function generateClinicalReport(formData, triageResult) {
     // S: SUBJETIVO / DATOS BASALES
     report += `[S] DATOS DEL PACIENTE:\n`;
     report += `- Edad: ${formData.age} años\n`;
-    report += `- Sexo: ${formData.sexo_female ? 'Femenino' : 'Masculino'}\n`;
-    report += `- Fototipo: Fitzpatrick ${formData.fitzpatrick}\n`;
+    report += `- Sexo: ${formData.sex === 'female' ? 'Femenino' : formData.sex === 'male' ? 'Masculino' : 'No especificado'}\n`;
+    report += `- Fototipo: Fitzpatrick ${formData.fitzpatrick || 'No especificado'}\n`;
     report += `- Tiempo de Evolución: ${timingMap[formData.timing] || 'No especificado'}\n\n`;
 
     // O: OBJETIVO / HALLAZGOS
     report += `[O] SEMIOLOGÍA CUTÁNEA DETECTADA:\n`;
-    const activeFeatures = Object.keys(formData)
-        .filter(key => key.startsWith('lesion_') || key.startsWith('topog_') || key.startsWith('patron_'))
-        .map(key => FEATURE_MAP_LABELS[key] || key.replace('lesion_','').toUpperCase().replace(/_/g,' '))
+    const activeFeatures = Object.keys(formData.features || {})
+        .filter(key => formData.features[key] === true)
+        .map(key => FEATURE_MAP_LABELS[key] || key.replace(/_/g,' ').toUpperCase())
         .join(', ');
     
     report += activeFeatures ? `- Hallazgos: ${activeFeatures}\n` : `- Sin hallazgos específicos registrados.\n`;
@@ -71,7 +74,7 @@ export function generateClinicalReport(formData, triageResult) {
 
     // A: ANÁLISIS / IMPRESIÓN
     report += `[A] ANÁLISIS DEL SISTEMA (CDSS):\n`;
-    report += `- Prioridad: P${triageResult.priority} (${triageResult.label.split('-')[1].trim()})\n`;
+    report += `- Prioridad: ${triageResult.priority_code || `P${triageResult.priority}`} (${triageResult.label.split('-')[1].trim()})\n`;
     report += `- Sospecha Sindrómica: ${topSynd}\n`;
     report += `- Consistencia del Patrón: ${confMap[pa.confidence_level] || pa.confidence_level.toUpperCase()}\n`;
     

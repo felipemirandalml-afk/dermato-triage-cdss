@@ -76,7 +76,7 @@ export function applyRefinementModifiers(helper, currentResult) {
     // F. DOWNSCALES DE SEGURIDAD
     // Lactantes con fiebre y solo máculas (Exantema Súbito)
     if (priority === 1 && has('fiebre') && has('macula') && ageVal > 0 && ageVal <= AGE_THRESHOLD_INFANT) {
-        if (!has('dolor') && !has('signo_mucosas') && !has('bula_ampolla')) {
+        if (!has('dolor') && !has('mucosas') && !has('bula_ampolla')) {
             const desc = "Exantema Viral Benigno Probable (Pediátrico)";
             rules.push(`✨ Refinamiento: ${desc}`);
             priority = 3;

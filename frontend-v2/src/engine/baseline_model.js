@@ -17,7 +17,7 @@ const WEIGHT_MATRIX = {
         generalizado: 6,
         inmunosupresion: 6,
         dolor: 10,
-        signo_mucosas: 8
+        mucosas: 8
     },
     // Pesos que impulsan hacia P2 (PRIORITARIO)
     P2: {
