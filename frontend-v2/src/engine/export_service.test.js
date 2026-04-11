@@ -20,7 +20,7 @@ describe('generateClinicalReport', () => {
 
         expect(report).toContain('Edad: 27');
         expect(report).toContain('Sexo: Femenino');
-        expect(report).toContain('Tiempo de Evol');
+        expect(report).toContain('Tiempo de evolucion');
         expect(report).toContain('Hallazgos:');
         expect(report).toContain('Prioridad:');
     });

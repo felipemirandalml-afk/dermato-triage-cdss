@@ -1,39 +1,35 @@
 /**
- * export_service.js - Generador de Reportes Clínicos Estructurados
- * FASE 4: Interoperabilidad & Documentación Médica
+ * export_service.js - Generador de reportes clinicos estructurados.
  */
 
 import { FEATURE_MAP_LABELS } from './constants.js';
 
-/**
- * Transforma el resultado del motor en un reporte médico estructurado (texto plano).
- */
 export function generateClinicalReport(formData, triageResult) {
     const syndromeLabels = {
-        'eczema_dermatitis': "Eczema / Dermatitis",
-        'psoriasiform_dermatosis': "Dermatosis Psoriasiforme",
-        'bacterial_skin_infection': "Infección Bacteriana",
-        'viral_skin_infection': "Infección Viral",
-        'fungal_skin_infection': "Infección Fúngica",
-        'drug_reaction': "Reacción a Fármacos",
-        'urticarial_dermatosis': "Urticaria / Angioedema",
-        'vesiculobullous_disease': "Enfermedad Ampollosa",
-        'vasculitic_purpuric_disease': "Vasculitis / Púrpura",
-        'cutaneous_tumor_suspected': "Sospecha de Neoplasia Maligna",
-        'benign_cutaneous_tumor': "Tumoración Benigna",
-        'inflammatory_dermatosis_other': "Otra Dermatosis Inflamatoria"
+        eczema_dermatitis: 'Eczema / Dermatitis',
+        psoriasiform_dermatosis: 'Dermatosis psoriasiforme',
+        bacterial_skin_infection: 'Infeccion bacteriana',
+        viral_skin_infection: 'Infeccion viral',
+        fungal_skin_infection: 'Infeccion fungica',
+        drug_reaction: 'Reaccion a farmacos',
+        urticarial_dermatosis: 'Urticaria / Angioedema',
+        vesiculobullous_disease: 'Enfermedad ampollosa',
+        vasculitic_purpuric_disease: 'Vasculitis / Purpura',
+        cutaneous_tumor_suspected: 'Sospecha de neoplasia maligna',
+        benign_cutaneous_tumor: 'Tumoracion benigna',
+        inflammatory_dermatosis_other: 'Otra dermatosis inflamatoria'
     };
 
     const timingMap = {
-        'agudo': 'agudo (< 2 semanas)',
-        'subagudo': 'subagudo (2-6 semanas)',
-        'cronico': 'crónico (> 6 semanas)'
+        agudo: 'agudo (< 2 semanas)',
+        subagudo: 'subagudo (2-6 semanas)',
+        cronico: 'cronico (> 6 semanas)'
     };
 
     const now = new Date();
     const dateStr = now.toLocaleDateString('es-CL');
     const timeStr = now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
-    
+
     const pa = triageResult.probabilistic_analysis || {
         top_syndrome: null,
         confidence_level: 'low'
@@ -41,62 +37,58 @@ export function generateClinicalReport(formData, triageResult) {
     const prioritySummary = triageResult.label?.includes(' - ')
         ? triageResult.label.split(' - ').slice(1).join(' - ').trim()
         : (triageResult.label || 'No especificado');
-    const topSynd = syndromeLabels[pa.top_syndrome] || pa.top_syndrome || "Patrón Indeterminado";
+    const topSynd = syndromeLabels[pa.top_syndrome] || pa.top_syndrome || 'Patron indeterminado';
 
     const confMap = {
-        'high': 'ALTA CONSISTENCIA',
-        'medium': 'SUGESTIVO (MEDIA)',
-        'low': 'ANÁLISIS AMBIGUO'
+        high: 'ALTA CONSISTENCIA',
+        medium: 'SUGESTIVO (MEDIA)',
+        low: 'ANALISIS AMBIGUO'
     };
 
-    // --- CONSTRUCCIÓN DEL REPORTE (ESTILO CLÍNICO S.O.A.P.) ---
-    let report = `REPORTE DE SOPORTE A LA DECISIÓN DERMATOLÓGICA (APS)\n`;
+    let report = 'REPORTE DE SOPORTE A LA DECISION DERMATOLOGICA (APS)\n';
     report += `Emitido: ${dateStr} ${timeStr} | ID: ${Math.floor(1000 + Math.random() * 9000)}\n`;
-    report += `----------------------------------------------------------\n\n`;
+    report += '----------------------------------------------------------\n\n';
 
-    // S: SUBJETIVO / DATOS BASALES
-    report += `[S] DATOS DEL PACIENTE:\n`;
-    report += `- Edad: ${formData.age} años\n`;
+    report += '[S] DATOS DEL PACIENTE:\n';
+    report += `- Edad: ${formData.age || 'No especificada'}\n`;
     report += `- Sexo: ${formData.sex === 'female' ? 'Femenino' : formData.sex === 'male' ? 'Masculino' : 'No especificado'}\n`;
     report += `- Fototipo: Fitzpatrick ${formData.fitzpatrick || 'No especificado'}\n`;
-    report += `- Tiempo de Evolución: ${timingMap[formData.timing] || 'No especificado'}\n\n`;
+    report += `- Tiempo de evolucion: ${timingMap[formData.timing] || 'No especificado'}\n\n`;
 
-    // O: OBJETIVO / HALLAZGOS
-    report += `[O] SEMIOLOGÍA CUTÁNEA DETECTADA:\n`;
+    report += '[O] SEMIOLOGIA CUTANEA DETECTADA:\n';
     const activeFeatures = Object.keys(formData.features || {})
-        .filter(key => formData.features[key] === true)
-        .map(key => FEATURE_MAP_LABELS[key] || key.replace(/_/g,' ').toUpperCase())
+        .filter((key) => formData.features[key] === true)
+        .map((key) => FEATURE_MAP_LABELS[key] || key.replace(/_/g, ' ').toUpperCase())
         .join(', ');
-    
-    report += activeFeatures ? `- Hallazgos: ${activeFeatures}\n` : `- Sin hallazgos específicos registrados.\n`;
-    
+
+    report += activeFeatures ? `- Hallazgos: ${activeFeatures}\n` : '- Sin hallazgos especificos registrados.\n';
+
     if (triageResult.redFlags && triageResult.redFlags.length > 0) {
         report += `- RED FLAGS: ${triageResult.redFlags.join(', ')}\n`;
     }
-    report += `\n`;
+    report += '\n';
 
-    // A: ANÁLISIS / IMPRESIÓN
-    report += `[A] ANÁLISIS DEL SISTEMA (CDSS):\n`;
+    report += '[A] ANALISIS DEL SISTEMA (CDSS):\n';
     report += `- Prioridad: ${triageResult.priority_code || `P${triageResult.priority}`} (${prioritySummary})\n`;
-    report += `- Sospecha Sindrómica: ${topSynd}\n`;
-    report += `- Consistencia del Patrón: ${confMap[pa.confidence_level] || pa.confidence_level.toUpperCase()}\n`;
-    
+    report += `- Sospecha sindromica: ${topSynd}\n`;
+    report += `- Consistencia del patron: ${confMap[pa.confidence_level] || pa.confidence_level.toUpperCase()}\n`;
+
     if (triageResult.reasoning_insights) {
-        report += `- Perspectiva Clínica: ${triageResult.reasoning_insights.summary}\n`;
-        report += `- Perla Clínica: ${triageResult.reasoning_insights.pearl}\n`;
+        report += `- Perspectiva clinica: ${triageResult.reasoning_insights.summary}\n`;
+        report += `- Perla clinica: ${triageResult.reasoning_insights.pearl}\n`;
     }
 
-    report += `- Justificación Triage: ${triageResult.justification}\n`;
-    
+    report += `- Justificacion triage: ${triageResult.justification}\n`;
+
     if (triageResult.triggered_rules && triageResult.triggered_rules.length > 0) {
-        report += `- Reglas Activadas:\n`;
-        triageResult.triggered_rules.forEach(rule => {
-            report += `  * ${rule.replace(/🚨|⚠️|ℹ️|✨/g, '').trim()}\n`;
+        report += '- Reglas activadas:\n';
+        triageResult.triggered_rules.forEach((rule) => {
+            report += `  * ${rule.replace(/^\[(ALERTA|BLOQUEO|AJUSTE)\]\s*/g, '').trim()}\n`;
         });
     }
 
     if (triageResult.differential_ranking && triageResult.differential_ranking.length > 0) {
-        report += `- Diagnósticos Diferenciales (Top 3):\n`;
+        report += '- Diagnosticos diferenciales (Top 3):\n';
         triageResult.differential_ranking.forEach((item, idx) => {
             report += `  ${idx + 1}. ${item.disease_name} (Compatibilidad: ${item.compatibility})\n`;
             if (item.supporting_features?.length) {
@@ -107,17 +99,16 @@ export function generateClinicalReport(formData, triageResult) {
             }
         });
     }
-    report += `\n`;
+    report += '\n';
 
-    // P: PLAN / CONDUCTA
-    report += `[P] CONDUCTA SUGERIDA:\n`;
-    report += `- Acción Recomendada: ${triageResult.conduct}\n`;
-    report += `- Plazo de Atención: ${triageResult.timeframe}\n\n`;
+    report += '[P] CONDUCTA SUGERIDA:\n';
+    report += `- Accion recomendada: ${triageResult.conduct}\n`;
+    report += `- Plazo de atencion: ${triageResult.timeframe}\n\n`;
 
-    report += `----------------------------------------------------------\n`;
-    report += `Generado por DermatoTriage Engine v1.1.2\n`;
-    report += `NOTA: Este informe es una herramienta de soporte. La decisión final\n`;
-    report += `depende de la evaluación presencial del profesional médico.\n`;
+    report += '----------------------------------------------------------\n';
+    report += 'Generado por DermatoTriage Engine v1.1.2\n';
+    report += 'NOTA: Este informe es una herramienta de soporte. La decision final\n';
+    report += 'depende de la evaluacion presencial del profesional medico.\n';
 
     return report;
 }

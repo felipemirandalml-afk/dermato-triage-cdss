@@ -1,31 +1,31 @@
 {
   "engine": {
     "priority": {
-      "P1": "P1 - DERIVACIÓN INMEDIATA",
+      "P1": "P1 - DERIVACION INMEDIATA",
       "P2": "P2 - PRIORIDAD ALTA",
       "P3": "P3 - AMBULATORIO",
-      "DESCONOCIDO": "Prioridad Desconocida"
+      "DESCONOCIDO": "Prioridad desconocida"
     },
     "alerts": {
-      "ocular_risk": "Riesgo Ocular / Compromiso de Cara Centrofacial",
-      "ischemia": "Signos de Isquemia o Necrosis Tisular Aguda",
-      "autoimmune_blister": "Sospecha de Dermatosis Ampollosa o Compromiso Sistémico",
-      "nikolsky_positive": "Signo de Nikolsky Positivo Agudo",
-      "malignancy_shield": "Sospecha de Lesión Maligna / Neoplasia (P2-Shield)",
-      "acral_reaction": "Reacción Acral Aguda (Estudio de Gatillante)",
-      "suppurative_infection": "Inflamación Supurativa / Fístulas Crónicas",
-      "drug_rash_simple": "Exantema Medicamentoso Simple (Vigilancia Estándar)"
+      "ocular_risk": "Riesgo ocular / compromiso de cara centrofacial",
+      "ischemia": "Signos de isquemia o necrosis tisular aguda",
+      "autoimmune_blister": "Sospecha de dermatosis ampollosa o compromiso sistemico",
+      "nikolsky_positive": "Signo de Nikolsky positivo agudo",
+      "malignancy_shield": "Sospecha de lesion maligna / neoplasia (P2-Shield)",
+      "acral_reaction": "Reaccion acral aguda (estudio de gatillante)",
+      "suppurative_infection": "Inflamacion supurativa / fistulas cronicas",
+      "drug_rash_simple": "Exantema medicamentoso simple (vigilancia estandar)"
     },
     "conduct": {
-      "urgent": "Evaluación urgente / Derivación inmediata a Servicio de Urgencias.",
-      "priority": "Derivación prioritaria a Dermatología o evaluación preferente.",
-      "standard": "Manejo ambulatorio estándar / Control programado."
+      "urgent": "Evaluacion urgente / derivacion inmediata a Servicio de Urgencias.",
+      "priority": "Derivacion prioritaria a Dermatologia o evaluacion preferente.",
+      "standard": "Manejo ambulatorio estandar / control programado."
     }
   },
   "ui": {
-    "analyzing": "Analizando patrón sindrómico...",
-    "patient_summary": "Resumen del Paciente (Input)",
-    "decision_mechanism": "Mecanismo de Decisión (ExAI)",
-    "suggested_conduct": "Conducta Sugerida"
+    "analyzing": "Analizando patron sindromico...",
+    "patient_summary": "Resumen del paciente (Input)",
+    "decision_mechanism": "Mecanismo de decision (ExAI)",
+    "suggested_conduct": "Conducta sugerida"
   }
 }

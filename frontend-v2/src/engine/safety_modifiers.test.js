@@ -4,7 +4,7 @@ import { applySafetyModifiers, applyBlockModifiers } from './safety_modifiers.js
 describe('Safety Modifiers', () => {
     const createHelper = (features = {}, edad = 20) => ({
         has: (key) => !!features[key],
-        get: (key) => key === 'edad' ? edad : features[key]
+        get: (key) => (key === 'edad' ? edad : features[key])
     });
 
     it('should trigger ocular risk warning', () => {
@@ -15,7 +15,7 @@ describe('Safety Modifiers', () => {
         });
         const result = applySafetyModifiers(helper, { priority: 3 });
         expect(result.priority).toBe(1);
-        expect(result.rules[0]).toContain('🚨 Alerta:');
+        expect(result.rules[0]).toContain('[ALERTA]');
     });
 
     it('should trigger ischemia warning for acute ulcer', () => {
@@ -36,6 +36,6 @@ describe('Safety Modifiers', () => {
         }, 70);
         const result = applyBlockModifiers(helper, { priority: 3 });
         expect(result.priority).toBe(2);
-        expect(result.modifier).toContain('Sospecha de Lesión Maligna');
+        expect(result.modifier).toContain('Sospecha de lesion maligna');
     });
 });

@@ -229,7 +229,7 @@ export function runTriage(formData, lang = 'es') {
         return normalizeTriageResult({
             priority: 'P3',
             label: 'Error en Procesamiento',
-            conduct: 'Falla técnica. Por favor, reinicie el flujo o consulte soporte.',
+            conduct: 'Falla tecnica. Por favor, reinicie el flujo o consulte soporte.',
             status: 'error',
             error: error.message
         }, { status: 'error' });

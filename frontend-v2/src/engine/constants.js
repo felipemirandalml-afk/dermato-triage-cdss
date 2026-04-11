@@ -1,32 +1,27 @@
 /**
- * constants.js - Diccionarios maestros y configuraciones del motor
- * Refactorizado: Single Source of Truth para el vocabulario clínico.
+ * constants.js - Diccionarios maestros y configuraciones del motor.
  */
 
-// 1. Definición del Vector de Inferencia Probabilística (Orden Estricto del Modelo)
 export const PROBABILISTIC_FEATURES = [
-    "edad", "papula", "placa", "vesicula", "pustula", "bula_ampolla", "escama", "ulcera", "purpura", "dermatomal",
-    "generalizado", "localizado", "acral", "fotoexpuesto", "topo_flexural_pliegues", "topo_friccion_extensora",
-    "agudo", "subagudo", "cronico", "prurito", "prurito_nocturno", "ardor_quemazon", "dolor", "asintomatico",
-    "fiebre", "farmacos_recientes", "inmunosupresion", "diabetes", "hepatopatia", "atopia", "embarazo",
-    "contagio_familiar", "eritema", "hiperpigmentacion", "hipopigmentacion", "costra", "erosion", "excoriacion",
-    "liquenificacion", "nodulo", "quiste", "induracion", "telangiectasias", "atrofia", "habon", "comedon", "surco",
-    "fistulas_supuracion", "interaccion_fiebre_purpura", "interaccion_fiebre_ampolla", "interaccion_inmuno_agudo",
-    "interaccion_dolor_agudo", "cabeza", "cara_centro", "tronco", "extremidad_superior", "extremidad_inferior",
-    "pies", "escama_nacarada", "escama_untuosa", "anular", "curacion_central", "zosteriforme", "umbilicacion",
-    "cupuliforme", "simetrico", "seborreica", "macula", "prodromo_catarral", "despegamiento_epidermico",
-    "borde_activo", "costra_mielicerica", "purpura_palpable", "engrosamiento_ungueal", "mucosas",
-    "ft_I", "ft_II", "ft_III", "ft_IV", "ft_V", "ft_VI"
+    'edad', 'papula', 'placa', 'vesicula', 'pustula', 'bula_ampolla', 'escama', 'ulcera', 'purpura', 'dermatomal',
+    'generalizado', 'localizado', 'acral', 'fotoexpuesto', 'topo_flexural_pliegues', 'topo_friccion_extensora',
+    'agudo', 'subagudo', 'cronico', 'prurito', 'prurito_nocturno', 'ardor_quemazon', 'dolor', 'asintomatico',
+    'fiebre', 'farmacos_recientes', 'inmunosupresion', 'diabetes', 'hepatopatia', 'atopia', 'embarazo',
+    'contagio_familiar', 'eritema', 'hiperpigmentacion', 'hipopigmentacion', 'costra', 'erosion', 'excoriacion',
+    'liquenificacion', 'nodulo', 'quiste', 'induracion', 'telangiectasias', 'atrofia', 'habon', 'comedon', 'surco',
+    'fistulas_supuracion', 'interaccion_fiebre_purpura', 'interaccion_fiebre_ampolla', 'interaccion_inmuno_agudo',
+    'interaccion_dolor_agudo', 'cabeza', 'cara_centro', 'tronco', 'extremidad_superior', 'extremidad_inferior',
+    'pies', 'escama_nacarada', 'escama_untuosa', 'anular', 'curacion_central', 'zosteriforme', 'umbilicacion',
+    'cupuliforme', 'simetrico', 'seborreica', 'macula', 'prodromo_catarral', 'despegamiento_epidermico',
+    'borde_activo', 'costra_mielicerica', 'purpura_palpable', 'engrosamiento_ungueal', 'mucosas',
+    'ft_I', 'ft_II', 'ft_III', 'ft_IV', 'ft_V', 'ft_VI'
 ];
 
-// 2. Características Adicionales (Solo Heurística / Trazabilidad)
 export const FEATURE_INDEX = {};
-PROBABILISTIC_FEATURES.forEach((f, idx) => {
-    FEATURE_INDEX[f] = idx;
+PROBABILISTIC_FEATURES.forEach((feature, idx) => {
+    FEATURE_INDEX[feature] = idx;
 });
 
-// 2. Características Adicionales (Capa de Razonamiento Heurístico / Trazabilidad)
-// Estas no se incluyen en el vector numérico del Random Forest para evitar desincronización
 const EXTRA_CLINICAL_FEATURES = [
     'sexo_male', 'sexo_female',
     'mancha', 'tumor', 'vegetacion',
@@ -38,105 +33,105 @@ const EXTRA_CLINICAL_FEATURES = [
 ];
 
 export const EXTRA_FEATURE_INDEX = {};
-EXTRA_CLINICAL_FEATURES.forEach(f => {
-    EXTRA_FEATURE_INDEX[f] = true;
+EXTRA_CLINICAL_FEATURES.forEach(feature => {
+    EXTRA_FEATURE_INDEX[feature] = true;
 });
 
 export const FEATURE_MAP_LABELS = {
-    farmacos_recientes: "Exp. a Fármacos",
-    fiebre: "Fiebre",
-    bula_ampolla: "Ampollas/Bulas",
-    ulcera: "Úlcera",
-    purpura: "Púrpura",
-    generalizado: "Generalizado",
-    agudo: "Agudo",
-    inmunosupresion: "Inmunocompromiso",
-    cronico: "Crónico",
-    escama: "Descamación",
-    dolor: "Dolor Intenso",
-    mucosas: "Mucosas",
-    signo_mucosas: "Mucosas",
-    nodulo: "Nódulo",
-    tumor: "Tumor",
-    erosion: "Erosiones",
-    comedon: "Comedones",
-    hepatopatia: "Hepatopatía",
-    diabetes: "Diabetes/Metabólico",
-    atopia: "Atopía",
-    embarazo: "Embarazo",
-    contagio_familiar: "Contagio Familiar",
-    dermatomal: "Dermatomal",
-    topo_flexural_pliegues: "Flexuras / Pliegues",
-    topo_friccion_extensora: "Extensoras / Fricción",
-    fotoexpuesto: "Fotoexpuesto",
-    acral: "Patrón Acral",
-    lineal: "Lineal",
-    localizado: "Localizado",
-    cabeza: "Cabeza y Cuello",
-    tronco: "Tronco",
-    extremidad_superior: "M. Superiores",
-    extremidad_inferior: "M. Inferiores",
-    simetrico: "Simetrico",
-    macula: "Mácula",
-    papula: "Pápula",
-    placa: "Placa",
-    vesicula: "Vesícula",
-    pustula: "Pústula",
-    habon: "Habón",
-    costra: "Costra",
-    escara: "Escara/Necrosis",
-    atrofia: "Atrofia",
-    liquenificacion: "Liquenificación",
-    cicatriz: "Cicatriz",
-    prurito_nocturno: "Prurito Nocturno",
-    ardor_quemazon: "Ardor/Quemazón",
-    asintomatico: "Asintomática",
-    fistulas_supuracion: "Fístulas",
-    escama_nacarada: "Escama Nacarada",
-    escama_untuosa: "Escama Untuosa",
-    ampolla_nikolsky: "Nikolsky Positivo",
-    necrosis_isquemia: "Necrosis / Isquemia",
-    signo_hipotension: "Hipotensión",
-    compromiso_conciencia: "Compromiso de Conciencia",
-    signo_abcde: "Señal ABCDE",
-    lesion_evanescente: "Habón Evanescente",
-    curacion_central: "Curación Central",
-    umbilicacion: "Umbilicación",
-    cupuliforme: "Cupuliforme",
-    prodromo_catarral: "Pródromo Catarral",
-    despegamiento_epidermico: "Signo de Nikolsky",
-    borde_activo: "Borde Activo",
-    costra_mielicerica: "Costra Melicérica",
-    purpura_palpable: "Púrpura Palpable",
-    engrosamiento_ungueal: "Uñas (Pitting/Onicolisis)"
+    farmacos_recientes: 'Exp. a farmacos',
+    fiebre: 'Fiebre',
+    bula_ampolla: 'Ampollas/Bulas',
+    ulcera: 'Ulcera',
+    purpura: 'Purpura',
+    generalizado: 'Generalizado',
+    agudo: 'Agudo',
+    inmunosupresion: 'Inmunocompromiso',
+    cronico: 'Cronico',
+    escama: 'Descamacion',
+    dolor: 'Dolor intenso',
+    mucosas: 'Mucosas',
+    signo_mucosas: 'Mucosas',
+    nodulo: 'Nodulo',
+    tumor: 'Tumor',
+    erosion: 'Erosiones',
+    comedon: 'Comedones',
+    hepatopatia: 'Hepatopatia',
+    diabetes: 'Diabetes/Metabolico',
+    atopia: 'Atopia',
+    embarazo: 'Embarazo',
+    contagio_familiar: 'Contagio familiar',
+    dermatomal: 'Dermatomal',
+    topo_flexural_pliegues: 'Flexuras / Pliegues',
+    topo_friccion_extensora: 'Extensoras / Friccion',
+    fotoexpuesto: 'Fotoexpuesto',
+    acral: 'Patron acral',
+    lineal: 'Lineal',
+    localizado: 'Localizado',
+    cabeza: 'Cabeza y cuello',
+    tronco: 'Tronco',
+    extremidad_superior: 'M. superiores',
+    extremidad_inferior: 'M. inferiores',
+    simetrico: 'Simetrico',
+    macula: 'Macula',
+    papula: 'Papula',
+    placa: 'Placa',
+    vesicula: 'Vesicula',
+    pustula: 'Pustula',
+    habon: 'Habon',
+    costra: 'Costra',
+    escara: 'Escara/Necrosis',
+    atrofia: 'Atrofia',
+    liquenificacion: 'Liquenificacion',
+    cicatriz: 'Cicatriz',
+    prurito_nocturno: 'Prurito nocturno',
+    ardor_quemazon: 'Ardor/Quemazon',
+    asintomatico: 'Asintomatica',
+    fistulas_supuracion: 'Fistulas',
+    escama_nacarada: 'Escama nacarada',
+    escama_untuosa: 'Escama untuosa',
+    ampolla_nikolsky: 'Nikolsky positivo',
+    necrosis_isquemia: 'Necrosis / Isquemia',
+    signo_hipotension: 'Hipotension',
+    compromiso_conciencia: 'Compromiso de conciencia',
+    signo_abcde: 'Senal ABCDE',
+    lesion_evanescente: 'Habon evanescente',
+    curacion_central: 'Curacion central',
+    umbilicacion: 'Umbilicacion',
+    cupuliforme: 'Cupuliforme',
+    prodromo_catarral: 'Prodromo catarral',
+    despegamiento_epidermico: 'Signo de Nikolsky',
+    borde_activo: 'Borde activo',
+    costra_mielicerica: 'Costra melicerica',
+    purpura_palpable: 'Purpura palpable',
+    engrosamiento_ungueal: 'Unas (Pitting/Onicolisis)'
 };
 
 export const CLINICAL_GUI = {
     recommendations: {
         1: {
-            conduct: "Evaluación urgente / Derivación inmediata a Servicio de Urgencias.",
-            timeframe: "Inmediato (Hoy)",
-            color: "text-rose-600",
-            bg: "bg-rose-50"
+            conduct: 'Evaluacion urgente / Derivacion inmediata a Servicio de Urgencias.',
+            timeframe: 'Inmediato (Hoy)',
+            color: 'text-rose-600',
+            bg: 'bg-rose-50'
         },
         2: {
-            conduct: "Derivación prioritaria a Dermatología o evaluación preferente por especialista.",
-            timeframe: "Plazo Corto (7-14 días)",
-            color: "text-amber-600",
-            bg: "bg-amber-50"
+            conduct: 'Derivacion prioritaria a Dermatologia o evaluacion preferente por especialista.',
+            timeframe: 'Plazo corto (7-14 dias)',
+            color: 'text-amber-600',
+            bg: 'bg-amber-50'
         },
         3: {
-            conduct: "Manejo ambulatorio estándar / Control programado o seguimiento por medicina general.",
-            timeframe: "Diferible (Según disponibilidad)",
-            color: "text-emerald-600",
-            bg: "bg-emerald-50"
+            conduct: 'Manejo ambulatorio estandar / Control programado o seguimiento por medicina general.',
+            timeframe: 'Diferible (Segun disponibilidad)',
+            color: 'text-emerald-600',
+            bg: 'bg-emerald-50'
         }
     },
-    warnings: "Esta herramienta es un apoyo a la decisión clínica y no reemplaza el juicio médico presencial. Si el paciente presenta compromiso hemodinámico o insuficiencia respiratoria, actúe según protocolo de emergencia independientemente del resultado."
+    warnings: 'Esta herramienta es un apoyo a la decision clinica y no reemplaza el juicio medico presencial. Si el paciente presenta compromiso hemodinamico o insuficiencia respiratoria, actue segun protocolo de emergencia independientemente del resultado.'
 };
 
 export const PRIORITY_LABELS = {
-    1: "URGENCIAL",
-    2: "PRIORITARIO",
-    3: "ESTABLE"
+    1: 'URGENTE',
+    2: 'PRIORITARIO',
+    3: 'ESTABLE'
 };

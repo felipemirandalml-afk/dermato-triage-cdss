@@ -6,7 +6,7 @@ export const ClinicalHeader = () => {
       <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center gap-3">
-            <span className="text-2xl">⚕️</span>
+            <span className="text-2xl">+</span>
             <div>
               <h1 className="text-xl font-black tracking-tight leading-none">
                 {UI_LABELS.BRAND} <span className="font-light opacity-90">{UI_LABELS.BRAND_SUBTITLE}</span>
