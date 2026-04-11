@@ -167,11 +167,10 @@ function refineSyndromeReasoning(analysis, helper) {
 
     const activeFeatures = Object.keys(helper.featureMap || {}).filter((key) => helper.featureMap[key] === 1 || helper.featureMap[key] === true);
     const recalibratedCandidates = analysis.top_candidates.map((candidate) => {
-        const biasFactor = recalibrationEngine.getBiasCorrection(candidate.syndrome);
         return {
             ...candidate,
             raw_probability: candidate.raw_probability ?? candidate.probability ?? 0,
-            recalibrated_score: Math.max((candidate.probability || 0) * biasFactor, 0)
+            recalibrated_score: Math.max(candidate.probability || 0, 0)
         };
     });
 

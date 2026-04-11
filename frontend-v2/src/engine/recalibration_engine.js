@@ -2,7 +2,6 @@ import baseWeights from '../data/statistical_base_weights_fit_v2.json' with { ty
 import pairModulators from '../data/contextual_pair_modulators_v2.json' with { type: 'json' };
 import tripletModulators from '../data/contextual_triplet_modulators_v2.json' with { type: 'json' };
 import syndromeBoosters from '../data/syndrome_boosters_fit_v2.json' with { type: 'json' };
-import biasCorrections from '../data/classwise_bias_corrections_v1.json' with { type: 'json' };
 import discScoresRaw from '../data/feature_discriminative_scores_v2.json' with { type: 'json' };
 
 /**
@@ -22,9 +21,6 @@ export const recalibrationEngine = {
     getSyndromeForFeature: (cid) => {
         const info = discScores.find(d => d.feature === cid);
         return info ? info.top_syndrome : null;
-    },
-    getBiasCorrection: (sid) => {
-        return biasCorrections[sid] || 1.0;
     },
 
     calculateBoosts: (features) => {
