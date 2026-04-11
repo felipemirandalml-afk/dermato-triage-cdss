@@ -2,11 +2,46 @@ import React from 'react';
 import { FieldGroup, ClinicalFeatureCheckbox } from '../shared/FormElements';
 import { conceptMapper } from '../../engine/concept_mapper';
 
+const pickUiFeatures = (ids = []) => ids
+  .map((id) => conceptMapper.getFeature(id))
+  .filter(Boolean)
+  .filter((feature) => feature.usable_in_ui !== false);
+
 export const TopographyForm = () => {
-  const topographyFeatures = conceptMapper.getFeaturesByGroup('topografia').filter(f => f.usable_in_ui);
-  const patternFeatures = conceptMapper.getFeaturesByGroup('patron_distribucion').filter(f => f.usable_in_ui);
-  const symptomFeatures = conceptMapper.getFeaturesByGroup('sintoma_signo').filter(f => f.usable_in_ui);
-  const modifierFeatures = conceptMapper.getFeaturesByGroup('color_vascular').filter(f => f.usable_in_ui);
+  const topographyFeatures = [
+    ...conceptMapper.getFeaturesByGroup('anatomia_topografia').filter(f => f.usable_in_ui),
+    ...pickUiFeatures([
+      'extremidad_superior',
+      'pies',
+      'fotoexpuesto',
+      'topo_flexural_pliegues',
+      'topo_friccion_extensora'
+    ])
+  ];
+
+  const patternFeatures = [
+    ...conceptMapper.getFeaturesByGroup('geometria_forma').filter(f => f.usable_in_ui),
+    ...pickUiFeatures([
+      'dermatomal',
+      'generalizado',
+      'localizado',
+      'simetrico'
+    ])
+  ];
+
+  const symptomFeatures = pickUiFeatures([
+    'prurito',
+    'prurito_nocturno',
+    'ardor_quemazon',
+    'dolor',
+    'asintomatico',
+    'fiebre'
+  ]);
+
+  const modifierFeatures = [
+    ...conceptMapper.getFeaturesByGroup('color_vascular').filter(f => f.usable_in_ui),
+    ...conceptMapper.getFeaturesByGroup('color_pigmentario').filter(f => f.usable_in_ui)
+  ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 animate-in slide-in-from-right-4 duration-500">
@@ -56,7 +91,7 @@ export const TopographyForm = () => {
                 key={feature.canonical_id}
                 id={feature.canonical_id}
                 label={feature.canonical_label}
-                category={feature.definition}
+                category={feature.definition || 'Sintoma'}
               />
             ))}
           </div>
