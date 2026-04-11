@@ -1,6 +1,5 @@
 /**
- * model.js - Orquestador del Motor Clínico CDSS
- * Arquitectura modular recalibrada v1.0 (Phase 15)
+ * model.js - Orquestador del Motor Clinico CDSS.
  */
 
 import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, PRIORITY_LABELS } from './constants.js';
@@ -15,7 +14,6 @@ import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
 import { recalibrationEngine } from './recalibration_engine.js';
 import { auditLogger } from './audit_logger.js';
 
-// Re-exports para compatibilidad
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
 
 function normalizePriority(priority) {
@@ -40,6 +38,53 @@ function createEmptyProbabilisticAnalysis(topSyndrome = null) {
         message: null,
         syndrome_probabilities: {}
     };
+}
+
+function getConfidenceLevel(probability) {
+    return probability > 0.70 ? 'high' : (probability >= 0.40 ? 'medium' : 'low');
+}
+
+function snapshotRawProbabilisticAnalysis(analysis) {
+    if (!analysis.raw_top_candidates) {
+        analysis.raw_top_candidates = (analysis.top_candidates || []).map((candidate) => ({ ...candidate }));
+    }
+    if (!analysis.raw_syndrome_probabilities) {
+        analysis.raw_syndrome_probabilities = { ...(analysis.syndrome_probabilities || {}) };
+    }
+    if (analysis.raw_top_probability === undefined) {
+        analysis.raw_top_probability = analysis.top_probability ?? 0;
+    }
+    if (analysis.raw_top_syndrome === undefined) {
+        analysis.raw_top_syndrome = analysis.top_syndrome ?? null;
+    }
+    if (analysis.raw_confidence_level === undefined) {
+        analysis.raw_confidence_level = analysis.confidence_level ?? 'low';
+    }
+}
+
+function synchronizeProbabilisticAnalysis(analysis, candidates) {
+    const normalizedCandidates = candidates
+        .map((candidate) => ({ ...candidate }))
+        .sort((a, b) => b.probability - a.probability);
+
+    const syndromeProbabilities = {};
+    normalizedCandidates.forEach((candidate) => {
+        syndromeProbabilities[candidate.syndrome] = candidate.probability;
+    });
+
+    const topCandidate = normalizedCandidates[0] || { syndrome: null, probability: 0 };
+    const topProbability = topCandidate.probability || 0;
+
+    analysis.top_candidates = normalizedCandidates;
+    analysis.syndrome_probabilities = syndromeProbabilities;
+    analysis.top_probability = topProbability;
+    analysis.top_syndrome = topProbability >= 0.15 ? topCandidate.syndrome : null;
+    analysis.confidence_level = getConfidenceLevel(topProbability);
+    analysis.message = analysis.confidence_level === 'low'
+        ? 'Patron ambiguo (baja confianza tras recalibracion) - Evaluacion clinica indispensable'
+        : null;
+
+    return analysis;
 }
 
 export function normalizeTriageResult(rawResult = {}, { status = 'ok' } = {}) {
@@ -75,139 +120,122 @@ export function normalizeTriageResult(rawResult = {}, { status = 'ok' } = {}) {
     };
 }
 
-/**
- * Función principal de inferencia (Orquestación del Pipeline)
- */
 export function predict(X, helper) {
     const baseline = predictBaseline(X, FEATURE_INDEX);
     const triggered_rules = [];
-    
+
     let currentPriority = baseline.priority;
     let currentModifier = baseline.modifier;
 
-    // 1. Capa de Seguridad Crítica (Morfología)
     const safety = applySafetyModifiers(helper, { priority: currentPriority, modifier: currentModifier });
     if (safety.match) {
         currentPriority = safety.priority;
         currentModifier = safety.modifier;
         triggered_rules.push(...safety.rules);
     }
-    
-    // 2. Capa de Contexto Sistémico
+
     const context = applyContextModifiers(helper, { priority: currentPriority, modifier: currentModifier });
     if (context.match) {
         currentPriority = context.priority;
         currentModifier = context.modifier;
         triggered_rules.push(...context.rules);
     }
-    
-    // 3. Capa de Bloqueo (Escudos)
+
     const block = applyBlockModifiers(helper, { priority: currentPriority, modifier: currentModifier });
     if (block.match) {
         currentPriority = block.priority;
         currentModifier = block.modifier;
         triggered_rules.push(...block.rules);
     }
-    
-    // 4. Capa de Refinamiento
+
     const refinement = applyRefinementModifiers(helper, { priority: currentPriority, modifier: currentModifier });
     if (refinement.match) {
         currentPriority = refinement.priority;
         currentModifier = refinement.modifier;
         triggered_rules.push(...refinement.rules);
     }
-    
+
     const finalResult = buildResult(currentPriority, currentModifier, baseline);
     finalResult.triggered_rules = triggered_rules;
     return finalResult;
 }
 
-/**
- * Refina las probabilidades del modelo ML usando Gestalts Estadísticos y Reglas Cardinales.
- */
 function refineSyndromeReasoning(analysis, helper) {
-    if (!analysis.top_candidates) return analysis;
-    let hasChanges = false;
+    if (!analysis.top_candidates?.length) return analysis;
 
-    // A0. Nivelación Basal (Class-wise Bias Recovery)
-    let totalLevelled = 0;
-    analysis.top_candidates.forEach(cand => {
-        const factor = recalibrationEngine.getBiasCorrection(cand.syndrome);
-        cand.probability *= factor;
-        totalLevelled += cand.probability;
+    snapshotRawProbabilisticAnalysis(analysis);
+
+    const activeFeatures = Object.keys(helper.featureMap || {}).filter((key) => helper.featureMap[key] === 1 || helper.featureMap[key] === true);
+    const recalibratedCandidates = analysis.top_candidates.map((candidate) => {
+        const biasFactor = recalibrationEngine.getBiasCorrection(candidate.syndrome);
+        return {
+            ...candidate,
+            raw_probability: candidate.raw_probability ?? candidate.probability ?? 0,
+            recalibrated_score: Math.max((candidate.probability || 0) * biasFactor, 0)
+        };
     });
 
-    // Re-normalización post-nivelación
-    if (totalLevelled > 0) {
-        analysis.top_candidates.forEach(cand => {
-            cand.probability /= totalLevelled;
-        });
-        hasChanges = true;
-    }
-
-    // A1. Recalibración Basal (Anclas Individuales)
-    const activeFeats = Object.keys(helper.featureMap || {}).filter(k => helper.featureMap[k] === 1 || helper.featureMap[k] === true);
-    activeFeats.forEach(f => {
-        const weight = recalibrationEngine.getBaseWeight(f);
-        const targetSynd = recalibrationEngine.getSyndromeForFeature(f);
-        if (weight > 0 && targetSynd) {
-            const cand = analysis.top_candidates.find(x => x.syndrome === targetSynd);
-            if (cand) {
-                cand.probability = Math.min(1.0, cand.probability + weight);
-                hasChanges = true;
+    activeFeatures.forEach((feature) => {
+        const weight = recalibrationEngine.getBaseWeight(feature);
+        const targetSyndrome = recalibrationEngine.getSyndromeForFeature(feature);
+        if (weight > 0 && targetSyndrome) {
+            const candidate = recalibratedCandidates.find((item) => item.syndrome === targetSyndrome);
+            if (candidate) {
+                candidate.recalibrated_score += weight;
             }
         }
     });
 
-    // B. Reglas Cardinales (Manual)
-    CARDINAL_FEATURE_RULES.forEach(rule => {
-        if (rule.conditions(helper)) {
-            if (rule.boost_syndromes) {
-                rule.boost_syndromes.forEach(synd => {
-                    const c = analysis.top_candidates.find(x => x.syndrome === synd);
-                    if (c) { c.probability = Math.min(1.0, c.probability + 0.4); hasChanges = true; }
-                });
-            }
+    CARDINAL_FEATURE_RULES.forEach((rule) => {
+        if (rule.conditions(helper) && rule.boost_syndromes) {
+            rule.boost_syndromes.forEach((syndrome) => {
+                const candidate = recalibratedCandidates.find((item) => item.syndrome === syndrome);
+                if (candidate) {
+                    candidate.recalibrated_score += 0.4;
+                }
+            });
         }
     });
 
-    // B. Gestalts Estadísticos (Phase 15)
-    const active = Object.keys(helper.featureMap || {}).filter(k => helper.featureMap[k] === 1 || helper.featureMap[k] === true);
-    const boosts = recalibrationEngine.getSyndromeBoosts(active);
-    boosts.forEach(b => {
-        const c = analysis.top_candidates.find(x => x.syndrome === b.syndrome);
-        if (c) { c.probability = Math.min(1.0, c.probability + b.boost); hasChanges = true; }
+    const syndromeBoosts = recalibrationEngine.getSyndromeBoosts(activeFeatures);
+    syndromeBoosts.forEach((boostEntry) => {
+        const candidate = recalibratedCandidates.find((item) => item.syndrome === boostEntry.syndrome);
+        if (candidate) {
+            candidate.recalibrated_score += boostEntry.boost;
+        }
     });
 
-    if (hasChanges) {
-        analysis.top_candidates.sort((a, b) => b.probability - a.probability);
-        const top1 = analysis.top_candidates[0];
-        analysis.top_syndrome = top1.probability >= 0.15 ? top1.syndrome : null;
-        analysis.top_probability = top1.probability;
-        analysis.confidence_level = analysis.top_probability > 0.8 ? "high" : (analysis.top_probability > 0.3 ? "medium" : "low");
-    }
-    return analysis;
+    const totalScore = recalibratedCandidates.reduce((sum, candidate) => sum + Math.max(candidate.recalibrated_score || 0, 0), 0);
+    const normalizedCandidates = totalScore > 0
+        ? recalibratedCandidates.map((candidate) => ({
+            ...candidate,
+            probability: Math.max(candidate.recalibrated_score || 0, 0) / totalScore
+        }))
+        : analysis.raw_top_candidates.map((candidate) => ({
+            ...candidate,
+            raw_probability: candidate.probability ?? 0,
+            recalibrated_score: candidate.probability ?? 0
+        }));
+
+    analysis.recalibrated = true;
+    return synchronizeProbabilisticAnalysis(analysis, normalizedCandidates);
 }
 
-/**
- * Punto de entrada principal para Triage/Diagnóstico
- */
 export function runTriage(formData, lang = 'es') {
     try {
         const { X, helper } = encodeFeatures(formData);
         const prediction = predict(X, helper);
         let probabilisticAnalysis = predictProbabilisticSyndrome(X);
-        
-        // Refinamiento Híbrido
+
         probabilisticAnalysis = refineSyndromeReasoning(probabilisticAnalysis, helper);
 
-        // Selección de Diferenciales
         const topCandidates = probabilisticAnalysis.top_candidates || [];
         let diffCandidates = [];
         if (topCandidates.length > 0) {
             const t1 = topCandidates[0];
             const t2 = topCandidates[1];
-            const isAmbiguous = (probabilisticAnalysis.confidence_level !== 'high') || (t2 && (t1.probability - t2.probability < 0.20));
+            const isAmbiguous = (probabilisticAnalysis.confidence_level !== 'high')
+                || (t2 && (t1.probability - t2.probability < 0.20));
             diffCandidates = (isAmbiguous && t2 && t2.probability > 0.05) ? [t1, t2] : [t1];
         }
 
@@ -218,14 +246,12 @@ export function runTriage(formData, lang = 'es') {
             probabilistic_analysis: probabilisticAnalysis,
             differential_ranking: differentialRanking
         });
-        
-        // Registro de Auditoría Médica (Prioridad 1)
+
         auditLogger.logTriage(formData, result);
-        
+
         return result;
     } catch (error) {
-        console.error("CRITICAL_ENGINE_ERROR:", error);
-        // Retornar objeto de error seguro para evitar rupturas de UI
+        console.error('CRITICAL_ENGINE_ERROR:', error);
         return normalizeTriageResult({
             priority: 'P3',
             label: 'Error en Procesamiento',

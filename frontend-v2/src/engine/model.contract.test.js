@@ -34,6 +34,12 @@ describe('runTriage contract', () => {
                 negative: expect.any(Array)
             })
         });
+        const probabilitySum = result.probabilistic_analysis.top_candidates
+            .reduce((sum, candidate) => sum + candidate.probability, 0);
+        expect(probabilitySum).toBeCloseTo(1, 5);
+        expect(result.probabilistic_analysis.top_probability).toBeLessThanOrEqual(1);
+        expect(result.probabilistic_analysis.raw_top_probability).toBeGreaterThanOrEqual(0);
+        expect(Array.isArray(result.probabilistic_analysis.raw_top_candidates)).toBe(true);
         expect(result.primary_syndrome).toBe(result.probabilistic_analysis.top_syndrome ?? null);
         expect(result.error).toBeNull();
     });
