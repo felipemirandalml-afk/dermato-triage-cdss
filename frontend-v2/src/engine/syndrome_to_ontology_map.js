@@ -52,7 +52,10 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
       "Molluscum contagiosum",
       "Varicella",
       "Viral exanthem",
-      "Hand foot and mouth disease"
+      "Hand foot and mouth disease",
+      "Warts",
+      "Verruca",
+      "Monkeypox"
     ]
   },
   "fungal_skin_infection": {
@@ -75,7 +78,8 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
     "differentials": [
       "Fixed drug eruption",
       "Acute generalized exanthematous pustulosis",
-      "Stevens-Johnson syndrome"
+      "Stevens-Johnson syndrome",
+      "Erythema multiforme"
     ]
   },
   "urticarial_dermatosis": {
@@ -97,7 +101,9 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
       "Bullous pemphigoid",
       "Pemphigus vulgaris",
       "Dermatitis herpetiformis",
-      "Transient acantholytic dermatosis"
+      "Transient acantholytic dermatosis",
+      "Bullous disease",
+      "Epidermolysis bullosa"
     ]
   },
   "vasculitic_purpuric_disease": {
@@ -120,7 +126,13 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
       "Squamous cell carcinoma",
       "Malignant melanoma",
       "Bowen's disease",
-      "Keratoacanthoma"
+      "Keratoacanthoma",
+      "Kaposi sarcoma",
+      "Mycosis fungoides",
+      "Cutaneous T-cell lymphoma",
+      "Lymphoma",
+      "Actinic keratosis",
+      "Actinic solar damage"
     ]
   },
   "benign_cutaneous_tumor": {
@@ -132,7 +144,10 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
       "Dermatofibroma",
       "Melanocytic nevus",
       "Lipoma",
-      "Angioma / Hemangioma"
+      "Angioma / Hemangioma",
+      "Pyogenic granuloma",
+      "Keloid",
+      "Epidermoid cyst"
     ]
   },
   "inflammatory_dermatosis_other": {
@@ -150,6 +165,34 @@ export const SYNDROME_TO_ONTOLOGY_MAP = {
       "Sarcoidosis",
       "Pityriasis lichenoides",
       "Hidradenitis suppurativa"
+    ]
+  },
+  "pigmentary_disorder": {
+    "macro_group": "Pigmentario",
+    "subgroup": "Discromía / Trastorno Pigmentario",
+    "ontology_reference": "Trastorno de la pigmentación",
+    "differentials": [
+      "Vitiligo",
+      "Melasma",
+      "Post inflammatory hyperpigmentation",
+      "Hyperpigmentation",
+      "Hypopigmentation",
+      "Lentigo",
+      "Acanthosis nigricans"
+    ]
+  },
+  "connective_tissue_disease": {
+    "macro_group": "Autoinmune / Conectivo",
+    "subgroup": "Conectivopatía",
+    "ontology_reference": "Enfermedad del tejido conectivo",
+    "differentials": [
+      "Lupus erythematosus",
+      "Cutaneous lupus",
+      "Connective tissue diseases",
+      "Dermatomyositis",
+      "Scleroderma",
+      "Morphea",
+      "Lichen sclerosis et atrophicus"
     ]
   }
 };
