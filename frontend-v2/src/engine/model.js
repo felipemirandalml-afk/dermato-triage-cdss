@@ -16,7 +16,7 @@
  */
 
 import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, PRIORITY_LABELS } from './constants.js';
-import { encodeFeatures, createFeatureHelper } from './feature_encoder.js';
+import { encodeFeatures } from './feature_encoder.js';
 import { predictBaseline } from './baseline_model.js';
 import { applySafetyModifiers, applyBlockModifiers } from './safety_modifiers.js';
 import { applyContextModifiers, applyRefinementModifiers } from './context_modifiers.js';
