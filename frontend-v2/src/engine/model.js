@@ -1,5 +1,18 @@
 /**
- * model.js - Orquestador del Motor Clinico CDSS.
+ * model.js — Orquestador del Motor Clínico CDSS
+ *
+ * ARQUITECTURA EN DOS CAPAS:
+ *
+ * Capa 1 — Heurística (predict)
+ *   baseline_model → safety_modifiers → context_modifiers → block/refinement
+ *   Decide la PRIORIDAD (P1/P2/P3). Basada en reglas clínicas explícitas.
+ *
+ * Capa 2 — Probabilística (predictProbabilisticSyndrome + refineSyndromeReasoning)
+ *   Random Forest (rf_model.json) → recalibration_engine → differential_ranker
+ *   Decide el SÍNDROME y el DIAGNÓSTICO DIFERENCIAL (top 3).
+ *
+ * Punto de fusión: runTriage() combina ambas capas y normaliza la salida.
+ * Punto de entrada único desde la UI: runTriage(formData, lang)
  */
 
 import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, PRIORITY_LABELS } from './constants.js';
@@ -12,7 +25,6 @@ import { predictProbabilisticSyndrome } from './probabilistic_model.js';
 import { rankDifferentials } from './differential_ranker.js';
 import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
 import { recalibrationEngine } from './recalibration_engine.js';
-import { auditLogger } from './audit_logger.js';
 
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
 
@@ -246,8 +258,6 @@ export function runTriage(formData, lang = 'es') {
             differential_ranking: differentialRanking
         });
 
-        auditLogger.logTriage(formData, result);
-
         return result;
     } catch (error) {
         console.error('CRITICAL_ENGINE_ERROR:', error);
@@ -261,7 +271,3 @@ export function runTriage(formData, lang = 'es') {
     }
 }
 
-export function applyClinicalModifiers(X) {
-    const helper = createFeatureHelper(X);
-    return predict(X, helper);
-}
