@@ -1,7 +1,10 @@
-import { runTriage } from '../../runtime/engine/model.js';
+import { runTriage } from '../../frontend-v2/src/engine/model.js';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
-const cases = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/tests/generated_synthetic_cases.json', 'utf8'));
+const cases = JSON.parse(fs.readFileSync(path.join(ROOT, 'tests/generated_synthetic_cases.json'), 'utf8'));
 
 console.log("=== BENCHMARK SINTÉTICO MASIVO (STRESS TEST) ===");
 
@@ -61,8 +64,8 @@ const report = `# Reporte Stress Test Sintético (v1.0)\n\n` +
                `- Confusión Viral: ${viralFailures.length} fallos\n` +
                `- Stress Fails: ${sparseFails.length}\n`;
 
-fs.writeFileSync('d:/dermato-triage-cdss/reports/synthetic_benchmark_overview.md', report);
-fs.writeFileSync('d:/dermato-triage-cdss/reports/systemic_error_patterns.md', JSON.stringify(stats.failures.slice(0, 50), null, 2));
+fs.writeFileSync(path.join(ROOT, 'reports/synthetic_benchmark_overview.md'), report);
+fs.writeFileSync(path.join(ROOT, 'reports/systemic_error_patterns.md'), JSON.stringify(stats.failures.slice(0, 50), null, 2));
 
 console.log(`Reportes generados en reports/`);
 if (pAcc > 0) process.exit(0);

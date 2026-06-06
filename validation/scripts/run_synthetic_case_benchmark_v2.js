@@ -1,11 +1,14 @@
-import { runTriage } from '../../runtime/engine/model.js';
+import { runTriage } from '../../frontend-v2/src/engine/model.js';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 /**
  * RUNNER DE BENCHMARK v2.0 (Massive Scale)
  */
 
-const casesPath = 'd:/dermato-triage-cdss/tests/generated_synthetic_cases_v2.json';
+const casesPath = path.join(ROOT, 'tests/generated_synthetic_cases_v2.json');
 const cases = JSON.parse(fs.readFileSync(casesPath, 'utf8'));
 
 console.log(`=== INICIANDO BENCHMARK MASIVO v2.0 (${cases.length} casos) ===`);
@@ -83,8 +86,8 @@ const overview = `# Overview Benchmark Masivo v2.0 (Phase 10)\n\n` +
                  `- Los casos STRESS (Fiebre/Dolor) degradan la precisión del triage sistémico.\n` +
                  `- Los casos SPARSE demuestran la fragilidad ante entradas mínimas.\n`;
 
-fs.writeFileSync('d:/dermato-triage-cdss/reports/synthetic_benchmark_v2_overview.md', overview);
-fs.writeFileSync('d:/dermato-triage-cdss/reports/systemic_error_patterns_v2.md', JSON.stringify(stats.failures, null, 2));
+fs.writeFileSync(path.join(ROOT, 'reports/synthetic_benchmark_v2_overview.md'), overview);
+fs.writeFileSync(path.join(ROOT, 'reports/systemic_error_patterns_v2.md'), JSON.stringify(stats.failures, null, 2));
 
 console.log(`Reportes masivos generados en reports/`);
 process.exit(0);

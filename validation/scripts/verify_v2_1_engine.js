@@ -1,13 +1,15 @@
 import { runTriage } from '../../frontend-v2/src/engine/model.js';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 /**
  * VERIFICADOR DE MOTOR CLÍNICO v2.1 
  * Basado en Benchmark Masivo para validar cambios de NotebookLM
  */
 
-const casesPath = 'd:/dermato-triage-cdss/tests/generated_synthetic_cases_v2.json';
+const casesPath = path.join(ROOT, 'tests/generated_synthetic_cases_v2.json');
 const cases = JSON.parse(fs.readFileSync(casesPath, 'utf8'));
 
 console.log(`\n🚀 INICIANDO VERIFICACIÓN DE MOTOR v2.1 (${cases.length} casos)`);
@@ -93,7 +95,7 @@ for (const [v, d] of Object.entries(stats.variants)) {
 }
 
 // Generar reporte de integridad
-const reportPath = 'd:/dermato-triage-cdss/reports/v2_1_integrity_report.json';
+const reportPath = path.join(ROOT, 'reports/v2_1_integrity_report.json');
 fs.writeFileSync(reportPath, JSON.stringify({
     timestamp: new Date().toISOString(),
     stats,
