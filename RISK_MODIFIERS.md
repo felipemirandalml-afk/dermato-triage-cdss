@@ -1,6 +1,11 @@
 # Modificadores de Riesgo Clínico Morfológico (v1.3.0)
 **DermatoTriage CDSS - Escudos de Seguridad Vital**
 
+> ⚠️ **Documento de referencia clínica.** La *lógica* descrita aquí sigue vigente
+> y vive en [`frontend-v2/src/engine/safety_modifiers.js`](frontend-v2/src/engine/safety_modifiers.js).
+> Las versiones, condiciones exactas y rutas pueden haber cambiado: el código es
+> la fuente de verdad, no este documento.
+
 Este documento detalla las reglas heurísticas que actúan como **capas de seguridad insalvables** sobre el modelo probabilístico, asegurando que los signos vitales críticos nunca sean sub-triagiados.
 
 ---

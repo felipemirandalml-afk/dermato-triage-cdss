@@ -1,6 +1,11 @@
 # Modificadores de Contexto Sistémico (v1.3.0)
 **DermatoTriage CDSS - Análisis de Riesgo Lesión-Huésped**
 
+> ⚠️ **Documento de referencia clínica.** La *lógica* descrita aquí sigue vigente
+> y vive en [`frontend-v2/src/engine/context_modifiers.js`](frontend-v2/src/engine/context_modifiers.js).
+> Las versiones, umbrales exactos (ej. edad geriátrica) y rutas pueden haber
+> cambiado: el código es la fuente de verdad, no este documento.
+
 Este documento detalla la lógica de los modificadores que evalúan el binomio **Lesión + Contexto del Paciente**, asegurando que el riesgo sistémico sea capturado más allá de la morfología aislada.
 
 ---
