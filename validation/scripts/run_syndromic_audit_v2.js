@@ -1,8 +1,11 @@
 import fs from 'fs';
-import { runTriage } from '../../runtime/engine/model.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+import { runTriage } from '../../frontend-v2/src/engine/model.js';
 
 // 1. Cargar Datos
-const easyCases = JSON.parse(fs.readFileSync('d:/dermato-triage-cdss/tests/generated_easy_cases.json', 'utf8'));
+const easyCases = JSON.parse(fs.readFileSync(path.join(ROOT, 'tests/generated_easy_cases.json'), 'utf8'));
 const syndromes = ["eczema_dermatitis", "psoriasiform_dermatosis", "bacterial_skin_infection", "viral_skin_infection", "fungal_skin_infection", "drug_reaction", "urticarial_dermatosis", "vesiculobullous_disease", "vasculitic_purpuric_disease", "cutaneous_tumor_suspected", "benign_cutaneous_tumor", "inflammatory_dermatosis_other"];
 
 console.log("=== INICIANDO AUDITORÍA SINDRÓMICA v2.0 (Sample 1000) ===");
@@ -36,5 +39,5 @@ easyCases.slice(0, 1000).forEach(c => {
 console.log(`- Muestra terminada: ${processed} casos`);
 console.log(`- Viral Accuracy (Sample): ${(viralCorrect/viralTotal*100).toFixed(1)}%`);
 
-fs.writeFileSync('d:/dermato-triage-cdss/data/syndromic_confusion_matrix_v2.json', JSON.stringify(confusionMatrix, null, 2));
+fs.writeFileSync(path.join(ROOT, 'data/syndromic_confusion_matrix_v2.json'), JSON.stringify(confusionMatrix, null, 2));
 process.exit(0);

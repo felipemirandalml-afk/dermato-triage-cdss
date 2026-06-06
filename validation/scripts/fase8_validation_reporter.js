@@ -1,8 +1,11 @@
-import { runTriage } from '../../runtime/engine/model.js';
+import { runTriage } from '../../frontend-v2/src/engine/model.js';
 import { CLINICAL_CASES } from '../datasets/clinical_cases.js';
 import { HARDENING_CASES } from '../datasets/hardening_cases_v2.js';
-import { SYNDROME_TO_ONTOLOGY_MAP } from '../../runtime/engine/syndrome_to_ontology_map.js';
+import { SYNDROME_TO_ONTOLOGY_MAP } from '../../frontend-v2/src/engine/syndrome_to_ontology_map.js';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 const ALL_CASES = [...CLINICAL_CASES, ...HARDENING_CASES];
 
@@ -72,7 +75,7 @@ for (const [groupName, group] of Object.entries(groupMap)) {
     }
 }
 
-fs.writeFileSync('d:/dermato-triage-cdss/reports/fase8_validation_by_group.md', report);
+fs.writeFileSync(path.join(ROOT, 'reports/fase8_validation_by_group.md'), report);
 console.log("Reporte generado en reports/fase8_validation_by_group.md");
 console.log("Reporte generado en reports/fase8_validation_by_group.md");
 process.exit(0);

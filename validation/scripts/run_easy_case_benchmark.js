@@ -1,11 +1,14 @@
-import { runTriage } from '../../runtime/engine/model.js';
+import { runTriage } from '../../frontend-v2/src/engine/model.js';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 /**
  * RUNNER DE BENCHMARK EASY (TEXTBOOK CEILING)
  */
 
-const casesPath = 'd:/dermato-triage-cdss/tests/generated_easy_cases.json';
+const casesPath = path.join(ROOT, 'tests/generated_easy_cases.json');
 const cases = JSON.parse(fs.readFileSync(casesPath, 'utf8'));
 
 console.log(`=== INICIANDO EASY BENCHMARK (CEILING TEST - ${cases.length} casos) ===`);
@@ -57,8 +60,8 @@ const overview = `# Overview Easy Benchmark (Ceiling Test - Phase 11)\n\n` +
                  `## Conclusión Basal\n` +
                  `Este resultado representa el **techo real** del sistema actual si el input fuera perfecto.\n`;
 
-fs.writeFileSync('d:/dermato-triage-cdss/reports/easy_benchmark_overview.md', overview);
-fs.writeFileSync('d:/dermato-triage-cdss/reports/easy_error_patterns.md', JSON.stringify(stats.failures, null, 2));
+fs.writeFileSync(path.join(ROOT, 'reports/easy_benchmark_overview.md'), overview);
+fs.writeFileSync(path.join(ROOT, 'reports/easy_error_patterns.md'), JSON.stringify(stats.failures, null, 2));
 
 console.log(`Reportes generados en reports/`);
 process.exit(0);

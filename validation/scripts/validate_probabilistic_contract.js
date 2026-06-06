@@ -1,36 +1,50 @@
 /**
  * validate_probabilistic_contract.js
- * Verifica que el contrato de entrada del modelo probabilístico esté sincronizado
- * con las constantes de la aplicación y el encoder.
+ * Verifica que el contrato de entrada del modelo probabilístico (Random Forest)
+ * esté sincronizado con las constantes de la aplicación y el encoder.
+ *
+ * Nota: el modelo actual es un Random Forest serializado (rf_model.json), no la
+ * antigua regresión logística por coeficientes. Este script valida el contrato
+ * vigente: que cada feature declarada por el modelo exista en FEATURE_INDEX y que
+ * los índices de feature usados por los árboles caigan dentro del rango declarado.
  */
-import { MODEL_DATA } from '../../runtime/engine/probabilistic_model.js';
-import { FEATURE_INDEX, PROBABILISTIC_FEATURES } from '../../runtime/engine/constants.js';
+import RF_MODEL_DATA from '../../frontend-v2/src/engine/rf_model.json' with { type: 'json' };
+import { FEATURE_INDEX } from '../../frontend-v2/src/engine/constants.js';
 
-console.log("--- AUDITORÍA DE CONTRATO PROBABILÍSTICO ---");
+console.log("--- AUDITORÍA DE CONTRATO PROBABILÍSTICO (Random Forest) ---");
 
 let errors = 0;
-const modelFeatures = MODEL_DATA.metadata.features;
+const modelFeatures = RF_MODEL_DATA.metadata.features;
 const modelFeatureCount = modelFeatures.length;
 
-// 1. Verificar Dimensionalidad
-const coefficients = MODEL_DATA.parameters.coefficients[0];
-if (coefficients.length !== modelFeatureCount) {
-    console.error(`[FAIL] Desalineación interna en el modelo: Metadata declara ${modelFeatureCount} features pero los coeficientes tienen ${coefficients.length}.`);
-    errors++;
-} else {
-    console.log(`[PASS] Dimensionalidad consistente: ${modelFeatureCount} features.`);
-}
-
-// 2. Verificar existencia y orden en FEATURE_INDEX
+// 1. Verificar que cada feature del modelo exista en FEATURE_INDEX (encodable)
 modelFeatures.forEach((f, i) => {
-    const appIdx = FEATURE_INDEX[f];
-    if (appIdx === undefined) {
+    if (FEATURE_INDEX[f] === undefined) {
         console.error(`[FAIL] Feature '${f}' (modelo idx ${i}) NO existe en constants.js (FEATURE_INDEX).`);
         errors++;
     }
 });
+if (errors === 0) {
+    console.log(`[PASS] Las ${modelFeatureCount} features del modelo existen en FEATURE_INDEX.`);
+}
 
-// 3. Verificar que las interacciones estén mapeadas
+// 2. Verificar que los índices de feature de los árboles estén en rango
+let outOfRange = 0;
+function checkNode(node) {
+    if (!node || node.is_leaf) return;
+    if (node.feature < 0 || node.feature >= modelFeatureCount) outOfRange++;
+    checkNode(node.left);
+    checkNode(node.right);
+}
+RF_MODEL_DATA.trees.forEach(checkNode);
+if (outOfRange > 0) {
+    console.error(`[FAIL] ${outOfRange} nodos referencian un índice de feature fuera de rango [0, ${modelFeatureCount}).`);
+    errors += outOfRange;
+} else {
+    console.log(`[PASS] Todos los nodos de los ${RF_MODEL_DATA.trees.length} árboles referencian features válidas.`);
+}
+
+// 3. Verificar que las interacciones críticas estén mapeadas en el sistema
 const expectedInteractions = [
     "interaccion_fiebre_purpura",
     "interaccion_fiebre_ampolla",

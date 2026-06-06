@@ -5,8 +5,8 @@
  */
 
 import { CLINICAL_CASES_HD } from '../datasets/clinical_cases_hd.js';
-import { runTriage } from '../../runtime/engine/model.js';
-import { PROBABILISTIC_FEATURES } from '../../runtime/engine/constants.js';
+import { runTriage } from '../../frontend-v2/src/engine/model.js';
+import { PROBABILISTIC_FEATURES } from '../../frontend-v2/src/engine/constants.js';
 
 console.log("==================================================");
 console.log("       DERMATOTRIAGE HD BENCHMARK v3.0         ");

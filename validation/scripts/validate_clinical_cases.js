@@ -1,5 +1,5 @@
-import { runTriage } from '../../runtime/engine/model.js';
-import { encodeFeatures } from '../../runtime/engine/feature_encoder.js';
+import { runTriage } from '../../frontend-v2/src/engine/model.js';
+import { encodeFeatures } from '../../frontend-v2/src/engine/feature_encoder.js';
 import { CLINICAL_CASES } from '../datasets/clinical_cases.js';
 import { HARDENING_CASES } from '../datasets/hardening_cases_v2.js';
 import { validateDatasetSchema } from './validate_case_schema.js';
