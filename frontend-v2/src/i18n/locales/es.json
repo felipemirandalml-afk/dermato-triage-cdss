@@ -6,16 +6,6 @@
       "P3": "P3 - AMBULATORIO",
       "DESCONOCIDO": "Prioridad desconocida"
     },
-    "alerts": {
-      "ocular_risk": "Riesgo ocular / compromiso de cara centrofacial",
-      "ischemia": "Signos de isquemia o necrosis tisular aguda",
-      "autoimmune_blister": "Sospecha de dermatosis ampollosa o compromiso sistemico",
-      "nikolsky_positive": "Signo de Nikolsky positivo agudo",
-      "malignancy_shield": "Sospecha de lesion maligna / neoplasia (P2-Shield)",
-      "acral_reaction": "Reaccion acral aguda (estudio de gatillante)",
-      "suppurative_infection": "Inflamacion supurativa / fistulas cronicas",
-      "drug_rash_simple": "Exantema medicamentoso simple (vigilancia estandar)"
-    },
     "conduct": {
       "urgent": "Evaluacion urgente / derivacion inmediata a Servicio de Urgencias.",
       "priority": "Derivacion prioritaria a Dermatologia o evaluacion preferente.",
@@ -26,6 +16,34 @@
     "analyzing": "Analizando patron sindromico...",
     "patient_summary": "Resumen del paciente (Input)",
     "decision_mechanism": "Mecanismo de decision (ExAI)",
-    "suggested_conduct": "Conducta sugerida"
+    "suggested_conduct": "Conducta sugerida",
+    "first_suspicion": "1ra Sospecha Sindromica",
+    "indet_group": "Agrupacion Indeterminada",
+    "no_emergency_rules": "Ninguna regla de emergencia vital disparada. El triaje procede segun estadistica basal.",
+    "alert_security": "[Alerta de seguridad]",
+    "alert_mismatch": "[Alerta de discordancia]",
+    "priority_based_on": "Priorizacion basada en",
+    "front_findings": "Frente a hallazgos de"
+  },
+  "safety": {
+    "ocular_risk": "Riesgo ocular / compromiso de cara centrofacial",
+    "ischemia": "Signos de isquemia o necrosis tisular aguda",
+    "blister_autoimmune": "Sospecha de dermatosis ampollosa o compromiso sistemico",
+    "nikolsky": "Signo de Nikolsky positivo agudo (posible sindrome de piel escaldada / NET)",
+    "malignancy": "Sospecha de lesion maligna / neoplasia (P2-Shield)",
+    "acral": "Reaccion acral aguda (estudio de gatillante)",
+    "suppurative": "Inflamacion supurativa / fistulas cronicas",
+    "erythroderma": "Eritrodermia grave (riesgo hemodinamico/metabolico)",
+    "systemic_shock": "Signos sistemicos de shock / inestabilidad",
+    "drug_rash": "Exantema medicamentoso simple (vigilancia estandar)"
+  },
+  "rf": {
+    "mucosa": "Compromiso de mucosas (riesgo SJS/NET)",
+    "fever": "Fiebre / respuesta inflamatoria sistemica",
+    "pain": "Dolor intenso (sospecha de infeccion profunda/necrosis)",
+    "blister": "Dermatosis ampollosa / bulas",
+    "purpura": "Purpura palpable (sospecha vasculitis)",
+    "immuno": "Paciente inmunocomprometido",
+    "drugs": "Antecedente de farmacos sistemicos criticos"
   }
 }
