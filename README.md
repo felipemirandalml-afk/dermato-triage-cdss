@@ -156,8 +156,8 @@ Este repositorio utiliza una arquitectura por capas para separar interfaz, estad
 2. **Tooling y validación (raíz)**  
    Scripts de debugging, benchmarks clínicos, validación e integridad.
 
-3. **Legacy archivado (`/archive`)**  
-   Código histórico depreciado, mantenido solo para trazabilidad técnica y auditoría evolutiva.
+3. **Pipeline de entrenamiento (`/training`, `/data`)**  
+   Scripts Python y datasets (Derm1M, SkinCon) para entrenar y reajustar el modelo Random Forest y los pesos estadísticos.
 
 ---
 
@@ -168,9 +168,13 @@ Este repositorio utiliza una arquitectura por capas para separar interfaz, estad
 - `frontend-v2/src/hooks/` → orquestación de inferencia
 - `frontend-v2/src/components/` → interfaz modular
 - `frontend-v2/src/engine/` → motor clínico de inferencia
+- `frontend-v2/src/data/` → pesos estadísticos y moduladores reajustados
 - `validation/` → validación técnica y benchmarks
-- `tools/` → scripts de mantenimiento
-- `archive/` → legado archivado
+- `tools/` → scripts de mantenimiento e integridad
+- `training/` → scripts Python y datasets de entrenamiento
+- `data/` → datasets fuente (Derm1M, SkinCon)
+- `reports/` → reportes de auditoría y benchmarks generados
+- `docs/legacy/` → documentación histórica de versiones previas (v1.x)
 
 ---
 

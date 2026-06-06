@@ -1,5 +1,27 @@
 /**
  * constants.js - Diccionarios maestros y configuraciones del motor.
+ *
+ * ──────────────────────────────────────────────────────────────────────────
+ * DOS ESPACIOS DE FEATURES (leer antes de modificar):
+ *
+ * 1. PROBABILISTIC_FEATURES → FEATURE_INDEX
+ *    Tienen un índice numérico y ENTRAN al vector X.
+ *    Alimentan tanto el baseline scoring (baseline_model) como el
+ *    Random Forest (probabilistic_model). Son la "estadística" del sistema.
+ *
+ * 2. EXTRA_CLINICAL_FEATURES → EXTRA_FEATURE_INDEX
+ *    NO tienen índice numérico y NO entran al vector X. Viven solo como
+ *    booleanos en el featureMap del helper.
+ *    Incluyen las RED FLAGS críticas (necrosis_isquemia, ampolla_nikolsky,
+ *    signo_hipotension, signo_abcde...). Actúan EXCLUSIVAMENTE a través de
+ *    safety_modifiers / context_modifiers como reglas duras.
+ *
+ * Esto es intencional: las señales de gravedad NO deben depender de la
+ * varianza del modelo estadístico, sino forzar la prioridad por regla.
+ * Si agregas una feature, decide a qué espacio pertenece:
+ *   ¿es una señal morfológica/contextual para clasificar síndrome? → grupo 1
+ *   ¿es una red flag que debe forzar P1/P2 por sí sola?            → grupo 2
+ * ──────────────────────────────────────────────────────────────────────────
  */
 
 export const PROBABILISTIC_FEATURES = [

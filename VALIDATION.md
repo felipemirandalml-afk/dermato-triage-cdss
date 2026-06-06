@@ -2,6 +2,11 @@
 
 Este documento detalle el estado de validación técnica y clínica de DermatoTriage CDSS tras el último benchmark automatizado.
 
+> ⚠️ **Snapshot histórico (26-Mar-2026).** Las métricas reflejan el estado de esa
+> fecha y no se regeneran automáticamente. Para cifras actuales, correr los
+> benchmarks en `validation/scripts/`. El análisis cualitativo de limitaciones
+> (confusión drug_reaction vs viral, techo sindrómico ~63%) sigue siendo orientativo.
+
 ---
 
 ## ⚖️ Informe de Rendimiento (Audit v2.2)

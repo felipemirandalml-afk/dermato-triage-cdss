@@ -2,6 +2,13 @@
 
 Este documento define el protocolo real para mantener la integridad técnica de DermatoTriage CDSS.
 
+> ⚠️ **Rutas desactualizadas.** Este documento es de la era v1.x (UI en `index.html`).
+> Correcciones vigentes:
+> - La UI ya no es `index.html`; son componentes React en `frontend-v2/src/components/`.
+> - El entrenamiento vive en `training/scripts/` (no `tools/`).
+> - No existe carpeta `archive/`; la documentación histórica vive en `docs/legacy/`.
+> El principio de gobernanza (la seguridad P1 prevalece sobre la estadística) sigue vigente.
+
 ---
 
 ## 🏗️ Flujo de Trabajo (Workflows)
