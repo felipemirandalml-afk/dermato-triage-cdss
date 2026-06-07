@@ -12,6 +12,9 @@ export const useClinicalStore = create((set, get) => ({
     // en el protocolo SSMSO. received: 'yes'|'no'|''; response: 'none'|'partial'|
     // 'worsening'|'good'|''; months: 'lt1'|'1to3'|'3to6'|'gt6'|''
     treatment: { received: '', response: '', months: '' },
+    // Severidad / extensión (Capa 1 del triage SSMSO). bsaPercent: % de superficie
+    // corporal comprometida (regla de la palma ≈ 1%). Umbrales: psoriasis >7%, atópica >10%.
+    severity: { bsaPercent: '' },
     // Hallazgos Clínicos (Frontera Semántica Limpia)
     features: {}
   },
@@ -44,7 +47,7 @@ export const useClinicalStore = create((set, get) => ({
   // Reseteo limpio
   resetForm: () =>
     set({
-      formData: { age: '', sex: '', timing: '', treatment: { received: '', response: '', months: '' }, features: {} },
+      formData: { age: '', sex: '', timing: '', treatment: { received: '', response: '', months: '' }, severity: { bsaPercent: '' }, features: {} },
       triageResult: null
     }),
 
@@ -54,15 +57,22 @@ export const useClinicalStore = create((set, get) => ({
       formData: { ...state.formData, treatment: { ...state.formData.treatment, [field]: value } }
     })),
 
+  // Actualiza un campo del sub-objeto de severidad / extensión
+  setSeverityField: (field, value) =>
+    set((state) => ({
+      formData: { ...state.formData, severity: { ...state.formData.severity, [field]: value } }
+    })),
+
   // Carga de casos demo con soporte para la nueva estructura
   loadDemoCase: (caseInput) => {
-    const { age, sex, timing, treatment, ...clinicalFeatures } = caseInput;
+    const { age, sex, timing, treatment, severity, ...clinicalFeatures } = caseInput;
     set({
       formData: {
         age: age || '',
         sex: sex || '',
         timing: timing || '',
         treatment: treatment || { received: '', response: '', months: '' },
+        severity: severity || { bsaPercent: '' },
         features: clinicalFeatures || {}
       },
       triageResult: null
