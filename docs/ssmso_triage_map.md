@@ -93,14 +93,53 @@ agudos/de especialidad. Para estos hay que citar otra fuente (guías internacion
 protocolos GES, o las propias safety rules ya existentes):
 
 - `bacterial_skin_infection` (celulitis, impétigo, absceso)
-- `drug_reaction` (incluye SJS/NET, DRESS)
+- `drug_reaction` (incluye SJS/NET, DRESS) — ✅ **completado abajo** (guías nac/internac)
 - `urticarial_dermatosis`
 - `vesiculobullous_disease`
 - `vasculitic_purpuric_disease`
 - `connective_tissue_disease`
+- `bacterial_skin_infection`
 
 > Nota: varios de estos ya tienen banderas rojas en `safety_modifiers.js` (Capa 2);
-> lo que falta es su urgencia basal (Capa 0) y respaldo citable.
+> lo que falta es su urgencia basal (Capa 0) y respaldo citable. Se van completando
+> con fuentes de guías nacionales/internacionales (vía NotebookLM) en la sección siguiente.
+
+---
+
+## Tabla de triage — síndromes agudos (fuentes: guías nac/internacionales)
+
+> Estos síndromes no están en el protocolo general ambulatorio SSMSO. Sus criterios
+> provienen de guías y manuales de dermatología, citados por entrada.
+
+### `drug_reaction` (farmacodermias / RAMM) — base **P3** (formas leves), escalada rápida
+- **Capa 0:** formas leves (erupción fija no complicada, exantema morbiliforme leve sin
+  síntomas sistémicos) → manejo en APS (P3).
+- **Capa 1 → P2 (derivar a dermatología/teledermatología):**
+  - duda diagnóstica (no se asegura fármaco causal ni tipo de reacción)
+  - refractariedad: no cede tras suspender el fármaco + tratamiento basal
+  - extensión BSA significativa (>10%, extrapolado de psoriasis)
+  - sospecha de DRESS (tríada exantema + compromiso visceral + alteración de laboratorio)
+  - AGEP con duda → interconsulta urgente
+  - laboratorio: eosinofilia >1.000/mm³, linfocitos atípicos, pruebas hepáticas alteradas
+- **Capa 2 → P1 / Urgencia (riesgo vital):**
+  - cutáneos: signo de Nikolsky positivo · dolor cutáneo intenso/desproporcionado ·
+    eritema confluente de aparición rápida · ampollas o piel denudada extensa ·
+    compromiso mucoso (boca/ojos/genitales/ano) · necrosis o púrpura palpable ·
+    edema facial importante o compromiso centrofacial
+  - sistémicos: fiebre alta (>40°C) o persistente · CEG/obnubilación/sopor ·
+    taquipnea/sibilancias/dificultad respiratoria (angioedema de vía aérea/anafilaxia) ·
+    hipotensión o taquicardia (>120 lpm) · adenopatías generalizadas grandes (>2 cm)
+- **Mapeo a inputs:** ya existen — Nikolsky (`ampolla_nikolsky`/`despegamiento_epidermico`),
+  dolor (`dolor`), ampollas (`bula_ampolla`), mucosas (`mucosas`), necrosis
+  (`necrosis_isquemia`), púrpura palpable (`purpura_palpable`), hipotensión
+  (`signo_hipotension`), conciencia (`compromiso_conciencia`), fiebre (`fiebre`),
+  BSA (`severity.bsaPercent`), refractariedad (`treatment`). **Faltan:** dificultad
+  respiratoria/angioedema, adenopatías, y los criterios de laboratorio/visceral (fuera
+  del alcance de un motor morfológico — quedan como límite declarado).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 24-25, 27-31) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 157-159, 164) · Fitzpatrick,
+  Atlas de Dermatología Clínica (págs. 137-140, 488-491) · Patología Dermatológica,
+  Aguayo et al. (págs. 1076, 1089).
 
 ---
 
@@ -109,10 +148,12 @@ protocolos GES, o las propias safety rules ya existentes):
 | Input | Estado | Lo usan |
 | :--- | :--- | :--- |
 | Refractariedad (tto previo/respuesta/tiempo) | ✅ hecho (PR #20) | casi todos los síndromes |
-| **% superficie corporal (BSA)** | ⏳ pendiente | psoriasis (>7%), atópica (>10%), varicela, micosis |
-| **Sitio especial** (ocular/periocular, V1, anogenital, palmoplantar, párpado, genital) | ⏳ pendiente (topografía parcial) | viral, eczema, tumor benigno, rosácea |
+| % superficie corporal (BSA) | ✅ hecho (PR #22) | psoriasis (>7%), atópica (>10%), varicela, micosis, drug_reaction |
+| Sitio especial (periocular, anogenital, palmoplantar) | ✅ hecho (PR #23) | viral, eczema, tumor benigno, rosácea |
+| Tamaño de lesión (>3 cm) | ✅ hecho (PR #23) | tumor benigno |
+| Conteo de lesiones/nevos (>10, >100) | ✅ hecho (PR #23) | verrugas, tumor |
 | Crecimiento rápido / cambio en el tiempo | ⏳ pendiente | tumor sospechado |
-| Tamaño de lesión (>3 cm) | ⏳ pendiente | tumor benigno |
-| Conteo de lesiones/nevos (>10, >100) | ⏳ pendiente | verrugas, tumor |
 | Grado de severidad / progresión | ⏳ pendiente | acné, vitíligo, eczema |
-| inmunosupresión, fiebre, cicatriz, nódulo, ABCDE, úlcera | ✅ ya existen | varios |
+| Dificultad respiratoria / angioedema | ⏳ pendiente | drug_reaction, urticaria |
+| Adenopatías | ⏳ pendiente | drug_reaction (DRESS) |
+| inmunosupresión, fiebre, cicatriz, nódulo, ABCDE, úlcera, mucosas, Nikolsky, púrpura, necrosis, hipotensión, conciencia | ✅ ya existen | varios |
