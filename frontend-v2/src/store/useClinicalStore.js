@@ -7,7 +7,10 @@ import { clinicalValidation } from '../engine/validation.js';
 const DEFAULT_TREATMENT = { received: '', response: '', months: '' };
 // severity: extensión (bsaPercent, regla de la palma ≈ 1%; umbrales psoriasis >7%,
 // atópica >10%) y sitios especiales que gatillan derivación/urgencia.
-const DEFAULT_SEVERITY = { bsaPercent: '', specialSites: { periocular: false, anogenital: false, palmoplantar: false } };
+// largeLesion: lesión/tumor/quiste > 3 cm (deriva a cirugía/especialista en SSMSO).
+// lesionCount: 'single' | 'few' (2-10) | 'many' (>10) | 'numerous' (>100) — umbrales
+// de derivación en verrugas (>10) y nevos (>100).
+const DEFAULT_SEVERITY = { bsaPercent: '', specialSites: { periocular: false, anogenital: false, palmoplantar: false }, largeLesion: false, lesionCount: '' };
 
 const makeDefaultFormData = () => ({
   age: '',
