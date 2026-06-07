@@ -10,7 +10,17 @@ const pickUiFeatures = (ids = []) => ids
 
 export const TopographyForm = () => {
   const bsaPercent = useClinicalStore((state) => state.formData.severity?.bsaPercent ?? '');
+  const largeLesion = useClinicalStore((state) => state.formData.severity?.largeLesion ?? false);
+  const lesionCount = useClinicalStore((state) => state.formData.severity?.lesionCount ?? '');
   const setSeverityField = useClinicalStore((state) => state.setSeverityField);
+  const specialSites = useClinicalStore((state) => state.formData.severity?.specialSites ?? {});
+  const toggleSpecialSite = useClinicalStore((state) => state.toggleSpecialSite);
+
+  const SPECIAL_SITES = [
+    { id: 'periocular', label: 'Periocular / ocular', hint: 'zóster V1, párpado, rosácea ocular' },
+    { id: 'anogenital', label: 'Anogenital', hint: 'molusco/verruga genital → UNACESS' },
+    { id: 'palmoplantar', label: 'Palmoplantar', hint: 'eczema/psoriasis persistente' },
+  ];
 
   const topographyFeatures = [
     ...conceptMapper.getFeaturesByGroup('anatomia_topografia').filter(f => f.usable_in_ui),
@@ -100,6 +110,57 @@ export const TopographyForm = () => {
               Regla de la palma: la palma del paciente equivale a ~1% de su superficie corporal.
               <br />Umbrales de derivacion (SSMSO): psoriasis &gt;7%, dermatitis atopica &gt;10%.
             </p>
+          </div>
+        </FieldGroup>
+
+        <FieldGroup title="Sitios Especiales (riesgo / derivacion)">
+          <div className="grid grid-cols-1 gap-2">
+            {SPECIAL_SITES.map(site => (
+              <label key={site.id} className={`card-selectable p-3 border rounded-xl flex items-start gap-3 cursor-pointer ${specialSites[site.id] ? 'border-clinical-blue bg-blue-50' : 'border-slate-200'}`}>
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 rounded mt-0.5 text-clinical-blue focus:ring-clinical-blue border-slate-300 cursor-pointer"
+                  checked={!!specialSites[site.id]}
+                  onChange={() => toggleSpecialSite(site.id)}
+                />
+                <div>
+                  <span className="font-bold text-slate-700 block text-sm">{site.label}</span>
+                  <span className="text-[10px] text-slate-400 font-medium">{site.hint}</span>
+                </div>
+              </label>
+            ))}
+          </div>
+        </FieldGroup>
+
+        <FieldGroup title="Tamano y Numero de Lesiones">
+          <label className={`card-selectable p-3 border rounded-xl flex items-start gap-3 cursor-pointer ${largeLesion ? 'border-clinical-blue bg-blue-50' : 'border-slate-200'}`}>
+            <input
+              type="checkbox"
+              className="w-5 h-5 rounded mt-0.5 text-clinical-blue focus:ring-clinical-blue border-slate-300 cursor-pointer"
+              checked={!!largeLesion}
+              onChange={(e) => setSeverityField('largeLesion', e.target.checked)}
+            />
+            <div>
+              <span className="font-bold text-slate-700 block text-sm">Lesion / tumor / quiste &gt; 3 cm</span>
+              <span className="text-[10px] text-slate-400 font-medium">umbral de derivacion quirurgica (SSMSO)</span>
+            </div>
+          </label>
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 mb-2">Numero de lesiones</label>
+            <div className="grid grid-cols-4 gap-2">
+              {[
+                { id: 'single', label: 'Unica' },
+                { id: 'few', label: '2-10' },
+                { id: 'many', label: '>10' },
+                { id: 'numerous', label: '>100' },
+              ].map(opt => (
+                <label key={opt.id} className={`card-selectable p-2.5 border rounded-xl text-center cursor-pointer ${lesionCount === opt.id ? 'border-clinical-blue bg-blue-50 text-clinical-blue' : 'border-slate-200 text-slate-600'}`}>
+                  <input type="radio" name="lesion-count" value={opt.id} className="hidden" checked={lesionCount === opt.id} onChange={(e) => setSeverityField('lesionCount', e.target.value)} />
+                  <span className="text-xs font-bold block">{opt.label}</span>
+                </label>
+              ))}
+            </div>
+            <p className="text-[11px] text-slate-500 mt-2 leading-snug">Umbrales: verrugas &gt;10, nevos &gt;100 (SSMSO).</p>
           </div>
         </FieldGroup>
       </div>
