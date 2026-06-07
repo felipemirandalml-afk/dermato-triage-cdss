@@ -1,23 +1,26 @@
 import { create } from 'zustand';
 import { clinicalValidation } from '../engine/validation.js';
 
+// Defaults centralizados de los sub-objetos estructurados (Capa 1 del triage SSMSO),
+// para que initial / resetForm / loadDemoCase no se desincronicen.
+// treatment: refractariedad (disparador de derivación más frecuente del protocolo).
+const DEFAULT_TREATMENT = { received: '', response: '', months: '' };
+// severity: extensión (bsaPercent, regla de la palma ≈ 1%; umbrales psoriasis >7%,
+// atópica >10%) y sitios especiales que gatillan derivación/urgencia.
+const DEFAULT_SEVERITY = { bsaPercent: '', specialSites: { periocular: false, anogenital: false, palmoplantar: false } };
+
+const makeDefaultFormData = () => ({
+  age: '',
+  sex: '',
+  timing: '',
+  treatment: { ...DEFAULT_TREATMENT },
+  severity: { ...DEFAULT_SEVERITY, specialSites: { ...DEFAULT_SEVERITY.specialSites } },
+  features: {}
+});
+
 export const useClinicalStore = create((set, get) => ({
   // 1. EL ALMACÉN DE DATOS MÉDICOS (Memoria Global)
-  formData: {
-    // Metadatos del Paciente (Shape Fijo)
-    age: '',
-    sex: '',
-    timing: '',
-    // Tratamiento previo (refractariedad) — disparador de derivación más frecuente
-    // en el protocolo SSMSO. received: 'yes'|'no'|''; response: 'none'|'partial'|
-    // 'worsening'|'good'|''; months: 'lt1'|'1to3'|'3to6'|'gt6'|''
-    treatment: { received: '', response: '', months: '' },
-    // Severidad / extensión (Capa 1 del triage SSMSO). bsaPercent: % de superficie
-    // corporal comprometida (regla de la palma ≈ 1%). Umbrales: psoriasis >7%, atópica >10%.
-    severity: { bsaPercent: '' },
-    // Hallazgos Clínicos (Frontera Semántica Limpia)
-    features: {}
-  },
+  formData: makeDefaultFormData(),
   
   // Memoria del resultado del Triaje
   triageResult: null,
@@ -47,7 +50,7 @@ export const useClinicalStore = create((set, get) => ({
   // Reseteo limpio
   resetForm: () =>
     set({
-      formData: { age: '', sex: '', timing: '', treatment: { received: '', response: '', months: '' }, severity: { bsaPercent: '' }, features: {} },
+      formData: makeDefaultFormData(),
       triageResult: null
     }),
 
@@ -63,16 +66,30 @@ export const useClinicalStore = create((set, get) => ({
       formData: { ...state.formData, severity: { ...state.formData.severity, [field]: value } }
     })),
 
+  // Alterna un sitio especial (severity.specialSites) — campo de triage/urgencia
+  toggleSpecialSite: (site) =>
+    set((state) => {
+      const current = state.formData.severity.specialSites || {};
+      return {
+        formData: {
+          ...state.formData,
+          severity: { ...state.formData.severity, specialSites: { ...current, [site]: !current[site] } }
+        }
+      };
+    }),
+
   // Carga de casos demo con soporte para la nueva estructura
   loadDemoCase: (caseInput) => {
     const { age, sex, timing, treatment, severity, ...clinicalFeatures } = caseInput;
+    const base = makeDefaultFormData();
     set({
       formData: {
+        ...base,
         age: age || '',
         sex: sex || '',
         timing: timing || '',
-        treatment: treatment || { received: '', response: '', months: '' },
-        severity: severity || { bsaPercent: '' },
+        treatment: treatment || base.treatment,
+        severity: severity || base.severity,
         features: clinicalFeatures || {}
       },
       triageResult: null

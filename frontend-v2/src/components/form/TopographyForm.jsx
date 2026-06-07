@@ -11,6 +11,14 @@ const pickUiFeatures = (ids = []) => ids
 export const TopographyForm = () => {
   const bsaPercent = useClinicalStore((state) => state.formData.severity?.bsaPercent ?? '');
   const setSeverityField = useClinicalStore((state) => state.setSeverityField);
+  const specialSites = useClinicalStore((state) => state.formData.severity?.specialSites ?? {});
+  const toggleSpecialSite = useClinicalStore((state) => state.toggleSpecialSite);
+
+  const SPECIAL_SITES = [
+    { id: 'periocular', label: 'Periocular / ocular', hint: 'zóster V1, párpado, rosácea ocular' },
+    { id: 'anogenital', label: 'Anogenital', hint: 'molusco/verruga genital → UNACESS' },
+    { id: 'palmoplantar', label: 'Palmoplantar', hint: 'eczema/psoriasis persistente' },
+  ];
 
   const topographyFeatures = [
     ...conceptMapper.getFeaturesByGroup('anatomia_topografia').filter(f => f.usable_in_ui),
@@ -100,6 +108,25 @@ export const TopographyForm = () => {
               Regla de la palma: la palma del paciente equivale a ~1% de su superficie corporal.
               <br />Umbrales de derivacion (SSMSO): psoriasis &gt;7%, dermatitis atopica &gt;10%.
             </p>
+          </div>
+        </FieldGroup>
+
+        <FieldGroup title="Sitios Especiales (riesgo / derivacion)">
+          <div className="grid grid-cols-1 gap-2">
+            {SPECIAL_SITES.map(site => (
+              <label key={site.id} className={`card-selectable p-3 border rounded-xl flex items-start gap-3 cursor-pointer ${specialSites[site.id] ? 'border-clinical-blue bg-blue-50' : 'border-slate-200'}`}>
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 rounded mt-0.5 text-clinical-blue focus:ring-clinical-blue border-slate-300 cursor-pointer"
+                  checked={!!specialSites[site.id]}
+                  onChange={() => toggleSpecialSite(site.id)}
+                />
+                <div>
+                  <span className="font-bold text-slate-700 block text-sm">{site.label}</span>
+                  <span className="text-[10px] text-slate-400 font-medium">{site.hint}</span>
+                </div>
+              </label>
+            ))}
           </div>
         </FieldGroup>
       </div>
