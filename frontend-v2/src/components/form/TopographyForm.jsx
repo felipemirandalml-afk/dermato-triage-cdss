@@ -1,6 +1,7 @@
 import React from 'react';
 import { FieldGroup, ClinicalFeatureCheckbox } from '../shared/FormElements';
 import { conceptMapper } from '../../engine/concept_mapper';
+import { useClinicalStore } from '../../store/useClinicalStore';
 
 const pickUiFeatures = (ids = []) => ids
   .map((id) => conceptMapper.getFeature(id))
@@ -8,6 +9,9 @@ const pickUiFeatures = (ids = []) => ids
   .filter((feature) => feature.usable_in_ui !== false);
 
 export const TopographyForm = () => {
+  const bsaPercent = useClinicalStore((state) => state.formData.severity?.bsaPercent ?? '');
+  const setSeverityField = useClinicalStore((state) => state.setSeverityField);
+
   const topographyFeatures = [
     ...conceptMapper.getFeaturesByGroup('anatomia_topografia').filter(f => f.usable_in_ui),
     ...pickUiFeatures([
@@ -74,6 +78,28 @@ export const TopographyForm = () => {
                 category={feature.definition || 'Configuracion'}
               />
             ))}
+          </div>
+        </FieldGroup>
+
+        <FieldGroup title="Extension (Superficie Corporal)">
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 mb-2">% de superficie corporal comprometida (BSA)</label>
+            <div className="flex items-center gap-3">
+              <input
+                type="number"
+                className="w-28 px-4 py-3 rounded-xl border border-slate-200 focus:border-clinical-blue focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                placeholder="Ej. 8"
+                min="0"
+                max="100"
+                value={bsaPercent}
+                onChange={(e) => setSeverityField('bsaPercent', e.target.value)}
+              />
+              <span className="text-xs text-slate-500 font-semibold">% BSA</span>
+            </div>
+            <p className="text-[11px] text-slate-500 mt-2 leading-snug">
+              Regla de la palma: la palma del paciente equivale a ~1% de su superficie corporal.
+              <br />Umbrales de derivacion (SSMSO): psoriasis &gt;7%, dermatitis atopica &gt;10%.
+            </p>
           </div>
         </FieldGroup>
       </div>
