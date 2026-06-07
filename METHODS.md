@@ -6,7 +6,8 @@
 > (1) mantener el desarrollo con rumbo, sin volver a perdernos en bucles, y
 > (2) ser el esqueleto de la sección *Methods* de la eventual publicación.
 >
-> Estado: borrador vivo. Versión 0.1 (jun 2026).
+> Estado: borrador vivo. Versión 0.2 (jun 2026) — triage en 3 capas (se añade la capa
+> de severidad/extensión) y protocolo SSMSO como fuente clínica primaria.
 
 ---
 
@@ -100,7 +101,10 @@ está bien que así sea — cada una respalda lo que legítimamente puede:
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
-        Síndrome (orientación)  +  Prioridad de triage (P1/P2/P3)
+   Síndrome (orientación)  +  Prioridad de triage en 3 capas (§5.3):
+     Capa 0 urgencia basal por síndrome
+   → Capa 1 modificadores de severidad/extensión (P3→P2)
+   → Capa 2 red flags de seguridad (→P1)
 ```
 
 ### 4.1 Por qué dos fuentes (medido, no asumido)
@@ -145,15 +149,36 @@ log_odds(f, s) = ln( P(f | s) / P(f | ¬s) )
   cuya parte morfológica venga de datos reales y cuya parte de historia esté
   explícitamente documentada como respaldada por guías.
 
-### 5.3 Pesos de triage / urgencia (Fuente 2) — DE GUÍAS
+### 5.3 Triage / urgencia (Fuente 2) — DE GUÍAS, en TRES CAPAS
 
-La urgencia **no está en los datasets de imágenes**. Por tanto:
+La urgencia **no está en los datasets de imágenes**. Se **elimina** `WEIGHT_MATRIX`
+(feature→prioridad, hand-tuned) y se reemplaza por una composición transparente en
+tres capas; cada valor con su fuente:
 
-- Se **elimina** `WEIGHT_MATRIX` (feature→prioridad, hand-tuned).
-- Se reemplaza por una composición transparente:
-  1. `features → síndrome` (datos, §5.1–5.2)
-  2. `síndrome → urgencia basal` (tabla pequeña; **cada celda cita una guía**)
-  3. `red flags → escalamiento` (reglas de seguridad, §5.4)
+- **Capa 0 — Urgencia basal por síndrome.** Cada uno de los 14 síndromes tiene una
+  prioridad piso (P1/P2/P3) con justificación y fuente. Es solo el *piso*, no la
+  urgencia final.
+- **Capa 1 — Modificadores de severidad / extensión.** Dentro de un síndrome,
+  criterios clínicos escalan **P3→P2** — esta es la decisión central de la app
+  ("¿derivar a teledermatología?"). Ejemplos: psoriasis con **BSA >10%**, acné
+  **severo o con cicatrices**, **onicomicosis**, refractariedad a tratamiento,
+  sitio especial (cara/genital/palmoplantar). Cada regla = `condición(features) →
+  escala`, con cita. *(Esta capa faltaba en el diseño v0.1; es la que evita la
+  generalización gruesa de "todo el síndrome = una urgencia".)*
+- **Capa 2 — Red flags de seguridad.** Escalan a **P1** por amenaza vital/funcional,
+  son feature-based e independientes del síndrome (§5.4).
+
+> **Fuente clínica primaria:** protocolo de derivación de patología dermatológica del
+> **Servicio de Salud Metropolitano Sur Oriente (SSMSO), Santiago de Chile** — el
+> contexto real de APS donde opera la herramienta. Se complementa con guías
+> internacionales solo donde el protocolo no cubra una entidad. Usar el protocolo del
+> propio servicio como base hace que los umbrales de derivación sean directamente
+> defendibles en ese contexto.
+
+> **Prerrequisito de datos (Capa 1):** algunos criterios de severidad requieren inputs
+> que el formulario hoy **no captura** (% de superficie corporal, refractariedad a
+> tratamiento, sitio especial). La Capa 1 solo puede escalar sobre lo que el formulario
+> permite registrar — ver §6 (deuda 6).
 
 ### 5.4 Reglas de seguridad (red flags) — DE GUÍAS
 
@@ -175,6 +200,8 @@ agregados para cerrar puntos ciegos clínicos). Fuente: `syndrome_to_ontology_ma
 3. RF entrenado sobre sintético → migrar a híbrido (§5.2).
 4. Reglas de seguridad sin cita → mapear a guías (§5.4).
 5. Validación sobre casos sintéticos/curados → migrar a casos reales (§7).
+6. Formulario sin campos de severidad/extensión (BSA %, refractariedad, sitio
+   especial) → la Capa 1 de severidad (§5.3) los necesita; agregar inputs.
 
 ---
 
@@ -203,7 +230,13 @@ agregados para cerrar puntos ciegos clínicos). Fuente: `syndrome_to_ontology_ma
 
 1. **[hecho]** Derivar pesos morfológicos por log-odds desde Derm1M (§5.1).
 2. **[hecho]** Ampliar taxonomía a 14 síndromes y cobertura a 64%.
-3. **[próximo]** Tipo B: reemplazar `WEIGHT_MATRIX` por `síndrome→urgencia` con guías (§5.3).
+3. **[próximo]** Tipo B / triage en 3 capas (§5.3):
+   - 3a. Extraer del protocolo **SSMSO** la urgencia basal por síndrome (Capa 0) y los
+     criterios de severidad/extensión por patología (Capa 1).
+   - 3b. Agregar al formulario los inputs de severidad que falten (BSA %, refractariedad,
+     sitio especial) — deuda 6.
+   - 3c. Reemplazar `WEIGHT_MATRIX` por las 3 capas en el orquestador; reordenar
+     `runTriage` para que el síndrome se calcule antes de la urgencia.
 4. Mapear cada safety rule a su guía (§5.4).
 5. Integrar los pesos derivados al motor (reescalar log-odds, re-validar).
 6. Retrain híbrido del RF (morfología real + historia respaldada por guías) (§5.2).
@@ -219,7 +252,8 @@ agregados para cerrar puntos ciegos clínicos). Fuente: `syndrome_to_ontology_ma
 | Pieza | Hoy | Objetivo |
 | :--- | :--- | :--- |
 | Pesos morfológicos | fiteados | log-odds de Derm1M (citable) |
-| Pesos de triage | a mano | síndrome→urgencia por guías |
+| Triage | softmax feature→prioridad (a mano) | 3 capas: síndrome→base + severidad + red flags (SSMSO) |
+| Captura de severidad | solo generalizado/localizado | inputs BSA %, refractariedad, sitio especial |
 | Clasificador | sintético | híbrido (morfología real + historia por guías) |
 | Safety rules | sin cita | mapeadas a guías |
 | Validación | sintética/curada | casos reales |
