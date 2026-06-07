@@ -94,7 +94,7 @@ protocolos GES, o las propias safety rules ya existentes):
 
 - `bacterial_skin_infection` (celulitis, impétigo, absceso)
 - `drug_reaction` (incluye SJS/NET, DRESS) — ✅ **completado abajo** (guías nac/internac)
-- `urticarial_dermatosis`
+- `urticarial_dermatosis` — ✅ **completado abajo**
 - `vesiculobullous_disease`
 - `vasculitic_purpuric_disease`
 - `connective_tissue_disease`
@@ -141,6 +141,30 @@ protocolos GES, o las propias safety rules ya existentes):
   Atlas de Dermatología Clínica (págs. 137-140, 488-491) · Patología Dermatológica,
   Aguayo et al. (págs. 1076, 1089).
 
+### `urticarial_dermatosis` (urticaria / angioedema) — base **P3** (urticaria aguda)
+- **Capa 0:** urticaria aguda (<6 semanas) → manejo en APS (P3) con antihistamínicos H1;
+  no se justifica laboratorio extenso en aguda no complicada.
+- **Capa 1 → P2 (derivar a especialista):**
+  - cronicidad: urticaria crónica (>6 semanas)
+  - refractariedad: aguda que no responde a antihistamínicos
+  - recurrencia: múltiples episodios de urticaria aguda o angioedema recurrente
+  - sospecha de vasculitis urticarial: habón fijo en el mismo lugar **>24 h** → biopsia
+  - sospecha de patología autoinmune / mesenquimopatía subyacente
+- **Capa 2 → P1 / Urgencia (riesgo vital, adrenalina + alta complejidad):**
+  - vía aérea: dificultad respiratoria, disnea, estridor laríngeo, disfonía (edema laríngeo)
+  - angioedema grave: aumento de volumen en labios, lengua u orofaringe
+  - anafilaxia/shock: hipotensión, taquicardia, compromiso de conciencia, ≥2 sistemas
+  - pródromos de gravedad: prurito intenso en palmas, plantas o nuca
+- **Mapeo a inputs:** ya existen — cronicidad (`cronico`/timing), refractariedad
+  (`treatment`), hipotensión (`signo_hipotension`), conciencia (`compromiso_conciencia`),
+  prurito (`prurito`). **Faltan:** dificultad respiratoria/angioedema (vía aérea),
+  recurrencia, habón fijo >24 h (vs `lesion_evanescente`), taquicardia/pulso.
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 29, 31-35) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 479, 482-484, 502) ·
+  Patología Dermatológica, Aguayo et al. (págs. 1076, 1093-1094) · Fitzpatrick,
+  Atlas de Dermatología Clínica (págs. 312, 497-498) · Protocolo Teleinterconsultas
+  HD 2023 (pág. 4, criterios de exclusión).
+
 ---
 
 ## Inputs de formulario que la tabla requiere (alimenta METHODS deuda 6 / paso 3b)
@@ -154,6 +178,8 @@ protocolos GES, o las propias safety rules ya existentes):
 | Conteo de lesiones/nevos (>10, >100) | ✅ hecho (PR #23) | verrugas, tumor |
 | Crecimiento rápido / cambio en el tiempo | ⏳ pendiente | tumor sospechado |
 | Grado de severidad / progresión | ⏳ pendiente | acné, vitíligo, eczema |
-| Dificultad respiratoria / angioedema | ⏳ pendiente | drug_reaction, urticaria |
+| Dificultad respiratoria / angioedema (vía aérea) | ⏳ pendiente | drug_reaction, urticaria |
 | Adenopatías | ⏳ pendiente | drug_reaction (DRESS) |
+| Recurrencia (múltiples episodios) | ⏳ pendiente | urticaria |
+| Habón fijo >24 h / taquicardia | ⏳ pendiente | urticaria |
 | inmunosupresión, fiebre, cicatriz, nódulo, ABCDE, úlcera, mucosas, Nikolsky, púrpura, necrosis, hipotensión, conciencia | ✅ ya existen | varios |
