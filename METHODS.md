@@ -230,11 +230,13 @@ agregados para cerrar puntos ciegos clínicos). Fuente: `syndrome_to_ontology_ma
 
 1. **[hecho]** Derivar pesos morfológicos por log-odds desde Derm1M (§5.1).
 2. **[hecho]** Ampliar taxonomía a 14 síndromes y cobertura a 64%.
-3. **[próximo]** Tipo B / triage en 3 capas (§5.3):
-   - 3a. Extraer del protocolo **SSMSO** la urgencia basal por síndrome (Capa 0) y los
-     criterios de severidad/extensión por patología (Capa 1).
-   - 3b. Agregar al formulario los inputs de severidad que falten (BSA %, refractariedad,
-     sitio especial) — deuda 6.
+3. **[en curso]** Tipo B / triage en 3 capas (§5.3):
+   - 3a. **[hecho, 7/14 síndromes]** Tabla de triage derivada del protocolo SSMSO
+     (Capa 0/1/2 por síndrome) en [`docs/ssmso_triage_map.md`]. Cubre los síndromes
+     ambulatorios comunes; los agudos/de especialidad (drug_reaction, vasculitis,
+     ampolloso, conectivo, urticaria, bacteriano) requieren otra fuente.
+   - 3b. Agregar al formulario los inputs de severidad que falten. Refractariedad
+     **[hecho]**; pendientes: BSA %, sitio especial, tamaño, conteo de lesiones — deuda 6.
    - 3c. Reemplazar `WEIGHT_MATRIX` por las 3 capas en el orquestador; reordenar
      `runTriage` para que el síndrome se calcule antes de la urgencia.
 4. Mapear cada safety rule a su guía (§5.4).
