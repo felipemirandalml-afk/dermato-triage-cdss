@@ -6,6 +6,18 @@ import { conceptMapper } from '../../engine/concept_mapper';
 export const PatientCoreForm = () => {
   const formData = useClinicalStore((state) => state.formData);
   const setField = useClinicalStore((state) => state.setField);
+  const setTreatmentField = useClinicalStore((state) => state.setTreatmentField);
+
+  const treatment = formData.treatment || { received: '', response: '', months: '' };
+
+  const handleReceivedChange = (value) => {
+    setTreatmentField('received', value);
+    if (value !== 'yes') {
+      // Limpiar sub-campos que solo aplican si hubo tratamiento
+      setTreatmentField('response', '');
+      setTreatmentField('months', '');
+    }
+  };
 
   const primaryFeatures = conceptMapper.getFeaturesByGroup('lesion_primaria').filter(f => f.usable_in_ui);
 
@@ -70,6 +82,60 @@ export const PatientCoreForm = () => {
               </label>
             ))}
           </div>
+        </FieldGroup>
+
+        <FieldGroup title="3. Tratamiento previo dirigido">
+          <p className="text-[11px] text-slate-500 -mt-2">
+            La falla a tratamiento es el criterio de derivación más frecuente del protocolo. Captúrelo para una priorización completa.
+          </p>
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 mb-2">¿Recibió tratamiento dirigido para este cuadro?</label>
+            <div className="grid grid-cols-2 gap-2">
+              {[{ id: 'yes', label: 'Sí' }, { id: 'no', label: 'No' }].map(opt => (
+                <label key={opt.id} className={`card-selectable p-3 border rounded-xl text-center cursor-pointer ${treatment.received === opt.id ? 'border-clinical-blue bg-blue-50 text-clinical-blue' : 'border-slate-200 text-slate-600'}`}>
+                  <input type="radio" name="treated" value={opt.id} className="hidden" checked={treatment.received === opt.id} onChange={(e) => handleReceivedChange(e.target.value)} />
+                  <span className="text-sm font-bold block">{opt.label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {treatment.received === 'yes' && (
+            <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-2">Respuesta al tratamiento</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: 'none', label: 'Sin respuesta' },
+                    { id: 'partial', label: 'Parcial' },
+                    { id: 'worsening', label: 'Empeoró' },
+                    { id: 'good', label: 'Buena' },
+                  ].map(opt => (
+                    <label key={opt.id} className={`card-selectable p-2.5 border rounded-xl text-center cursor-pointer ${treatment.response === opt.id ? 'border-clinical-blue bg-blue-50 text-clinical-blue' : 'border-slate-200 text-slate-600'}`}>
+                      <input type="radio" name="tx-response" value={opt.id} className="hidden" checked={treatment.response === opt.id} onChange={(e) => setTreatmentField('response', e.target.value)} />
+                      <span className="text-xs font-bold block">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-2">Tiempo en tratamiento</label>
+                <div className="grid grid-cols-4 gap-2">
+                  {[
+                    { id: 'lt1', label: '<1 mes' },
+                    { id: '1to3', label: '1-3 m' },
+                    { id: '3to6', label: '3-6 m' },
+                    { id: 'gt6', label: '>6 m' },
+                  ].map(opt => (
+                    <label key={opt.id} className={`card-selectable p-2.5 border rounded-xl text-center cursor-pointer ${treatment.months === opt.id ? 'border-clinical-blue bg-blue-50 text-clinical-blue' : 'border-slate-200 text-slate-600'}`}>
+                      <input type="radio" name="tx-months" value={opt.id} className="hidden" checked={treatment.months === opt.id} onChange={(e) => setTreatmentField('months', e.target.value)} />
+                      <span className="text-xs font-bold block">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </FieldGroup>
       </div>
 

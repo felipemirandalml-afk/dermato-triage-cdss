@@ -8,8 +8,12 @@ export const useClinicalStore = create((set, get) => ({
     age: '',
     sex: '',
     timing: '',
+    // Tratamiento previo (refractariedad) — disparador de derivación más frecuente
+    // en el protocolo SSMSO. received: 'yes'|'no'|''; response: 'none'|'partial'|
+    // 'worsening'|'good'|''; months: 'lt1'|'1to3'|'3to6'|'gt6'|''
+    treatment: { received: '', response: '', months: '' },
     // Hallazgos Clínicos (Frontera Semántica Limpia)
-    features: {} 
+    features: {}
   },
   
   // Memoria del resultado del Triaje
@@ -38,20 +42,27 @@ export const useClinicalStore = create((set, get) => ({
     }),
 
   // Reseteo limpio
-  resetForm: () => 
+  resetForm: () =>
     set({
-      formData: { age: '', sex: '', timing: '', features: {} },
+      formData: { age: '', sex: '', timing: '', treatment: { received: '', response: '', months: '' }, features: {} },
       triageResult: null
     }),
-    
+
+  // Actualiza un campo del sub-objeto de tratamiento previo
+  setTreatmentField: (field, value) =>
+    set((state) => ({
+      formData: { ...state.formData, treatment: { ...state.formData.treatment, [field]: value } }
+    })),
+
   // Carga de casos demo con soporte para la nueva estructura
   loadDemoCase: (caseInput) => {
-    const { age, sex, timing, ...clinicalFeatures } = caseInput;
+    const { age, sex, timing, treatment, ...clinicalFeatures } = caseInput;
     set({
       formData: {
         age: age || '',
         sex: sex || '',
         timing: timing || '',
+        treatment: treatment || { received: '', response: '', months: '' },
         features: clinicalFeatures || {}
       },
       triageResult: null
