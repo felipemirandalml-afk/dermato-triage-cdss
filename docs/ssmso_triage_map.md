@@ -86,23 +86,22 @@
 
 ---
 
-## Síndromes NO cubiertos por este protocolo (requieren otra fuente)
+## Síndromes agudos/de especialidad — fuera del protocolo general SSMSO ✅ COMPLETOS
 
 Este es el *protocolo general* ambulatorio del SSMSO; no cubre los síndromes más
-agudos/de especialidad. Para estos hay que citar otra fuente (guías internacionales,
-protocolos GES, o las propias safety rules ya existentes):
+agudos/de especialidad. Sus criterios se completaron con guías nacionales/internacionales
+(vía NotebookLM), cada uno citado en la sección siguiente:
 
-- `bacterial_skin_infection` (celulitis, impétigo, absceso)
-- `drug_reaction` (incluye SJS/NET, DRESS) — ✅ **completado abajo** (guías nac/internac)
-- `urticarial_dermatosis` — ✅ **completado abajo**
-- `vesiculobullous_disease` — ✅ **completado abajo** (base P2, no P3)
-- `vasculitic_purpuric_disease` — ✅ **completado abajo** (base P2)
-- `connective_tissue_disease` — ✅ **completado abajo** (base P2)
-- `bacterial_skin_infection`
+- `drug_reaction` (SJS/NET, DRESS) — ✅ base P3, escalada rápida
+- `urticarial_dermatosis` (urticaria/angioedema) — ✅ base P3
+- `vesiculobullous_disease` (pénfigo/penfigoide) — ✅ base **P2** (no se maneja en APS)
+- `vasculitic_purpuric_disease` — ✅ base **P2**
+- `connective_tissue_disease` (lupus/dermatomiositis) — ✅ base **P2**
+- `bacterial_skin_infection` (celulitis/fascitis) — ✅ base P3
 
-> Nota: varios de estos ya tienen banderas rojas en `safety_modifiers.js` (Capa 2);
-> lo que falta es su urgencia basal (Capa 0) y respaldo citable. Se van completando
-> con fuentes de guías nacionales/internacionales (vía NotebookLM) en la sección siguiente.
+> Con esto, los **14 síndromes** tienen su triage de 3 capas con fuente citada
+> (8 desde SSMSO + 6 desde guías). La Capa 2 de varios ya estaba parcialmente en
+> `safety_modifiers.js`; ahora tiene respaldo bibliográfico explícito.
 
 ---
 
@@ -252,6 +251,36 @@ protocolos GES, o las propias safety rules ya existentes):
   Fitzpatrick, Atlas de Dermatología Clínica (págs. 219, 329, 332, 347-348, 351) ·
   Protocolo General de Dermatología SSMSO (Res. 2499, pág. 10).
 
+### `bacterial_skin_infection` (piodermias: impétigo, celulitis, fascitis) — base **P3** (superficiales no complicadas)
+- **Capa 0:** APS maneja infecciones superficiales/pilosebáceas no complicadas: impétigo
+  (contagioso y ampollar), ectima, panadizo bacteriano, foliculitis/ostiofoliculitis y
+  forúnculos aislados, y celulitis/erisipela leve (**Dundee I**: sin toxicidad sistémica
+  ni factores de riesgo de fracaso). Baseline P3.
+- **Capa 1 → P2 (derivar a especialista):**
+  - falta de respuesta: impétigo/ectima sin mejoría a los **5 días**
+  - recurrencia/cronicidad: foliculitis que no cede, forunculosis recidivante (sobre todo diabéticos)
+  - duda diagnóstica: la celulitis se sobrediagnostica ~30% (vs dermatitis de estasis/eccema)
+  - complejidad local: placa de celulitis/erisipela **>10 cm** o falla del tratamiento ambulatorio previo
+- **Capa 2 → P1 / Urgencia (Urgencias / UCI):**
+  - cutáneos: **dolor intenso desproporcionado** (signo precoz de fascitis necrotizante) ·
+    bulas hemorrágicas, equimosis o escaras necróticas · rápido crecimiento de la placa ·
+    Nikolsky + (síndrome de piel escaldada estafilocócica) · **crepitación** (gas en tejidos) ·
+    **anestesia local** en el centro de una placa inflamatoria
+  - sistémicos: compromiso de conciencia (primer signo de fascitis) · fiebre >38.5 °C y CEG ·
+    hipotensión/shock
+  - entidades de extrema urgencia: ántrax, fascitis necrotizante, SARM-CO
+  - localización: toda erisipela/celulitis **en la cara** debe hospitalizarse
+- **Mapeo a inputs:** ya existen — dolor (`dolor`), bulas/necrosis (`bula_ampolla`,
+  `necrosis_isquemia`/`escara`), Nikolsky (`ampolla_nikolsky`), conciencia
+  (`compromiso_conciencia`), fiebre (`fiebre`), hipotensión (`signo_hipotension`),
+  cara (`topog_cabeza`/`cara_centro`), diabetes (`diabetes`), refractariedad (`treatment`).
+  **Faltan:** crepitación, anestesia local, rápido crecimiento (compartido con tumor),
+  recurrencia (compartido con urticaria).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 9, 13, 23, 26, 28) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 389, 392-393, 396-397, 406-407, 417) ·
+  Protocolo de Infecciones Bacterianas, Hernández-Calle et al. (págs. 85, 90, 96, 100-101) ·
+  Fitzpatrick, Atlas de Dermatología Clínica (págs. 237, 245, 259).
+
 ---
 
 ## Inputs de formulario que la tabla requiere (alimenta METHODS deuda 6 / paso 3b)
@@ -267,6 +296,7 @@ protocolos GES, o las propias safety rules ya existentes):
 | Grado de severidad / progresión | ⏳ pendiente | acné, vitíligo, eczema |
 | Dificultad respiratoria / angioedema (vía aérea) | ⏳ pendiente | drug_reaction, urticaria |
 | Adenopatías | ⏳ pendiente | drug_reaction (DRESS) |
-| Recurrencia (múltiples episodios) | ⏳ pendiente | urticaria |
-| Habón fijo >24 h / taquicardia | ⏳ pendiente | urticaria |
+| Recurrencia (múltiples episodios) | ⏳ pendiente | urticaria, bacteriano |
+| Habón fijo >24 h / taquicardia | ⏳ pendiente | urticaria, vasculitis |
+| Crepitación / anestesia local de la placa | ⏳ pendiente | bacteriano (fascitis) |
 | inmunosupresión, fiebre, cicatriz, nódulo, ABCDE, úlcera, mucosas, Nikolsky, púrpura, necrosis, hipotensión, conciencia | ✅ ya existen | varios |
