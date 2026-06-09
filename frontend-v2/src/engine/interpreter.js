@@ -1,9 +1,8 @@
 /**
  * interpreter.js - Traduccion de resultados tecnicos a lenguaje clinico.
  */
-import { FEATURE_MAP_LABELS, CLINICAL_GUI, PRIORITY_LABELS, FEATURE_INDEX } from './constants.js';
+import { CLINICAL_GUI, PRIORITY_LABELS, FEATURE_INDEX } from './constants.js';
 import { t } from './i18n_utils.js';
-import { getWeight } from './baseline_model.js';
 
 import REASONING_MAP from './dermatology_reasoning_map.json' with { type: 'json' };
 
@@ -15,21 +14,6 @@ export function buildResult(priority, modifier, originalResult) {
         label: `Prioridad ${priority} - ${label}`,
         modifier
     };
-}
-
-export function explain(X, winningClassIdx) {
-    const featureKeys = Object.keys(FEATURE_INDEX);
-    const contribs = featureKeys.map((featureKey) => {
-        const featureIdx = FEATURE_INDEX[featureKey];
-        return {
-            name: FEATURE_MAP_LABELS[featureKey] || featureKey.replace('lesion_', '').replace('topo_', '').replace('patron_', '').toUpperCase().replace(/_/g, ' '),
-            val: (getWeight(winningClassIdx, featureKey) || 0) * X[featureIdx]
-        };
-    }).filter((contribution) => Math.abs(contribution.val) > 0.5)
-        .sort((a, b) => Math.abs(b.val) - Math.abs(a.val))
-        .slice(0, 5);
-
-    return contribs;
 }
 
 function enrichWithReasoning(syndromeKey) {
@@ -90,20 +74,24 @@ export function interpretResult(X, prediction, syndromeKey = null, differentialR
     const malignancyMismatch = isBenignSyndrome && (hasCriticalDiff || (hasMalignancyRisk && isElderlyHigh));
     const atypicalPattern = syndromeKey === 'inflammatory_dermatosis_other' && prediction.priority <= 2 && !prediction.modifier;
 
-    const topSignals = explain(X, prediction.classIdx);
-    let justification = '';
+    // Las señales que justifican la prioridad ahora son las reglas disparadas
+    // (Capa 1 severidad + Capa 2 banderas rojas), no pesos hand-tuned.
+    const ruleSignals = (prediction.triggered_rules || []).map((rule) => rule.replace(/^\[[^\]]*\]\s*/, ''));
+    let justification;
 
     if (prediction.modifier) {
-        justification = `${t('ui.alert_security', lang)} ${prediction.modifier}. `;
+        justification = `${t('ui.alert_security', lang)} ${prediction.modifier}.`;
     } else if (malignancyMismatch) {
-        justification = `${t('ui.alert_mismatch', lang)} Riesgo de neoplasia invasiva detectado por criterios de seguridad, pese a patron probabilistico inespecifico. `;
+        justification = `${t('ui.alert_mismatch', lang)} Riesgo de neoplasia invasiva detectado por criterios de seguridad, pese a patron probabilistico inespecifico.`;
+    } else if (ruleSignals.length > 0) {
+        justification = `${t('ui.priority_based_on', lang)} ${ruleSignals.join('; ')}.`;
     } else {
-        justification = `${t('ui.priority_based_on', lang)} `;
+        const synText = syndromeKey ? syndromeKey.replace(/_/g, ' ') : 'patron clinico inespecifico';
+        justification = `Prioridad segun urgencia basal del sindrome (${synText}).`;
     }
 
-    if (topSignals.length > 0) {
-        const signalText = topSignals.map((signal) => signal.name.toLowerCase()).join(', ');
-        justification += (prediction.modifier || malignancyMismatch ? `${t('ui.front_findings', lang)} ` : '') + signalText + '.';
+    if (ruleSignals.length > 0 && (prediction.modifier || malignancyMismatch)) {
+        justification += ` ${t('ui.front_findings', lang)} ${ruleSignals.join('; ')}.`;
     }
 
     let reasoningInsights = syndromeKey ? enrichWithReasoning(syndromeKey) : null;
