@@ -139,15 +139,26 @@ log_odds(f, s) = ln( P(f | s) / P(f | ¬s) )
 - Cobertura actual: **64.0%** de Derm1M (73.6% sobre filas diagnosticables; el resto
   es "no definitive diagnosis" o entidades fuera de la taxonomía).
 
-### 5.2 Clasificación sindrómica (RF) — HÍBRIDA
+### 5.2 Clasificación sindrómica — NAIVE BAYES HÍBRIDO
 
-- **Mitad morfológica:** entrenable sobre filas reales de Derm1M/SkinCon agrupadas
-  por imagen (sin sintético).
-- **Mitad no-morfológica:** las 51 features de historia/síntomas/timing/edad se
-  ponderan según guías (§5.3), no por datos de imagen.
-- Objetivo intermedio: reemplazar `curate_and_augment` por un set de entrenamiento
-  cuya parte morfológica venga de datos reales y cuya parte de historia esté
-  explícitamente documentada como respaldada por guías.
+Reemplaza el Random Forest (entrenado con datos sintéticos → circular, solo 12 clases)
+por un Naive Bayes que fusiona dos verosimilitudes — la arquitectura de dos fuentes
+hecha clasificador. Detalle y evaluación en [`docs/syndrome_classifier_eval.md`].
+
+```
+P(síndrome | features) ∝ P(síndrome)
+   × Π P(feature_morfológica | síndrome)     ← Derm1M (DATOS, hecho)
+   × Π P(feature_no_morfológica | síndrome)   ← guías clínicas (CITADO, a construir)
+```
+
+- **Evaluación previa:** un Naive Bayes **solo de morfología** (Derm1M) rinde 38.5% vs
+  70.8% del RF — insuficiente, porque ~40-60% de la señal no está en imágenes (§4.1).
+  Por eso el clasificador debe ser híbrido, no solo-imágenes.
+- **Factor morfológico (hecho):** `syndrome_feature_profiles.json`, contado de Derm1M.
+- **Factor clínico (a construir):** tabla de P(feature|síndrome) para las features
+  no-morfológicas (fiebre, timing, distribución…), estimada de guías con cita por celda.
+- **Adopción condicionada:** se reemplaza el RF solo si el híbrido iguala o supera el
+  70.8% en el benchmark; entonces se retira `rf_model.json` y la cadena sintética.
 
 ### 5.3 Triage / urgencia (Fuente 2) — DE GUÍAS, en TRES CAPAS
 
