@@ -95,7 +95,7 @@ protocolos GES, o las propias safety rules ya existentes):
 - `bacterial_skin_infection` (celulitis, impétigo, absceso)
 - `drug_reaction` (incluye SJS/NET, DRESS) — ✅ **completado abajo** (guías nac/internac)
 - `urticarial_dermatosis` — ✅ **completado abajo**
-- `vesiculobullous_disease`
+- `vesiculobullous_disease` — ✅ **completado abajo** (base P2, no P3)
 - `vasculitic_purpuric_disease`
 - `connective_tissue_disease`
 - `bacterial_skin_infection`
@@ -164,6 +164,34 @@ protocolos GES, o las propias safety rules ya existentes):
   Patología Dermatológica, Aguayo et al. (págs. 1076, 1093-1094) · Fitzpatrick,
   Atlas de Dermatología Clínica (págs. 312, 497-498) · Protocolo Teleinterconsultas
   HD 2023 (pág. 4, criterios de exclusión).
+
+### `vesiculobullous_disease` (ampollares autoinmunes: pénfigo, penfigoide) — base **P2** (no se maneja en APS)
+> ⚠️ A diferencia de los crónicos, su urgencia basal NO es P3: **no debe manejarse
+> ambulatoriamente**. Toda sospecha se deriva; urgente apenas se sospeche, por
+> potencial gravedad/letalidad (pénfigo vulgar).
+- **Capa 0:** sospecha de EAA → derivación a dermatología (P2). El estándar de oro es
+  biopsia + inmunofluorescencia directa (IFD), no disponible en APS.
+- **Capa 1 → P2 (derivar a especialista):**
+  - sospecha clínica: ampollas o erosiones mucocutáneas sugerentes de EAA
+  - necesidad de estudio confirmatorio (biopsia perilesional, IFD, ELISA de autoanticuerpos)
+  - lesiones crónicas / curso recidivante
+  - complejidad terapéutica (inmunosupresión sistémica prolongada)
+- **Capa 2 → P1 / Urgencia (hospitalización, a veces UCI; manejo tipo gran quemado):**
+  - signo de Nikolsky positivo (acantólisis activa)
+  - CEG y fiebre (toxicidad sistémica / sobreinfección / sepsis)
+  - extensión denudada o ampollosa extensa de la superficie corporal
+  - compromiso mucoso severo que impide la deglución/alimentación
+  - inestabilidad hemodinámica (pérdida masiva de líquidos/electrolitos/proteínas)
+  - eritrodermia (>80-90% del tegumento; p. ej. pénfigo foliáceo)
+- **Mapeo a inputs:** ya existen — ampollas (`bula_ampolla`), erosión (`erosion`),
+  mucosas (`mucosas`), Nikolsky (`ampolla_nikolsky`/`despegamiento_epidermico`), fiebre
+  (`fiebre`), extensión (`severity.bsaPercent`), hipotensión (`signo_hipotension`),
+  eritrodermia (`generalizado`+`eritema`), cronicidad (`cronico`). Estudio confirmatorio
+  (biopsia/IFD) no es un input clínico (es motivo de derivación, no signo).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 41, 48) · Manual de Dermatología
+  para Médicos Generales, 3.ª ed. 2025 (págs. 459-461, 464, 468, 472, 475) · Fitzpatrick,
+  Atlas de Dermatología Clínica (págs. 137, 153, 160, 163, 259, 261, 268) · Protocolo
+  diagnóstico de dermatosis ampollosas, Aramberri et al. (págs. 130, 133, 148-149).
 
 ---
 
