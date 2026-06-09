@@ -68,6 +68,31 @@ export function applySafetyModifiers(helper, currentResult) {
         modifier = desc;
     }
 
+    // Infección/inflamación sistémica aguda (celulitis, erisipela, fascitis, impétigo
+    // sobreinfectado): fiebre + cuadro agudo + signo inflamatorio/supurativo o dolor.
+    // SSMSO 4.x: "fiebre alta + CEG" y "dolor desproporcionado" → urgencia.
+    if (has('fiebre') && has('agudo') && (has('dolor') || has('pustula') || has('costra'))) {
+        const desc = 'Sospecha de infeccion/inflamacion sistemica aguda (fiebre + cuadro agudo)';
+        rules.push(`[ALERTA] ${desc}`);
+        if (priority > 1) { priority = 1; modifier = desc; }
+    }
+
+    // Farmacodermia grave / DRESS: fiebre + fármaco reciente + extensión/agudo.
+    // Guías farmacodermia: fiebre alta + CEG → urgencia.
+    if (has('fiebre') && has('farmacos_recientes') && (has('generalizado') || has('agudo'))) {
+        const desc = 'Sospecha de farmacodermia grave / DRESS (fiebre + farmaco reciente)';
+        rules.push(`[ALERTA] ${desc}`);
+        if (priority > 1) { priority = 1; modifier = desc; }
+    }
+
+    // Eccema herpético (erupción variceliforme de Kaposi): vesículas + fiebre +
+    // umbilicación/erosión. Emergencia dermatológica.
+    if (has('vesicula') && has('fiebre') && (has('umbilicacion') || has('erosion'))) {
+        const desc = 'Sospecha de eccema herpetico (vesiculas umbilicadas + fiebre)';
+        rules.push(`[ALERTA] ${desc}`);
+        if (priority > 1) { priority = 1; modifier = desc; }
+    }
+
     return { priority, modifier, rules, match: rules.length > 0 };
 }
 

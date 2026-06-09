@@ -84,25 +84,11 @@ export function applyRefinementModifiers(helper, currentResult) {
         }
     }
 
-    // Cuadros inflamatorios locales o generalizados estables
-    // BLOQUEO DE REFINAMIENTO: No bajar si hay sospecha de malignidad o compromiso sistémico específico
-    if (priority === 2 && !has('fiebre') && !has('dolor') && !has('farmacos_recientes')) {
-        const isSuspectMalignancy = has('nodulo') || has('tumor') || has('mancha');
-        const isHighConcernPattern = has('patron_acral') || has('patron_lineal') || has('inmunosupresion');
-        
-        if (isSuspectMalignancy || isHighConcernPattern) {
-            return { priority, modifier, rules, match: false };
-        }
-
-        if (!has('bula_ampolla') && !has('purpura') && !has('erosion')) {
-            if (!has('generalizado') || has('subagudo') || has('cronico')) {
-                const desc = "Cuadro Inflamatorio Estable (Manejo Ambulatorio)";
-                rules.push(`✨ Refinamiento: ${desc}`);
-                priority = 3;
-                modifier = desc;
-            }
-        }
-    }
+    // NOTA (paso 3c): se eliminó el down-escalation "Cuadro Inflamatorio Estable" (P2→P3).
+    // Era una corrección de la era WEIGHT_MATRIX, que sobre-llamaba P2. En el modelo de
+    // 3 capas los síndromes inflamatorios ya tienen urgencia basal P3 (Capa 0) y solo
+    // suben a P2 mediante criterios de severidad citados (Capa 1); bajarlos deshacía
+    // escaladas legítimas. La de-escalada pediátrica (arriba) se conserva por seguridad.
 
     return { priority, modifier, rules, match: rules.length > 0 };
 }

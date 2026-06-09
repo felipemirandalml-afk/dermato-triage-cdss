@@ -1,32 +1,32 @@
 /**
  * model.js — Orquestador del Motor Clínico CDSS
  *
- * ARQUITECTURA EN DOS CAPAS:
+ * FLUJO (runTriage): el SÍNDROME se calcula primero, porque la urgencia depende de él.
  *
- * Capa 1 — Heurística (predict)
- *   baseline_model → safety_modifiers → context_modifiers → block/refinement
- *   Decide la PRIORIDAD (P1/P2/P3). Basada en reglas clínicas explícitas.
+ * 1. Síndrome (Random Forest + recalibración + differential_ranker)
+ * 2. Triage en TRES CAPAS (triage_protocol.js + safety/context_modifiers):
+ *      Capa 0 — urgencia basal por síndrome (SYNDROME_BASELINE_URGENCY)
+ *      Capa 1 — severidad/extensión (applySeverityModifiers) → escala P3→P2
+ *      Capa 2 — banderas rojas (safety/context/block/refinement) → escala →P1
  *
- * Capa 2 — Probabilística (predictProbabilisticSyndrome + refineSyndromeReasoning)
- *   Random Forest (rf_model.json) → recalibration_engine → differential_ranker
- *   Decide el SÍNDROME y el DIAGNÓSTICO DIFERENCIAL (top 3).
+ * Cada valor de triage tiene fuente citable (docs/ssmso_triage_map.md); ya NO se usa
+ * la WEIGHT_MATRIX hand-tuned (eliminada en el paso 3c). Ver METHODS §5.3.
  *
- * Punto de fusión: runTriage() combina ambas capas y normaliza la salida.
  * Punto de entrada único desde la UI: runTriage(formData, lang)
  */
 
 import { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, PRIORITY_LABELS } from './constants.js';
 import { encodeFeatures } from './feature_encoder.js';
-import { predictBaseline } from './baseline_model.js';
 import { applySafetyModifiers, applyBlockModifiers } from './safety_modifiers.js';
 import { applyContextModifiers, applyRefinementModifiers } from './context_modifiers.js';
-import { interpretResult, explain, buildResult } from './interpreter.js';
+import { interpretResult } from './interpreter.js';
 import { predictProbabilisticSyndrome } from './probabilistic_model.js';
 import { rankDifferentials } from './differential_ranker.js';
 import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
 import { recalibrationEngine } from './recalibration_engine.js';
+import { SYNDROME_BASELINE_URGENCY, DEFAULT_BASELINE, makeTriageContext, applySeverityModifiers } from './triage_protocol.js';
 
-export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, explain, interpretResult };
+export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, interpretResult };
 
 function normalizePriority(priority) {
     if (typeof priority === 'number' && priority >= 1 && priority <= 3) return priority;
@@ -132,13 +132,29 @@ export function normalizeTriageResult(rawResult = {}, { status = 'ok' } = {}) {
     };
 }
 
-export function predict(X, helper) {
-    const baseline = predictBaseline(X, FEATURE_INDEX);
+/**
+ * computeTriage — Triage en 3 capas. El síndrome ya viene calculado por el RF.
+ *   Capa 0: urgencia basal por síndrome.
+ *   Capa 1: severidad/extensión (escala P3→P2).
+ *   Capa 2: banderas rojas y contexto (escala →P1; safety/context/block/refinement).
+ */
+export function computeTriage(syndrome, helper, formData) {
     const triggered_rules = [];
+    const baselinePriority = SYNDROME_BASELINE_URGENCY[syndrome] ?? DEFAULT_BASELINE;
 
-    let currentPriority = baseline.priority;
-    let currentModifier = baseline.modifier;
+    let currentPriority = baselinePriority;
+    let currentModifier = null;
 
+    // Capa 1 — severidad / extensión (P3 → P2)
+    const ctx = makeTriageContext(helper, formData);
+    const severity = applySeverityModifiers(syndrome, ctx, { priority: currentPriority, modifier: currentModifier });
+    if (severity.match) {
+        currentPriority = severity.priority;
+        currentModifier = severity.modifier;
+        triggered_rules.push(...severity.rules);
+    }
+
+    // Capa 2 — banderas rojas y contexto (→ P1)
     const safety = applySafetyModifiers(helper, { priority: currentPriority, modifier: currentModifier });
     if (safety.match) {
         currentPriority = safety.priority;
@@ -167,9 +183,13 @@ export function predict(X, helper) {
         triggered_rules.push(...refinement.rules);
     }
 
-    const finalResult = buildResult(currentPriority, currentModifier, baseline);
-    finalResult.triggered_rules = triggered_rules;
-    return finalResult;
+    return {
+        priority: currentPriority,
+        label: `Prioridad ${currentPriority} - ${PRIORITY_LABELS[currentPriority] || 'DESCONOCIDO'}`,
+        modifier: currentModifier,
+        baseline_priority: baselinePriority,
+        triggered_rules
+    };
 }
 
 function refineSyndromeReasoning(analysis, helper) {
@@ -235,10 +255,13 @@ function refineSyndromeReasoning(analysis, helper) {
 export function runTriage(formData, lang = 'es') {
     try {
         const { X, helper } = encodeFeatures(formData);
-        const prediction = predict(X, helper);
-        let probabilisticAnalysis = predictProbabilisticSyndrome(X);
 
+        // 1. Síndrome PRIMERO (la urgencia basal depende de él)
+        let probabilisticAnalysis = predictProbabilisticSyndrome(X);
         probabilisticAnalysis = refineSyndromeReasoning(probabilisticAnalysis, helper);
+
+        // 2. Triage en 3 capas a partir del síndrome
+        const prediction = computeTriage(probabilisticAnalysis.top_syndrome, helper, formData);
 
         const topCandidates = probabilisticAnalysis.top_candidates || [];
         let diffCandidates = [];

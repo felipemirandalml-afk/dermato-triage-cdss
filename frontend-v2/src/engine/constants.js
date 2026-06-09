@@ -6,8 +6,9 @@
  *
  * 1. PROBABILISTIC_FEATURES → FEATURE_INDEX
  *    Tienen un índice numérico y ENTRAN al vector X.
- *    Alimentan tanto el baseline scoring (baseline_model) como el
- *    Random Forest (probabilistic_model). Son la "estadística" del sistema.
+ *    Alimentan el Random Forest (probabilistic_model) que clasifica el SÍNDROME.
+ *    Son la "estadística" del sistema. (La urgencia/triage ya no se calcula con
+ *    pesos por feature: ver triage_protocol.js — Capa 0/1.)
  *
  * 2. EXTRA_CLINICAL_FEATURES → EXTRA_FEATURE_INDEX
  *    NO tienen índice numérico y NO entran al vector X. Viven solo como
