@@ -86,21 +86,200 @@
 
 ---
 
-## Síndromes NO cubiertos por este protocolo (requieren otra fuente)
+## Síndromes agudos/de especialidad — fuera del protocolo general SSMSO ✅ COMPLETOS
 
 Este es el *protocolo general* ambulatorio del SSMSO; no cubre los síndromes más
-agudos/de especialidad. Para estos hay que citar otra fuente (guías internacionales,
-protocolos GES, o las propias safety rules ya existentes):
+agudos/de especialidad. Sus criterios se completaron con guías nacionales/internacionales
+(vía NotebookLM), cada uno citado en la sección siguiente:
 
-- `bacterial_skin_infection` (celulitis, impétigo, absceso)
-- `drug_reaction` (incluye SJS/NET, DRESS)
-- `urticarial_dermatosis`
-- `vesiculobullous_disease`
-- `vasculitic_purpuric_disease`
-- `connective_tissue_disease`
+- `drug_reaction` (SJS/NET, DRESS) — ✅ base P3, escalada rápida
+- `urticarial_dermatosis` (urticaria/angioedema) — ✅ base P3
+- `vesiculobullous_disease` (pénfigo/penfigoide) — ✅ base **P2** (no se maneja en APS)
+- `vasculitic_purpuric_disease` — ✅ base **P2**
+- `connective_tissue_disease` (lupus/dermatomiositis) — ✅ base **P2**
+- `bacterial_skin_infection` (celulitis/fascitis) — ✅ base P3
 
-> Nota: varios de estos ya tienen banderas rojas en `safety_modifiers.js` (Capa 2);
-> lo que falta es su urgencia basal (Capa 0) y respaldo citable.
+> Con esto, los **14 síndromes** tienen su triage de 3 capas con fuente citada
+> (8 desde SSMSO + 6 desde guías). La Capa 2 de varios ya estaba parcialmente en
+> `safety_modifiers.js`; ahora tiene respaldo bibliográfico explícito.
+
+---
+
+## Tabla de triage — síndromes agudos (fuentes: guías nac/internacionales)
+
+> Estos síndromes no están en el protocolo general ambulatorio SSMSO. Sus criterios
+> provienen de guías y manuales de dermatología, citados por entrada.
+
+### `drug_reaction` (farmacodermias / RAMM) — base **P3** (formas leves), escalada rápida
+- **Capa 0:** formas leves (erupción fija no complicada, exantema morbiliforme leve sin
+  síntomas sistémicos) → manejo en APS (P3).
+- **Capa 1 → P2 (derivar a dermatología/teledermatología):**
+  - duda diagnóstica (no se asegura fármaco causal ni tipo de reacción)
+  - refractariedad: no cede tras suspender el fármaco + tratamiento basal
+  - extensión BSA significativa (>10%, extrapolado de psoriasis)
+  - sospecha de DRESS (tríada exantema + compromiso visceral + alteración de laboratorio)
+  - AGEP con duda → interconsulta urgente
+  - laboratorio: eosinofilia >1.000/mm³, linfocitos atípicos, pruebas hepáticas alteradas
+- **Capa 2 → P1 / Urgencia (riesgo vital):**
+  - cutáneos: signo de Nikolsky positivo · dolor cutáneo intenso/desproporcionado ·
+    eritema confluente de aparición rápida · ampollas o piel denudada extensa ·
+    compromiso mucoso (boca/ojos/genitales/ano) · necrosis o púrpura palpable ·
+    edema facial importante o compromiso centrofacial
+  - sistémicos: fiebre alta (>40°C) o persistente · CEG/obnubilación/sopor ·
+    taquipnea/sibilancias/dificultad respiratoria (angioedema de vía aérea/anafilaxia) ·
+    hipotensión o taquicardia (>120 lpm) · adenopatías generalizadas grandes (>2 cm)
+- **Mapeo a inputs:** ya existen — Nikolsky (`ampolla_nikolsky`/`despegamiento_epidermico`),
+  dolor (`dolor`), ampollas (`bula_ampolla`), mucosas (`mucosas`), necrosis
+  (`necrosis_isquemia`), púrpura palpable (`purpura_palpable`), hipotensión
+  (`signo_hipotension`), conciencia (`compromiso_conciencia`), fiebre (`fiebre`),
+  BSA (`severity.bsaPercent`), refractariedad (`treatment`). **Faltan:** dificultad
+  respiratoria/angioedema, adenopatías, y los criterios de laboratorio/visceral (fuera
+  del alcance de un motor morfológico — quedan como límite declarado).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 24-25, 27-31) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 157-159, 164) · Fitzpatrick,
+  Atlas de Dermatología Clínica (págs. 137-140, 488-491) · Patología Dermatológica,
+  Aguayo et al. (págs. 1076, 1089).
+
+### `urticarial_dermatosis` (urticaria / angioedema) — base **P3** (urticaria aguda)
+- **Capa 0:** urticaria aguda (<6 semanas) → manejo en APS (P3) con antihistamínicos H1;
+  no se justifica laboratorio extenso en aguda no complicada.
+- **Capa 1 → P2 (derivar a especialista):**
+  - cronicidad: urticaria crónica (>6 semanas)
+  - refractariedad: aguda que no responde a antihistamínicos
+  - recurrencia: múltiples episodios de urticaria aguda o angioedema recurrente
+  - sospecha de vasculitis urticarial: habón fijo en el mismo lugar **>24 h** → biopsia
+  - sospecha de patología autoinmune / mesenquimopatía subyacente
+- **Capa 2 → P1 / Urgencia (riesgo vital, adrenalina + alta complejidad):**
+  - vía aérea: dificultad respiratoria, disnea, estridor laríngeo, disfonía (edema laríngeo)
+  - angioedema grave: aumento de volumen en labios, lengua u orofaringe
+  - anafilaxia/shock: hipotensión, taquicardia, compromiso de conciencia, ≥2 sistemas
+  - pródromos de gravedad: prurito intenso en palmas, plantas o nuca
+- **Mapeo a inputs:** ya existen — cronicidad (`cronico`/timing), refractariedad
+  (`treatment`), hipotensión (`signo_hipotension`), conciencia (`compromiso_conciencia`),
+  prurito (`prurito`). **Faltan:** dificultad respiratoria/angioedema (vía aérea),
+  recurrencia, habón fijo >24 h (vs `lesion_evanescente`), taquicardia/pulso.
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 29, 31-35) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 479, 482-484, 502) ·
+  Patología Dermatológica, Aguayo et al. (págs. 1076, 1093-1094) · Fitzpatrick,
+  Atlas de Dermatología Clínica (págs. 312, 497-498) · Protocolo Teleinterconsultas
+  HD 2023 (pág. 4, criterios de exclusión).
+
+### `vesiculobullous_disease` (ampollares autoinmunes: pénfigo, penfigoide) — base **P2** (no se maneja en APS)
+> ⚠️ A diferencia de los crónicos, su urgencia basal NO es P3: **no debe manejarse
+> ambulatoriamente**. Toda sospecha se deriva; urgente apenas se sospeche, por
+> potencial gravedad/letalidad (pénfigo vulgar).
+- **Capa 0:** sospecha de EAA → derivación a dermatología (P2). El estándar de oro es
+  biopsia + inmunofluorescencia directa (IFD), no disponible en APS.
+- **Capa 1 → P2 (derivar a especialista):**
+  - sospecha clínica: ampollas o erosiones mucocutáneas sugerentes de EAA
+  - necesidad de estudio confirmatorio (biopsia perilesional, IFD, ELISA de autoanticuerpos)
+  - lesiones crónicas / curso recidivante
+  - complejidad terapéutica (inmunosupresión sistémica prolongada)
+- **Capa 2 → P1 / Urgencia (hospitalización, a veces UCI; manejo tipo gran quemado):**
+  - signo de Nikolsky positivo (acantólisis activa)
+  - CEG y fiebre (toxicidad sistémica / sobreinfección / sepsis)
+  - extensión denudada o ampollosa extensa de la superficie corporal
+  - compromiso mucoso severo que impide la deglución/alimentación
+  - inestabilidad hemodinámica (pérdida masiva de líquidos/electrolitos/proteínas)
+  - eritrodermia (>80-90% del tegumento; p. ej. pénfigo foliáceo)
+- **Mapeo a inputs:** ya existen — ampollas (`bula_ampolla`), erosión (`erosion`),
+  mucosas (`mucosas`), Nikolsky (`ampolla_nikolsky`/`despegamiento_epidermico`), fiebre
+  (`fiebre`), extensión (`severity.bsaPercent`), hipotensión (`signo_hipotension`),
+  eritrodermia (`generalizado`+`eritema`), cronicidad (`cronico`). Estudio confirmatorio
+  (biopsia/IFD) no es un input clínico (es motivo de derivación, no signo).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 41, 48) · Manual de Dermatología
+  para Médicos Generales, 3.ª ed. 2025 (págs. 459-461, 464, 468, 472, 475) · Fitzpatrick,
+  Atlas de Dermatología Clínica (págs. 137, 153, 160, 163, 259, 261, 268) · Protocolo
+  diagnóstico de dermatosis ampollosas, Aramberri et al. (págs. 130, 133, 148-149).
+
+### `vasculitic_purpuric_disease` (vasculitis / púrpura cutánea) — base **P2** (derivar con relativa urgencia)
+- **Capa 0:** APS realiza la sospecha clínica inicial y el laboratorio básico de compromiso
+  visceral (hemograma, orina completa con hematuria, creatininemia, pruebas hepáticas,
+  sangre oculta en deposiciones, complemento C3/C4). La mayoría → especialista (P2).
+- **Capa 1 → P2 (derivar a especialista):**
+  - sospecha clínica de vasculitis cutánea → derivar con relativa urgencia
+  - necesidad de estudio histopatológico (el general **no** practica la biopsia)
+  - urticaria vasculítica: habón fijo en el mismo lugar **>24 h**
+  - duda diagnóstica (no se asegura tipo de reacción ni causa)
+- **Capa 2 → P1 / Urgencia (servicio de urgencias / hospitalización):**
+  - púrpura palpable generalizada (signo cutáneo grave en paciente enfermo)
+  - sintomatología sistémica aguda: fiebre alta, CEG, artralgias intensas, dolor abdominal
+    cólico severo o hematuria macroscópica (compromiso renal/intestinal, p. ej. Henoch-Schönlein)
+  - lesiones necróticas o ampollas hemorrágicas (escaras, úlceras profundas, vejigas hemáticas)
+  - púrpura fulminante: necrosis purpúrica geográfica + fiebre + postración (sospecha CID/sepsis)
+  - compromiso de conciencia/obnubilación (shock tóxico, o fascitis necrotizante que debuta
+    con placas purpúricas y **dolor desproporcionado**)
+- **Mapeo a inputs:** ya existen — púrpura palpable (`purpura_palpable`), fiebre (`fiebre`),
+  necrosis (`necrosis_isquemia`), ampollas (`bula_ampolla`), dolor (`dolor`), conciencia
+  (`compromiso_conciencia`), generalizado (`generalizado`). **Faltan / fuera de alcance:**
+  síntomas extracutáneos (hematuria, dolor abdominal, artralgias) y laboratorio (complemento,
+  función renal) — quedan como límite declarado; habón fijo >24 h (compartido con urticaria).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 14, 145, 159) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 502, 516, 518-521, 530) ·
+  Fitzpatrick, Atlas de Dermatología Clínica (págs. 203, 254, 310, 357).
+
+### `connective_tissue_disease` (conectivopatías: lupus, dermatomiositis, esclerodermia/morfea) — base **P2**
+- **Capa 0:** APS realiza la sospecha clínica inicial, inicia **fotoprotección estricta** y
+  solicita laboratorio básico (hemograma, perfil bioquímico, creatinina, orina, ANA, ENA,
+  FR; + **CK** si sospecha dermatomiositis). Derivación: exclusivamente cutáneo → dermatología;
+  con compromiso sistémico → reumatología (P2).
+- **Capa 1 → P2 (derivar a especialista):**
+  - duda diagnóstica: eritema facial persistente con sospecha de mesenquimopatía (vs rosácea)
+  - lupus discoide: placas eritematosas con descamación adherente y taponamiento folicular
+    (cuero cabelludo → riesgo de alopecia cicatricial)
+  - lupus subagudo (LECSA): placas anulares/psoriasiformes muy fotosensibles (50% → LES)
+  - morfea: placas induradas céreas; **morfea lineal** en niños es prioritaria (compromiso
+    óseo/muscular, secuelas de movilidad)
+  - dermatomiositis: tríada heliotropo + pápulas de Gottron + fotosensibilidad; en adultos
+    requiere estudio por asociación con **neoplasia oculta** (mama, ovario, pulmón)
+- **Capa 2 → P1 / Urgencia (hospitalización):**
+  - compromiso sistémico grave: falla renal (HTA severa, edema), neurológico (psicosis,
+    convulsiones) o falla cardiaca
+  - disnea/dificultad respiratoria (neumonitis intersticial o debilidad de músculos respiratorios)
+  - disfagia (dificultad para tragar)
+  - gangrena acral: Raynaud severo con úlceras dolorosas o necrosis digital ("mordedura de rata")
+  - eritrodermia (>80-90% de superficie)
+  - edema facial inflamatorio importante + fiebre alta
+- **Mapeo a inputs:** ya existen — eritema (`eritema`), placas (`placa`), descamación
+  (`escama`), fotosensibilidad (`fotoexpuesto`), induración (`induracion`)/esclerosis
+  (`esclerosis`), color violáceo/heliotropo (`color_violaceo`), necrosis acral
+  (`necrosis_isquemia`+`acral`), eritrodermia (`generalizado`+`eritema`), fiebre (`fiebre`),
+  cronicidad (`cronico`). **Faltan / fuera de alcance:** disnea (vía aérea), disfagia,
+  compromiso de órgano sistémico (renal/neuro/cardiaco) y laboratorio (ANA, CK).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 17-18, 20-21, 28, 32-35, 37-38) ·
+  Manual de Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 488-490, 498, 500) ·
+  Fitzpatrick, Atlas de Dermatología Clínica (págs. 219, 329, 332, 347-348, 351) ·
+  Protocolo General de Dermatología SSMSO (Res. 2499, pág. 10).
+
+### `bacterial_skin_infection` (piodermias: impétigo, celulitis, fascitis) — base **P3** (superficiales no complicadas)
+- **Capa 0:** APS maneja infecciones superficiales/pilosebáceas no complicadas: impétigo
+  (contagioso y ampollar), ectima, panadizo bacteriano, foliculitis/ostiofoliculitis y
+  forúnculos aislados, y celulitis/erisipela leve (**Dundee I**: sin toxicidad sistémica
+  ni factores de riesgo de fracaso). Baseline P3.
+- **Capa 1 → P2 (derivar a especialista):**
+  - falta de respuesta: impétigo/ectima sin mejoría a los **5 días**
+  - recurrencia/cronicidad: foliculitis que no cede, forunculosis recidivante (sobre todo diabéticos)
+  - duda diagnóstica: la celulitis se sobrediagnostica ~30% (vs dermatitis de estasis/eccema)
+  - complejidad local: placa de celulitis/erisipela **>10 cm** o falla del tratamiento ambulatorio previo
+- **Capa 2 → P1 / Urgencia (Urgencias / UCI):**
+  - cutáneos: **dolor intenso desproporcionado** (signo precoz de fascitis necrotizante) ·
+    bulas hemorrágicas, equimosis o escaras necróticas · rápido crecimiento de la placa ·
+    Nikolsky + (síndrome de piel escaldada estafilocócica) · **crepitación** (gas en tejidos) ·
+    **anestesia local** en el centro de una placa inflamatoria
+  - sistémicos: compromiso de conciencia (primer signo de fascitis) · fiebre >38.5 °C y CEG ·
+    hipotensión/shock
+  - entidades de extrema urgencia: ántrax, fascitis necrotizante, SARM-CO
+  - localización: toda erisipela/celulitis **en la cara** debe hospitalizarse
+- **Mapeo a inputs:** ya existen — dolor (`dolor`), bulas/necrosis (`bula_ampolla`,
+  `necrosis_isquemia`/`escara`), Nikolsky (`ampolla_nikolsky`), conciencia
+  (`compromiso_conciencia`), fiebre (`fiebre`), hipotensión (`signo_hipotension`),
+  cara (`topog_cabeza`/`cara_centro`), diabetes (`diabetes`), refractariedad (`treatment`).
+  **Faltan:** crepitación, anestesia local, rápido crecimiento (compartido con tumor),
+  recurrencia (compartido con urticaria).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 9, 13, 23, 26, 28) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 389, 392-393, 396-397, 406-407, 417) ·
+  Protocolo de Infecciones Bacterianas, Hernández-Calle et al. (págs. 85, 90, 96, 100-101) ·
+  Fitzpatrick, Atlas de Dermatología Clínica (págs. 237, 245, 259).
 
 ---
 
@@ -109,10 +288,15 @@ protocolos GES, o las propias safety rules ya existentes):
 | Input | Estado | Lo usan |
 | :--- | :--- | :--- |
 | Refractariedad (tto previo/respuesta/tiempo) | ✅ hecho (PR #20) | casi todos los síndromes |
-| **% superficie corporal (BSA)** | ⏳ pendiente | psoriasis (>7%), atópica (>10%), varicela, micosis |
-| **Sitio especial** (ocular/periocular, V1, anogenital, palmoplantar, párpado, genital) | ⏳ pendiente (topografía parcial) | viral, eczema, tumor benigno, rosácea |
+| % superficie corporal (BSA) | ✅ hecho (PR #22) | psoriasis (>7%), atópica (>10%), varicela, micosis, drug_reaction |
+| Sitio especial (periocular, anogenital, palmoplantar) | ✅ hecho (PR #23) | viral, eczema, tumor benigno, rosácea |
+| Tamaño de lesión (>3 cm) | ✅ hecho (PR #23) | tumor benigno |
+| Conteo de lesiones/nevos (>10, >100) | ✅ hecho (PR #23) | verrugas, tumor |
 | Crecimiento rápido / cambio en el tiempo | ⏳ pendiente | tumor sospechado |
-| Tamaño de lesión (>3 cm) | ⏳ pendiente | tumor benigno |
-| Conteo de lesiones/nevos (>10, >100) | ⏳ pendiente | verrugas, tumor |
 | Grado de severidad / progresión | ⏳ pendiente | acné, vitíligo, eczema |
-| inmunosupresión, fiebre, cicatriz, nódulo, ABCDE, úlcera | ✅ ya existen | varios |
+| Dificultad respiratoria / angioedema (vía aérea) | ⏳ pendiente | drug_reaction, urticaria |
+| Adenopatías | ⏳ pendiente | drug_reaction (DRESS) |
+| Recurrencia (múltiples episodios) | ⏳ pendiente | urticaria, bacteriano |
+| Habón fijo >24 h / taquicardia | ⏳ pendiente | urticaria, vasculitis |
+| Crepitación / anestesia local de la placa | ⏳ pendiente | bacteriano (fascitis) |
+| inmunosupresión, fiebre, cicatriz, nódulo, ABCDE, úlcera, mucosas, Nikolsky, púrpura, necrosis, hipotensión, conciencia | ✅ ya existen | varios |
