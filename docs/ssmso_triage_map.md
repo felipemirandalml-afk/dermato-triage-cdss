@@ -97,7 +97,7 @@ protocolos GES, o las propias safety rules ya existentes):
 - `urticarial_dermatosis` — ✅ **completado abajo**
 - `vesiculobullous_disease` — ✅ **completado abajo** (base P2, no P3)
 - `vasculitic_purpuric_disease` — ✅ **completado abajo** (base P2)
-- `connective_tissue_disease`
+- `connective_tissue_disease` — ✅ **completado abajo** (base P2)
 - `bacterial_skin_infection`
 
 > Nota: varios de estos ya tienen banderas rojas en `safety_modifiers.js` (Capa 2);
@@ -218,6 +218,39 @@ protocolos GES, o las propias safety rules ya existentes):
 - **Fuentes:** Manual de Dermatología U. de Chile (págs. 14, 145, 159) · Manual de
   Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 502, 516, 518-521, 530) ·
   Fitzpatrick, Atlas de Dermatología Clínica (págs. 203, 254, 310, 357).
+
+### `connective_tissue_disease` (conectivopatías: lupus, dermatomiositis, esclerodermia/morfea) — base **P2**
+- **Capa 0:** APS realiza la sospecha clínica inicial, inicia **fotoprotección estricta** y
+  solicita laboratorio básico (hemograma, perfil bioquímico, creatinina, orina, ANA, ENA,
+  FR; + **CK** si sospecha dermatomiositis). Derivación: exclusivamente cutáneo → dermatología;
+  con compromiso sistémico → reumatología (P2).
+- **Capa 1 → P2 (derivar a especialista):**
+  - duda diagnóstica: eritema facial persistente con sospecha de mesenquimopatía (vs rosácea)
+  - lupus discoide: placas eritematosas con descamación adherente y taponamiento folicular
+    (cuero cabelludo → riesgo de alopecia cicatricial)
+  - lupus subagudo (LECSA): placas anulares/psoriasiformes muy fotosensibles (50% → LES)
+  - morfea: placas induradas céreas; **morfea lineal** en niños es prioritaria (compromiso
+    óseo/muscular, secuelas de movilidad)
+  - dermatomiositis: tríada heliotropo + pápulas de Gottron + fotosensibilidad; en adultos
+    requiere estudio por asociación con **neoplasia oculta** (mama, ovario, pulmón)
+- **Capa 2 → P1 / Urgencia (hospitalización):**
+  - compromiso sistémico grave: falla renal (HTA severa, edema), neurológico (psicosis,
+    convulsiones) o falla cardiaca
+  - disnea/dificultad respiratoria (neumonitis intersticial o debilidad de músculos respiratorios)
+  - disfagia (dificultad para tragar)
+  - gangrena acral: Raynaud severo con úlceras dolorosas o necrosis digital ("mordedura de rata")
+  - eritrodermia (>80-90% de superficie)
+  - edema facial inflamatorio importante + fiebre alta
+- **Mapeo a inputs:** ya existen — eritema (`eritema`), placas (`placa`), descamación
+  (`escama`), fotosensibilidad (`fotoexpuesto`), induración (`induracion`)/esclerosis
+  (`esclerosis`), color violáceo/heliotropo (`color_violaceo`), necrosis acral
+  (`necrosis_isquemia`+`acral`), eritrodermia (`generalizado`+`eritema`), fiebre (`fiebre`),
+  cronicidad (`cronico`). **Faltan / fuera de alcance:** disnea (vía aérea), disfagia,
+  compromiso de órgano sistémico (renal/neuro/cardiaco) y laboratorio (ANA, CK).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 17-18, 20-21, 28, 32-35, 37-38) ·
+  Manual de Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 488-490, 498, 500) ·
+  Fitzpatrick, Atlas de Dermatología Clínica (págs. 219, 329, 332, 347-348, 351) ·
+  Protocolo General de Dermatología SSMSO (Res. 2499, pág. 10).
 
 ---
 
