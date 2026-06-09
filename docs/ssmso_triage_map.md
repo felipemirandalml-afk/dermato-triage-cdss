@@ -96,7 +96,7 @@ protocolos GES, o las propias safety rules ya existentes):
 - `drug_reaction` (incluye SJS/NET, DRESS) — ✅ **completado abajo** (guías nac/internac)
 - `urticarial_dermatosis` — ✅ **completado abajo**
 - `vesiculobullous_disease` — ✅ **completado abajo** (base P2, no P3)
-- `vasculitic_purpuric_disease`
+- `vasculitic_purpuric_disease` — ✅ **completado abajo** (base P2)
 - `connective_tissue_disease`
 - `bacterial_skin_infection`
 
@@ -192,6 +192,32 @@ protocolos GES, o las propias safety rules ya existentes):
   para Médicos Generales, 3.ª ed. 2025 (págs. 459-461, 464, 468, 472, 475) · Fitzpatrick,
   Atlas de Dermatología Clínica (págs. 137, 153, 160, 163, 259, 261, 268) · Protocolo
   diagnóstico de dermatosis ampollosas, Aramberri et al. (págs. 130, 133, 148-149).
+
+### `vasculitic_purpuric_disease` (vasculitis / púrpura cutánea) — base **P2** (derivar con relativa urgencia)
+- **Capa 0:** APS realiza la sospecha clínica inicial y el laboratorio básico de compromiso
+  visceral (hemograma, orina completa con hematuria, creatininemia, pruebas hepáticas,
+  sangre oculta en deposiciones, complemento C3/C4). La mayoría → especialista (P2).
+- **Capa 1 → P2 (derivar a especialista):**
+  - sospecha clínica de vasculitis cutánea → derivar con relativa urgencia
+  - necesidad de estudio histopatológico (el general **no** practica la biopsia)
+  - urticaria vasculítica: habón fijo en el mismo lugar **>24 h**
+  - duda diagnóstica (no se asegura tipo de reacción ni causa)
+- **Capa 2 → P1 / Urgencia (servicio de urgencias / hospitalización):**
+  - púrpura palpable generalizada (signo cutáneo grave en paciente enfermo)
+  - sintomatología sistémica aguda: fiebre alta, CEG, artralgias intensas, dolor abdominal
+    cólico severo o hematuria macroscópica (compromiso renal/intestinal, p. ej. Henoch-Schönlein)
+  - lesiones necróticas o ampollas hemorrágicas (escaras, úlceras profundas, vejigas hemáticas)
+  - púrpura fulminante: necrosis purpúrica geográfica + fiebre + postración (sospecha CID/sepsis)
+  - compromiso de conciencia/obnubilación (shock tóxico, o fascitis necrotizante que debuta
+    con placas purpúricas y **dolor desproporcionado**)
+- **Mapeo a inputs:** ya existen — púrpura palpable (`purpura_palpable`), fiebre (`fiebre`),
+  necrosis (`necrosis_isquemia`), ampollas (`bula_ampolla`), dolor (`dolor`), conciencia
+  (`compromiso_conciencia`), generalizado (`generalizado`). **Faltan / fuera de alcance:**
+  síntomas extracutáneos (hematuria, dolor abdominal, artralgias) y laboratorio (complemento,
+  función renal) — quedan como límite declarado; habón fijo >24 h (compartido con urticaria).
+- **Fuentes:** Manual de Dermatología U. de Chile (págs. 14, 145, 159) · Manual de
+  Dermatología para Médicos Generales, 3.ª ed. 2025 (págs. 502, 516, 518-521, 530) ·
+  Fitzpatrick, Atlas de Dermatología Clínica (págs. 203, 254, 310, 357).
 
 ---
 
