@@ -15,6 +15,24 @@
     "generalizado", "localizado", "fotoexpuesto", "acral", "topo_flexural_pliegues", "topo_friccion_extensora", "simetrico", "dermatomal",
     "mucosas"
   ],
-  "likelihoods": {},
-  "_citations": {}
+  "likelihoods": {
+    "bacterial_skin_infection": {
+      "agudo": "tipico", "subagudo": "ocasional", "cronico": "raro",
+      "dolor": "tipico", "prurito": "frecuente", "ardor_quemazon": "ocasional", "asintomatico": "raro",
+      "fiebre": "tipico", "diabetes": "frecuente", "inmunosupresion": "frecuente", "atopia": "frecuente", "contagio_familiar": "frecuente", "hepatopatia": "ocasional",
+      "localizado": "tipico", "topo_flexural_pliegues": "frecuente", "acral": "ocasional", "generalizado": "raro", "simetrico": "raro",
+      "mucosas": "raro"
+    },
+    "eczema_dermatitis": {
+      "agudo": "tipico", "subagudo": "frecuente", "cronico": "tipico",
+      "prurito": "tipico", "prurito_nocturno": "frecuente", "ardor_quemazon": "frecuente", "dolor": "ocasional", "asintomatico": "raro",
+      "atopia": "tipico", "embarazo": "frecuente", "farmacos_recientes": "ocasional", "inmunosupresion": "ocasional", "fiebre": "raro", "contagio_familiar": "raro",
+      "localizado": "tipico", "simetrico": "frecuente", "topo_flexural_pliegues": "frecuente", "topo_friccion_extensora": "frecuente", "acral": "frecuente", "fotoexpuesto": "ocasional", "generalizado": "raro",
+      "mucosas": "raro"
+    }
+  },
+  "_citations": {
+    "bacterial_skin_infection": "Manuales y protocolos de dermatología (vía NotebookLM): celulitis/erisipela/fascitis (dolor cardinal, dolor desproporcionado en fascitis, fiebre), impétigo (prurito, contagio, pliegues), factores de riesgo diabetes/inmunosupresión/hepatopatía/atopia (impetiginización). Distribución localizada/unilateral; generalizada solo en SPEE/septicemia; mucosas asociadas a síndromes por toxinas.",
+    "eczema_dermatitis": "Manuales de dermatología (vía NotebookLM): dermatitis atópica/contacto/seborreica. Prurito sine qua non (nocturno en atópica); ardor en contacto irritativa; atopia clave; fiebre AUSENTE (su presencia = alarma de eccema herpético/eritrodermia); no contagiosa (dif. escabiosis). Distribución flexural/extensora (lactantes)/acral (dishidrosis), simétrica; generalizada solo en eritrodermia."
+  }
 }
