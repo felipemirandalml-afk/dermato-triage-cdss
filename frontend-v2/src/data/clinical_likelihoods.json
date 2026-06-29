@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "purpose": "Factor clínico (no-morfológico) del clasificador bayesiano híbrido — P(feature|síndrome) para features que NO están en imágenes (Derm1M).",
+    "source": "Guías y manuales de dermatología (vía NotebookLM), citado por síndrome en _citations.",
+    "scale_note": "Cada celda es un nivel de la escala; el motor lo convierte a probabilidad. Lo no especificado usa 'default' (neutro, no altera el resultado).",
+    "status": "EN CONSTRUCCIÓN — se llena síndrome por síndrome."
+  },
+  "scale": { "tipico": 0.85, "frecuente": 0.6, "ocasional": 0.2, "raro": 0.05 },
+  "default": 0.4,
+  "features": [
+    "agudo", "subagudo", "cronico",
+    "prurito", "prurito_nocturno", "dolor", "ardor_quemazon", "asintomatico",
+    "fiebre", "farmacos_recientes", "inmunosupresion", "diabetes", "hepatopatia", "atopia", "embarazo", "contagio_familiar",
+    "generalizado", "localizado", "fotoexpuesto", "acral", "topo_flexural_pliegues", "topo_friccion_extensora", "simetrico", "dermatomal",
+    "mucosas"
+  ],
+  "likelihoods": {},
+  "_citations": {}
+}

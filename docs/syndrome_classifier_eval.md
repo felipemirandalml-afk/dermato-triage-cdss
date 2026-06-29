@@ -31,6 +31,22 @@ Herramientas de esta evaluación (reproducibles):
 `training/scripts/build_syndrome_profiles.py`, `prototype_bayesian_syndrome.py`,
 `validation/scripts/compare_bayes_vs_rf.js`.
 
+### Sonda de factibilidad del híbrido
+
+Antes de invertir en la tabla clínica citada, se probó el híbrido con verosimilitudes
+clínicas **toscas y provisionales** (`validation/scripts/probe_hybrid_bayes.js`):
+
+| Clasificador | Accuracy |
+| :--- | :---: |
+| RF actual | 70.8% |
+| Bayes solo-morfología | 38.5% |
+| **Híbrido (morfología + clínica tosca)** | **64.6%** |
+
+El salto de 38.5% → 64.6% (**+26 pts**) con estimaciones a ojo confirma que el enfoque
+es viable: la señal clínica era lo que faltaba. Quedó a ~6 pts del RF, gap plausible de
+cerrar con la tabla citada + tuning. Incluso un empate técnico justifica adoptarlo
+(mata circularidad, cubre 14 síndromes, transparente).
+
 ---
 
 ## 2. Diseño: Naive Bayes HÍBRIDO (Opción B)
