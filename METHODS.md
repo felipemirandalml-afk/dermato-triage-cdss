@@ -141,24 +141,31 @@ log_odds(f, s) = ln( P(f | s) / P(f | ¬s) )
 
 ### 5.2 Clasificación sindrómica — NAIVE BAYES HÍBRIDO
 
-Reemplaza el Random Forest (entrenado con datos sintéticos → circular, solo 12 clases)
-por un Naive Bayes que fusiona dos verosimilitudes — la arquitectura de dos fuentes
-hecha clasificador. Detalle y evaluación en [`docs/syndrome_classifier_eval.md`].
+**[ADOPTADO]** Reemplaza el Random Forest (entrenado con datos sintéticos → circular,
+solo 12 clases) por un Naive Bayes que fusiona dos verosimilitudes — la arquitectura de
+dos fuentes hecha clasificador. `probabilistic_model.js`. Detalle y evaluación en
+[`docs/syndrome_classifier_eval.md`].
 
 ```
 P(síndrome | features) ∝ P(síndrome)
-   × Π P(feature_morfológica | síndrome)     ← Derm1M (DATOS, hecho)
-   × Π P(feature_no_morfológica | síndrome)   ← guías clínicas (CITADO, a construir)
+   × Π P(feature_morfológica | síndrome)     ← Derm1M (DATOS) [present-only]
+   × Π P(feature_no_morfológica | síndrome)   ← guías clínicas (CITADO) [Bernoulli]
 ```
 
-- **Evaluación previa:** un Naive Bayes **solo de morfología** (Derm1M) rinde 38.5% vs
-  70.8% del RF — insuficiente, porque ~40-60% de la señal no está en imágenes (§4.1).
-  Por eso el clasificador debe ser híbrido, no solo-imágenes.
-- **Factor morfológico (hecho):** `syndrome_feature_profiles.json`, contado de Derm1M.
-- **Factor clínico (a construir):** tabla de P(feature|síndrome) para las features
-  no-morfológicas (fiebre, timing, distribución…), estimada de guías con cita por celda.
-- **Adopción condicionada:** se reemplaza el RF solo si el híbrido iguala o supera el
-  70.8% en el benchmark; entonces se retira `rf_model.json` y la cadena sintética.
+- **Factor morfológico:** `syndrome_feature_profiles.json`, contado de Derm1M.
+- **Factor clínico:** `clinical_likelihoods.json` (14/14 síndromes), niveles de guías
+  citados, escala anclada a Derm1M.
+- **Por qué se adoptó (la evidencia, no el benchmark interno):** en el benchmark interno
+  el bayesiano rinde 49% vs 70.8% del RF, PERO ese benchmark es sintético y está
+  correlacionado con el origen del RF (juez parcial). En **datos reales** (UCI Dermatology,
+  366 casos) el bayesiano **58.7% supera al RF 43.2%** — el RF no transfiere desde su
+  entrenamiento sintético. Se adopta el bayesiano por: validación real superior +
+  transparencia + 14 síndromes + cero circularidad.
+- **Resultado:** `rf_model.json` (5.9 MB) retirado; bundle JS −85%. La cadena de
+  entrenamiento sintética (`curate_and_augment`, `train_and_evaluate`) queda obsoleta
+  (retiro pendiente, no afecta el motor).
+- **Pendiente:** calibrar la confianza (el bayesiano puede ser sobre-seguro por la
+  independencia naive); validar los 14 síndromes con más datos reales.
 
 ### 5.3 Triage / urgencia (Fuente 2) — DE GUÍAS, en TRES CAPAS
 
