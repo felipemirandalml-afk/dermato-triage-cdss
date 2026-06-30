@@ -1,0 +1,134 @@
+{
+  "_meta": {
+    "purpose": "Factor clínico (no-morfológico) del clasificador bayesiano híbrido — P(feature|síndrome) para features que NO están en imágenes (Derm1M).",
+    "source": "Guías y manuales de dermatología (vía NotebookLM), citado por síndrome en _citations.",
+    "scale_note": "Cada celda es un nivel de la escala; el motor lo convierte a probabilidad. Lo no especificado usa 'default' (neutro, igual para todos los síndromes → no altera el ranking).",
+    "scale_provenance": "Los valores de la escala están anclados a la distribución empírica de P(feature|síndrome) en Derm1M (no inventados): tipico≈percentil 90-95 (0.65), frecuente≈p75 (0.40), ocasional≈mediana (0.20), raro≈banda de fondo (0.05). Recomputable desde syndrome_feature_profiles.json. Sujeto a análisis de sensibilidad.",
+    "status": "COMPLETO — 14/14 síndromes."
+  },
+  "scale": { "tipico": 0.65, "frecuente": 0.4, "ocasional": 0.2, "raro": 0.05 },
+  "default": 0.3,
+  "features": [
+    "agudo", "subagudo", "cronico",
+    "prurito", "prurito_nocturno", "dolor", "ardor_quemazon", "asintomatico",
+    "fiebre", "farmacos_recientes", "inmunosupresion", "diabetes", "hepatopatia", "atopia", "embarazo", "contagio_familiar",
+    "generalizado", "localizado", "fotoexpuesto", "acral", "topo_flexural_pliegues", "topo_friccion_extensora", "simetrico", "dermatomal",
+    "mucosas"
+  ],
+  "likelihoods": {
+    "bacterial_skin_infection": {
+      "agudo": "tipico", "subagudo": "ocasional", "cronico": "raro",
+      "dolor": "tipico", "prurito": "frecuente", "ardor_quemazon": "ocasional", "asintomatico": "raro",
+      "fiebre": "tipico", "diabetes": "frecuente", "inmunosupresion": "frecuente", "atopia": "frecuente", "contagio_familiar": "frecuente", "hepatopatia": "ocasional",
+      "localizado": "tipico", "topo_flexural_pliegues": "frecuente", "acral": "ocasional", "generalizado": "raro", "simetrico": "raro",
+      "mucosas": "raro"
+    },
+    "eczema_dermatitis": {
+      "agudo": "tipico", "subagudo": "frecuente", "cronico": "tipico",
+      "prurito": "tipico", "prurito_nocturno": "frecuente", "ardor_quemazon": "frecuente", "dolor": "ocasional", "asintomatico": "raro",
+      "atopia": "tipico", "embarazo": "frecuente", "farmacos_recientes": "ocasional", "inmunosupresion": "ocasional", "fiebre": "raro", "contagio_familiar": "raro",
+      "localizado": "tipico", "simetrico": "frecuente", "topo_flexural_pliegues": "frecuente", "topo_friccion_extensora": "frecuente", "acral": "frecuente", "fotoexpuesto": "ocasional", "generalizado": "raro",
+      "mucosas": "raro"
+    },
+    "viral_skin_infection": {
+      "agudo": "tipico", "cronico": "frecuente", "subagudo": "ocasional",
+      "dolor": "frecuente", "prurito": "frecuente", "ardor_quemazon": "frecuente", "asintomatico": "frecuente", "prurito_nocturno": "raro",
+      "contagio_familiar": "tipico", "inmunosupresion": "tipico", "fiebre": "frecuente", "atopia": "frecuente", "embarazo": "ocasional", "hepatopatia": "ocasional",
+      "localizado": "tipico", "dermatomal": "tipico", "generalizado": "frecuente", "acral": "frecuente", "simetrico": "frecuente", "topo_flexural_pliegues": "ocasional",
+      "mucosas": "frecuente"
+    },
+    "vasculitic_purpuric_disease": {
+      "agudo": "tipico", "cronico": "frecuente", "subagudo": "ocasional",
+      "dolor": "tipico", "prurito": "frecuente", "asintomatico": "frecuente", "ardor_quemazon": "ocasional",
+      "farmacos_recientes": "tipico", "fiebre": "frecuente", "contagio_familiar": "frecuente", "hepatopatia": "ocasional", "atopia": "raro",
+      "localizado": "tipico", "simetrico": "frecuente", "acral": "frecuente", "topo_friccion_extensora": "ocasional", "dermatomal": "raro",
+      "mucosas": "ocasional"
+    },
+    "drug_reaction": {
+      "agudo": "tipico", "subagudo": "frecuente",
+      "prurito": "tipico", "dolor": "tipico", "ardor_quemazon": "frecuente", "prurito_nocturno": "raro",
+      "farmacos_recientes": "tipico", "fiebre": "tipico", "inmunosupresion": "frecuente", "hepatopatia": "frecuente", "contagio_familiar": "raro",
+      "generalizado": "tipico", "simetrico": "tipico", "localizado": "tipico", "acral": "frecuente", "topo_flexural_pliegues": "frecuente", "fotoexpuesto": "ocasional", "dermatomal": "raro",
+      "mucosas": "tipico"
+    },
+    "psoriasiform_dermatosis": {
+      "cronico": "tipico", "agudo": "frecuente",
+      "prurito": "tipico", "asintomatico": "frecuente", "dolor": "ocasional", "ardor_quemazon": "ocasional",
+      "diabetes": "tipico", "inmunosupresion": "frecuente", "farmacos_recientes": "ocasional", "fiebre": "ocasional", "hepatopatia": "ocasional", "embarazo": "ocasional", "contagio_familiar": "raro",
+      "simetrico": "tipico", "topo_friccion_extensora": "tipico", "acral": "tipico", "localizado": "frecuente", "topo_flexural_pliegues": "frecuente", "generalizado": "ocasional", "fotoexpuesto": "ocasional", "dermatomal": "raro",
+      "mucosas": "frecuente"
+    },
+    "fungal_skin_infection": {
+      "cronico": "tipico", "subagudo": "frecuente", "agudo": "ocasional",
+      "prurito": "tipico", "asintomatico": "frecuente", "dolor": "ocasional", "ardor_quemazon": "ocasional", "prurito_nocturno": "raro",
+      "diabetes": "tipico", "inmunosupresion": "tipico", "contagio_familiar": "tipico", "atopia": "frecuente", "embarazo": "frecuente", "fiebre": "raro",
+      "localizado": "tipico", "topo_flexural_pliegues": "tipico", "acral": "tipico", "simetrico": "frecuente", "dermatomal": "raro", "generalizado": "raro",
+      "mucosas": "frecuente"
+    },
+    "urticarial_dermatosis": {
+      "agudo": "tipico", "cronico": "frecuente", "subagudo": "ocasional",
+      "prurito": "tipico", "ardor_quemazon": "frecuente", "dolor": "ocasional", "asintomatico": "raro",
+      "farmacos_recientes": "tipico", "embarazo": "frecuente", "atopia": "frecuente", "fiebre": "ocasional", "hepatopatia": "ocasional", "contagio_familiar": "raro",
+      "localizado": "tipico", "generalizado": "frecuente", "simetrico": "frecuente", "fotoexpuesto": "frecuente", "acral": "ocasional", "dermatomal": "raro",
+      "mucosas": "frecuente"
+    },
+    "vesiculobullous_disease": {
+      "cronico": "tipico", "agudo": "frecuente", "subagudo": "ocasional",
+      "prurito": "tipico", "dolor": "frecuente", "ardor_quemazon": "frecuente", "asintomatico": "raro",
+      "diabetes": "tipico", "farmacos_recientes": "frecuente", "embarazo": "frecuente", "inmunosupresion": "ocasional", "contagio_familiar": "raro",
+      "simetrico": "tipico", "topo_friccion_extensora": "tipico", "topo_flexural_pliegues": "frecuente", "acral": "ocasional", "fotoexpuesto": "raro",
+      "mucosas": "tipico"
+    },
+    "connective_tissue_disease": {
+      "cronico": "tipico", "subagudo": "frecuente", "agudo": "ocasional",
+      "dolor": "tipico", "asintomatico": "frecuente", "prurito": "frecuente", "ardor_quemazon": "ocasional",
+      "fotoexpuesto": "tipico", "fiebre": "frecuente", "farmacos_recientes": "ocasional", "hepatopatia": "ocasional", "contagio_familiar": "raro",
+      "localizado": "tipico", "acral": "tipico", "simetrico": "frecuente", "topo_friccion_extensora": "frecuente", "generalizado": "ocasional", "dermatomal": "raro",
+      "mucosas": "frecuente"
+    },
+    "pigmentary_disorder": {
+      "cronico": "tipico", "subagudo": "frecuente", "agudo": "ocasional",
+      "asintomatico": "tipico", "prurito": "frecuente", "dolor": "raro", "ardor_quemazon": "raro",
+      "embarazo": "tipico", "atopia": "frecuente", "diabetes": "frecuente", "inmunosupresion": "frecuente", "farmacos_recientes": "frecuente", "fiebre": "raro", "contagio_familiar": "raro",
+      "fotoexpuesto": "tipico", "simetrico": "tipico", "localizado": "frecuente", "acral": "frecuente", "topo_flexural_pliegues": "ocasional", "generalizado": "ocasional",
+      "mucosas": "frecuente"
+    },
+    "cutaneous_tumor_suspected": {
+      "cronico": "tipico", "subagudo": "frecuente", "agudo": "raro",
+      "asintomatico": "tipico", "prurito": "frecuente", "dolor": "ocasional", "ardor_quemazon": "ocasional",
+      "inmunosupresion": "tipico", "diabetes": "ocasional", "fiebre": "raro", "contagio_familiar": "raro",
+      "fotoexpuesto": "tipico", "localizado": "tipico", "acral": "frecuente", "generalizado": "ocasional", "topo_flexural_pliegues": "ocasional",
+      "mucosas": "frecuente"
+    },
+    "benign_cutaneous_tumor": {
+      "cronico": "tipico", "agudo": "ocasional",
+      "asintomatico": "tipico", "dolor": "ocasional", "prurito": "ocasional", "prurito_nocturno": "raro",
+      "diabetes": "frecuente", "embarazo": "ocasional", "hepatopatia": "ocasional", "fiebre": "raro", "contagio_familiar": "raro",
+      "localizado": "tipico", "fotoexpuesto": "frecuente", "topo_flexural_pliegues": "frecuente", "acral": "ocasional", "generalizado": "ocasional", "dermatomal": "raro",
+      "mucosas": "ocasional"
+    },
+    "inflammatory_dermatosis_other": {
+      "cronico": "tipico", "agudo": "frecuente", "subagudo": "ocasional",
+      "prurito": "tipico", "dolor": "tipico", "prurito_nocturno": "frecuente", "asintomatico": "frecuente", "ardor_quemazon": "ocasional",
+      "contagio_familiar": "tipico", "inmunosupresion": "frecuente", "fiebre": "frecuente", "diabetes": "ocasional", "hepatopatia": "ocasional", "embarazo": "ocasional",
+      "localizado": "tipico", "generalizado": "tipico", "acral": "tipico", "topo_flexural_pliegues": "tipico", "simetrico": "frecuente", "fotoexpuesto": "frecuente", "topo_friccion_extensora": "ocasional",
+      "mucosas": "tipico"
+    }
+  },
+  "_citations": {
+    "bacterial_skin_infection": "Manuales/protocolos (NotebookLM): celulitis/erisipela/fascitis (dolor cardinal, desproporcionado en fascitis; fiebre), impétigo (prurito, contagio, pliegues); riesgo diabetes/inmunosupresión/hepatopatía/atopia. Localizada/unilateral; generalizada solo en SPEE/septicemia.",
+    "eczema_dermatitis": "Manuales (NotebookLM): atópica/contacto/seborreica. Prurito sine qua non (nocturno en atópica); ardor en contacto irritativa; atopia clave; fiebre AUSENTE (=alarma eccema herpético/eritrodermia); no contagiosa. Flexural/extensora/acral, simétrica.",
+    "viral_skin_infection": "Manuales (NotebookLM): herpes/varicela/molusco/verrugas/exantemas. Contagio e inmunosupresión típicos; dermatomal patognomónico de zóster; mucosas frecuentes (VHS, Koplik, mano-pie-boca); crónico en VPH/molusco; asintomático frecuente.",
+    "vasculitic_purpuric_disease": "Manuales (NotebookLM): vasculitis leucocitoclástica/HSP/PPD/EED. Fármaco reciente desencadenante (7-10 d); dolor urente cardinal; localizada en piernas/tobillos (gravedad); infección previa (75% HSP); NO dermatomal; atopia irrelevante.",
+    "drug_reaction": "Manuales (NotebookLM): exantema fijo/AGEP/SJS-NET/DRESS/EM. Fármaco reciente fundamental; fiebre+dolor+mucosas = gravedad (SJS/NET, DRESS); DRESS subagudo (2-6 sem) con hepatopatía; generalizado/simétrico; exantema fijo localizado; no contagiosa.",
+    "psoriasiform_dermatosis": "Manuales (NotebookLM): psoriasis variantes/PRP. Crónica; asociación metabólica (diabetes/SD metabólico); extensoras (codos/rodillas), acral (ungueal/palmoplantar), simétrica; inversa en pliegues; no contagiosa; fiebre solo en pustular generalizada/eritrodermia.",
+    "fungal_skin_infection": "Manuales (NotebookLM): tiñas/candidiasis/onicomicosis/versicolor. Crónica; diabetes/inmunosupresión/contagio típicos; acral (pedis/onicomicosis), pliegues (intertrigo/crural); mucosas en candidiasis; fiebre AUSENTE salvo complicación.",
+    "urticarial_dermatosis": "Manuales (NotebookLM): urticaria/angioedema/picaduras/PUPPP. Aguda (<6 sem); prurito 'siempre pica'; fármaco reciente (15-30%); mucosas/angioedema = alarma vía aérea; embarazo (PUPPP); generalizada; NO dermatomal.",
+    "vesiculobullous_disease": "Manuales (NotebookLM): pénfigo/penfigoide/DH/EBA. Crónica; prurito intenso (DH/penfigoide), dolor en erosiones (pénfigo vulgar); diabetes+gliptinas (penfigoide); mucosas típicas en pénfigo vulgar; DH simétrica en extensoras; no contagiosa.",
+    "connective_tissue_disease": "Manuales (NotebookLM): lupus/dermatomiositis/esclerodermia/morfea/liquen escleroso. Crónica; fotosensibilidad/fotoexpuesta cardinal (lupus/DM); Raynaud (90% escleroderma); acral (esclerodactilia); Gottron en extensoras; no contagiosa.",
+    "pigmentary_disorder": "Manuales (NotebookLM): vitíligo/melasma/lentigos/PIH. Asintomático (preocupación estética); crónico; embarazo/ACO (melasma); vitíligo + DM1/tiroiditis; fotoexpuesta (melasma/lentigos), simétrica/acral (vitíligo); no contagioso.",
+    "cutaneous_tumor_suspected": "Manuales (NotebookLM): CBC/CEC/melanoma/QA/Bowen/KA/MF. Crónica/lento (subagudo en melanoma/KA); asintomático regla, prurito en MF; inmunosupresión (×100 CEC); fotoexpuesta cardinal; localizada/solitaria; acral (melanoma lentiginoso).",
+    "benign_cutaneous_tumor": "Manuales (NotebookLM): queratosis seborreica/dermatofibroma/nevos/lipoma/angioma/quiste/queloide. Crónica/permanente; asintomático regla; granuloma piógeno agudo; acrocordones+diabetes/pliegues; localizada; no contagioso.",
+    "inflammatory_dermatosis_other": "Manuales (NotebookLM): acné/rosácea/pitiriasis rosada/liquen plano/granuloma anular/escabiosis/sífilis II/sarcoidosis/hidradenitis. Grupo heterogéneo. Prurito nocturno (escabiosis), contagio (escabiosis/sífilis), mucosas (liquen plano/sífilis), dolor (hidradenitis)."
+  }
+}

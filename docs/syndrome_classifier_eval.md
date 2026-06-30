@@ -31,6 +31,41 @@ Herramientas de esta evaluación (reproducibles):
 `training/scripts/build_syndrome_profiles.py`, `prototype_bayesian_syndrome.py`,
 `validation/scripts/compare_bayes_vs_rf.js`.
 
+### Sonda de factibilidad del híbrido
+
+Antes de invertir en la tabla clínica citada, se probó el híbrido con verosimilitudes
+clínicas **toscas y provisionales** (`validation/scripts/probe_hybrid_bayes.js`):
+
+| Clasificador | Accuracy |
+| :--- | :---: |
+| RF actual | 70.8% |
+| Bayes solo-morfología | 38.5% |
+| **Híbrido (morfología + clínica tosca)** | **64.6%** |
+
+El salto de 38.5% → 64.6% (**+26 pts**) con estimaciones a ojo confirma que el enfoque
+es viable: la señal clínica era lo que faltaba.
+
+### Validación en datos REALES (UCI Dermatology) — el hallazgo clave
+
+El benchmark interno (sintético/curado) está **correlacionado con el origen sintético
+del RF**, por lo que no es juez imparcial. Para una comparación honesta se usó la **UCI
+Dermatology Database** (Ilter & Guvenir, 1998; **366 pacientes reales**), restringida a
+las features clínicas (sin biopsia, como la herramienta) y mapeada a 3 síndromes
+(`validation/scripts/validate_uci_dermatology.js`):
+
+| Clasificador | Benchmark interno (sintético) | **UCI real (366 casos)** |
+| :--- | :---: | :---: |
+| RF actual | 70.8% | **43.2%** |
+| Bayesiano híbrido (tabla citada) | ~50% | **58.7%** |
+| Baseline (clase mayoritaria) | — | 36.1% |
+
+**El resultado se invierte en datos reales:** el RF cae a 43.2% (apenas sobre baseline)
+porque memorizó patrones sintéticos que no transfieren; el bayesiano sube a 58.7% y lo
+**supera por ~15 pts**. Confirma que (a) el benchmark interno favorecía al RF, y (b) el
+clasificador transparente generaliza mejor a pacientes reales. Es validación externa,
+citable, y respalda empíricamente la adopción del bayesiano. Límite: solo cubre el
+subgrupo eritemato-escamoso (3 síndromes) con ~7 features clínicas.
+
 ---
 
 ## 2. Diseño: Naive Bayes HÍBRIDO (Opción B)
