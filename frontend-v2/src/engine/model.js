@@ -22,8 +22,6 @@ import { applyContextModifiers, applyRefinementModifiers } from './context_modif
 import { interpretResult } from './interpreter.js';
 import { predictProbabilisticSyndrome } from './probabilistic_model.js';
 import { rankDifferentials } from './differential_ranker.js';
-import { CARDINAL_FEATURE_RULES } from './cardinal_feature_rules.js';
-import { recalibrationEngine } from './recalibration_engine.js';
 import { SYNDROME_BASELINE_URGENCY, DEFAULT_BASELINE, makeTriageContext, applySeverityModifiers } from './triage_protocol.js';
 
 export { FEATURE_INDEX, FEATURE_MAP_LABELS, CLINICAL_GUI, encodeFeatures, interpretResult };
@@ -50,53 +48,6 @@ function createEmptyProbabilisticAnalysis(topSyndrome = null) {
         message: null,
         syndrome_probabilities: {}
     };
-}
-
-function getConfidenceLevel(probability) {
-    return probability > 0.70 ? 'high' : (probability >= 0.40 ? 'medium' : 'low');
-}
-
-function snapshotRawProbabilisticAnalysis(analysis) {
-    if (!analysis.raw_top_candidates) {
-        analysis.raw_top_candidates = (analysis.top_candidates || []).map((candidate) => ({ ...candidate }));
-    }
-    if (!analysis.raw_syndrome_probabilities) {
-        analysis.raw_syndrome_probabilities = { ...(analysis.syndrome_probabilities || {}) };
-    }
-    if (analysis.raw_top_probability === undefined) {
-        analysis.raw_top_probability = analysis.top_probability ?? 0;
-    }
-    if (analysis.raw_top_syndrome === undefined) {
-        analysis.raw_top_syndrome = analysis.top_syndrome ?? null;
-    }
-    if (analysis.raw_confidence_level === undefined) {
-        analysis.raw_confidence_level = analysis.confidence_level ?? 'low';
-    }
-}
-
-function synchronizeProbabilisticAnalysis(analysis, candidates) {
-    const normalizedCandidates = candidates
-        .map((candidate) => ({ ...candidate }))
-        .sort((a, b) => b.probability - a.probability);
-
-    const syndromeProbabilities = {};
-    normalizedCandidates.forEach((candidate) => {
-        syndromeProbabilities[candidate.syndrome] = candidate.probability;
-    });
-
-    const topCandidate = normalizedCandidates[0] || { syndrome: null, probability: 0 };
-    const topProbability = topCandidate.probability || 0;
-
-    analysis.top_candidates = normalizedCandidates;
-    analysis.syndrome_probabilities = syndromeProbabilities;
-    analysis.top_probability = topProbability;
-    analysis.top_syndrome = topProbability >= 0.15 ? topCandidate.syndrome : null;
-    analysis.confidence_level = getConfidenceLevel(topProbability);
-    analysis.message = analysis.confidence_level === 'low'
-        ? 'Patron ambiguo (baja confianza tras recalibracion) - Evaluacion clinica indispensable'
-        : null;
-
-    return analysis;
 }
 
 export function normalizeTriageResult(rawResult = {}, { status = 'ok' } = {}) {
@@ -192,73 +143,12 @@ export function computeTriage(syndrome, helper, formData) {
     };
 }
 
-function refineSyndromeReasoning(analysis, helper) {
-    if (!analysis.top_candidates?.length) return analysis;
-
-    snapshotRawProbabilisticAnalysis(analysis);
-
-    const activeFeatures = Object.keys(helper.featureMap || {}).filter((key) => helper.featureMap[key] === 1 || helper.featureMap[key] === true);
-    const recalibratedCandidates = analysis.top_candidates.map((candidate) => {
-        return {
-            ...candidate,
-            raw_probability: candidate.raw_probability ?? candidate.probability ?? 0,
-            recalibrated_score: Math.max(candidate.probability || 0, 0)
-        };
-    });
-
-    activeFeatures.forEach((feature) => {
-        const weight = recalibrationEngine.getBaseWeight(feature);
-        const targetSyndrome = recalibrationEngine.getSyndromeForFeature(feature);
-        if (weight > 0 && targetSyndrome) {
-            const candidate = recalibratedCandidates.find((item) => item.syndrome === targetSyndrome);
-            if (candidate) {
-                candidate.recalibrated_score += weight;
-            }
-        }
-    });
-
-    CARDINAL_FEATURE_RULES.forEach((rule) => {
-        if (rule.conditions(helper) && rule.boost_syndromes) {
-            rule.boost_syndromes.forEach((syndrome) => {
-                const candidate = recalibratedCandidates.find((item) => item.syndrome === syndrome);
-                if (candidate) {
-                    candidate.recalibrated_score += 0.4;
-                }
-            });
-        }
-    });
-
-    const syndromeBoosts = recalibrationEngine.getSyndromeBoosts(activeFeatures);
-    syndromeBoosts.forEach((boostEntry) => {
-        const candidate = recalibratedCandidates.find((item) => item.syndrome === boostEntry.syndrome);
-        if (candidate) {
-            candidate.recalibrated_score += boostEntry.boost;
-        }
-    });
-
-    const totalScore = recalibratedCandidates.reduce((sum, candidate) => sum + Math.max(candidate.recalibrated_score || 0, 0), 0);
-    const normalizedCandidates = totalScore > 0
-        ? recalibratedCandidates.map((candidate) => ({
-            ...candidate,
-            probability: Math.max(candidate.recalibrated_score || 0, 0) / totalScore
-        }))
-        : analysis.raw_top_candidates.map((candidate) => ({
-            ...candidate,
-            raw_probability: candidate.probability ?? 0,
-            recalibrated_score: candidate.probability ?? 0
-        }));
-
-    analysis.recalibrated = true;
-    return synchronizeProbabilisticAnalysis(analysis, normalizedCandidates);
-}
-
 export function runTriage(formData, lang = 'es') {
     try {
         const { X, helper } = encodeFeatures(formData);
 
-        // 1. Síndrome PRIMERO (la urgencia basal depende de él)
-        let probabilisticAnalysis = predictProbabilisticSyndrome(X);
-        probabilisticAnalysis = refineSyndromeReasoning(probabilisticAnalysis, helper);
+        // 1. Síndrome PRIMERO (la urgencia basal depende de él) — Naive Bayes híbrido
+        const probabilisticAnalysis = predictProbabilisticSyndrome(helper);
 
         // 2. Triage en 3 capas a partir del síndrome
         const prediction = computeTriage(probabilisticAnalysis.top_syndrome, helper, formData);
