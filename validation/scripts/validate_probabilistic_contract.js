@@ -1,69 +1,53 @@
 /**
  * validate_probabilistic_contract.js
- * Verifica que el contrato de entrada del modelo probabilístico (Random Forest)
- * esté sincronizado con las constantes de la aplicación y el encoder.
- *
- * Nota: el modelo actual es un Random Forest serializado (rf_model.json), no la
- * antigua regresión logística por coeficientes. Este script valida el contrato
- * vigente: que cada feature declarada por el modelo exista en FEATURE_INDEX y que
- * los índices de feature usados por los árboles caigan dentro del rango declarado.
+ * Verifica el contrato del clasificador sindrómico (Naive Bayes híbrido):
+ *  1. Los 14 síndromes son consistentes entre perfiles morfológicos,
+ *     verosimilitudes clínicas y la tabla de urgencia basal (triage_protocol).
+ *  2. Las features clínicas existen en FEATURE_INDEX (las puede producir el encoder).
  */
-import RF_MODEL_DATA from '../../frontend-v2/src/engine/rf_model.json' with { type: 'json' };
-import { FEATURE_INDEX } from '../../frontend-v2/src/engine/constants.js';
+import PROFILES from '../../frontend-v2/src/data/syndrome_feature_profiles.json' with { type: 'json' };
+import CLINICAL from '../../frontend-v2/src/data/clinical_likelihoods.json' with { type: 'json' };
+import { FEATURE_INDEX, EXTRA_FEATURE_INDEX } from '../../frontend-v2/src/engine/constants.js';
+import { SYNDROME_BASELINE_URGENCY } from '../../frontend-v2/src/engine/triage_protocol.js';
 
-console.log("--- AUDITORÍA DE CONTRATO PROBABILÍSTICO (Random Forest) ---");
+console.log('--- AUDITORÍA DE CONTRATO DEL CLASIFICADOR (Naive Bayes híbrido) ---');
 
 let errors = 0;
-const modelFeatures = RF_MODEL_DATA.metadata.features;
-const modelFeatureCount = modelFeatures.length;
 
-// 1. Verificar que cada feature del modelo exista en FEATURE_INDEX (encodable)
-modelFeatures.forEach((f, i) => {
-    if (FEATURE_INDEX[f] === undefined) {
-        console.error(`[FAIL] Feature '${f}' (modelo idx ${i}) NO existe en constants.js (FEATURE_INDEX).`);
-        errors++;
-    }
-});
+// 1. Consistencia de síndromes entre las tres fuentes
+const profileSyn = new Set(PROFILES.syndromes);
+const clinicalSyn = new Set(Object.keys(CLINICAL.likelihoods));
+const baselineSyn = new Set(Object.keys(SYNDROME_BASELINE_URGENCY));
+
+for (const s of baselineSyn) {
+    if (!profileSyn.has(s)) { console.error(`[FAIL] '${s}' está en urgencia basal pero NO tiene perfil morfológico.`); errors++; }
+    if (!clinicalSyn.has(s)) { console.error(`[FAIL] '${s}' está en urgencia basal pero NO tiene verosimilitudes clínicas.`); errors++; }
+}
+for (const s of profileSyn) {
+    if (!baselineSyn.has(s)) { console.error(`[FAIL] '${s}' tiene perfil pero NO está en la tabla de urgencia basal.`); errors++; }
+}
 if (errors === 0) {
-    console.log(`[PASS] Las ${modelFeatureCount} features del modelo existen en FEATURE_INDEX.`);
+    console.log(`[PASS] ${baselineSyn.size} síndromes consistentes (perfiles + clínica + urgencia basal).`);
 }
 
-// 2. Verificar que los índices de feature de los árboles estén en rango
-let outOfRange = 0;
-function checkNode(node) {
-    if (!node || node.is_leaf) return;
-    if (node.feature < 0 || node.feature >= modelFeatureCount) outOfRange++;
-    checkNode(node.left);
-    checkNode(node.right);
-}
-RF_MODEL_DATA.trees.forEach(checkNode);
-if (outOfRange > 0) {
-    console.error(`[FAIL] ${outOfRange} nodos referencian un índice de feature fuera de rango [0, ${modelFeatureCount}).`);
-    errors += outOfRange;
+// 2. Las features clínicas existen en FEATURE_INDEX
+const missingClinical = CLINICAL.features.filter((f) => FEATURE_INDEX[f] === undefined);
+if (missingClinical.length > 0) {
+    console.error(`[FAIL] Features clínicas no encodables: ${missingClinical.join(', ')}`);
+    errors += missingClinical.length;
 } else {
-    console.log(`[PASS] Todos los nodos de los ${RF_MODEL_DATA.trees.length} árboles referencian features válidas.`);
+    console.log(`[PASS] Las ${CLINICAL.features.length} features clínicas existen en FEATURE_INDEX.`);
 }
 
-// 3. Verificar que las interacciones críticas estén mapeadas en el sistema
-const expectedInteractions = [
-    "interaccion_fiebre_purpura",
-    "interaccion_fiebre_ampolla",
-    "interaccion_inmuno_agudo",
-    "interaccion_dolor_agudo"
-];
-expectedInteractions.forEach(intKey => {
-    if (FEATURE_INDEX[intKey] === undefined) {
-        console.error(`[FAIL] Interacción crítica '${intKey}' no está definida en el sistema.`);
-        errors++;
-    }
-});
+// 3. Cobertura de features morfológicas (informativo)
+const morphResolvable = PROFILES.features.filter((f) => FEATURE_INDEX[f] !== undefined || EXTRA_FEATURE_INDEX[f] !== undefined);
+console.log(`[INFO] Features morfológicas: ${morphResolvable.length}/${PROFILES.features.length} en FEATURE_INDEX/EXTRA.`);
 
-// 4. Reporte Final
-console.log("\n-------------------------------------------");
+console.log('\n-------------------------------------------');
 if (errors === 0) {
-    console.log("\x1b[32m%s\x1b[0m", "CONTRATO VALIDADO: Alineación 100% garantizada.");
+    console.log('\x1b[32m%s\x1b[0m', 'CONTRATO VALIDADO: clasificador consistente con el motor.');
     process.exit(0);
 } else {
-    console.log("\x1b[31m%s\x1b[0m", `CONTRATO ROTO: Se encontraron ${errors} errores de desalineación.`);
+    console.log('\x1b[31m%s\x1b[0m', `CONTRATO ROTO: ${errors} inconsistencias.`);
     process.exit(1);
 }

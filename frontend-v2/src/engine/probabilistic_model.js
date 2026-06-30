@@ -1,105 +1,110 @@
 /**
- * probabilistic_model.js - Inferencia Probabilística de Síndromes Dermatológicos
- * Implementa Random Forest entrenado en Fase 3 para mayor resolución en fronteras clínicas.
+ * probabilistic_model.js — Clasificador sindrómico NAIVE BAYES HÍBRIDO.
+ *
+ * Fusiona dos verosimilitudes (arquitectura de dos fuentes, METHODS §5.2):
+ *   P(síndrome | features) ∝ P(síndrome)
+ *      × Π P(feature_morfológica | síndrome)     ← Derm1M (datos)   [present-only]
+ *      × Π P(feature_no_morfológica | síndrome)   ← guías citadas      [Bernoulli]
+ *
+ * Reemplaza el Random Forest entrenado con datos sintéticos (circular, 12 clases).
+ * Validado en datos reales (UCI Dermatology): supera al RF. Ver
+ * docs/syndrome_classifier_eval.md. Transparente, cubre los 14 síndromes, sin
+ * pacientes sintéticos.
  */
-import { FEATURE_INDEX } from './constants.js';
-import RF_MODEL_DATA from './rf_model.json' with { type: 'json' };
+import PROFILES from '../data/syndrome_feature_profiles.json' with { type: 'json' };
+import CLINICAL from '../data/clinical_likelihoods.json' with { type: 'json' };
 
+const EPS = 1e-6;
 const CONFIDENCE_THRESHOLD = 0.40;
 
-/**
- * Evalúa un solo árbol de decisión del bosque.
- * Además, cuenta cuántas veces los features PRESENTES en el paciente
- * fueron claves (activaron la rama derecha del árbol) en la trayectoria.
- */
-function evaluateTree(treeNode, x, activatedFeaturesTally) {
-    if (treeNode.is_leaf) {
-        return treeNode.value;
-    }
-    
-    const featureIdx = treeNode.feature;
-    const val = x[featureIdx];
-    
-    // En árboles sklearn, la condición es: val <= threshold -> left, else right
-    if (val <= treeNode.threshold) {
-        return evaluateTree(treeNode.left, x, activatedFeaturesTally);
-    } else {
-        // Trazabilidad Clínica: El paciente TIENE este feature (val > threshold, típicamente threshold es 0.5)
-        // y el árbol tomó una decisión basada en él. Lo sumamos a la importancia explicable.
-        activatedFeaturesTally[featureIdx] = (activatedFeaturesTally[featureIdx] || 0) + 1;
-        return evaluateTree(treeNode.right, x, activatedFeaturesTally);
-    }
+function pClinical(feature, syndrome) {
+    const level = CLINICAL.likelihoods[syndrome] && CLINICAL.likelihoods[syndrome][feature];
+    return level ? CLINICAL.scale[level] : CLINICAL.default;
 }
 
 /**
- * Ejecuta la predicción de Random Forest.
- * @param {Array} X - Vector de features unificado (raw mapping de la app)
+ * Set de features canónicas presentes en el paciente (morfológicas + clínicas).
+ * Se toma del featureMap del helper (cubre features indexadas y "extra").
  */
-export function predictProbabilisticSyndrome(X) {
-    const { features, classes } = RF_MODEL_DATA.metadata;
-    const numClasses = classes.length;
-    
-    // 1. Mapeo Canónico del Vector
-    const rawVector = features.map(fName => {
-        const idx = FEATURE_INDEX[fName];
-        if (idx === undefined) return 0;
-        return X[idx] || 0;
-    });
+function presentFeatures(helper) {
+    const featureMap = (helper && helper.featureMap) || {};
+    return new Set(Object.keys(featureMap).filter((k) => featureMap[k] === 1 || featureMap[k] === true));
+}
 
-    // 2. Inferencia Ensemble (Random Forest)
-    let sumProbs = new Array(numClasses).fill(0);
-    let activatedFeaturesTally = {};
-    
-    RF_MODEL_DATA.trees.forEach(tree => {
-        const leafProbs = evaluateTree(tree, rawVector, activatedFeaturesTally);
-        for(let i=0; i<numClasses; i++) {
-            sumProbs[i] += leafProbs[i];
+/**
+ * Clasifica el síndrome a partir del helper de features.
+ * @param {Object} helper - FeatureHelper de encodeFeatures (usa helper.featureMap)
+ */
+export function predictProbabilisticSyndrome(helper) {
+    const present = presentFeatures(helper);
+    const { syndromes, features, prior, p_feature_given_syndrome } = PROFILES;
+
+    // Log-score por síndrome
+    const scored = syndromes.map((syndrome) => {
+        let logScore = Math.log(prior[syndrome] ?? 1 / syndromes.length);
+
+        // Morfología (Derm1M): solo features presentes (present-only — config validada)
+        const profile = p_feature_given_syndrome[syndrome];
+        for (const f of features) {
+            if (present.has(f)) {
+                const p = Math.min(Math.max(profile[f], EPS), 1 - EPS);
+                logScore += Math.log(p);
+            }
         }
+
+        // Clínica (guías): Bernoulli (presente y ausente)
+        for (const f of CLINICAL.features) {
+            const p = Math.min(Math.max(pClinical(f, syndrome), EPS), 1 - EPS);
+            logScore += present.has(f) ? Math.log(p) : Math.log(1 - p);
+        }
+
+        return { syndrome, logScore };
     });
 
-    // Calcular promedios finales
-    const numTrees = RF_MODEL_DATA.trees.length;
-    const probabilities = sumProbs.map(p => p / numTrees);
-    
-    // 3. Empaquetar y Ordenar Candidatos
+    // Softmax → probabilidades (suman 1)
+    const maxLog = Math.max(...scored.map((x) => x.logScore));
+    let partition = 0;
+    scored.forEach((x) => { x.probability = Math.exp(x.logScore - maxLog); partition += x.probability; });
+    scored.forEach((x) => { x.probability /= partition; });
+
+    const top_candidates = scored
+        .map((x) => ({ syndrome: x.syndrome, probability: x.probability }))
+        .sort((a, b) => b.probability - a.probability);
+
     const syndrome_probabilities = {};
-    const candidates = [];
+    top_candidates.forEach((c) => { syndrome_probabilities[c.syndrome] = c.probability; });
 
-    probabilities.forEach((prob, i) => {
-        const className = classes[i];
-        syndrome_probabilities[className] = prob;
-        candidates.push({ syndrome: className, probability: prob });
-    });
-
-    const top_candidates = candidates.sort((a, b) => b.probability - a.probability);
-    const top_syndrome = top_candidates[0].syndrome;
-    const top_probability = top_candidates[0].probability;
-    
-    // Calibración de Confianza
+    const top = top_candidates[0];
+    const top_probability = top.probability;
     const isConfident = top_probability >= CONFIDENCE_THRESHOLD;
-    const confidence_level = top_probability > 0.70 ? "high" : (isConfident ? "medium" : "low");
+    const confidence_level = top_probability > 0.70 ? 'high' : (isConfident ? 'medium' : 'low');
 
-    // 4. Trazabilidad: Obtener los features "Positivos" más consultados (Ramas Activas)
-    const importanceArray = Object.keys(activatedFeaturesTally).map(idxStr => {
-        const idx = parseInt(idxStr, 10);
-        return {
-            key: features[idx],
-            impact: activatedFeaturesTally[idx] / numTrees // % de árboles que usaron esta rama
-        };
-    }).sort((a, b) => b.impact - a.impact).slice(0, 4);
+    // Explicabilidad transparente: features presentes que más apoyan al síndrome top
+    const topProfile = p_feature_given_syndrome[top.syndrome];
+    const positive = [...present]
+        .filter((f) => features.includes(f) || CLINICAL.features.includes(f))
+        .map((f) => ({
+            key: f,
+            impact: features.includes(f) ? (topProfile[f] || 0) : pClinical(f, top.syndrome)
+        }))
+        .sort((a, b) => b.impact - a.impact)
+        .slice(0, 4);
 
-    const feature_importance = {
-        positive: importanceArray,
-        negative: [] // En Random Forest la ausencia (rama izquierda) es más compleja de atribuir a 1 solo síndrome final sin valores por nodo, enfocamos la explicabilidad en firmas positivas presentes.
-    };
-
-    return {
-        top_syndrome: isConfident ? top_syndrome : null,
+    const result = {
+        top_syndrome: isConfident ? top.syndrome : null,
         top_probability,
         top_candidates,
         confidence_level,
-        feature_importance,
-        message: isConfident ? null : "Patrón ambiguo (Baja confianza en conjunto RF) - Evaluación clínica indispensable",
+        feature_importance: { positive, negative: [] },
+        message: isConfident ? null : 'Patrón ambiguo (baja confianza) - Evaluación clínica indispensable',
         syndrome_probabilities
     };
+
+    // Sin recalibración sintética: los campos "raw" coinciden con los finales.
+    result.raw_top_syndrome = result.top_syndrome;
+    result.raw_top_probability = top_probability;
+    result.raw_top_candidates = top_candidates.map((c) => ({ ...c }));
+    result.raw_syndrome_probabilities = { ...syndrome_probabilities };
+    result.raw_confidence_level = confidence_level;
+    return result;
 }
